@@ -1,0 +1,215 @@
+.container__content{
+    height:calc(100vh - 0px);
+}
+.container__bloque {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 47%;
+    top: 50%;
+    width:100%;
+}
+
+.container__card{
+    width: 100%;
+    border-radius: 12px;
+    padding-top: 51px;
+}
+.container__header{
+    background:none;
+    border:0;
+    padding: 0;
+}
+
+.bg-login{
+    background: url(/images/imagen_2.jpg) no-repeat 0px bottom;
+    background-size: cover;
+}
+
+.card-header__titulo {
+    font-size: 1.8rem;
+    line-height: 36px;
+    padding-bottom: 20px;
+    padding-top: 2px;
+}
+.container__body{
+    padding: 1px 2.5rem 2rem 2.5rem;
+    margin-top: 26px;
+}
+
+.btn-red {
+    background-color: #ee122c;
+    color: #fff;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    width: 149px;
+    font-weight: bold;
+}
+.btn-red:hover{
+    color:white;
+}
+.card-header__topmenos{
+    font-size: 1.2rem;
+}
+.form-control {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.error{
+    color:red;
+}
+
+a {
+    color: #1dbddf;
+    text-decoration: none;
+    background-color: transparent;
+}
+.form-control {
+    font-size: 1.1rem;
+    color:#91979e;
+}
+
+.form-group__registro{
+    padding-top: 15px;
+}
+
+.container__recovery {
+    padding-top: 25px;
+}
+.container__recovery-texto {
+    line-height: 23px;
+    padding-top: 14px;
+}
+
+.container__recovery-body {
+    padding-top: 25px;
+}
+.recovery__footer {
+    margin-top: 45px;
+}
+
+.container__register {
+    padding-top: 30px;
+}
+.container__register-body {
+    margin-top: 10px;
+}
+
+.container__register-footer {
+    margin-top: 40px;
+}
+
+.container__register-nota {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    line-height: 20px;
+    color:#283342;
+
+}
+.register__link{
+    padding-top:16px;
+}
+.form-group__boton{
+    text-align: center;
+}
+
+.btn-red:hover {
+	background-color:#e0263f;
+}
+.btn-red:active {
+	position:relative;
+	top:1px;
+}
+
+@media(max-width:768px){
+    .container__bloque {
+        transform:none;
+        position:inherit;
+        left:auto;
+        top: auto;
+        width: 100%;
+    }
+
+    .container__content {
+        height: auto;
+
+    }
+
+    .form-group__separador {
+        margin-bottom: 17px;
+    }
+    .container__body {
+        padding: 1px 2rem 2rem 2rem;
+        margin-top: 26px;
+    }
+    .container__register-nota {
+        padding-left: 1.1rem;
+        padding-right: 1rem;
+        line-height: 20px;
+        color: #283342;
+    }
+    .row__picture {
+        height: 273px;
+        display: block;
+        margin-bottom: 20px;
+    }
+    img.row__imagen {
+        width: 100%;
+    }
+    .form-group__boton{
+        text-align: left;
+    }
+    .card-header__titulo {
+        font-size: 1.5rem;
+        line-height: 36px;
+        padding-bottom: 20px;
+        padding-top: 2px;
+    }
+}
+
+@media(min-width:768px){
+
+}
+
+@media(min-width:992px){
+
+    .container__card {
+        max-width: 402px;
+    }
+    .container__register{
+        max-width: 558px;
+        margin: 0 auto;
+    }
+}
+
+
+@media(min-width:1200px){
+
+    .container__card {
+        max-width: 402px;
+        margin: 0 auto;
+    }
+
+    .container__register{
+        max-width: 558px;
+        margin: 0 auto;
+    }
+}
+
+.alerthome{
+
+        margin-left: 60px;
+
+}
+
+.btn-danger-modal {
+    border-radius: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}

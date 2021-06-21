@@ -1,0 +1,18 @@
+square(key)
+	width rem(key)
+	height rem(key)
+relative()
+	position relative
+bgCentrado()
+	background-repeat no-repeat
+	background-position center center
+	background-size cover
+
+rem()
+	array = ()
+	for num in arguments
+		if num == 0 or num is a 'string' or num is a 'ident'
+			push(array, num )
+		else
+			push(array, (num/16)rem )
+	array

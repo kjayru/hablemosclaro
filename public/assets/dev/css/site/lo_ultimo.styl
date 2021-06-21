@@ -1,0 +1,133 @@
+.lo_ultimo
+	
+	&__list
+		height auto
+		padding rem(15)
+		
+		&.m--default
+			display flex
+			flex-wrap wrap
+			.lo_ultimo__item
+				margin-right calc( (100% - 1188px) / 3 )
+				&:nth-child(4)
+					margin-right 0
+					~ .lo_ultimo__item
+						display none
+		
+		&.swiper-container-initialized
+			height auto
+			.lo_ultimo__item
+				margin-right rem(22)
+		.swiper-slide
+			width auto
+			height auto
+		.swiper-wrapper
+			height auto
+		.swiper-pagination
+			display none
+	
+	&__item
+		width rem(297)
+		height rem(364)
+		background-color --negro
+		border-radius rem(6)
+		position relative
+		color --blanco
+		overflow hidden
+		box-shadow rem(0, 5, 10) rgba(0,0,0,.15)
+		
+		display flex
+		flex-direction column
+		justify-content flex-end
+		
+		&:hover
+			.lo_ultimo__item
+				&__header
+					padding-bottom rem(40)
+				&__image
+					opacity 0.65
+					img
+						transform scale(1.1)
+		
+		&__image
+			position absolute
+			top 0
+			left 0
+			z-index 1
+			width 100%
+			height 100%
+			transition all ease .25s
+			img
+				width 100%
+				height 100%
+				object-fit cover
+				transition all ease .25s
+		
+		&__header
+			position relative
+			z-index 2
+			padding rem(24, 16)
+			transition all ease .25s
+			
+			display flex
+			flex-wrap wrap
+			justify-content space-between
+		
+		&__subtitle, &__date
+			font-size rem(10)
+			text-transform uppercase
+			font-weight 700
+			letter-spacing rem(0.1)
+		
+		&__date
+			font-weight 500
+		
+		&__title
+			width 100%
+			font-size rem(18)
+			font-weight 700
+			line-height 1.4
+			display block
+			margin rem(15, 0, 20)
+			
+			display -webkit-box
+			-webkit-line-clamp 2
+			-webkit-box-orient vertical
+			overflow hidden
+			text-overflow ellipsis
+		
+		&__timer
+			font-size rem(14)
+			color --gris
+	
+		&__link
+			position absolute
+			top 0
+			left 0
+			width 100%
+			height 100%
+			z-index 5
+			font-size 0
+	
+	
+	@media (max-width 900px)
+	
+		&__list
+			padding-bottom rem(40)
+			
+		.swiper-pagination
+			display block
+			bottom 0
+		.swiper-pagination-bullet-active
+			background-color --gris
+
+
+	@media (max-width 700px)
+	
+		&.swiper-container-initialized
+			.lo_ultimo__item
+				margin-right rem(17)
+		
+		&__item
+			width rem(258)
+			height rem(316)

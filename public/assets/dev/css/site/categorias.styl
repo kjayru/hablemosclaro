@@ -1,0 +1,41 @@
+.categorias
+	
+	&__list
+		display flex
+		flex-wrap wrap
+		justify-content center
+	
+	&__item
+		flex 1
+		padding rem(0, 20)
+		margin-bottom rem(15)
+		
+		&__link
+			color --negro
+		
+		&__image
+			height rem(100)
+			display flex
+			justify-content center
+			align-items center
+		
+		&__title
+			display block
+			text-align center
+			font-size rem(18)
+			line-height 1.4
+			font-weight 700
+			
+
+
+	@media (max-width 800px)
+		
+		&__item
+			flex 33.3%
+			padding 0
+	
+
+	// @media (max-width 350px)
+		
+	// 	&__item
+	// 		flex 100%

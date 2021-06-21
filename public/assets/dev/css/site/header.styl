@@ -1,0 +1,303 @@
+.header
+	box-shadow 0 2px 4px 0 rgba(169, 169, 169, 0.5)
+	background-color --blanco
+	position fixed
+	top 0
+	left 0
+	width 100%
+	z-index 100
+	
+	&__advance
+		display block
+		width 0
+		height rem(4)
+		background-color --rojo
+		position absolute
+		bottom rem(-4)
+	
+	&__height
+		height rem(64)
+		display block
+	
+	&__inset
+		height rem(64)
+		
+		display flex
+		align-items center
+		justify-content space-between
+	
+	&__button-lupa, &__button-mobile
+		display none
+		
+	@media ( min-width 1081px )
+	
+		&__nav
+			
+			&__arrow, &__title, &__socials
+				display none				
+			
+			&__list
+				display flex
+			
+			&__item
+				position relative
+				
+				&:first-child
+					display none
+				
+				&.m--lupa
+					height rem(64)
+					margin-left rem(20)
+					display flex
+					align-items center
+					justify-content center
+					transition all ease 0.25s
+					
+					// &:before, &:after
+					// 	content ''
+					// 	display block
+					// 	width rem(22)
+					// 	height rem(2)
+					// 	background #fff
+					// 	position absolute
+					// 	top 50%
+					// 	left 100%
+					// 	transform translate(-50%, -50%) rotate(45deg)
+					// 	opacity 0
+					// 	transition all ease 0.25s
+					// &:after
+					// 	transform translate(-50%, -50%) rotate(-45deg)
+						
+				
+				&:before
+					content ''
+					display none
+					width 100%
+					height rem(40)
+					// background red
+					position absolute
+					bottom rem(-20px)
+					left 0
+				
+				&:hover
+					&:before
+						display block
+					.header__nav__link
+						color --negro-total
+						font-weight 700
+						&:after
+							opacity 1
+							transform scale(1)
+					.header__subnav
+						top rem(75)
+						opacity 1
+						transform translate(0, 0)
+				
+				&__search
+					cursor pointer
+			
+			&__link
+				font-size rem(13)
+				text-transform uppercase
+				color --negro
+				display flex
+				align-items center
+				height rem(64)
+				padding rem(0, 20)
+				position relative
+				font-weight 500
+				transition all ease .25ss
+				
+				&:after
+					content ''
+					display block
+					width 100%
+					height rem(2)
+					background-color --rojo
+					position absolute
+					bottom 0
+					left 0
+					opacity 0
+					transform scale(0)
+					transition all ease .25s
+				
+				&:hover
+					color --negro-total
+					font-weight 700
+					&:after
+						opacity 1
+						transform scale(1)
+		
+		&__subnav
+			width rem(200)
+			position absolute
+			// top rem(74)
+			top rem(-500)
+			left calc(50% - 100px)
+			background-color --negro-total
+			border-radius rem(5)
+			opacity 0
+			transform translate(0, 15px)
+			transition opacity ease-out .4s, transform ease-out .4s
+			
+			&__item
+				padding rem(22, 28, 0)
+				&:last-child
+					padding-bottom rem(22)
+			
+			&__link
+				color --blanco
+				position relative
+				text-transform uppercase
+				font-size rem(13)
+				// font-weight 500
+				letter-spacing rem(0.69)
+				&:after
+					content ''
+					display block
+					width 0
+					height rem(2)
+					background-color --rojo
+					position absolute
+					bottom rem(-4)
+					left 0
+					transition all ease .25s
+				&:hover
+					&:after
+						width 100%
+	
+				
+	@media ( max-width 1080px )
+		
+		&__inset
+			position static
+			
+		&__nav
+			background-color --negro-total
+			width 100%
+			height calc(100% - 64px)
+			padding 0
+			overflow auto
+			opacity 0
+			transition opacity ease .25s
+
+			position fixed
+			top -200%
+			left 0
+
+			display flex
+			flex-direction column
+			
+			&.-active-
+				opacity 1
+				top rem(64)
+			
+			&__socials
+				background-color --blanco
+				height rem(64)
+				width calc(100% - 120px)
+				padding rem(0, 30)
+				
+				display flex
+				align-items center
+				position fixed
+				top 0
+				left 0
+				
+				img
+					margin-right rem(25)
+			
+			&__title
+				font-size rem(10)
+				text-transform uppercase
+				color --gris2
+				font-weight 500
+				letter-spacing rem(0.9)
+				padding rem(25, 25, 10)
+			
+			&__item
+				position relative
+				
+				&.m--lupa
+					display none
+			
+			&__arrow
+				display flex
+				align-items center
+				justify-content center
+				square(62)
+				position absolute
+				top 0
+				right 0
+				z-index 2
+				&:after
+					content ''
+					display block
+					border-right rem(2) solid --blanco
+					border-bottom rem(2) solid --blanco
+					square(14)
+					transform rotate(45deg)
+				&.-active- ~ .header__subnav
+					display block
+
+			
+			&__link
+				color --blanco
+				font-size rem(18)
+				padding rem(20, 25)
+				border-bottom rem(1) solid #313131
+				display block
+				img
+					margin-left rem(10)
+					
+				
+		&__subnav
+			display none
+			
+			&__link
+				color #a1a1a1
+				font-size rem(18)
+				padding rem(20, 30)
+				border-bottom rem(1) solid #313131
+				display block
+		
+		&__button-lupa
+			margin-left auto
+			width rem(64)
+			height rem(64)
+			display flex
+			align-items center
+			justify-content center
+		
+		&__button-mobile
+			display flex
+			flex-direction column
+			align-items center
+			justify-content center
+			
+			width rem(64)
+			height rem(64)
+			background-color --rojo
+			
+			margin-right rem(-15)
+			
+			&:before, &:after, span
+				content ''
+				display block
+				width rem(24)
+				height rem(3)
+				border-radius rem(4)
+				background-color --blanco
+				transition all ease .25s
+			span
+				margin rem(5, 0)
+			
+			&.-active-
+				background-color --negro-total
+				
+				span
+					opacity 0
+				&:after
+					transform translate(0, -8px) rotate(45deg)
+				&:before
+					transform translate(0, 8px) rotate(-45deg)
