@@ -62,19 +62,27 @@ const site = (function(){
 						'slider_principal' : () => {
 							_self.append(`<div class="slider_principal__nav">
 											<img class="slider_principal__nav__arrow m--left fnSwiperToRight" src="${_self.data('swiper-arrows')}" alt="" loading="lazy">
-											<span class="slider_principal__nav__counter fnSwiperFraction">1/6</span>
+											<span class="slider_principal__nav__counter fnSwiperFraction"></span>
 											<img class="slider_principal__nav__arrow fnSwiperToLeft" src="${_self.data('swiper-arrows')}" alt="" loading="lazy">
 											<span class="slider_principal__nav__play fnSwiperPlay"></span>
 										</div>`);
 						},
-						'4_columnas' : () => { _self.append('<div class="swiper-pagination" />') }
+						'4_columnas' : () => { _self.append('<div class="swiper-pagination" />') },
+						'scroll_bottom' : () => { _self.append('<div class="swiper-scrollbar" />') },
+						'one_image' : () => {
+							_self.append(`<div class="slider_principal__nav">
+											<img class="slider_principal__nav__arrow m--left fnSwiperToRight" src="${_self.data('swiper-arrows')}" alt="" loading="lazy">
+											<span class="slider_principal__nav__counter fnSwiperFraction"></span>
+											<img class="slider_principal__nav__arrow fnSwiperToLeft" src="${_self.data('swiper-arrows')}" alt="" loading="lazy">
+										</div>`);
+						}
 					};
 					aditionals[type]();	
 
 					const params = {
 						'slider_principal': {
-							slidesPerView: 1, loop: true, autoplay : { delay : 2000 }, speed : 1200,
-				            navigation: { nextEl: el.querySelector('.fnSwiperToRight'), prevEl: el.querySelector('.fnSwiperToLeft') },
+							slidesPerView: 1, autoplay : { delay : 3000 }, speed : 1500,
+				            navigation: { nextEl: el.querySelector('.fnSwiperToLeft'), prevEl: el.querySelector('.fnSwiperToRight') },
 				            pagination: { el: el.querySelector('.fnSwiperFraction'), type: "fraction" },
 				            on: {
 				            	init : function (e) {
@@ -87,8 +95,17 @@ const site = (function(){
 				            }
 						},
 						'4_columnas': {
-							slidesPerView: 'auto', loop: true, freeMode: true, autoplay : { delay : 2000 }, speed : 1200,
+							slidesPerView: 'auto', freeMode: true, speed : 1200,
 				            pagination: { el: el.querySelector('.swiper-pagination'), clickable: true }
+						},
+						'scroll_bottom' : {
+							slidesPerView: 'auto', freeMode: true,
+							scrollbar: { el: ".swiper-scrollbar", draggable : true,  reverseDirection: true }
+						},
+						'one_image': {
+							slidesPerView: 1, autoplay : { delay : 2000 }, speed : 1200, spaceBetween: 30, 
+				            navigation: { nextEl: el.querySelector('.fnSwiperToLeft'), prevEl: el.querySelector('.fnSwiperToRight') },
+				            pagination: { el: el.querySelector('.fnSwiperFraction'), type: "fraction" }
 						}
 					};
 					const swiper = new Swiper( el, params[type] );
@@ -98,6 +115,39 @@ const site = (function(){
 
 		interactions : function() {
 
+			$('.fnToShare')
+				.on('click', function(e){
+					const top = $('#detalle-de-articulos-footer-socials').offset().top;
+					const header = $('.header').outerHeight() + 20;
+					$('body, html').animate({ scrollTop: (top - header) }, 750);
+				});
+
+			$('.fnToTop')
+				.on('click', function(e){
+					$('body, html').animate({scrollTop:0}, 750);
+				});
+
+			// Tablero de contenido - detalle de articulos
+			$('.fnArticleNav a')
+				.on('click', function(e){
+					e.preventDefault();
+					const href = $(this).attr('href');
+					const top = $(href).offset().top;
+					const header = $('.header').outerHeight() + 20;
+					$('body, html').animate({ scrollTop: (top - header) }, 750);
+				});
+
+			// mostrar iconos de compartir
+			$('.fnShowSocials, .fnShowArticleNav')
+				.on('click', function(e) { $(this).parent().toggleClass(dom.active); });
+
+
+			$('.fnShowFooterSocials')
+				.on('click', function(e) { $(this).parent().toggleClass('m--hide'); });
+
+			$('.fnShowArticleAuthor')
+				.on('click', function(e) { $(this).closest('.detalle_de_articulos__article__author').toggleClass(dom.active); });
+
 			// mostrar el avance del scroll del documento
 			setScrollAdvance();
 			$(window).on('scroll', setScrollAdvance );
@@ -105,7 +155,7 @@ const site = (function(){
 			// Mostrar formulario de busqueda
 			$('.fnShowSearchform')
 				.on('click', function(e) {
-					// $(this).parent().toggleClass(dom.active);
+					$(this).parent().toggleClass(dom.active);
 					$('#search').toggleClass(dom.active);
 				});
 
@@ -113,7 +163,7 @@ const site = (function(){
 			$('.fnShowNav')
 				.on('click', function(e) {
 					$(this).toggleClass(dom.active);
-					$('.fnNavTarget').toggleClass(dom.active);
+					$('.fnNavTarget, body').toggleClass(dom.active);
 				});
 
 			// Mostrar videos
@@ -126,6 +176,8 @@ const site = (function(){
 					$('body, html').animate({
 						scrollTop : $('.ultimos_videos').offset().top - $('.header').outerHeight()
 					}, 700);
+					$('.fnShowVideoButton').removeClass('-active-');
+					$(this).addClass('-active-');
 				});
 
 			// Mostrar submenu en mobile
@@ -133,6 +185,31 @@ const site = (function(){
 				.on('click', function(e) {
 					$(this).toggleClass('-active-');
 				});
+
+			// Mostrar filtro en mobile
+			$('.fnShowFilter')
+				.on('click', function(e) {
+					$('#filtro_de_articulos').fadeIn(350);
+				});
+
+			// Ocultar filtro en mobile
+			$('.fnCloseFilter')
+				.on('click', function(e) {
+					$('#filtro_de_articulos').fadeOut(250);
+				});
+
+
+			// Search
+			$('.fnSearchFormInput').on('keyup', function(e){
+				const clean = $('.fnSearchFormClean');
+				$.trim($(this).val()).length > 0 ? clean.addClass('-active-') : clean.removeClass('-active-') ;
+			});
+			$('.fnSearchFormClean').on('click', function(e){
+				$(this).removeClass('-active-');
+				$('.fnSearchFormInput').val('');
+				$('.fnSearchResults').removeClass('-active-');
+				$('.fnSearchResultsData').html('');
+			});
 
 		},
 

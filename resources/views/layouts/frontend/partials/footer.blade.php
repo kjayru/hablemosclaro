@@ -5,8 +5,8 @@
 			<h6 class="footer__title">Escribenos a</h6>
 			<a class="footer__email" href="mailto:hablandoclaro@claro.com.pe">hablandoclaro@claro.com.pe</a>
 			<aside class="footer__socials">
-				<a class="footer__socials__link" href="#"><img src="assets/public/images/ico_twitter_footer.png" alt="Twitter" loading="lazy"></a>
-				<a class="footer__socials__link" href="#"><img src="assets/public/images/ico_linkedin_footer.png" alt="Linkedin" loading="lazy"></a>
+				<a class="footer__socials__link" href="#"><img src="/assets/public/images/ico_twitter_footer.png" alt="Twitter" loading="lazy"></a>
+				<a class="footer__socials__link" href="#"><img src="/assets/public/images/ico_linkedin_footer.png" alt="Linkedin" loading="lazy"></a>
 			</aside>
 		</header>
 		<aside class="footer__nav">

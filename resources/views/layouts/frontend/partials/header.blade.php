@@ -1,6 +1,6 @@
 <header class="header">
 	<div class="limit header__inset">
-		<h1 class="header__logo"><img src="assets/public/images/hablando-claro.png" alt="Hablando Claro" loading="lazy"></h1>
+		<h1 class="header__logo"><img src="/assets/public/images/hablando-claro.png" alt="Hablando Claro" loading="lazy"></h1>
 
         <nav class="header__nav fnNavTarget">
 			<strong class="header__nav__title">Categorías</strong>
@@ -28,21 +28,21 @@
                 @endforeach
 
 
-				<li class="header__nav__item m--lupa"><img class="header__nav__item__search fnShowSearchform" src="assets/public/images/lupa_2.png" alt="" loading="lazy"></li>
+				<li class="header__nav__item m--lupa"><img class="header__nav__item__search fnShowSearchform" src="/assets/public/images/lupa_2.png" alt="" loading="lazy"></li>
 			</ul>
 			<aside class="header__nav__socials">
-				<a href="#"><img src="assets/public/images/ico_twitter.png" alt="Twitter" loading="lazy"></a>
-				<a href="#"><img src="assets/public/images/ico_linkedin.png" alt="Linkedin" loading="lazy"></a>
+				<a href="#"><img src="/assets/public/images/ico_twitter.png" alt="Twitter" loading="lazy"></a>
+				<a href="#"><img src="/assets/public/images/ico_linkedin.png" alt="Linkedin" loading="lazy"></a>
 			</aside>
 		</nav>
-		<span class="header__button-lupa"><img class="header__nav__item__search fnShowSearchform" src="assets/public/images/lupa_2.png" alt="" loading="lazy"></span>
+		<span class="header__button-lupa"><img class="header__nav__item__search fnShowSearchform" src="/assets/public/images/lupa_2.png" alt="" loading="lazy"></span>
 		<span class="header__button-mobile fnShowNav"><span></span></span>
 	</div>
 	<span class="header__advance fnScrollAdvance"></span>
 </header>
 <span class="header__height"></span><div id="search" class="search">
 	<div class="search__content">
-		<span class="search__content__back fnShowSearchform"><img src="assets/public/images/ico_back.png" alt="" /></span>
+		<span class="search__content__back fnShowSearchform"><img src="/assets/public/images/ico_back.png" alt="" /></span>
 		<form action="http://localhost/hablandoclaro/search_results.json" class="search__form fnSearchForm" method="post" data-tipo="search_form">
 			<input type="text" name="q" placeholder="Buscar en Hablando Claro" class="search__form__input">
 			<button type="submit" class="search__form__button">Buscar</button>
