@@ -28,8 +28,12 @@
                 @endforeach
 
 
-				<li class="header__nav__item m--lupa"><img class="header__nav__item__search fnShowSearchform" src="/assets/public/images/lupa_2.png" alt="" loading="lazy"></li>
-			</ul>
+				<li class="header__nav__item m--lupa">
+					<img class="header__nav__item__search fnShowSearchform" src="/assets/public/images/lupa_2.png" alt="" loading="lazy">
+					<span class="header__button-mobile -active- fnShowSearchform"><span></span></span>
+				</li>
+
+            </ul>
 			<aside class="header__nav__socials">
 				<a href="#"><img src="/assets/public/images/ico_twitter.png" alt="Twitter" loading="lazy"></a>
 				<a href="#"><img src="/assets/public/images/ico_linkedin.png" alt="Linkedin" loading="lazy"></a>
