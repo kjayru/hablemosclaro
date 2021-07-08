@@ -48,12 +48,15 @@
 
         <nav class="listado_de_articulos__nav">
             <ul class="listado_de_articulos__nav__inset">
-                <li class="listado_de_articulos__nav__item"><a href="/{{$categoria}}" class="listado_de_articulos__nav__link -active-">Todo</a>
+                <li class="listado_de_articulos__nav__item"><a href="/{{$categoria}}" class="listado_de_articulos__nav__link">Todo</a>
                 </li>
-                @if(!is_null($categorias))
+                @if($categorias == null)
                     @foreach($categorias as $cat)
                     <li class="listado_de_articulos__nav__item">
-                        <a href="/{{$categoria}}/{{$cat->slug}}" class="listado_de_articulos__nav__link ">{{ $cat->nombre}}</a>
+                        @php
+                            $seturl = env('APP_URL')."/".$categoria."/".$cat->slug;
+                        @endphp
+                        <a href="/{{$categoria}}/{{$cat->slug}}" class="listado_de_articulos__nav__link @if($current_url == $seturl) -active- @endif">{{ $cat->nombre}}</a>
                     </li>
                     @endforeach
                 @endif
@@ -75,7 +78,6 @@
         <div class="listado_de_articulos__list">
 
         @foreach($articulos as $post)
-
             <article class="columnas__item">
                 <picture class="columnas__item__image">
                     <img src="{{$post->imagenbox}}" alt="" loading="lazy">
@@ -86,7 +88,7 @@
                     <h3 class="columnas__item__title">{{ $post->titulo}}</h3>
                     <aside class="columnas__item__timer">5 min de lectura</aside>
                 </header>
-                <a href="/{{$categoria}}/{{$post->slug}}" class="columnas__item__link">Más información</a>
+                <a href="/{{$categoria}}/{{$subcategoria}}/{{$post->slug}}" class="columnas__item__link">Más información</a>
             </article>
         @endforeach
 

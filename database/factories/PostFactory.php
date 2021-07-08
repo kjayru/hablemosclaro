@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\PostType;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -28,9 +29,12 @@ class PostFactory extends Factory
             return [
                 'titulo' => $this->faker->sentence(3),
                 'slug' => Str::slug( $this->faker->sentence(3),"-"),
+                'banner' => $this->faker->image('public/storage/images',1200,400) ,
+                'imagenbox' => $this->faker->image('public/storage/images',400,300) ,
                 'resumen' =>   $this->faker->sentence(10),
                 'contenido' =>   $this->faker->sentence(50),
-                'category_id' => Category::whereNull('parent_id')->get()->random()->id,
+                'category_id' => Category::whereNotNull('parent_id')->get()->random()->id,
+                'post_type_id' => PostType::get()->random()->id,
             ];
 
 

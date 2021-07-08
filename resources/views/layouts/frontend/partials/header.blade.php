@@ -11,7 +11,7 @@
 				</li>
                 @foreach ( $menu as $key=>$cat )
                 <li class="header__nav__item">
-					<a class="header__nav__link" href="{{$cat->slug}}">{{$cat->nombre}}</a>
+					<a class="header__nav__link" href="/{{$cat->slug}}">{{$cat->nombre}}</a>
 
                     @if(count($cat->parent)>0)
 
