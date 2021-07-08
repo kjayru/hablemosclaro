@@ -78,7 +78,7 @@
     <section class="section columnas">
         <h2 class="limit g-title m--swiper">Columnas de opinión</h2>
         <div class="limit columnas__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
-
+        @if(isset($columns))
         @foreach($columns as $col)
             <article class="columnas__item">
                 <picture class="columnas__item__image">
@@ -100,7 +100,7 @@
                 <a href="#" class="columnas__item__link">Más información</a>
             </article>
         @endforeach
-
+        @endif
 
         </div>
     </section>
