@@ -78,29 +78,7 @@
     <section class="section columnas">
         <h2 class="limit g-title m--swiper">Columnas de opinión</h2>
         <div class="limit columnas__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
-        @if($columns != null)
-        @foreach($columns as $col)
-            <article class="columnas__item">
-                <picture class="columnas__item__image">
-                    <img src="{{ $col->imagenbox }}" alt="" loading="lazy">
-                </picture>
-                <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{$col->category->nombre}}</strong>
-                    <time class="columnas__item__date">{{ $col->created_at->format('d M Y')}}</time>
-                    <h3 class="columnas__item__title">{{$col->titulo}}</h3>
-                   <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
-                    <div class="columnas__item__author">
-                        <img src="assets/public/images/author.png" alt="">
-                        <p>
-                            <strong>{{ $col->authors[0]->nombre}}</strong>
-                            {{ $col->authors[0]->cargo}}
-                        </p>
-                    </div>
-                </header>
-                <a href="#" class="columnas__item__link">Más información</a>
-            </article>
-        @endforeach
-        @endif
+
 
         </div>
     </section>
