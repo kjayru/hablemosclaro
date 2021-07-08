@@ -17,6 +17,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $columns = null;
 
         $articulos = Post::where('destacado',1)->get();
         $categorias = Category::wherenull('parent_id')->get();
