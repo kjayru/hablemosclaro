@@ -71,6 +71,7 @@ class HomeController extends Controller
 
     public function subcategoria($categoria,$subcategoria){
 
+
         $categorias = null;
         $category = Category::where('slug',$subcategoria)->first();
 
@@ -91,6 +92,7 @@ class HomeController extends Controller
 
        $current_url = url()->full();
 
+
         return view('frontend.subcategory',['categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categoria,"subcategoria"=>$subcategoria,'current_url'=>$current_url]);
     }
 
@@ -99,7 +101,8 @@ class HomeController extends Controller
 
         $post = Post::where('slug',$articulo)->first();
 
-        return view('frontend.post',['post'=>$post]);
+
+        return view('frontend.post',['articulo'=>$post]);
 
     }
 
@@ -114,7 +117,8 @@ class HomeController extends Controller
                 echo $cat->parent."<br><br>";
             }
         }
-       // dd($categories[0]->parent);
+
+        dd($categories[0]->parent);
     }
 
 }
