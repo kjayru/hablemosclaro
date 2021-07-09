@@ -29,8 +29,8 @@ class PostFactory extends Factory
             return [
                 'titulo' => $this->faker->sentence(3),
                 'slug' => Str::slug( $this->faker->sentence(3),"-"),
-                'banner' => $this->faker->image('public/storage/images',1200,400) ,
-                'imagenbox' => $this->faker->image('public/storage/images',400,300) ,
+                'banner' => $this->faker->imageUrl(1200,400) ,
+                'imagenbox' => $this->faker->imageUrl(400,300),
                 'resumen' =>   $this->faker->sentence(10),
                 'contenido' =>   $this->faker->sentence(50),
                 'category_id' => Category::whereNotNull('parent_id')->get()->random()->id,
