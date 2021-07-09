@@ -1,4 +1,21 @@
 .columnas
+	position relative
+	
+	&__header
+		display flex
+		align-items center
+		justify-content space-between
+	
+	&__link
+		color --celeste
+		font-size rem(20)
+		font-weight 500
+		margin-left rem(30)
+		width fit-content
+		flex none
+		margin-bottom rem(20)
+		&:hover
+			text-decoration underline
 	
 	&__list
 		height auto
@@ -21,6 +38,9 @@
 		.swiper-slide
 			width auto
 			height auto
+			&:last-child
+				.columnas__item
+					margin-right 0
 		.swiper-wrapper
 			height auto
 		.swiper-pagination
@@ -92,6 +112,15 @@
 		&__timer
 			font-size rem(14)
 			color --gris
+			display flex
+			align-items baseline
+			&:before
+				content ''
+				flex none
+				display block
+				square(14)
+				background-image url('../images/ico_timer.png')
+				margin-right rem(12)
 	
 		&__link
 			position absolute
@@ -117,18 +146,26 @@
 				font-weight 700
 				display block
 				
-	
+	.g-button-group
+		display none
+		paddin-top rem(20)
 	
 	@media (max-width 900px)
-	
+		
 		&__list
 			padding-bottom rem(40)
+		
+		&__link
+			display none
 			
 		.swiper-pagination
 			display block
 			bottom 0
 		.swiper-pagination-bullet-active
 			background-color --gris
+		
+		.g-button-group
+			display flex
 
 
 	@media (max-width 700px)

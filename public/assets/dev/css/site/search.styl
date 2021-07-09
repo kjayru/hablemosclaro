@@ -28,10 +28,11 @@
 	
 	&__form
 		margin-bottom rem(32)
+		position relative
 		
 		&__input
 			width 100%
-			padding rem(0, 20, 0, 58)
+			padding rem(0, 50, 0, 58)
 			height rem(54)
 			background --blanco2 url('../images/lupa.png') no-repeat rem(20) rem(17)
 			border rem(1) solid --blanco2
@@ -43,6 +44,15 @@
 		
 		&__button
 			display none
+		
+		&__clean
+			display none
+			position absolute
+			top rem(16)
+			right rem(15)
+			cursor pointer
+			&.-active-
+				display block
 			
 	&__results
 		display none
@@ -137,6 +147,8 @@
 				position absolute
 				top rem(20)
 				left rem(25)
+				cursor pointer
+				z-index 4
 		
 		&__form
 			padding-left rem(30)

@@ -21,6 +21,9 @@
 		.swiper-slide
 			width auto
 			height auto
+			&:last-child
+				.columnas__item
+					margin-right 0
 		.swiper-wrapper
 			height auto
 		.swiper-pagination
@@ -99,6 +102,15 @@
 		&__timer
 			font-size rem(14)
 			color --gris
+			display flex
+			align-items center
+			&:before
+				content ''
+				flex none
+				display block
+				square(14)
+				background-image url('../images/ico_timer.png')
+				margin-right rem(12)
 	
 		&__link
 			position absolute

@@ -66,6 +66,15 @@
 		
 		&__timer
 			font-size rem(14)
+			display flex
+			align-items end
+			&:before
+				content ''
+				flex none
+				display block
+				square(14)
+				background-image url('../images/ico_timer_white.png')
+				margin-right rem(12)
 	
 		&__link
 			position absolute
@@ -91,14 +100,14 @@
 		
 		&__arrow
 			cursor pointer
-			opacity 0.5
 			transition opacity ease 0.25s
+			
+			&.swiper-button-disabled
+				opacity 0.5
+				cursor not-allowed
 			
 			&.m--left
 				transform rotate(180deg)
-
-			&:hover
-				opacity 1
 
 		&__counter
 			padding rem(0, 12, 0, 15)

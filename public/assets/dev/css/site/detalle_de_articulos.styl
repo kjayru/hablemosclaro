@@ -1,0 +1,1063 @@
+.detalle_de_articulos
+	
+	display flex
+	flex-wrap wrap
+	
+	&__socials
+		width rem(29)
+		order 0
+		img
+			margin-bottom rem(7)
+			border-radius 50%
+			transition all ease .25s
+			&:hover
+				transform translate(0, -3px)
+				box-shadow rem(0, 4, 6) rgba(0,0,0,.15)
+		span
+			cursor pointer
+		a:nth-child(3) ~ a
+			display none
+		&__close
+			display none
+		&.-active-
+			a:nth-child(3) ~ a
+				display block
+			.detalle_de_articulos__socials
+				&__close
+					display block
+				&__open
+					display none
+
+	&__sidebar
+		width rem(261)
+		flex none
+		order 3
+
+	&__subscribe
+		border rem(1) solid --blanco3
+		padding rem(25, 20)
+		color --gris2
+		font-size rem(14)
+		border-radius rem(10)
+		
+		display flex
+		flex-direction column
+		
+		&__title
+			font-size rem(18)
+			font-weight 700
+			margin-bottom rem(10)
+			color --negro
+		
+		&__text
+			margin-bottom rem(15)
+			line-height 1.3
+		
+		&__input
+			height rem(47)
+			background-color --blanco2
+			border rem(1) solid #e5e7e8
+			padding rem(0, 14)
+			color --gris2
+			margin-bottom rem(20)
+		
+		&__subtitle
+			font-weight 500
+			margin-bottom rem(12)
+		
+		&__checkboxes
+			margin-bottom rem(27)
+		
+		&__checkbox
+			display flex
+			align-items center
+			justify-content flex-start
+			font-size rem(14)
+			margin-bottom rem(12)
+			cursor pointer
+			&:last-child
+				margin-bottom 0
+			input
+				display none
+				&:checked + div
+					background-color --rojo
+					border-color --rojo
+					
+			div
+				square(17)
+				border rem(1) solid #979797
+				border-radius rem(3)
+				margin-right rem(10)
+				transition all ease .25s
+				
+				display flex
+				align-items center
+				justify-content center
+
+				&:after
+					content ''
+					display block
+					width rem(10)
+					height rem(8)
+					background url('../images/ico_filter_selected_white.png') no-repeat center center / cover
+					transition all ease .25s
+					
+	&__recomendados
+		padding-top rem(40)
+		
+		&__title
+			font-size rem(20)
+			font-weight 700
+			margin-bottom rem(15)
+			
+			&:after
+				content ''
+				display block
+				margin-top rem(12)
+				width rem(25)
+				height rem(3)
+				background-color --rojo
+		
+		.columnas__item
+			height auto
+			width 100%
+			box-shadow none
+			border-bottom rem(1) solid --blanco3
+			overflow hidden
+			&__header
+				padding rem(20, 0)
+			&__title
+				font-size rem(15)
+				margin rem(10, 0, 15)
+			&__timer
+				font-size rem(13)
+			&:last-child
+				border-bottom 0
+
+	&__article
+		order 2
+		flex 1
+		width calc(100% - 290px)
+		padding rem(0, 65, 0, 27)
+		--items-var rem(40)
+		
+		.swiper-scrollbar
+			left 0
+			width 100%
+			background-color #f3f3f3
+			height rem(7)
+			
+		.swiper-scrollbar-drag
+			background-color #d8d8d8
+			transition all ease .25s !important
+		
+		.slider_principal__nav
+			color --negro
+			padding rem(0)
+			width 100%
+			justify-content center
+			&__arrow
+				opacity 1
+				filter grayscale(0)
+				transition all ease .25
+				&.swiper-button-disabled
+					opacity 0.8
+					filter grayscale(1)
+					cursor not-allowed
+		
+		&__content, &__donwload, &__simple-slide, &__nav, &__links, &__myths, &__social-cards, &__author
+			margin-bottom var(--items-var)
+			&:last-child
+				margin-bottom 0
+			
+		&__image
+			border-radius rem(6)
+			overflow hidden
+			img
+				width 100%
+		
+		.columnas__item
+			&__header
+				padding rem(48, 0, 34)
+			
+			&__subtitle
+				letter-spacing rem(1)
+				
+			&__title
+				font-size rem(30)
+				display block
+				line-height 1.3
+			
+			&__date, &__timer
+				font-size rem(16)
+				color --gris
+				text-transform initial
+				margin-right rem(18)
+				font-weight 400
+			
+			&__date
+				display flex
+				align-items baseline
+				&:before
+					content ''
+					flex none
+					display block
+					width rem(15)
+					height rem(14)
+					background-image url('../images/ico_calendar.png')
+					margin-right rem(12)
+			
+			&__timer
+				margin-right auto
+			
+			&__author
+				p
+					font-size rem(13)
+					color #91979e
+				strong
+					font-size rem(14)
+					color --celeste
+						
+		&__content
+			line-height 1.55
+			p, ul, ol
+				margin-bottom rem(15)
+			a
+				color --celeste
+			a, strong
+				font-weight 700
+			ul
+				padding-left rem(15)
+				li
+					list-style-type disc
+					margin-bottom rem(5)
+			ol
+				padding-left rem(15)
+				li
+					list-style-type auto
+					margin-bottom rem(5)
+					
+			*:last-child
+				margin-bottom 0
+		
+		&__donwload
+			background-color --negro
+			color --blanco
+			border-radius rem(5)
+			padding rem(25, 30)
+			
+			display flex
+			align-items center
+			justify-content space-between
+			
+			strong
+				font-size rem(18)
+				max-width rem(320)
+				margin-right rem(25)
+				font-weight 700
+				line-height 1.4
+				
+			
+			.g-button
+				max-width rem(171)
+		
+		&__simple-slide
+			width 100%
+			height fit-content
+			padding-bottom rem(25)
+			&.m--one
+				padding-bottom rem(50)
+				.swiper-slide
+					padding-right 0
+			
+			&:hover
+				.swiper-scrollbar-drag
+					background-color --rojo
+			
+			&.m--default
+				display flex
+			
+			.swiper-slide
+				width auto
+				padding-right rem(24)
+				&:last-child
+					padding-right 0
+			
+			
+			
+			&__image
+				img
+					max-width 100%
+					width fit-content
+					border-radius rem(6)
+				&.m--centered
+					width 100%
+					img
+						margin 0 auto
+			
+			&__item
+				width rem(259)
+				dl
+					padding rem(17, 14)
+					font-size rem(14)
+					line-height 1.4
+					border rem(1) solid #f0f0f0
+					border-top 0
+				dt
+					font-weight 700
+					margin-bottom rem(12)
+				dd
+					font-size rem(13)
+
+		&__nav
+			background-color #f4f6f9
+			border-radius rem(5)
+			
+			&.m--black
+				background-color --negro
+				color --blanco
+				a
+					color --blanco
+				li:hover 
+					> a
+						color --rojo
+					&:before
+						color --rojo
+				
+			
+			&.-active-
+				.detalle_de_articulos__article__nav
+					&__title
+						img
+							transform rotate(45deg)
+						&:after
+							content 'Ocultar'
+				ul, ol
+					display block
+
+			&__title
+				display block
+				font-weight 700
+				padding rem(24, 30)
+				cursor pointer
+				
+				display flex
+				align-items center
+				justify-content space-between
+				
+				img
+					margin rem(0, 10, 0, auto)
+					transition all ease .25s
+				
+				&:after
+					content 'Ver más'
+					font-weight 400
+					font-size rem(14)
+					color --celeste
+					
+			ol, ul
+				display none
+				padding rem(0, 30, 20)
+				counter-reset item
+				font-size rem(15)
+				ol, ul
+					padding rem(10, 0, 0, 17)
+			li
+				margin-bottom rem(10)
+				&:before
+					content counters(item, ".") " "
+					counter-increment item
+					margin-right rem(5)
+				&:hover
+					> a
+						color --celeste
+						text-decoration underline
+					&:before
+						
+						color --celeste
+			a
+				color --negro
+		
+		&__links
+			line-height 1.55
+			h1, h2, h3, h4, h5, h6, strong
+				font-weight 700
+			> h1, > h2, > h3, > h4, > h5, > h6, > strong
+				font-size rem(20)
+				display block
+				margin-bottom rem(7)
+			p
+				margin-bottom rem(22)
+			ul, ol
+				display flex
+				flex-wrap wrap
+			li
+				width calc(33.3% - 12px)
+				margin rem(0, 18, 18, 0)
+				&:nth-child(3n)
+					margin-right 0
+				a
+					line-height 1.5
+					border rem(1) solid --rojo
+					border-radius rem(5)
+					display block
+					width 100%
+					height 100%
+					color --rojo
+					padding rem(14, 40, 14, 22)
+					font-weight 500
+					position relative
+					transition all ease .25s
+					
+					img
+						position absolute
+						top rem(14)
+						right rem(11)
+						transition all ease .25s
+						
+					&:hover
+						background-color --rojo
+						color --blanco
+						img
+							filter brightness(1000)
+								
+		&__myths
+			display flex
+			flex-wrap wrap
+			&.m--fail
+				.detalle_de_articulos__article__myths
+					&__title, &__image
+						background-color --rojo
+					&__image
+						img
+							transform rotate(180deg)
+			&__title
+				color --blanco
+				background-color --verde-oscuro
+				display block
+				padding rem(15, 20)
+				border-radius rem(5)
+				margin-bottom rem(22)
+				width 100%
+				font-size rem(18)
+				font-weight 700
+				text-align center
+			&__image
+				square(112)
+				border-radius rem(5)
+				color --blanco
+				background-color --verde-oscuro
+				font-size rem(18)
+				font-weight 700
+				
+				display flex
+				align-items center
+				justify-content center
+				flex-direction column
+				img
+					margin-bottom rem(12)
+			.detalle_de_articulos__article__content
+				flex 1
+				padding rem(20)
+				margin rem(0, 0, 0, 12)
+				background-color --blanco2
+				font-size rem(13)
+				
+		&__social-cards
+			display flex
+			&__item
+				flex 1
+				background-color --negro
+				color --blanco
+				text-align center
+				border-radius rem(5)
+				overflow hidden
+				position relative
+				&:nth-child(2)
+					margin rem(0, 20)
+			&__title
+				margin-bottom rem(5)
+				padding rem(28, 38, 0)
+				img
+					border-radius 50%
+					margin rem(0, auto, 17)
+				strong
+					font-size rem(13)
+					font-weight 700
+					padding rem(0, 15)
+			&__content
+				p
+					font-size rem(11)
+					line-height 1.5
+					padding rem(0, 15)
+			&__bottom
+				color --blanco
+				height rem(42)
+				font-size rem(11)
+				letter-spacing rem(0.5)
+				margin-top rem(20)
+				display flex
+				align-items center
+				justify-content center
+				&.m--twitter
+					background-color #00abf0
+				&.m--facebook
+					background-color #3a579a
+			&__link
+				position absolute
+				top 0
+				left 0
+				width 100%
+				height 100%
+				font-size 0				
+		
+		&__author
+			&.-active-
+				.detalle_de_articulos__article__author
+					&__button
+						img
+							transform rotate(-45deg)
+						&:after
+							content 'Ocultar'
+				.detalle_de_articulos__article__content
+					display block
+			&__header
+				background-color --negro
+				color --blanco
+				position relative
+				strong, p
+					display block
+					padding-left rem(130)
+				strong
+					font-size rem(14)
+					font-weight 700
+					padding-top rem(26)
+					margin-bottom rem(6)
+				p
+					padding-bottom rem(13)
+					font-size rem(12)
+					line-height 1.6
+				aside
+					background-color --rojo
+					min-height rem(47)
+					padding rem(15, 0, 15, 130)
+					display flex
+					align-items center
+				a
+					color --blanco
+					display flex
+					align-items center
+					font-size rem(11)
+					letter-spacing rem(0.5)
+					margin-right rem(18)
+					&:last-of-type
+						margin-right 0
+					img
+						margin-right rem(7)	
+			&__image
+				position absolute
+				top rem(20)
+				left rem(27)
+				padding rem(4)
+				border rem(1) solid --blanco
+				border-radius 50%
+				img
+					border-radius 50%		
+			&__button
+				margin rem(0, 25, 0, auto)
+				cursor pointer
+				display flex
+				align-items center
+				img
+					transition all ease .25s
+				&:after
+					content 'Ver más'
+					margin-left rem(10)
+					font-size rem(14)
+			.detalle_de_articulos__article__content
+				display none
+				padding rem(20, 34)
+				font-size rem(13)
+				background-color --blanco2
+		
+		&__tags
+			display flex
+			&__title
+				padding-right rem(22)
+				font-weight 700
+				flex none
+				padding-top rem(10)
+			&__links
+				flex 1
+				display flex
+				flex-wrap wrap
+				a
+					display inline-flex
+					align-items center
+					font-size rem(12)
+					height rem(37)
+					padding rem(0, 14)
+					background-color #f2f2f2
+					border-radius rem(2)
+					color --gris2
+					margin rem(0, 11, 11, 0)
+					transition all ease .25s
+					&:hover
+						background-color --rojo
+						color --blanco
+					&:last-child
+						margin-right 0
+	
+	&__footer
+		order 4
+		width 100%
+		padding rem(40, 0, 0, 56)
+	
+		&__socials
+			display flex
+			align-items flex-start
+			flex-wrap wrap
+			padding-bottom rem(30)
+			border-bottom rem(1) solid #e5e7e8
+			&.m--hide
+				a
+					&:nth-of-type(3) ~ a
+						display none
+				.detalle_de_articulos__footer__socials__button
+					display flex
+			&__title
+				font-size rem(18)
+				font-weight 700
+				width 100%
+				margin-bottom rem(20)
+			a
+				display flex
+				align-items center
+				width rem(154)
+				height rem(40)
+				border-radius rem(3)
+				font-size rem(15)
+				color --blanco
+				background-color --negro
+				margin rem(0, 9, 9, 0)
+				font-weight 500
+				transition all ease .25s
+				img
+					margin rem(0, 20, 0, 10)
+				&:hover
+					box-shadow rem(0, 4, 10) rgba(0,0,0,.25)
+					transform translate(0, -3px)
+				&.m--facebook
+					background-color #3a579a
+				&.m--twitter
+					background-color #00abf0
+				&.m--wsp
+					background-color #1e9e10
+				&.m--gmail
+					background-color #fff
+					border rem(1) solid #f0f0f0
+					color #91979e
+				&.m--linkedin
+					background-color #127bb6
+				&.m--msn
+					background-color #0d87ff
+				&.m--telegram
+					background-color #25a3e1
+				&.m--pinterest
+					background-color #e11a20
+			&__button
+				display none
+				align-items center
+				justify-content center
+				min-width rem(55)
+				height rem(40)
+				background-color #fff
+				border rem(1) solid #979797
+				color #91979e
+				cursor pointer
+				transition all ease .25s
+				&:before,
+				span:before, span:after
+					content ''
+					display block
+					square(6)
+					background-color #91979e
+					border-radius 50%
+				span
+					display flex
+					&:before
+						margin rem(0, 4)
+				&:hover
+					box-shadow rem(0, 4, 8) rgba(0,0,0,.15)
+					transform translate(0, -3px)
+		
+		&__bottom
+			display flex
+			justify-content space-between
+			padding-top rem(25)
+			&__block
+				max-width rem(438)
+				font-size rem(18)
+				padding-right rem(20)
+				strong
+					img
+						margin-right rem(19)
+				&:last-child
+					text-align right
+					padding rem(0, 0, 0, 20)
+					strong
+						justify-content flex-end
+						img
+							transform rotate(180deg)
+							margin rem(0, 0, 0, 19)
+			strong
+				display flex
+				align-items center
+				margin-bottom rem(15)
+				color #91979e
+			a
+				color --negro
+				font-weight 700
+				&:hover
+					color --rojo
+	
+
+	&__bottom
+		
+		.g-title
+			width 100%
+		
+		.columnas__item
+			width 100%
+			height rem(130)
+			padding-right rem(30)
+			margin rem(0, 0, 15)
+			border-radius 0
+			color --negro
+			display flex
+			box-shadow none
+			
+			&:last-child
+				margin 0
+			
+			&__header
+				padding rem(0, 0, 0, 15)
+				flex-direction column
+				justify-content flex-start
+			
+			&__image
+				flex none
+				square(120)
+				border-radius rem(5)
+				overflow hidden
+				img
+					width 100%
+					height 100%
+
+			&__title
+				margin rem(7, 0, 10)
+				font-size rem(15)
+				line-height 1.4
+				-webkit-line-clamp 3
+			
+			&__date
+				display none
+			
+			&__link
+				display none
+		
+		&__list
+			display flex
+			// padding-left rem(150)
+		&__block1
+			flex 1
+		&__block2
+			flex 2
+			display flex
+			flex-wrap wrap
+			.columnas__item
+				width 50%
+	
+
+	&__back
+		display block
+		&__share
+			display none
+		&__button
+			position absolute
+			bottom rem(10)
+			right rem(15)
+			cursor pointer
+
+
+	@media (max-width 1050px)
+		
+		&__article
+			padding rem(0, 20)
+	
+	@media (max-width 930px)
+		
+		&__bottom
+			&__list
+				flex-direction column
+			&__block1
+				display flex
+				flex-wrap wrap
+				padding-bottom rem(25)
+				.columnas__item
+					width 50%
+	
+	@media (max-width 880px)
+	
+		&__sidebar
+			width rem(230)
+		
+		&__article
+			width calc(100% - 259px)
+		
+			.columnas__item
+				&__header
+					padding rem(20, 0, 30)
+				&__title
+					margin rem(10, 0, 15)
+					font-size rem(23)
+				&__date, &__timer
+					font-size rem(15)
+			
+			&__social-cards
+				&__item
+					&:nth-child(2)
+						margin rem(0, 15)
+	
+	@media (max-width 820px)
+	
+		flex-direction column
+		
+		&__socials, &__recomendados
+			display none
+		&__article
+			padding 0
+		&__article, &__sidebar
+			width 100%
+		&__footer
+			order 2
+			padding rem(20, 0)
+		&__back
+			background-color --blanco
+			width 100%
+			padding 0
+			display flex
+			align-items center
+			justify-content flex-end
+			position fixed
+			bottom 0
+			left 0
+			z-index 10
+			&__share
+				display block
+			&__button
+				position static
+				padding rem(7)
+				background-color --rojo
+			&__share
+				margin-right rem(30)
+	
+	
+	@media (max-width 760px)
+	
+		&__article
+			--items-var rem(25)
+	
+	
+	@media (max-width 700px)
+	
+		.columnas__item__author
+			p
+				padding-left rem(12)
+			img
+				display block
+
+	@media (max-width 650px)
+		
+		&__article
+			
+			&__links 
+				li
+					width calc(50% - 10px)
+					margin-right rem(15)
+					&:nth-child(3n)
+						margin-right rem(15)
+					&:nth-child(2n)
+						margin-right 0
+		&__bottom
+			&__block1
+				padding-bottom rem(30)
+			&__block1, &__block2
+				flex-direction column
+				.columnas__item
+					width 100%
+					padding-right 0
+	
+	@media (max-width 600px)
+		
+		&__footer
+			&__bottom
+				flex-direction column
+				&__block
+					max-width initial
+					a
+						line-height 1.4
+					&:first-child
+						padding rem(0, 50, 30, 0)
+					&:last-child
+						padding rem(0, 0, 0, 50)
+
+	@media (max-width 580px)
+		
+		&__article
+			&__social-cards
+				flex-direction column
+				&__item
+					margin-bottom rem(10)
+					&:nth-child(2)
+						margin rem(0,0,10)
+				&__title
+					position relative
+					padding rem(25, 30, 0, 0)
+					img
+						position absolute
+						top rem(20)
+						left rem(25)
+					strong
+						display block
+						padding-left rem(120)
+						text-align left
+						font-size rem(15)
+				&__content
+					p
+						display block
+						padding rem(0, 30, 0, 120)
+						text-align left
+						font-size rem(13)
+				&__links
+					margin-top rem(60)
+						
+	@media (max-width 540px)
+	
+		&__article
+			
+			&__myths
+				flex-direction column
+				
+				&__title
+					margin-bottom rem(12)
+				&__image
+					square(82)
+					font-size rem(16)
+					margin 0 auto
+					position relative
+					z-index 3
+					img
+						width rem(30)
+						margin-bottom rem(9)
+				.detalle_de_articulos__article__content
+					padding rem(45, 15, 15)
+					margin rem(-30, 0, 0)
+			
+			&__author
+				&__image
+					bottom initial
+					top rem(20)
+				&__header
+					strong
+						padding-top rem(35)
+						padding-right rem(25)
+					p
+						padding-bottom rem(25)
+						padding-right rem(25)
+				aside
+					flex-wrap wrap
+					padding rem(10, 0, 0)
+					justify-content center
+					background-color --negro
+				&__button
+					width 100%
+					justify-content center
+					margin rem(20, 0, 0)
+					padding rem(15, 20)
+					background-color --rojo
+				.detalle_de_articulos__article__content
+					padding rem(20)
+
+	@media (max-width 500px)
+	
+		&__back
+			&__button
+				padding rem(1, 5)
+		
+		&__article
+			&__tags
+				flex-direction column
+				&__title
+					padding rem(0, 0, 15)
+				&__links
+					a
+						margin rem(0, 6, 6, 0)
+		&__footer
+			&__socials
+				flex-direction column
+				a
+					width 100%
+					margin rem(0, 0, 8)
+					img
+						order 0
+					&:before
+						content 'Compartir en'
+						order 1
+					span
+						order 2
+						margin-left rem(4)
+				&__button
+					width 100%
+					justify-content flex-start
+					padding-left rem(13)
+					&:after
+						content 'Ver más opciones'
+						margin-left rem(18)
+				
+
+	@media (max-width 460px)
+		
+		&__article
+			&__donwload
+				flex-direction column
+				padding rem(20)
+				strong
+					margin rem(0, 0, 20)
+					text-align center
+
+	@media (max-width 430px)
+		
+		&__article
+			&__links 
+				li
+					width 100%
+					margin rem(0, 0, 15)
+					&:nth-child(3n)
+					&:nth-child(2n)
+						margin-right 0
+	
+	@media (max-width 400px)
+	
+		&__article
+			
+			&__myths
+				
+				&__title
+					font-size rem(17)
+				&__image
+					square(76)
+					font-size rem(15)
+					img
+						width rem(27)
+						margin-bottom rem(9)

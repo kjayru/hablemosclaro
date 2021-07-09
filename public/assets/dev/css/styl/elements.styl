@@ -35,23 +35,43 @@
 	padding-top rem(50)
 	@media (max-width 700px)
 		padding-top rem(30)
+		
 .section
+	background-color --blanco
 	padding-bottom rem(50)
-	&:first-of-type, + .section.m--bg
+	&:first-of-type, + .section.m--bg, &:first-of-type.limit, + .section.m--gris
 		padding-top rem(50)
-	
+	&.limit
+		padding rem(0, 15, 50)
+	&.m--detalle
+		max-width rem(1110)
+	&.m--gris
+		background-color #f4f6f9
 	
 	@media (max-width 700px)
-		
 		padding-bottom rem(30)
-		&:first-of-type, + .section.m--bg
+		&:first-of-type, + .section.m--bg, &:first-of-type.limit
 			padding-top rem(30)
+		&.limit
+			padding-bottom rem(0, 15, 30)
 		
 .g-
+	&bigtitle
+		font-size rem(40)
+		font-weight 700
+		color -negro
+		margin-bottom rem(50)
+		display block
+		width 100%
+		
+		@media (max-width 800px)
+			font-size rem(30)
+			margin-bottom rem(40)
+
 	&title
 		font-weight 700
 		font-size rem(25)
-		margin-bottom rem(34)
+		margin-bottom rem(40)
 		display flex
 		align-items center
 		&:before
@@ -72,3 +92,69 @@
 			
 			&.m--swiper
 				margin-bottom rem(10)
+
+	&button-group
+		width 100%
+		padding-top rem(40)
+		display flex
+		justify-content center
+	
+	&button
+		width 100%
+		height rem(60)
+		color --rojo
+		font-size rem(18)
+		font-weight 500
+		border-radius rem(30)
+		border rem(1) solid --rojo
+		cursor pointer
+		transition all ease .25s
+
+		display flex
+		align-items center
+		justify-content center
+		
+		&:hover
+			background-color --rojo
+			color --blanco
+			box-shadow rem(0, 2, 6) rgba(0,0,0,.2)
+			
+		&.m--211
+			max-width rem(211)
+		
+		&.m--330
+			max-width rem(330)
+			
+		&.m--mini
+			height rem(47)
+			font-size rem(16)
+		
+		&.m--rojo
+			background-color --rojo
+			color --blanco
+
+
+// Breadcrumb
+.breadcrumb
+	padding-top rem(25)
+	
+	display flex
+	align-items center
+	
+	&__space
+		display block
+		square(6)
+		border-right rem(2) solid #C2C2C2
+		border-bottom rem(2) solid #C2C2C2
+		transform rotate(-45deg)
+		margin-right rem(8)
+	
+	&__link
+		font-size rem(11)
+		color #C2C2C2
+		text-transform uppercase
+		margin-right rem(8)
+		font-weight 700
+		
+		&:hover
+			text-decoration underline

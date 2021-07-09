@@ -26,8 +26,42 @@
 		align-items center
 		justify-content space-between
 	
-	&__button-lupa, &__button-mobile
+	&__button-lupa
 		display none
+	
+	&__button-mobile
+		display none
+		flex-direction column
+		align-items center
+		justify-content center
+		
+		width rem(64)
+		height rem(64)
+		background-color --rojo
+		
+		margin-right rem(-15)
+		
+		&:before, &:after, span
+			content ''
+			display block
+			width rem(24)
+			height rem(3)
+			border-radius rem(4)
+			background-color --blanco
+			transition all ease .25s
+		span
+			margin rem(5, 0)
+		
+		&.-active-
+			display flex
+			background-color --negro-total
+			
+			span
+				opacity 0
+			&:after
+				transform translate(0, -8px) rotate(45deg)
+			&:before
+				transform translate(0, 8px) rotate(-45deg)
 		
 	@media ( min-width 1081px )
 	
@@ -45,29 +79,30 @@
 				&:first-child
 					display none
 				
+				&__search
+					transition all ease .25s
+				
 				&.m--lupa
 					height rem(64)
 					margin-left rem(20)
 					display flex
 					align-items center
 					justify-content center
-					transition all ease 0.25s
+					position relative
 					
-					// &:before, &:after
-					// 	content ''
-					// 	display block
-					// 	width rem(22)
-					// 	height rem(2)
-					// 	background #fff
-					// 	position absolute
-					// 	top 50%
-					// 	left 100%
-					// 	transform translate(-50%, -50%) rotate(45deg)
-					// 	opacity 0
-					// 	transition all ease 0.25s
-					// &:after
-					// 	transform translate(-50%, -50%) rotate(-45deg)
-						
+					.header__button-mobile
+						position absolute
+						top 0
+						right rem(-6)
+						opacity 0
+						cursor pointer
+						transition opacity ease .25s
+					
+					&.-active-
+						.header__nav__item__search
+							transform scale(0)
+						.header__button-mobile
+							opacity 1
 				
 				&:before
 					content ''
@@ -175,7 +210,7 @@
 		&__nav
 			background-color --negro-total
 			width 100%
-			height calc(100% - 64px)
+			height calc(100vh - 64px)
 			padding 0
 			overflow auto
 			opacity 0
@@ -191,6 +226,8 @@
 			&.-active-
 				opacity 1
 				top rem(64)
+				.header__nav__socials
+					top 0
 			
 			&__socials
 				background-color --blanco
@@ -201,7 +238,7 @@
 				display flex
 				align-items center
 				position fixed
-				top 0
+				top -100%
 				left 0
 				
 				img
@@ -271,33 +308,4 @@
 		
 		&__button-mobile
 			display flex
-			flex-direction column
-			align-items center
-			justify-content center
 			
-			width rem(64)
-			height rem(64)
-			background-color --rojo
-			
-			margin-right rem(-15)
-			
-			&:before, &:after, span
-				content ''
-				display block
-				width rem(24)
-				height rem(3)
-				border-radius rem(4)
-				background-color --blanco
-				transition all ease .25s
-			span
-				margin rem(5, 0)
-			
-			&.-active-
-				background-color --negro-total
-				
-				span
-					opacity 0
-				&:after
-					transform translate(0, -8px) rotate(45deg)
-				&:before
-					transform translate(0, 8px) rotate(-45deg)
