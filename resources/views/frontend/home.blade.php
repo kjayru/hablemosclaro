@@ -63,7 +63,7 @@
 
             @foreach($categorias as $cat)
                 <li class="categorias__item">
-                    <a class="categorias__item__link" href="">
+                    <a class="categorias__item__link" href="/{{$cat->slug}}">
                         <figure class="categorias__item__image">
                             <img src="{{ $cat->icono}}" alt="" loading="lazy">
                         </figure>
