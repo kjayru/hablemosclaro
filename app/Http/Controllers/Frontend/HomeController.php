@@ -99,7 +99,10 @@ class HomeController extends Controller
 
     public function articulo($categoria,$subcategoria,$articulo){
 
+
+
         $post = Post::where('slug',$articulo)->first();
+
 
 
         return view('frontend.post',['articulo'=>$post]);

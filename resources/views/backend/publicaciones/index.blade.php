@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Campaña</h1>
+            <h1>Artículos</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
 
-                <li class="breadcrumb-item active">Campaña</li>
+                <li class="breadcrumb-item active">Artículos</li>
             </ol>
           </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="card-body">
                 <div class="row">
                   <div class="col-md-3">
-                      <a href="/admin/campaigns/create" class="btn btn-block btn-outline-primary btn-flat mb-4 mt-3">Crear Campaña</a>
+                      <a href="/admin/posts/create" class="btn btn-block btn-outline-primary btn-flat mb-4 mt-3">Crear Artículo</a>
                   </div>
               </div>
 
@@ -50,25 +50,25 @@
                 <tr>
                     <th></th>
                     <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Fecha </th>
 
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Final</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($campaigns as $key => $camp )
+                    @foreach ($articulos as $key => $post )
                     <tr>
                         <th>{{$key + 1}}</th>
-                        <td>{{ $camp->nombre}}</td>
-
+                        <td>{{ $post->titulo}}</td>
+                        <td>{{ $post->category->nombre}}</td>
 
                         <td>
-                            {{ Carbon\Carbon::parse(@$camp->desdecampana)->format('d/m/Y') }}</td>
-                        <td>{{ Carbon\Carbon::parse(@$camp->finalcampana)->format('d/m/Y') }}</td>
+                            {{ Carbon\Carbon::parse(@$post->created_at)->format('d/m/Y') }}</td>
+
                         <td width="7%" style="text-center">
-                            <a href="/admin/campaigns/{{$camp->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
-                            <a href="#" data-id="{{$camp->id}}" data-toggle="modal" data-target="#delobjeto" class="btn btn-xs btn-dangers btn-object-delete"><i class="far fa-trash-alt"></i></a>
+                            <a href="/admin/posts/{{$post->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
+                            <a href="#" data-id="{{$post->id}}" data-toggle="modal" data-target="#delobjeto" class="btn btn-xs btn-dangers btn-object-delete"><i class="far fa-trash-alt"></i></a>
 
                         </td>
                     </tr>

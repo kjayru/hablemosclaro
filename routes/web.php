@@ -18,23 +18,13 @@ use App\Http\Controllers\Backend\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/{categoria}', [HomeController::class, 'categoria']);
-Route::get('/{categoria}/{subcategoria}', [HomeController::class, 'subcategoria']);
-Route::get('/{categoria}/{subcategoria}/{articulo}', [HomeController::class, 'articulo']);
-
-Route::get('/categories', [HomeController::class, 'categories']);
-
-
 Auth::routes([
     'register' => false,
     'reset' => false,
     'verify' => false,
   ]);
 
-
-Route::group(['prefix' => 'admin'],function(){
+  Route::group(['prefix' => 'admin'],function(){
 
     Route::get('/', [AdminController::class,'index'])->name('dashboard');
 
@@ -45,5 +35,33 @@ Route::group(['prefix' => 'admin'],function(){
     Route::put('/categories/{user}', [CategoryController::class,'update'])->name('category.update');
     Route::delete('/categories/{user}', [CategoryController::class,'destroy'])->name('category.destroy');
 
+    Route::get('/posts', [PostController::class,'index'])->name('post.index');
+    Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
+    Route::post('/posts', [PostController::class,'store'])->name('post.store');
+    Route::get('/posts/{user}/edit', [PostController::class,'edit'])->name('post.edit');
+    Route::put('/posts/{user}', [PostController::class,'update'])->name('post.update');
+    Route::delete('/posts/{user}', [PostController::class,'destroy'])->name('post.destroy');
+
+    Route::get('/media', [AdminController::class,'media']);
+
 
 });
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/{categoria}', [HomeController::class, 'categoria']);
+Route::get('/{categoria}/{subcategoria}', [HomeController::class, 'subcategoria']);
+
+
+Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articulo']);
+
+
+//Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articulo']);
+
+Route::get('/categories', [HomeController::class, 'categories']);
+
+
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+    ->name('ckfinder_connector');
+
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+    ->name('ckfinder_browser');

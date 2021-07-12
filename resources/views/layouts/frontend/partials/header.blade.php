@@ -13,12 +13,13 @@
                 <li class="header__nav__item">
 					<a class="header__nav__link" href="/{{$cat->slug}}">{{$cat->nombre}}</a>
 
-                    @if(count($cat->parent)>0)
+                    @if(isset($cat->pariente))
 
                         <span class="header__nav__arrow fnShowSubnav"></span>
                         <ul class="header__subnav">
-                            @foreach($cat->parent as $sub)
-                            <li class="header__subnav__item"><a href="/{{$cat->slug}}/{{$sub->slug}}" class="header__subnav__link">{{ $sub->nombre }}</a></li>
+                            @foreach($cat->pariente as $sub)
+
+                            <li class="header__subnav__item"><a href="/{{@$cat->slug}}/{{@$sub->slug}}" class="header__subnav__link">{{ @$sub->nombre }}</a></li>
                             @endforeach
                         </ul>
 

@@ -51,12 +51,13 @@
                 <li class="listado_de_articulos__nav__item"><a href="/{{$categoria}}" class="listado_de_articulos__nav__link">Todo</a>
                 </li>
                 @if($categorias == null)
+
                     @foreach($categorias as $cat)
                     <li class="listado_de_articulos__nav__item">
                         @php
                             $seturl = env('APP_URL')."/".$categoria."/".$cat->slug;
                         @endphp
-                        <a href="/{{$categoria}}/{{$cat->slug}}" class="listado_de_articulos__nav__link @if($current_url == $seturl) -active- @endif">{{ $cat->nombre}}</a>
+                            <a href="/{{$categoria}}/{{$cat->slug}}" class="listado_de_articulos__nav__link @if($current_url == $seturl) -active- @endif">{{ $cat->nombre}}</a>
                     </li>
                     @endforeach
                 @endif

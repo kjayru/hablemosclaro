@@ -8,13 +8,13 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-6">
-                  <h1>Nueva Campaña</h1>
+                  <h1>Nuevo Artículo</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
 
-                    <li class="breadcrumb-item"><a href="/admin/campaigns">Campañas</a></li>
-                    <li class="breadcrumb-item active">Nueva campaña</li>
+                    <li class="breadcrumb-item"><a href="/admin/posts">Articulos</a></li>
+                    <li class="breadcrumb-item active">Nuevo artículo</li>
                   </ol>
                 </div>
               </div>
@@ -43,7 +43,7 @@
                                 </div>
                             @endif
 
-                          <form class="form-horizontal" action="{{ route('campaign.store') }}" method="POST" enctype="multipart/form-data">
+                          <form class="form-horizontal" action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
 
                             <div class="card-header with-border">
 
@@ -53,13 +53,13 @@
                                 @csrf
 
 
-                                @include('backend.campaign.form.index')
+                                @include('backend.publicaciones.form.index')
 
 
                             </div>
 
                             <div class="card-footer">
-                                <a href="{{ route('campaign.index') }}" class="btn btn-back">Cancelar</a>
+                                <a href="{{ route('post.index') }}" class="btn btn-back">Cancelar</a>
                                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
                             </div>
                           </form>

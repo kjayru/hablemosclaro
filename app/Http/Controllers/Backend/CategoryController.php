@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.categorias.index');
+        $categories = Category::orderBy('id','desc')->get();
+        return view('backend.categorias.index',['categories'=>$categories]);
     }
 
     /**

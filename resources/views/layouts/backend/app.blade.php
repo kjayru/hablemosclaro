@@ -110,7 +110,19 @@
 <script src="/vendor/Sortable.js"></script>
 
 <script src="/backend/dist/js/demo.js?v={{ uniqid() }}"></script>
+
+<script type="text/javascript" src="/js/ckfinder/ckfinder.js"></script>
+<script>CKFinder.config( { connectorPath: "https://hablemos.test/ckfinder/connector" } );</script>
+
+
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
 <script src="/js/main.js?v={{ uniqid() }}"></script>
+<!--script ckfinder-->
+
+<script>
+    var hostedUrl = "{{env('RUTA_IMAGENES')}}";
+ </script>
 <script>
     $(function() {
 
@@ -187,7 +199,7 @@
                 "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
                 "sInfoPostFix":    "",
                 "sSearch":         "Buscar",
-                "searchPlaceholder": "Buscar por ID o nombre de campaña",
+                "searchPlaceholder": "Buscar ",
 
                 "sUrl":            "",
                 "sInfoThousands":  ",",
@@ -209,8 +221,6 @@
   </script>
 
 
-<script>
-    var hosting = "{{ env('HOSTDOMAIN')}}";
-</script>
+
 </body>
 </html>
