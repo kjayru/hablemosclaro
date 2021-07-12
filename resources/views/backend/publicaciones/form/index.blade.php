@@ -29,12 +29,12 @@
                         <div class="form-group col-sm-12">
                             <label for="resumen">Imagen banner</label>
                             <figure style="width:70px;">
-                            <!--
-
-                                <img src="hosturl@ViewBag.imagen" class="img-fluid" id="urlbanner" />
-
+                                @if(@isset($articulo->banner))
+                                    <img src="hosturl@ViewBag.imagen" class="img-fluid" id="urlbanner" />
+                               @else
                                     <img src="https://via.placeholder.com/150"  class="img-fluid" id="urlbanner"/>
-                                -->
+                               @endif
+
                             </figure>
                             <input type="hidden" value="imagen" name="imageBanner" id="imageBanner" />
                             <a href="#" class="btn btn-default btn-abrirpopup">Seleccionar</a>

@@ -63,7 +63,7 @@
                         <td>{{ @$cat->parent->nombre }}</td>
                         <td>{{ \Carbon\Carbon::parse($cat->created_at)->format('d/m/Y') }} </td>
                         <td width="7%" style="text-center">
-                            <a href="/admin/agencias/1/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
+                            <a href="/admin/categories/1/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
                             <a href="#" data-id="1" data-toggle="modal" data-target="#delobjeto" class="btn btn-xs btn-dangers btn-object-delete"><i class="far fa-trash-alt"></i></a>
 
                         </td>

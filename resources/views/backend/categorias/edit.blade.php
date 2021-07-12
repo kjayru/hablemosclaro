@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Editar Empresa</h1>
+            <h1>Editar Categorías</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/admin/agencias">Empresas</a></li>
-              <li class="breadcrumb-item active">Editar empresa</li>
+              <li class="breadcrumb-item"><a href="/admin/categories">Categorías</a></li>
+              <li class="breadcrumb-item active">Editar categoría</li>
             </ol>
           </div>
         </div>
@@ -31,19 +31,19 @@
 
 
 
-              <form role="form" action="{{ route('agency.update',$agencia->id) }}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{ route('category.update',$category->id) }}" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
 
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
 
 
-                    @include('backend.agencias.form.index')
+                    @include('backend.categorias.form.index')
 
                   </div>
 
                   <div class="card-footer">
-                    <a href="{{ route('agency.index') }}" class="btn btn-back">Cancelar</a>
+                    <a href="{{ route('category.index') }}" class="btn btn-back">Cancelar</a>
                     <button type="submit" class="btn btn-info pull-right">Guardar</button>
 
                   </div>

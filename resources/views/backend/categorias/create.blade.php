@@ -8,12 +8,12 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-6">
-                  <h1>Nueva Empresa</h1>
+                  <h1>Nueva Categoría</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/admin/agencias">Empresas</a></li>
-                    <li class="breadcrumb-item active">Nueva empresa</li>
+                    <li class="breadcrumb-item"><a href="/admin/agencias">Categorías</a></li>
+                    <li class="breadcrumb-item active">Nueva categoría</li>
                   </ol>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                                 </div>
                             @endif
 
-                          <form class="form-horizontal" action="{{ route('agency.store') }}" method="POST" enctype="multipart/form-data">
+                          <form class="form-horizontal" action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
 
                             <div class="card-header with-border">
 
@@ -52,13 +52,13 @@
                                 @csrf
 
 
-                                @include('backend.agencias.form.index')
+                                @include('backend.categorias.form.index')
 
 
                             </div>
 
                             <div class="card-footer">
-                                <a href="{{ route('agency.index') }}" class="btn btn-back">Cancelar</a>
+                                <a href="{{ route('category.index') }}" class="btn btn-back">Cancelar</a>
                                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
                             </div>
                           </form>
