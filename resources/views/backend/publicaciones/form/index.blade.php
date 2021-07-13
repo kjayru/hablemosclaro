@@ -16,7 +16,7 @@
 
                         <div class="form-group  col-sm-12">
                             <label for="contenido" class="control-label">Contenido </label>
-                                <textarea name="contenido" id="contenido" class="form-control" cols="30" rows="10">{!!$articulo->contenido!!}</textarea>
+                                <textarea name="contenido" id="contenido" class="form-control" cols="30" rows="10">{!!@$articulo->contenido!!}</textarea>
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('contenido') }}</strong>
                                 </span>
@@ -31,7 +31,7 @@
                             <figure style="width:70px;">
 
                                 @if(@$articulo->banner)
-                                    <img src="/storage/{{$articulo->banner}}" class="img-fluid" id="urlbanner" />
+                                    <img src="/storage/{{@$articulo->banner}}" class="img-fluid" id="urlbanner" />
                                @else
                                     <img src="https://via.placeholder.com/150"  class="img-fluid" id="urlbanner"/>
                                @endif
@@ -46,7 +46,7 @@
                             <figure style="width:70px;">
                                 @if(@isset($articulo->tablet))
 
-                                    <img src="/storage/{{$articulo->tablet}}" class="img-fluid" id="urltablet" />
+                                    <img src="/storage/{{@$articulo->tablet}}" class="img-fluid" id="urltablet" />
                                 @else
                                     <img src="https://via.placeholder.com/150" class="img-fluid" id="urltablet" />
                                 @endif
@@ -59,7 +59,7 @@
                             <label for="resumen">Imagen banner movil</label>
                             <figure style="width:70px;">
                                 @if(@isset($articulo->movil))
-                                    <img src="/storage/{{$articulo->movil}}" class="img-fluid" id="urlmovil" />
+                                    <img src="/storage/{{@$articulo->movil}}" class="img-fluid" id="urlmovil" />
                                 @else
                                     <img src="https://via.placeholder.com/150" class="img-fluid" id="urlmovil"/>
                                 @endif
@@ -72,7 +72,7 @@
                             <label for="resumen">Imagen Card</label>
                             <figure style="width:70px;">
                                 @if(@isset($articulo->imagenbox))
-                                    <img src="/storage/{{$articulo->imagenbox}}" class="img-fluid" id="urlcard" />
+                                    <img src="/storage/{{@$articulo->imagenbox}}" class="img-fluid" id="urlcard" />
                                 @else
                                     <img src="https://via.placeholder.com/150" class="img-fluid" id="urlcard" />
                                 @endif
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="form-check pt-5 pb-5">
 
-                            <input class="form-check-input" type="checkbox" name="destacado" value="1" id="destacado" @if($articulo->destacado == 1) checked @endif>
+                            <input class="form-check-input" type="checkbox" name="destacado" value="1" id="destacado" @if(@$articulo->destacado == 1) checked @endif>
                             <label class="form-check-label" for="destacado">
                                 Destacado
                             </label>
@@ -94,7 +94,7 @@
 
                         <div class="form-check  pt-5 pl-5">
 
-                            <input class="form-check-input" type="checkbox" name="estado" value="1" id="estado" @if($articulo->estado == 1) checked @endif>
+                            <input class="form-check-input" type="checkbox" name="estado" value="1" id="estado" @if(@$articulo->estado == 1) checked @endif>
                             <label class="form-check-label" for="estado">
                                 Activado
                             </label>
@@ -109,9 +109,9 @@
                                 @foreach($categories->sortBy('id') as $cat)
 
                                     @if(isset($cat->parent))
-                                        <option value="{{$cat->id}}" @if($articulo->category_id == $cat->id) selected @endif>{{$cat->parent->nombre}} -- {{$cat->nombre}} </option>
+                                        <option value="{{$cat->id}}" @if(@$articulo->category_id == $cat->id) selected @endif>{{$cat->parent->nombre}} -- {{$cat->nombre}} </option>
                                     @else
-                                        <option value="{{$cat->id}}" @if($articulo->category_id == $cat->id) selected @endif>{{$cat->nombre}}</option>
+                                        <option value="{{$cat->id}}" @if(@$articulo->category_id == $cat->id) selected @endif>{{$cat->nombre}}</option>
                                     @endif
 
                                 @endforeach
@@ -122,9 +122,9 @@
                             <label for="titulo">Tipo de Articulo</label>
                             <select name="tipo_id" id="tipo" class="custom-select" required>
                                 <option>Seleccione</option>
-                                <option value="1" @if($articulo->post_type_id == 1) selected @endif>Nota</option>
-                                <option value="2" @if($articulo->post_type_id == 2) selected @endif>Video</option>
-                                <option value="3" @if($articulo->post_type_id == 3) selected @endif>Columna</option>
+                                <option value="1" @if(@$articulo->post_type_id == 1) selected @endif>Nota</option>
+                                <option value="2" @if(@$articulo->post_type_id == 2) selected @endif>Video</option>
+                                <option value="3" @if(@$articulo->post_type_id == 3) selected @endif>Columna</option>
                             </select>
                         </div>
 
@@ -179,7 +179,7 @@
                             <label for="resumen">Imagen meta</label>
                             <figure style="width:70px;">
                                 @if(@isset($articulo->meta_image))
-                                    <img src="/storage/{{$articulo->meta_image}}" class="img-fluid" id="urlmeta" />
+                                    <img src="/storage/{{@$articulo->meta_image}}" class="img-fluid" id="urlmeta" />
                                 @else
                                     <img src="https://via.placeholder.com/150" class="img-fluid" id="urlmeta" />
                                 @endif
