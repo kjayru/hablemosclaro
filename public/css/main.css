@@ -568,3 +568,7 @@ p.lista__parrafo {
     padding-left: 25px;
     padding-right: 25px;
 }
+
+.row__video, .row__author{
+    display: none;
+}

@@ -58,6 +58,8 @@
 </main>
 <!-- jQuery -->
 <script src="/backend/plugins/jquery/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/jquery-migrate-1.4.1.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="/backend/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -66,12 +68,7 @@
 <script src="/backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="/backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
-<!-- overlayScrollbars -->
-<script src="/backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
 
 <script src="/backend/dist/js/adminlte.js"></script>
 
@@ -86,12 +83,7 @@
 
 <script src="//cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="//cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-<script src="//cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+
 
 <!-- date--picker -->
 

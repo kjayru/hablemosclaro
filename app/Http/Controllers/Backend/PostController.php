@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Author;
+use Illuminate\Support\Str;
+
 class PostController extends Controller
 {
     public function __construct(){
@@ -18,6 +22,7 @@ class PostController extends Controller
     public function index()
     {
         $articulos = Post::orderBy('id','desc')->get();
+
         return view('backend.publicaciones.index',['articulos'=>$articulos]);
     }
 
@@ -28,7 +33,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('backend.publicaciones.create');
+        $categories = Category::orderBy('id','desc')->get();
+        $authors = Author::orderBy('nombre','asc')->get();
+        return view('backend.publicaciones.create',['categories'=>$categories,'authors'=>$authors]);
     }
 
     /**
@@ -39,7 +46,35 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $post = new Post();
+        $post->titulo  = $request->titulo;
+        $post->slug =  Str::slug($request->titulo, '-');
+        $post->contenido = $request->contenido;
+        $post->banner = $request->imageBanner;
+        $post->tablet = $request->imageTablet;
+        $post->movil = $request->imageMovil;
+        $post->imagenbox = $request->imageCard;
+        $post->destacado = $request->destacado;
+        $post->estado = $request->estado;
+        $post->category_id = $request->categoria_blog_id;
+        $post->post_type_id = $request->tipo_id;
+        $post->meta_titulo = $request->seotitle;
+        $post->meta_image = $request->imageMeta;
+        $post->meta_description = $request->seodescripcion;
+        $post->meta_keywords = $request->keywords;
+        $post->video = $request->video;
+
+        $post->save();
+
+
+        $post->authors()->sync($request->author);
+
+
+
+        return redirect(route('post.index'))
+        ->with('info', 'Artículo actualizado con exito.');
     }
 
 
@@ -54,7 +89,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $articulo = Post::find($id);
-        return view('backend.publicaciones.edit',['articulo'=>$articulo]);
+        $categories = Category::orderBy('id','desc')->get();
+        $authors = Author::orderBy('nombre','asc')->get();
+        return view('backend.publicaciones.edit',['articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors]);
     }
 
     /**
@@ -66,7 +103,55 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+
+
+        /*
+        "imageBanner" => "images/Hc_Portada-Violencia.jpeg"
+        "imageTablet" => "images/Hc_Portada-Violencia.jpeg"
+        "imageMovil" => "images/Hc_Portada-Violencia.jpeg"
+        "imageCard" => "images/Hc_Portada-Violencia.jpeg"
+        "destacado" => "1"
+        "estado" => "1"
+        "categoria_blog_id" => "7"
+        "tipo_id" => "1"
+        "video" => null
+        "author" => null
+        "seotitle" => "Redes sociales toman medidas para frenar la violencia de género en línea"
+        "seodescripcion" => "Redes sociales toman medidas para frenar la violencia de género en línea"
+        "keywords" => "Redes sociales toman medidas para frenar la violencia de género en línea"
+        "imageMeta" => "images/Hc_Portada-Violencia.jpeg"
+         */
+
+        $post = Post::find($id);
+        $post->titulo  = $request->titulo;
+        $post->slug =  Str::slug($request->titulo, '-');
+        $post->contenido = $request->contenido;
+        $post->banner = $request->imageBanner;
+        $post->tablet = $request->imageTablet;
+        $post->movil = $request->imageMovil;
+        $post->imagenbox = $request->imageCard;
+        $post->destacado = $request->destacado;
+        $post->estado = $request->estado;
+        $post->category_id = $request->categoria_blog_id;
+        $post->post_type_id = $request->tipo_id;
+        $post->meta_titulo = $request->seotitle;
+        $post->meta_image = $request->imageMeta;
+        $post->meta_description = $request->seodescripcion;
+        $post->meta_keywords = $request->keywords;
+        $post->video = $request->video;
+
+        $post->save();
+
+
+        $post->authors()->sync($request->author);
+
+
+
+        return redirect(route('post.index'))
+        ->with('info', 'Artículo actualizado con exito.');
+
     }
 
     /**
@@ -75,8 +160,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        Post::find($request->id)->delete();
+        return redirect()->route('post.index')->with('info','Artículo eliminado con éxito');
     }
 }

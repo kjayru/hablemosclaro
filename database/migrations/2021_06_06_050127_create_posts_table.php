@@ -20,7 +20,9 @@ class CreatePostsTable extends Migration
             $table->string("resumen")->nullable();
             $table->longtext("contenido");
             $table->string("banner");
-            $table->string("imagenbox");
+            $table->string("tablet")->nullable();
+            $table->string("movil")->nullable();
+            $table->string("imagenbox")->nullable();
             $table->text("meta_description")->nullable();
             $table->string("meta_titulo")->nullable();
             $table->string("meta_image")->nullable();

@@ -81,7 +81,7 @@
         @foreach($articulos as $post)
             <article class="columnas__item">
                 <picture class="columnas__item__image">
-                    <img src="{{$post->imagenbox}}" alt="" loading="lazy">
+                    <img src="/storage/{{$post->imagenbox}}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
                     <strong class="columnas__item__subtitle">{{ $post->category->nombre}}</strong>

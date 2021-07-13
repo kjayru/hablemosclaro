@@ -1,31 +1,34 @@
-<div class="row">
-    <div class="card col-sm-12">
 
-        <div class="card-body">
-            <div class="row">
+    <div class="row">
+        <div class="form-group col-md-2">
+            <a href="#" class="btn btn-default btn-abrirpopup">Seleccione imagen</a>
 
-                <div class="form-group @if($errors->first('nombre')) has-error @endif col-sm-6">
-                    <label for="nombre" class="control-label">Categoria </label>
-                        <input type="text"  name="nombre" class="form-control" value="{{ @$agencia->nombre }}" id="nombre" placeholder="Nombre" required>
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('nombre') }}</strong>
-                        </span>
-                </div>
+        </div>
+        <div class="form-group col-md-6">
 
-            </div>
+            <input type="text" id="imageBanner" class="form-control"  name="imagen">
+            <picture class="figure category__figure">
+                <img src="/storage/{{ @$category->imagen}}" alt="" id="urlbanner" class="img-thumbnail rounded">
+            </picture>
         </div>
     </div>
-
-</div>
-
-
-
-
-
+    <div class="form-group @if($errors->first('nombre')) has-error @endif">
+          <label for="nombre" class="control-label">Nombre</label>
+              <input type="text"  name="nombre" class="form-control" value="{{ @$category->nombre}}" id="nombre" placeholder="Nombre" required>
+              <span class="help-block">{{ $errors->first('nombre') }}</span>
+    </div>
 
 
-
-
+    <div class="form-group @if($errors->first('parent_id')) has-error @endif">
+        <label for="parent_id" class="control-label">Relacionado</label>
+      <select class="form-control" name="parent_id" id="parent_id">
+            <option value="">Seleccione</option>
+            @foreach($categories->sortBy('nombre') as $cat)
+                    <option value="{{$cat->id}}"  {{@$category->parent_id==$cat->id ? 'selected' : '' }}> {{$cat->nombre}} </option>
+            @endforeach
+      </select>
+      <span class="help-block">{{ $errors->first('parent_id') }}</span>
+    </div>
 
 
 

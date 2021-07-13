@@ -1,7 +1,7 @@
 try {
 
     CKFinder.config({ connectorPath: '/ckfinder/connector' });
-    CKFinder.start();
+   // CKFinder.start();
     CKFinder.widget( 'file-editor',{
            width: '100%',
            height: 700
@@ -47,7 +47,7 @@ try {
 }
 
 
-$(".btn-abrirpopup").click(function (e) {
+$(".btn-abrirpopup").on('click',function (e) {
     e.preventDefault();
     $("#imageBanner").html("");
     CKFinder.popup({
@@ -96,9 +96,157 @@ $(".btn-abrirpopup").click(function (e) {
 });
 
 
-$(".btn-seoimagen").click(function (e) {
+$(".btn-abrirpopup2").on('click',function (e) {
     e.preventDefault();
-    $("#seoimagen").html("");
+    $("#imageTablet").html("");
+    CKFinder.popup({
+        chooseFiles: true,
+        onInit: function (finder) {
+            finder.on('files:choose', function (evt) {
+
+                var file = evt.data.files.first();
+
+
+                var folder = file.get('folder');
+                var folderName1 = folder.get('name');
+                var parentFolder1 = folder.get('parent');
+                if (parentFolder1 != null) {
+                    var folderName2 = parentFolder1.get('name');
+                    var parentFolder2 = parentFolder1.get('parent');
+                }
+                if (parentFolder2 != null) {
+                    var folderName3 = parentFolder2.get('name');
+                    var parentFolder3 = parentFolder2.get('parent');
+                }
+
+                var pathfile = null;
+
+                if (parentFolder3 == null) {
+                    pathfile = folderName3 + '/' + folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder2 == null) {
+                    pathfile = folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder1 == null) {
+                    pathfile = folderName1 + '/' + file.get('name');
+                }
+                if (folder == null) {
+                    pathfile = file.get('name');
+                }
+
+                document.getElementById('imageTablet').value = pathfile;
+
+                $("#urltablet").attr("src", hostedUrl + "/" + pathfile);
+
+            });
+
+        }
+    });
+});
+
+
+$(".btn-abrirpopup3").on('click',function (e) {
+    e.preventDefault();
+    $("#imageMovil").html("");
+    CKFinder.popup({
+        chooseFiles: true,
+        onInit: function (finder) {
+            finder.on('files:choose', function (evt) {
+
+                var file = evt.data.files.first();
+
+
+                var folder = file.get('folder');
+                var folderName1 = folder.get('name');
+                var parentFolder1 = folder.get('parent');
+                if (parentFolder1 != null) {
+                    var folderName2 = parentFolder1.get('name');
+                    var parentFolder2 = parentFolder1.get('parent');
+                }
+                if (parentFolder2 != null) {
+                    var folderName3 = parentFolder2.get('name');
+                    var parentFolder3 = parentFolder2.get('parent');
+                }
+
+                var pathfile = null;
+
+                if (parentFolder3 == null) {
+                    pathfile = folderName3 + '/' + folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder2 == null) {
+                    pathfile = folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder1 == null) {
+                    pathfile = folderName1 + '/' + file.get('name');
+                }
+                if (folder == null) {
+                    pathfile = file.get('name');
+                }
+
+                document.getElementById('imageMovil').value = pathfile;
+
+                $("#urlmovil").attr("src", hostedUrl + "/" + pathfile);
+
+            });
+
+        }
+    });
+});
+
+$(".btn-abrirpopup4").on('click',function (e) {
+    e.preventDefault();
+    $("#imageCard").html("");
+    CKFinder.popup({
+        chooseFiles: true,
+        onInit: function (finder) {
+            finder.on('files:choose', function (evt) {
+
+                var file = evt.data.files.first();
+
+
+                var folder = file.get('folder');
+                var folderName1 = folder.get('name');
+                var parentFolder1 = folder.get('parent');
+                if (parentFolder1 != null) {
+                    var folderName2 = parentFolder1.get('name');
+                    var parentFolder2 = parentFolder1.get('parent');
+                }
+                if (parentFolder2 != null) {
+                    var folderName3 = parentFolder2.get('name');
+                    var parentFolder3 = parentFolder2.get('parent');
+                }
+
+                var pathfile = null;
+
+                if (parentFolder3 == null) {
+                    pathfile = folderName3 + '/' + folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder2 == null) {
+                    pathfile = folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder1 == null) {
+                    pathfile = folderName1 + '/' + file.get('name');
+                }
+                if (folder == null) {
+                    pathfile = file.get('name');
+                }
+
+                document.getElementById('imageCard').value = pathfile;
+
+                $("#urlcard").attr("src", hostedUrl + "/" + pathfile);
+
+            });
+
+        }
+    });
+});
+
+
+
+
+$(".btn-abrirpopup5").on('click',function (e) {
+    e.preventDefault();
+    $("#imageMeta").html("");
     CKFinder.popup({
         chooseFiles: true,
         onInit: function (finder) {
@@ -137,13 +285,19 @@ $(".btn-seoimagen").click(function (e) {
                // document.getElementById('gallery').value = pathfile;
 
 
-                document.getElementById('seoimageninput').value = pathfile;
+                document.getElementById('imageMeta').value = pathfile;
 
-                $("#urlseoimagen").attr("src", hostedUrl + "/" + pathfile);
+                $("#urlmeta").attr("src", hostedUrl + "/" + pathfile);
 
 
             });
 
         }
     });
+});
+
+
+$("#tipo").on('change',function(){
+    let valor = $(this).val();
+    console.log(valor);
 });
