@@ -47,6 +47,12 @@ Auth::routes([
 
 });
 
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+    ->name('ckfinder_connector');
+
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+    ->name('ckfinder_browser');
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/{categoria}', [HomeController::class, 'categoria']);
 Route::get('/{categoria}/{subcategoria}', [HomeController::class, 'subcategoria']);
@@ -60,8 +66,4 @@ Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articu
 Route::get('/categories', [HomeController::class, 'categories']);
 
 
-Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
-    ->name('ckfinder_connector');
 
-Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
-    ->name('ckfinder_browser');
