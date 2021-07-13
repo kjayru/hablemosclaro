@@ -23,12 +23,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
-          <li class="nav-item has-treeview ">
+         <!-- <li class="nav-item has-treeview ">
             <a href="/admin" class="nav-link {{{ (Request::is('admin') ? 'active' : '') }}}">
 
               <p>Usuarios </p>
             </a>
-          </li>
+          </li>-->
 
           <li class="nav-item has-treeview ">
             <a href="/admin/categories" class="nav-link {{{ (Request::is('admin/Categorias') ? 'active' : '') }}}">
