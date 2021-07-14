@@ -22,7 +22,6 @@ class PostController extends Controller
     public function index()
     {
         $articulos = Post::orderBy('id','desc')->get();
-
         return view('backend.publicaciones.index',['articulos'=>$articulos]);
     }
 
@@ -47,6 +46,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
+        $fecha = $request->fechapublicacion;
+        $fp = explode("/",$fecha);
+
+        $nfp= $fp[2]."-".$fp[1]."-".$fp[0];
 
         $post = new Post();
         $post->titulo  = $request->titulo;
@@ -65,13 +68,10 @@ class PostController extends Controller
         $post->meta_description = $request->seodescripcion;
         $post->meta_keywords = $request->keywords;
         $post->video = $request->video;
+        $post->date_publish = $nfp;
 
         $post->save();
-
-
         $post->authors()->sync($request->author);
-
-
 
         return redirect(route('post.index'))
         ->with('info', 'Artículo actualizado con exito.');
@@ -104,25 +104,10 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
 
+        $fecha = $request->fechapublicacion;
+        $fp = explode("/",$fecha);
 
-
-
-        /*
-        "imageBanner" => "images/Hc_Portada-Violencia.jpeg"
-        "imageTablet" => "images/Hc_Portada-Violencia.jpeg"
-        "imageMovil" => "images/Hc_Portada-Violencia.jpeg"
-        "imageCard" => "images/Hc_Portada-Violencia.jpeg"
-        "destacado" => "1"
-        "estado" => "1"
-        "categoria_blog_id" => "7"
-        "tipo_id" => "1"
-        "video" => null
-        "author" => null
-        "seotitle" => "Redes sociales toman medidas para frenar la violencia de género en línea"
-        "seodescripcion" => "Redes sociales toman medidas para frenar la violencia de género en línea"
-        "keywords" => "Redes sociales toman medidas para frenar la violencia de género en línea"
-        "imageMeta" => "images/Hc_Portada-Violencia.jpeg"
-         */
+        $nfp= $fp[2]."-".$fp[1]."-".$fp[0];
 
         $post = Post::find($id);
         $post->titulo  = $request->titulo;
@@ -141,6 +126,7 @@ class PostController extends Controller
         $post->meta_description = $request->seodescripcion;
         $post->meta_keywords = $request->keywords;
         $post->video = $request->video;
+        $post->date_publish = $nfp;
 
         $post->save();
 

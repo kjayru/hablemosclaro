@@ -125,6 +125,7 @@
                                 <option value="1" @if(@$articulo->post_type_id == 1) selected @endif>Nota</option>
                                 <option value="2" @if(@$articulo->post_type_id == 2) selected @endif>Video</option>
                                 <option value="3" @if(@$articulo->post_type_id == 3) selected @endif>Columna</option>
+                                <option value="3" @if(@$articulo->post_type_id == 4) selected @endif>Slider</option>
                             </select>
                         </div>
 
@@ -136,8 +137,8 @@
                             <input type="text" name="video" id="video" class="form-control" placeholder="Codigo Embed video">
                         </div>
                     </div>
-                    <div class="row row__author">
 
+                    <div class="row row__author">
                         <div class="form-group col-sm-6">
                             <label for="author">Autor</label>
                             <select name="author" id="author" class="custom-select">
@@ -145,10 +146,15 @@
                                 @foreach($authors as $autor)
                                 <option value="{{$autor->id}}">{{$autor->nombre}}</option>
                                 @endforeach
-
                             </select>
                         </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="fechapublicacion">Fecha de publicación</label>
+                            <input type="date" name="fechapublicacion" id="fechapublicacion" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>

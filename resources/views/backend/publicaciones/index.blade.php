@@ -60,8 +60,8 @@
                     @foreach ($articulos as $key => $post )
                     <tr>
                         <th>{{$key + 1}}</th>
-                        <td>{{ $post->titulo}}</td>
-                        <td>{{ $post->category->nombre}}</td>
+                        <td>{{ @$post->titulo}}</td>
+                        <td>{{ @$post->category->nombre}}</td>
 
                         <td>
                             {{ Carbon\Carbon::parse(@$post->created_at)->format('d/m/Y') }}</td>

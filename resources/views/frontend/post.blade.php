@@ -39,13 +39,15 @@
     <section class="section limit m--detalle detalle_de_articulos">
         <article class="detalle_de_articulos__article">
             <figure class="detalle_de_articulos__article__image">
-                <img src="{{ $articulo->banner }}" alt="">
+                <img src="/storage/{{ $articulo->banner }}" alt="">
             </figure>
             <header class="columnas__item__header">
                 <strong class="columnas__item__subtitle">{{ $articulo->category->nombre }}</strong>
                 <h3 class="columnas__item__title">{{ $articulo->titulo }}</h3>
                 <time class="columnas__item__date">14 de mayo, 2021</time>
                 <!--<aside class="columnas__item__timer">5 min de lectura</aside>-->
+
+              @if(count($articulo->authors)>0))
                 <div class="columnas__item__author">
                     <img src="/assets/public/images/author.png" alt="" loading="lazy" width="46" height="46" />
                     <p>
@@ -53,6 +55,8 @@
                         Director de Asuntos regulatorios.
                     </p>
                 </div>
+                @endif
+
             </header>
             <div class="detalle_de_articulos__article__content">
 

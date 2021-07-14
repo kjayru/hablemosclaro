@@ -44,7 +44,7 @@
                 </picture>
                 <header class="lo_ultimo__item__header">
                     <strong class="lo_ultimo__item__subtitle">{{ $post->category->nombre}}</strong>
-                    <time class="lo_ultimo__item__date">{{ $post->created_at->format('d M Y')}}</time>
+                    <time class="lo_ultimo__item__date">{{ @$post->created_at }}</time>
                     <h3 class="lo_ultimo__item__title">{{ $post->titulo}}</h3>
                     <!--<aside class="lo_ultimo__item__timer">5 min de lectura</aside>-->
                 </header>
@@ -82,18 +82,18 @@
         @foreach($columns as $col)
             <article class="columnas__item">
                 <picture class="columnas__item__image">
-                    <img src="/storage/{{ $col->imagenbox }}" alt="" loading="lazy">
+                    <img src="/storage/{{ @$col->imagenbox }}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{$col->category->nombre}}</strong>
-                    <time class="columnas__item__date">{{ $col->created_at->format('d M Y')}}</time>
-                    <h3 class="columnas__item__title">{{$col->titulo}}</h3>
+                    <strong class="columnas__item__subtitle">{{@$col->category->nombre}}</strong>
+                    <time class="columnas__item__date">{{ @$col->date_publish}}</time>
+                    <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
                    <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
                     <div class="columnas__item__author">
                         <img src="assets/public/images/author.png" alt="">
                         <p>
-                            <strong>{{ $col->authors[0]->nombre}}</strong>
-                            {{ $col->authors[0]->cargo}}
+                            <strong>{{ @$col->authors[0]->nombre}}</strong>
+                            {{ @$col->authors[0]->cargo}}
                         </p>
                     </div>
                 </header>

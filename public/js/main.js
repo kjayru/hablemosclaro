@@ -1,7 +1,7 @@
 try {
 
     CKFinder.config({ connectorPath: '/ckfinder/connector' });
-   // CKFinder.start();
+   //("") CKFinder.start();
     CKFinder.widget( 'file-editor',{
            width: '100%',
            height: 700
@@ -299,5 +299,13 @@ $(".btn-abrirpopup5").on('click',function (e) {
 
 $("#tipo").on('change',function(){
     let valor = $(this).val();
-    console.log(valor);
+
+    if(valor==2){
+        $(".row__video").fadeIn(350,'swing');
+        $(".row__author").hide();
+    }
+    if(valor==3){
+        $(".row__author").fadeIn(350,'swing');
+        $(".row__video").hide();
+    }
 });
