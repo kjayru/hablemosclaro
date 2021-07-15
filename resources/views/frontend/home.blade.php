@@ -75,8 +75,12 @@
             </ul>
         </div>
     </section>
+    
     <section class="section columnas">
-        <h2 class="limit g-title m--swiper">Columnas de opinión</h2>
+        <header class="limit columnas__header">
+            <h2 class="g-title m--swiper">Columnas de opinión</h2>
+            <a href="listado_de_articulos.php" class="columnas__link">Ver todo</a>
+        </header>
         <div class="limit columnas__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
         @if($columns != null)
         @foreach($columns as $col)
@@ -101,9 +105,12 @@
             </article>
         @endforeach
         @endif
-
+        </div>
+        <div class="limit g-button-group">
+            <a href="#" class="g-button m--330">Ver todo</a>
         </div>
     </section>
+
     <section class="section m--bg ultimos_videos">
         <div class="limit">
             <h3 class="g-title m--white">Últimos videos</h3>

@@ -1,23 +1,19 @@
-
 <footer class="footer">
 	<div class="limit footer__inset">
 		<header class="footer__header">
 			<h6 class="footer__title">Escribenos a</h6>
 			<a class="footer__email" href="mailto:hablandoclaro@claro.com.pe">hablandoclaro@claro.com.pe</a>
 			<aside class="footer__socials">
-				<a class="footer__socials__link" href="#"><img src="/assets/public/images/ico_twitter_footer.png" alt="Twitter" loading="lazy"></a>
-				<a class="footer__socials__link" href="#"><img src="/assets/public/images/ico_linkedin_footer.png" alt="Linkedin" loading="lazy"></a>
+				<a class="footer__socials__link" href="#" target="_blank"><img src="/assets/public/images/ico_twitter_footer.png" alt="Twitter" loading="lazy"></a>
+				<a class="footer__socials__link" href="#" target="_blank"><img src="/assets/public/images/ico_linkedin_footer.png" alt="Linkedin" loading="lazy"></a>
 			</aside>
 		</header>
 		<aside class="footer__nav">
 			<strong class="footer__nav__title">Categorías</strong>
 			<ul class="footer__nav__list">
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">Innovación</a></li>
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">Entretenimiento</a></li>
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">Negocios</a></li>
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">Seguridad</a></li>
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">ABC Telecomunicaciones</a></li>
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">compromiso</a></li>
+				@foreach ( $menu as $key=>$cat )
+				<li class="footer__nav__item"><a href="/{{$cat->slug}}" class="footer__nav__link" href="#">{{$cat->nombre}}</a></li>
+				@endforeach
 			</ul>
 		</aside>
 		<aside class="footer__nav">

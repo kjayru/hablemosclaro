@@ -1,36 +1,6 @@
 @extends('layouts.frontend.app')
 @section('content')
 
-
-
-    <span class="header__height"></span>
-
-    <div id="search" class="search">
-        <div class="search__content">
-            <span class="search__content__back fnShowSearchform"><img src="/assets/public/images/ico_back.png"
-                    alt="" /></span>
-            <form action="/hablandoclaro/search_results.json" class="search__form fnSearchForm" method="post"
-                data-tipo="search_form">
-                <input type="text" name="q" placeholder="Buscar en Hablando Claro"
-                    class="search__form__input fnSearchFormInput">
-                <button type="submit" class="search__form__button">Buscar</button>
-                <img src="/assets/public/images/ico_clean_search.png" alt="Limpiar busqueda" loading="lazy"
-                    class="search__form__clean fnSearchFormClean">
-            </form>
-            <div class="search__results fnSearchResults">
-                <strong class="search__results__title">Resultados</strong>
-                <div class="search__results__data fnSearchResultsData"></div>
-            </div>
-            <strong class="search__results__title m--2">Más buscados</strong>
-            <aside class="search__results__wanted">
-                <a href="#">Teletrabajo</a>
-                <a href="#">Gaming</a>
-                <a href="#">Entretenimiento digital</a>
-                <a href="#">Innovación</a>
-            </aside>
-        </div>
-    </div>
-
     <aside class="limit breadcrumb">
         <a class="breadcrumb__link" href="#"><img src="/assets/public/images/ico_home.png" alt="Inicio"
                 loading="lazy" /></a>

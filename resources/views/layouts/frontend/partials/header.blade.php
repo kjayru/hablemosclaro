@@ -1,6 +1,8 @@
 <header class="header">
 	<div class="limit header__inset">
-		<h1 class="header__logo"><img src="/assets/public/images/hablando-claro.png" alt="Hablando Claro" loading="lazy"></h1>
+		<h1 class="header__logo">
+			<a href="/"><img src="/assets/public/images/hablando-claro.png" alt="Hablando Claro" loading="lazy"></a>
+		</h1>
 
         <nav class="header__nav fnNavTarget">
 			<strong class="header__nav__title">Categorías</strong>
@@ -45,9 +47,10 @@
 	</div>
 	<span class="header__advance fnScrollAdvance"></span>
 </header>
-<span class="header__height"></span><div id="search" class="search">
+<span class="header__height"></span>
+<div id="search" class="search">
 	<div class="search__content">
-		<span class="search__content__back fnShowSearchform"><img src="/assets/public/images/ico_back.png" alt="" /></span>
+		<span class="search__content__back fnShowSearchform"><img src="/assets/public/images/ico_back.png" alt="Volver" /></span>
 		<form action="http://localhost/hablandoclaro/search_results.json" class="search__form fnSearchForm" method="post" data-tipo="search_form">
 			<input type="text" name="q" placeholder="Buscar en Hablando Claro" class="search__form__input">
 			<button type="submit" class="search__form__button">Buscar</button>
