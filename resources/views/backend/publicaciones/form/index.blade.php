@@ -125,7 +125,7 @@
                                 <option value="1" @if(@$articulo->post_type_id == 1) selected @endif>Nota</option>
                                 <option value="2" @if(@$articulo->post_type_id == 2) selected @endif>Video</option>
                                 <option value="3" @if(@$articulo->post_type_id == 3) selected @endif>Columna</option>
-                                <option value="3" @if(@$articulo->post_type_id == 4) selected @endif>Slider</option>
+                                <option value="4" @if(@$articulo->post_type_id == 4) selected @endif>Slider</option>
                             </select>
                         </div>
 

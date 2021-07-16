@@ -26,7 +26,7 @@
 
   <div class="form-group @if($errors->first('cargo')) has-error @endif">
     <label for="cargo" class="control-label">Cargo</label>
-        <input type="text"  name="cargo" class="form-control" value="{{ @$autor->titulo}}" id="cargo" placeholder="Cargo" required>
+        <input type="text"  name="cargo" class="form-control" value="{{ @$autor->cargo}}" id="cargo" placeholder="Cargo" required>
         <span class="help-block">{{ $errors->first('cargo') }}</span>
 </div>
 

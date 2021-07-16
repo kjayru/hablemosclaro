@@ -28,7 +28,7 @@ class AuthorController extends Controller
     public function create()
     {
 
-        return view('backend.autores.index');
+        return view('backend.autores.create');
     }
 
     /**
@@ -82,7 +82,7 @@ class AuthorController extends Controller
         $autor->cargo = $request->cargo;
         $autor->save();
 
-        return redirect(route('category.index'))
+        return redirect(route('author.index'))
         ->with('info', 'Autor actualizada con éxito.');
     }
 

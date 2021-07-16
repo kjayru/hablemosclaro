@@ -64,7 +64,7 @@
                         <td>{{ @$autor->cargo }}</td>
 
                         <td width="7%" style="text-center">
-                            <a href="/admin/categories/{{$autor->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
+                            <a href="/admin/authors/{{$autor->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
                             <a href="#" data-id="{{$autor->id}}" data-toggle="modal" data-target="#delobjeto" class="btn btn-xs btn-dangers btn-object-delete"><i class="far fa-trash-alt"></i></a>
 
                         </td>

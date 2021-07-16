@@ -87,6 +87,6 @@ class TagController extends Controller
     public function destroy(Request $request)
     {
         Tag::find($request->id)->delete();
-        return redirect()->route('category.index')->with('info','Tag eliminado con éxito');
+        return redirect()->route('tag.index')->with('info','Tag eliminado con éxito');
     }
 }

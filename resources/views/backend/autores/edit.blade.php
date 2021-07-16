@@ -31,7 +31,7 @@
 
 
 
-              <form role="form" action="{{ route('author.update',$author->id) }}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{ route('author.update',$autor->id) }}" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
 
                     @csrf
