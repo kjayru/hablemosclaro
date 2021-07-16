@@ -19,10 +19,11 @@
         </header>
 
         <nav class="listado_de_articulos__nav">
+
             <ul class="listado_de_articulos__nav__inset">
                 <li class="listado_de_articulos__nav__item"><a href="/{{$categoria}}" class="listado_de_articulos__nav__link">Todo</a>
                 </li>
-                @if($categorias == null)
+                @if(isset($categorias))
 
                     @foreach($categorias as $cat)
                     <li class="listado_de_articulos__nav__item">

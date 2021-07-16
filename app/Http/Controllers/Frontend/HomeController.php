@@ -87,6 +87,7 @@ class HomeController extends Controller
 
             if($catcount>0){
                 $categorias = Category::where('parent_id',$category->parent_id)->get();
+
             }
 
         }else{
