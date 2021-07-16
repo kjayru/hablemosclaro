@@ -65,7 +65,9 @@ Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articu
 
 Route::get('/categories', [HomeController::class, 'categories']);
 
+//asinc
 Route::post('/suscribirse', [HomeController::class, 'suscribirse']);
+Route::post('/search', [HomeController::class, 'buscar']);
 
 
 

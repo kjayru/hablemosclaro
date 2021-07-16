@@ -71,7 +71,7 @@ class HomeController extends Controller
 
         $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria]);
+        return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category]);
     }
 
 
@@ -99,7 +99,7 @@ class HomeController extends Controller
 
 
 
-            return view('frontend.post',['articulo'=>$post,'relacionados'=>$relacionados]);
+            return view('frontend.post',['articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category]);
         }
 
        $current_url = url()->full();
