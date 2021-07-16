@@ -9,7 +9,7 @@
 
 			<ul class="header__nav__list">
 				<li class="header__nav__item">
-					<a class="header__nav__link" href="#">Inicio</a>
+					<a class="header__nav__link" href="/">Inicio</a>
 				</li>
                 @foreach ( $menu as $key=>$cat )
                 <li class="header__nav__item">

@@ -2,7 +2,7 @@
 @section('content')
 
     <aside class="limit breadcrumb">
-        <a class="breadcrumb__link" href="#"><img src="/assets/public/images/ico_home.png" alt="Inicio"
+        <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio"
                 loading="lazy" /></a>
         <span class="breadcrumb__space"></span>
         <a class="breadcrumb__link" href="/{{ @$category->parent->slug }}">{{ @$category->parent->slug }}</a>
@@ -82,26 +82,27 @@
         <div class="limit columnas__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
 
 
+            @foreach($columns as $col)
             <article class="columnas__item">
                 <picture class="columnas__item__image">
-                    <img src="/assets/public/images/columnas.png" alt="" loading="lazy">
+                    <img src="/storage/{{ @$col->imagenbox }}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">Compromiso</strong>
-                    <time class="columnas__item__date">14 set 2021</time>
-                    <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y
-                        teletrabajo</h3>
-                    <aside class="columnas__item__timer">5 min de lectura</aside>
+                    <strong class="columnas__item__subtitle">{{@$col->category->nombre}}</strong>
+                    <time class="columnas__item__date">{{ @$col->date_publish}}</time>
+                    <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
+                   <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
                     <div class="columnas__item__author">
-                        <img src="/assets/public/images/author.png" alt="">
+                        <img src="/storage/{{ @$col->authors[0]->imagen}}" alt="">
                         <p>
-                            <strong>Por Juan Rivadeneyra</strong>
-                            Director de Asuntos regulatorios.
+                            <strong>{{ @$col->authors[0]->nombre}}</strong>
+                            {{ @$col->authors[0]->cargo}}
                         </p>
                     </div>
                 </header>
                 <a href="#" class="columnas__item__link">Más información</a>
             </article>
+        @endforeach
 
 
 
