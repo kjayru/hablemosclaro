@@ -115,7 +115,7 @@ class HomeController extends Controller
 
        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.subcategory',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categoria,"subcategoria"=>$subcategoria,'current_url'=>$current_url]);
+        return view('frontend.subcategory',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categoria,"subcategoria"=>$subcategoria,'current_url'=>$current_url,'category'=>$category]);
     }
 
 
