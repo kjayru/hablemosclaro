@@ -45,6 +45,21 @@
           </li>
 
           <li class="nav-item has-treeview ">
+            <a href="/admin/authors" class="nav-link {{{ (Request::is('admin/authors') ? 'active' : '') }}}">
+
+              <p>Autores </p>
+            </a>
+          </li>
+
+          <li class="nav-item has-treeview ">
+            <a href="/admin/tags" class="nav-link {{{ (Request::is('admin/tags') ? 'active' : '') }}}">
+
+              <p>Tags </p>
+            </a>
+          </li>
+
+
+          <li class="nav-item has-treeview ">
             <a href="/admin/media" class="nav-link {{{ (Request::is('admin/media') ? 'active' : '') }}}">
 
               <p>Media </p>

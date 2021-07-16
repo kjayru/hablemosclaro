@@ -42,6 +42,20 @@ Auth::routes([
     Route::put('/posts/{post}', [PostController::class,'update'])->name('post.update');
     Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.destroy');
 
+    Route::get('/tags', [TagController::class,'index'])->name('tag.index');
+    Route::get('/tags/create', [TagController::class,'create'])->name('tag.create');
+    Route::post('/tags', [TagController::class,'store'])->name('tag.store');
+    Route::get('/tags/{post}/edit', [TagController::class,'edit'])->name('tag.edit');
+    Route::put('/tags/{post}', [TagController::class,'update'])->name('tag.update');
+    Route::delete('/tags/{post}', [TagController::class,'destroy'])->name('tag.destroy');
+
+    Route::get('/authors', [AuthorController::class,'index'])->name('author.index');
+    Route::get('/authors/create', [AuthorController::class,'create'])->name('author.create');
+    Route::post('/authors', [AuthorController::class,'store'])->name('author.store');
+    Route::get('/authors/{post}/edit', [AuthorController::class,'edit'])->name('author.edit');
+    Route::put('/authors/{post}', [AuthorController::class,'update'])->name('author.update');
+    Route::delete('/authors/{post}', [AuthorController::class,'destroy'])->name('author.destroy');
+
     Route::get('/media', [AdminController::class,'media']);
 
 
