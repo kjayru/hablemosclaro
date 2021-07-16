@@ -1,7 +1,7 @@
 <footer class="footer">
 	<div class="limit footer__inset">
 		<header class="footer__header">
-			<h6 class="footer__title">Escribenos a</h6>
+			<h6 class="footer__title">Escríbenos a</h6>
 			<a class="footer__email" href="mailto:hablandoclaro@claro.com.pe">hablandoclaro@claro.com.pe</a>
 			<aside class="footer__socials">
 				<a class="footer__socials__link" href="#" target="_blank"><img src="/assets/public/images/ico_twitter_footer.png" alt="Twitter" loading="lazy"></a>
