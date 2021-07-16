@@ -52,7 +52,8 @@
 	<div class="search__content">
 		<span class="search__content__back fnShowSearchform"><img src="/assets/public/images/ico_back.png" alt="Volver" /></span>
 		<form action="/search" class="search__form fnSearchForm" method="post" data-tipo="search_form">
-			<input type="text" name="q" placeholder="Buscar en Hablando Claro" id="search" class="search__form__input">
+			<input type="text" name="word" placeholder="Buscar en Hablando Claro" id="search" class="search__form__input">
+			@csrf
 			<button type="submit" class="search__form__button">Buscar</button>
 		</form>
 		<div class="search__results fnSearchResults">

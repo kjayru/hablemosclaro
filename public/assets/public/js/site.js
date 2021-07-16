@@ -36,6 +36,7 @@ const site = (function(){
 		events.interactions();
 		events.forms();
 		events.runPlugins();
+
 	};
 
 	const events = {
@@ -77,7 +78,7 @@ const site = (function(){
 										</div>`);
 						}
 					};
-					aditionals[type]();
+					aditionals[type]();	
 
 					const params = {
 						'slider_principal': {
@@ -103,7 +104,7 @@ const site = (function(){
 							scrollbar: { el: ".swiper-scrollbar", draggable : true,  reverseDirection: true }
 						},
 						'one_image': {
-							slidesPerView: 1, autoplay : { delay : 2000 }, speed : 1200, spaceBetween: 30,
+							slidesPerView: 1, autoplay : { delay : 2000 }, speed : 1200, spaceBetween: 30, 
 				            navigation: { nextEl: el.querySelector('.fnSwiperToLeft'), prevEl: el.querySelector('.fnSwiperToRight') },
 				            pagination: { el: el.querySelector('.fnSwiperFraction'), type: "fraction" }
 						}
@@ -224,8 +225,12 @@ const site = (function(){
 			// Set Recaptach
 				// setNewRecaptcha();
 
+
+
 			let formBlock = true;
 			$('form').on('submit', function(e){
+
+
 
 				let f = $(this);
 				let fields = f.find('input, textarea, select');
@@ -237,6 +242,8 @@ const site = (function(){
 				let dataForm = '';
 				let validCorreo = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 				let num = /[^0-9]/g;
+
+				console.log(f.serializeArray());
 
 				$.each(fields, function(index, val) {
 					let t = $(this);
@@ -262,18 +269,8 @@ const site = (function(){
 					} else {
 						e.preventDefault();
 						btn.attr('disabled','disabled');
-
-                        let token = $("meta[name=csrf-token]").attr("content");
-                        let word = $("#search").val();
 						formBlock=false;
-
-						$.ajax({
-                            url: f.attr('action'),
-                            type: 'POST',
-                            dataType: 'json',
-                            data:({ '_token':token, '_method':'POST','word':word})
-
-                        })
+						$.ajax({url: f.attr('action'), type: 'POST', dataType: 'json', data: f.serializeArray()})
 							.done(function(response) {
 								if(response.rpta)
 								{

@@ -11,6 +11,7 @@ const site = (function(){
 		events.interactions();
 		events.forms();
 		events.runPlugins();
+
 	};
 
 	const events = {
@@ -199,8 +200,12 @@ const site = (function(){
 			// Set Recaptach
 				// setNewRecaptcha();
 
+
+
 			let formBlock = true;
 			$('form').on('submit', function(e){
+
+
 
 				let f = $(this);
 				let fields = f.find('input, textarea, select');
@@ -212,6 +217,8 @@ const site = (function(){
 				let dataForm = '';
 				let validCorreo = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 				let num = /[^0-9]/g;
+
+				console.log(f.serializeArray());
 
 				$.each(fields, function(index, val) {
 					let t = $(this);
