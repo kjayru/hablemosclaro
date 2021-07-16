@@ -91,7 +91,7 @@
                         </p>
                     </div>
                 </header>
-                <a href="#" class="columnas__item__link">Más información</a>
+                <a href="{{@$col->category->slug}}/{{@$col->slug}}" class="columnas__item__link">Más información</a>
             </article>
         @endforeach
         @endif
