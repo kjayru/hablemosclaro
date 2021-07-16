@@ -91,7 +91,15 @@ class HomeController extends Controller
         }else{
 
             $post = Post::where('slug',$subcategoria)->first();
-            return view('frontend.post',['articulo'=>$post]);
+
+            $category_id = $post->category->id;
+
+            $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
+
+
+
+
+            return view('frontend.post',['articulo'=>$post,'relacionados'=>$relacionados]);
         }
 
        $current_url = url()->full();
@@ -125,9 +133,15 @@ class HomeController extends Controller
            }
        }
 
+
+       $category_id = $post->category->id;
+
+       $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
+
+
        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.post',['videos'=>$videos,'columns'=>$columns,'articulo'=>$post]);
+        return view('frontend.post',['videos'=>$videos,'columns'=>$columns,'articulo'=>$post,'relacionados'=>$relacionados]);
 
     }
 
@@ -137,6 +151,7 @@ class HomeController extends Controller
 
         dd($request);
     }
+
 
 
 

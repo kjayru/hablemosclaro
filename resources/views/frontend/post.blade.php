@@ -86,17 +86,16 @@
             <section class="detalle_de_articulos__recomendados">
                 <h4 class="detalle_de_articulos__recomendados__title">Te puede interesar</h4>
                 <!--relacionados-->
-
+                @foreach($relacionados as $rel)
                 <article class="columnas__item">
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">Compromiso</strong>
-                        <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y
-                            teletrabajososo</h3>
+                        <strong class="columnas__item__subtitle">{{ $rel->category->nombre}}</strong>
+                        <h3 class="columnas__item__title">{{ $rel->titulo}}</h3>
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
-                    <a href="#" class="columnas__item__link">Más información</a>
+                    <a href="/{{$rel->category->slug}}/{{$rel->slug}}" class="columnas__item__link">Más información</a>
                 </article>
-
+                @endforeach
             </section>
         </aside>
         <aside class="detalle_de_articulos__socials">
