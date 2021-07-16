@@ -17,22 +17,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $articulos = Post::where('destacado',1)->get();
+        $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
         $categorias = Category::wherenull('parent_id')->get();
-
+        $sliders = Post::where('post_type_id',4)->get();
         $posts = Post::all();
 
-       foreach($posts as $post){
-           if(count($post->authors)>0){
-              $columns[] = $post;
-           }
-       }
-
-       $videos = Post::where('post_type_id',2)->orderBy('id','asc')->take(4)->get();
+        foreach($posts as $post){
+            if(count($post->authors)>0){
+                $columns[] = $post;
+            }
+        }
 
 
-        return view('frontend.home',['articulos'=>$articulos,'categorias'=>$categorias,'columns'=>$columns,'videos'=>$videos]);
+        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+        return view('frontend.home',['articulos'=>$articulos,'categorias'=>$categorias,'columns'=>$columns,'videos'=>$videos,'sliders'=>$sliders]);
     }
 
     public function categoria($categoria){
@@ -59,19 +57,25 @@ class HomeController extends Controller
 
             $articulos = collect($post);
 
-
         }else{
             $articulos = $category->posts;
         }
 
+        $posts = Post::all();
 
+        foreach($posts as $post){
+            if(count($post->authors)>0){
+                $columns[] = $post;
+            }
+        }
 
-        return view('frontend.category',['categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria]);
+        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+
+        return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria]);
     }
 
+
     public function subcategoria($categoria,$subcategoria){
-
-
         $categorias = null;
         $category = Category::where('slug',$subcategoria)->first();
 
@@ -92,8 +96,17 @@ class HomeController extends Controller
 
        $current_url = url()->full();
 
+       $posts = Post::all();
 
-        return view('frontend.subcategory',['categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categoria,"subcategoria"=>$subcategoria,'current_url'=>$current_url]);
+       foreach($posts as $post){
+           if(count($post->authors)>0){
+               $columns[] = $post;
+           }
+       }
+
+       $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+
+        return view('frontend.subcategory',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categoria,"subcategoria"=>$subcategoria,'current_url'=>$current_url]);
     }
 
 
@@ -104,24 +117,28 @@ class HomeController extends Controller
         $post = Post::where('slug',$articulo)->first();
 
 
+        $posts = Post::all();
 
-        return view('frontend.post',['articulo'=>$post]);
+       foreach($posts as $post){
+           if(count($post->authors)>0){
+               $columns[] = $post;
+           }
+       }
+
+       $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+
+        return view('frontend.post',['videos'=>$videos,'columns'=>$columns,'articulo'=>$post]);
 
     }
 
 
 
-    public function categories(){
+    public function suscribirse(Request $request){
 
-        $categories = Category::where('parent_id',null)->get();
-        foreach($categories as $cat){
-
-            if(count($cat->parent)>0){
-                echo $cat->parent."<br><br>";
-            }
-        }
-
-        dd($categories[0]->parent);
+        dd($request);
     }
+
+
+
 
 }

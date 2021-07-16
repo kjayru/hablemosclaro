@@ -3,32 +3,22 @@
 
     <section class="slider_principal fnSetSwiper" data-swiper="slider_principal" data-swiper-activate="active"
         data-swiper-arrows="assets/public/images/slider_arrow.png">
-        <article class="slider_principal__item">
-            <picture class="slider_principal__item__image">
-                <img src="assets/public/images/slider_principal.png" alt="" loading="lazy">
-            </picture>
-            <header class="slider_principal__item__header">
-                <strong class="slider_principal__item__subtitle">Compromiso</strong>
-                <time class="slider_principal__item__date">14 set 2021</time>
-                <h3 class="slider_principal__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y
-                    teletrabajo</h3>
-                <aside class="slider_principal__item__timer">5 min de lectura</aside>
-            </header>
-            <a href="#" class="slider_principal__item__link">Más información</a>
-        </article>
-        <article class="slider_principal__item">
-            <picture class="slider_principal__item__image">
-                <img src="assets/public/images/slider_principal.png" alt="" loading="lazy">
-            </picture>
-            <header class="slider_principal__item__header">
-                <strong class="slider_principal__item__subtitle">Compromiso</strong>
-                <time class="slider_principal__item__date">14 set 2021</time>
-                <h3 class="slider_principal__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y
-                    teletrabajo</h3>
-                <aside class="slider_principal__item__timer">5 min de lectura</aside>
-            </header>
-            <a href="#" class="slider_principal__item__link">Más información</a>
-        </article>
+
+        @foreach($sliders as $slide)
+            <article class="slider_principal__item">
+                <picture class="slider_principal__item__image">
+                    <img src="/storage/{{@$slide->banner}}" alt="" loading="lazy">
+                </picture>
+                <header class="slider_principal__item__header">
+                    <strong class="slider_principal__item__subtitle">{{@$slide->category->nombre}}</strong>
+                    <time class="slider_principal__item__date">{{@$slide->publish_date}}</time>
+                    <h3 class="slider_principal__item__title">{{@$slide->titulo}}</h3>
+                    <!--<aside class="slider_principal__item__timer">5 min de lectura</aside>-->
+                </header>
+                <a href="/{{@$slide->category->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
+            </article>
+        @endforeach
+
     </section>
 
 
@@ -38,18 +28,18 @@
 
             @foreach($articulos as $post)
 
-            <article class="lo_ultimo__item">
-                <picture class="lo_ultimo__item__image">
-                    <img src="{{ $post->imagenbox }}" alt="" loading="lazy">
-                </picture>
-                <header class="lo_ultimo__item__header">
-                    <strong class="lo_ultimo__item__subtitle">{{ $post->category->nombre}}</strong>
-                    <time class="lo_ultimo__item__date">{{ @$post->created_at }}</time>
-                    <h3 class="lo_ultimo__item__title">{{ $post->titulo}}</h3>
-                    <!--<aside class="lo_ultimo__item__timer">5 min de lectura</aside>-->
-                </header>
-                <a href="#" class="lo_ultimo__item__link">Más información</a>
-            </article>
+                <article class="lo_ultimo__item">
+                    <picture class="lo_ultimo__item__image">
+                        <img src="{{ $post->imagenbox }}" alt="" loading="lazy">
+                    </picture>
+                    <header class="lo_ultimo__item__header">
+                        <strong class="lo_ultimo__item__subtitle">{{ $post->category->nombre}}</strong>
+                        <time class="lo_ultimo__item__date">{{ @$post->created_at }}</time>
+                        <h3 class="lo_ultimo__item__title">{{ $post->titulo}}</h3>
+                        <!--<aside class="lo_ultimo__item__timer">5 min de lectura</aside>-->
+                    </header>
+                    <a href="/{{@$post->category->slug}}/{{@$post->slug}}" class="lo_ultimo__item__link">Más información</a>
+                </article>
             @endforeach
 
         </div>
@@ -75,11 +65,11 @@
             </ul>
         </div>
     </section>
-    
+
     <section class="section columnas">
         <header class="limit columnas__header">
             <h2 class="g-title m--swiper">Columnas de opinión</h2>
-            <a href="listado_de_articulos.php" class="columnas__link">Ver todo</a>
+            <a href="#" class="columnas__link">Ver todo</a>
         </header>
         <div class="limit columnas__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
         @if($columns != null)
@@ -94,7 +84,7 @@
                     <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
                    <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
                     <div class="columnas__item__author">
-                        <img src="assets/public/images/author.png" alt="">
+                        <img src="/storage/{{ @$col->authors[0]->imagen}}" alt="">
                         <p>
                             <strong>{{ @$col->authors[0]->nombre}}</strong>
                             {{ @$col->authors[0]->cargo}}
@@ -117,7 +107,7 @@
             <div class="ultimos_videos__list">
 
                 <article class="ultimos_videos__item m--principal fnShowVideoTarget">
-                    <iframe class="ultimos_videos__item__video" src="https://www.youtube-nocookie.com/embed/eZqPTacPn-g"
+                    <iframe class="ultimos_videos__item__video" src="https://www.youtube-nocookie.com/embed/{{ $videos[0]->video }}"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe></iframe>
@@ -130,7 +120,7 @@
 
                   @foreach($videos as $key=>$vid)
                     @if($key>0)
-                    <article class="ultimos_videos__item fnShowVideoButton" data-video="eZqPTacPn-g">
+                    <article class="ultimos_videos__item fnShowVideoButton" data-video="{{$vid->video}}">
                         <picture class="ultimos_videos__item__image">
                             <img src="assets/public/images/ultimos_videos.png" alt="" loading="lazy">
                             <span class="ultimos_videos__item__image__timer">2 min</span>

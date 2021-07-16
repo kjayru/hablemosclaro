@@ -21,10 +21,10 @@
 
               @if(count($articulo->authors)>0))
                 <div class="columnas__item__author">
-                    <img src="/assets/public/images/author.png" alt="" loading="lazy" width="46" height="46" />
+                    <img src="/storage/{{ @$articulo->authors[0]->imagen}}" alt="">
                     <p>
-                        <strong>Por Juan Rivadeneyra</strong>
-                        Director de Asuntos regulatorios.
+                        <strong>{{ @$articulo->authors[0]->nombre}}</strong>
+                        {{ @$articulo->authors[0]->cargo}}
                     </p>
                 </div>
                 @endif
@@ -38,7 +38,8 @@
         </article>
 
         <aside class="detalle_de_articulos__sidebar">
-            <form action="" method="post" class="detalle_de_articulos__subscribe">
+            <form action="/suscribirse" method="post" class="detalle_de_articulos__subscribe">
+                @csrf
                 <strong class="detalle_de_articulos__subscribe__title">Suscríbete</strong>
                 <p class="detalle_de_articulos__subscribe__text">Y recibe lo mejor de nuestro contenido todas las semanas
                 </p>
@@ -77,10 +78,15 @@
                         <p>Compromiso</p>
                     </label>
                 </div>
-                <button class="g-button m--rojo m--mini">Suscribirme</button>
+                <button type="submit" class="g-button m--rojo m--mini">Suscribirme</button>
             </form>
+
+
+
             <section class="detalle_de_articulos__recomendados">
                 <h4 class="detalle_de_articulos__recomendados__title">Te puede interesar</h4>
+                <!--relacionados-->
+
                 <article class="columnas__item">
                     <header class="columnas__item__header">
                         <strong class="columnas__item__subtitle">Compromiso</strong>
@@ -90,33 +96,7 @@
                     </header>
                     <a href="#" class="columnas__item__link">Más información</a>
                 </article>
-                <article class="columnas__item">
-                    <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">Compromiso</strong>
-                        <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y
-                            teletrabajososo</h3>
-                        <aside class="columnas__item__timer">5 min de lectura</aside>
-                    </header>
-                    <a href="#" class="columnas__item__link">Más información</a>
-                </article>
-                <article class="columnas__item">
-                    <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">Compromiso</strong>
-                        <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y
-                            teletrabajososo</h3>
-                        <aside class="columnas__item__timer">5 min de lectura</aside>
-                    </header>
-                    <a href="#" class="columnas__item__link">Más información</a>
-                </article>
-                <article class="columnas__item">
-                    <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">Compromiso</strong>
-                        <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y
-                            teletrabajososo</h3>
-                        <aside class="columnas__item__timer">5 min de lectura</aside>
-                    </header>
-                    <a href="#" class="columnas__item__link">Más información</a>
-                </article>
+
             </section>
         </aside>
         <aside class="detalle_de_articulos__socials">
