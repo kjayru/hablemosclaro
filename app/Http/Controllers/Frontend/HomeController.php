@@ -162,7 +162,7 @@ class HomeController extends Controller
     public function buscar(Request $request){
 
         $posts = Post::where('titulo','LIKE',"%{$request->word}%")->get();
-        return response()->json($request);
+        return response()->json(['rpta'=>'ok',"data"=>$request]);
     }
 
 
