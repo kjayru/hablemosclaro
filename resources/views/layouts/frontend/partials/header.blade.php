@@ -51,8 +51,8 @@
 <div id="search" class="search">
 	<div class="search__content">
 		<span class="search__content__back fnShowSearchform"><img src="/assets/public/images/ico_back.png" alt="Volver" /></span>
-		<form action="http://localhost/hablandoclaro/search_results.json" class="search__form fnSearchForm" method="post" data-tipo="search_form">
-			<input type="text" name="q" placeholder="Buscar en Hablando Claro" class="search__form__input">
+		<form action="/search" class="search__form fnSearchForm" method="post" data-tipo="search_form">
+			<input type="text" name="q" placeholder="Buscar en Hablando Claro" id="search" class="search__form__input">
 			<button type="submit" class="search__form__button">Buscar</button>
 		</form>
 		<div class="search__results fnSearchResults">

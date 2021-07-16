@@ -77,7 +77,7 @@ const site = (function(){
 										</div>`);
 						}
 					};
-					aditionals[type]();	
+					aditionals[type]();
 
 					const params = {
 						'slider_principal': {
@@ -103,7 +103,7 @@ const site = (function(){
 							scrollbar: { el: ".swiper-scrollbar", draggable : true,  reverseDirection: true }
 						},
 						'one_image': {
-							slidesPerView: 1, autoplay : { delay : 2000 }, speed : 1200, spaceBetween: 30, 
+							slidesPerView: 1, autoplay : { delay : 2000 }, speed : 1200, spaceBetween: 30,
 				            navigation: { nextEl: el.querySelector('.fnSwiperToLeft'), prevEl: el.querySelector('.fnSwiperToRight') },
 				            pagination: { el: el.querySelector('.fnSwiperFraction'), type: "fraction" }
 						}
@@ -262,8 +262,18 @@ const site = (function(){
 					} else {
 						e.preventDefault();
 						btn.attr('disabled','disabled');
+
+                        let token = $("meta[name=csrf-token]").attr("content");
+                        let word = $("#search").val();
 						formBlock=false;
-						$.ajax({url: f.attr('action'), type: 'POST', dataType: 'json', data: f.serializeArray()})
+
+						$.ajax({
+                            url: f.attr('action'),
+                            type: 'POST',
+                            dataType: 'json',
+                            data:({ '_token':token, '_method':'POST','word':word})
+
+                        })
 							.done(function(response) {
 								if(response.rpta)
 								{

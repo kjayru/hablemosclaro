@@ -7,6 +7,9 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <link rel="canonical" href="" />
         <link rel='shortlink' href="" />
 
@@ -28,6 +31,7 @@
 
         <link id="site-css" rel="stylesheet" href="/assets/public/css/site.css?v={{uniqid()}}">
 
+
     </head>
     <body>
 
@@ -41,5 +45,6 @@
 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 		<script src="/assets/public/js/site.js?v={{uniqid()}}"></script>
+        <script src="/js/scripts.js?v={{uniqid()}}"></script>
 	</body>
 </html>

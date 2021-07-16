@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Suscription;
 use Illuminate\Support\Facades\URL;
 
 class HomeController extends Controller
@@ -149,9 +150,21 @@ class HomeController extends Controller
 
     public function suscribirse(Request $request){
 
-        dd($request);
+
+        $news = new Suscription();
+        $news->email = $request->email;
+        $news->temas = serialize($request->interes);
+        $news->save();
+
+        return response()->json(['rpta'=>"ok"]);
     }
 
+    public function buscar(Request $request){
+
+        $posts = Post::where('titulo','LIKE',"%{$request->word}%")->get();
+
+        return response()->json($request);
+    }
 
 
 

@@ -43,42 +43,42 @@
                 <strong class="detalle_de_articulos__subscribe__title">Suscríbete</strong>
                 <p class="detalle_de_articulos__subscribe__text">Y recibe lo mejor de nuestro contenido todas las semanas
                 </p>
-                <input type="email" name="email" placeholder="Correo electrónico"
+                <input type="email" name="email" id="email" placeholder="Correo electrónico"
                     class="detalle_de_articulos__subscribe__input" />
                 <strong class="detalle_de_articulos__subscribe__subtitle">Temas de interés</strong>
                 <div class="detalle_de_articulos__subscribe__checkboxes">
                     <label class="detalle_de_articulos__subscribe__checkbox">
-                        <input type="checkbox" name="interes" value="Innovación">
+                        <input type="checkbox" name="interes[]" value="Innovación">
                         <div></div>
                         <p>Innovación</p>
                     </label>
                     <label class="detalle_de_articulos__subscribe__checkbox">
-                        <input type="checkbox" name="interes" value="Entretenimiento">
+                        <input type="checkbox" name="interes[]" value="Entretenimiento">
                         <div></div>
                         <p>Entretenimiento</p>
                     </label>
                     <label class="detalle_de_articulos__subscribe__checkbox">
-                        <input type="checkbox" name="interes" value="Negocios">
+                        <input type="checkbox" name="interes[]" value="Negocios">
                         <div></div>
                         <p>Negocios</p>
                     </label>
                     <label class="detalle_de_articulos__subscribe__checkbox">
-                        <input type="checkbox" name="interes" value="Seguridad">
+                        <input type="checkbox" name="interes[]" value="Seguridad">
                         <div></div>
                         <p>Seguridad</p>
                     </label>
                     <label class="detalle_de_articulos__subscribe__checkbox">
-                        <input type="checkbox" name="interes" value="Aprendiendo Claro">
+                        <input type="checkbox" name="interes[]" value="Aprendiendo Claro">
                         <div></div>
                         <p>Aprendiendo Claro</p>
                     </label>
                     <label class="detalle_de_articulos__subscribe__checkbox">
-                        <input type="checkbox" name="interes" value="Compromiso">
+                        <input type="checkbox" name="interes[]" value="Compromiso">
                         <div></div>
                         <p>Compromiso</p>
                     </label>
                 </div>
-                <button type="submit" class="g-button m--rojo m--mini">Suscribirme</button>
+                <button class="g-button m--rojo m--mini btn__suscripcion">Suscribirme</button>
             </form>
 
 
