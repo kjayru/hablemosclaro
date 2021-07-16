@@ -216,9 +216,15 @@ const site = (function(){
 
 		search : function ( data ) {
 
-			$('.fnSearchResults').addClass(dom.active);
-			$('.fnSearchResultsData').html(data.data);
-
+			if ( data.length > 0 ) {
+				let html = '';
+				$.each(data, function(index, val) {
+					 html += '<span><a href="'+val.slugcategory+''+val.slug+'">'+val.titulo+'</a></span>';
+				});
+				$('.fnSearchResults').addClass(dom.active);
+				$('.fnSearchResultsData').html(html);
+			}
+			
 		},
 
 		forms : function(){
@@ -275,7 +281,7 @@ const site = (function(){
 								if(response.rpta)
 								{
 									switch (tipoForm) {
-										case 'search_form': events.search(response); break;
+										case 'search_form': events.search(response.data); break;
 									}
 									// setNewRecaptcha();
 									formBlock = true;
