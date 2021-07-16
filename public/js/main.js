@@ -309,3 +309,9 @@ $("#tipo").on('change',function(){
         $(".row__video").hide();
     }
 });
+
+try {
+    $('.select2').select2();
+} catch (error) {
+    console.log("no inicializado");
+}

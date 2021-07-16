@@ -32,6 +32,13 @@
   <link rel="stylesheet" href="/vendor/datepicker/css/bootstrap-datepicker.min.css">
 
 
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="/backend/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+
+   <!-- Select2 -->
+   <link rel="stylesheet" href="/backend/plugins/select2/css/select2.min.css">
+   <link rel="stylesheet" href="/backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
   <!-- Google Font: Source Sans Pro -->
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="/css/main.css?v={{ uniqid() }}" rel="stylesheet">
@@ -85,14 +92,22 @@
 <script src="//cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
 
 
-<!-- date--picker -->
+<script src="/backend/plugins/select2/js/select2.full.min.js"></script>
 
-<script src="/vendor/datepicker/js/bootstrap-datepicker.min.js"></script>
 
-<script src="/vendor/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/backend/dist/js/pages/dashboard.js?v=2"></script>
-<!-- AdminLTE for demo purposes -->
+<!-- Bootstrap4 Duallistbox -->
+<script src="/backend/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="/backend/plugins/moment/moment.min.js"></script>
+<script src="/backend/plugins/inputmask/jquery.inputmask.min.js"></script>
+
+
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="/backend/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- BS-Stepper -->
+<script src="/backend/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>

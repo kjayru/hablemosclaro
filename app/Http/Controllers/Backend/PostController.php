@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Author;
 use Illuminate\Support\Str;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -34,7 +35,8 @@ class PostController extends Controller
     {
         $categories = Category::orderBy('id','desc')->get();
         $authors = Author::orderBy('nombre','asc')->get();
-        return view('backend.publicaciones.create',['categories'=>$categories,'authors'=>$authors]);
+        $tags = Tag::orderBy('nombre','asc')->get();
+        return view('backend.publicaciones.create',['categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
@@ -46,10 +48,6 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $fecha = $request->fechapublicacion;
-        $fp = explode("/",$fecha);
-
-        $nfp= $fp[2]."-".$fp[1]."-".$fp[0];
 
         $post = new Post();
         $post->titulo  = $request->titulo;
@@ -68,10 +66,12 @@ class PostController extends Controller
         $post->meta_description = $request->seodescripcion;
         $post->meta_keywords = $request->keywords;
         $post->video = $request->video;
-        $post->date_publish = $nfp;
+        $post->date_publish = $request->fechapublicacion;
 
         $post->save();
         $post->authors()->sync($request->author);
+
+        $post->tags()->sync($request->tags);
 
         return redirect(route('post.index'))
         ->with('info', 'Artículo actualizado con exito.');
@@ -91,7 +91,8 @@ class PostController extends Controller
         $articulo = Post::find($id);
         $categories = Category::orderBy('id','desc')->get();
         $authors = Author::orderBy('nombre','asc')->get();
-        return view('backend.publicaciones.edit',['articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors]);
+        $tags = Tag::orderBy('nombre','asc')->get();
+        return view('backend.publicaciones.edit',['articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
@@ -104,35 +105,43 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
 
-        $fecha = $request->fechapublicacion;
-        $fp = explode("/",$fecha);
 
-        $nfp= $fp[2]."-".$fp[1]."-".$fp[0];
 
         $post = Post::find($id);
         $post->titulo  = $request->titulo;
         $post->slug =  Str::slug($request->titulo, '-');
         $post->contenido = $request->contenido;
+        if($request->imageBanner){
         $post->banner = $request->imageBanner;
+        }
+        if($request->imageTablet){
         $post->tablet = $request->imageTablet;
-        $post->movil = $request->imageMovil;
+        }
+        if($request->imageMovil){
+            $post->movil = $request->imageMovil;
+        }
+        if($request->imageCard){
         $post->imagenbox = $request->imageCard;
+        }
         $post->destacado = $request->destacado;
         $post->estado = $request->estado;
         $post->category_id = $request->categoria_blog_id;
         $post->post_type_id = $request->tipo_id;
         $post->meta_titulo = $request->seotitle;
+        if($request->imageMeta){
         $post->meta_image = $request->imageMeta;
+        }
         $post->meta_description = $request->seodescripcion;
         $post->meta_keywords = $request->keywords;
         $post->video = $request->video;
-        $post->date_publish = $nfp;
+        $post->date_publish =  $request->fechapublicacion;
+
 
         $post->save();
 
 
         $post->authors()->sync($request->author);
-
+        $post->tags()->sync($request->tags);
 
 
         return redirect(route('post.index'))

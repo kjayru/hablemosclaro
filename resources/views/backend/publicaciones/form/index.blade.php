@@ -134,7 +134,7 @@
                     <div class="row row__video">
                         <div class="form-group col-sm-6">
                             <label for="video">Codigo Embed video</label>
-                            <input type="text" name="video" id="video" class="form-control" placeholder="Codigo Embed video">
+                            <input type="text" name="video" id="video" class="form-control" value="{{@$articulo->video}}" placeholder="Codigo Embed video">
                         </div>
                     </div>
 
@@ -144,18 +144,37 @@
                             <select name="author" id="author" class="custom-select">
                                 <option value="">Seleccione</option>
                                 @foreach($authors as $autor)
-                                <option value="{{$autor->id}}">{{$autor->nombre}}</option>
+                                <option value="{{$autor->id}}"  @if(@$articulo->author[0]->id == $autor->id) selected @endif>{{$autor->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="form-group">
-                            <label for="fechapublicacion">Fecha de publicación</label>
-                            <input type="date" name="fechapublicacion" id="fechapublicacion" class="form-control">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fechapublicacion">Fecha de publicación</label>
+                                <input type="date" name="fechapublicacion" id="fechapublicacion" value="{{@$articulo->date_publish}}" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tags</label>
+                                <select class="select2" multiple="multiple" name="tags[]" data-placeholder="Seleciones tags" style="width: 100%;">
+                                    @foreach($tags as $tag)
+                                    <option value="{{$tag->id}}">{{ $tag->nombre }} </option>
+                                    @endforeach
+                                </select>
+                              </div>
                         </div>
                     </div>
+
+
+
+
+
                 </div>
             </div>
 
@@ -193,9 +212,6 @@
                             <input type="hidden" value="" name="imageMeta" id="imageMeta" />
                             <a href="#" class="btn btn-default btn-abrirpopup5">Seleccionar</a>
                         </div>
-
-                        <input type="hidden" name="id" value="" />
-
 
 
 
