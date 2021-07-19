@@ -115,7 +115,10 @@ const site = (function(){
 		},
 
 		interactions : function() {
-			// console.log($('title').text());
+			if ( navigator.share ) {
+				$('#detalle-de-articulos-footer-socials').addClass('-hide-');
+			}
+
 			$('.fnToShare')
 				.on('click', function(e){
 					if ( navigator.share ) {
