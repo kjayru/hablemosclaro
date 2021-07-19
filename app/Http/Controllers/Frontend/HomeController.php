@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Suscription;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -168,9 +169,13 @@ class HomeController extends Controller
     }
 
     public function buscar(Request $request){
-
-        $posts = Post::where('titulo','LIKE',"%{$request->word}%")->get();
-        return response()->json(['rpta'=>'ok',"data"=>$request]);
+        $posts = DB::table('posts')
+                    ->where('posts.titulo','LIKE',"%{$request->word}%")
+                    ->leftJoin('categories', 'posts.category_id', 'categories.id')
+                    ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory')
+                    ->limit(3)
+                    ->get();
+        return response()->json(['rpta'=>'ok',"data"=>$posts]);
     }
 
     public function posttype($posttype){
