@@ -9,11 +9,13 @@
     @if(isset($articulo->category->parent))
         <span class="breadcrumb__space"></span>
         <a class="breadcrumb__link" href="/{{$articulo->category->parent->slug}}">{{$articulo->category->parent->nombre}}</a>
+        <span class="breadcrumb__space"></span>
+        <a class="breadcrumb__link" href="/{{$articulo->category->parent->slug}}/{{$articulo->category->slug}}">{{$articulo->category->nombre}}</a>
     @endif
 
     @if(isset($articulo->category))
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="/{{$articulo->category->parent->slug}}/{{$articulo->category->slug}}">{{$articulo->category->nombre}}</a>
+        <a class="breadcrumb__link" href="/{{$articulo->category->slug}}">{{$articulo->category->nombre}}</a>
     @endif
 
 
@@ -238,4 +240,9 @@
 
         </div>
     </section>
+
+    <span class="limit detalle_de_articulos__back">
+        <img class="detalle_de_articulos__back__share fnToShare" src="/assets/public/images/ico_share.png" alt="">
+        <img class="detalle_de_articulos__back__button fnToTop" src="/assets/public/images/back_to_top.png" alt="">
+    </span>
 @endsection

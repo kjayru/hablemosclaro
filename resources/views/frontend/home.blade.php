@@ -15,7 +15,11 @@
                     <h3 class="slider_principal__item__title">{{@$slide->titulo}}</h3>
                     <!--<aside class="slider_principal__item__timer">5 min de lectura</aside>-->
                 </header>
-                <a href="/{{@$slide->category->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
+                @if(isset($slide->category->parent))
+                    <a href="/{{@$slide->category->parent->slug}}/{{@$slide->category->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
+                @else
+                    <a href="/{{@$slide->category->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
+                @endif
             </article>
         @endforeach
 

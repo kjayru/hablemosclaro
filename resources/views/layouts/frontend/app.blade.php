@@ -4,31 +4,30 @@
         <meta http-equiv="Cache-control" content="public">
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
+        <title>Hablando Claro | Tendencias en telecomunicaciones en el Perú</title>
+        <meta name="description" content="Conoce las últimas tendencias en transformación digital, innovación, tecnología, telecomunicaciones y RSC que están cambiando nuestro país y el mundo">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="canonical" href="" />
-        <link rel='shortlink' href="" />
+        <link rel="canonical" href="https://hablandoclaro.pe/" />
 
-        <meta property="fb:app_id" content="" />
-        <meta property="og:url" content="" />
+
+        <meta property="fb:app_id" content="421018219318355" />
+        <meta property="og:url" content="https://hablandoclaro.pe/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="" />
-        <meta property="og:description" content="" />
-        <meta property="og:image" content="" />
+        <meta property="og:title" content="Tendencias en telecomunicaciones en el Perú" />
+        <meta property="og:description" content="Conoce las últimas tendencias en transformación digital, innovación, tecnología, telecomunicaciones y RSC que están cambiando nuestro país y el mundo" />
+        <meta property="og:image" content="https://hablandoclaro.pe/images/Hablandoclaro-logo.jpeg" />
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@">
-        <meta name="twitter:creator" content="@">
-        <meta name="twitter:title" content="">
-        <meta name="twitter:description" content="">
-        <meta name="twitter:image" content="">
+        <meta name="twitter:card" content="summary">
 
-        <link rel="shortcut icon" href="" />
+        <meta name="twitter:title" content="Tendencias en telecomunicaciones en el Perú">
+        <meta name="twitter:description" content="Conoce las últimas tendencias en transformación digital, innovación, tecnología, telecomunicaciones y RSC que están cambiando nuestro país y el mundo">
+        <meta name="twitter:image" content="https://hablandoclaro.pe/images/Hablandoclaro-logo.jpeg">
 
+
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link id="site-css" rel="stylesheet" href="/assets/public/css/site.css?v={{uniqid()}}">
 
 
