@@ -61,7 +61,6 @@
                     @else
                     <a href="/{{$post->category->slug}}/{{$post->slug}}" class="columnas__item__link">Más información</a>
                     @endif
-
                 </article>
 
             @endforeach

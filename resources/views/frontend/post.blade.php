@@ -93,6 +93,10 @@
             </aside>
         </footer>
 
+        <!--sub-bloque-->
+
+
+
 
 
         <aside class="detalle_de_articulos__sidebar">
@@ -175,5 +179,51 @@
             <span class="detalle_de_articulos__socials__close fnShowSocials"><img
                     src="/assets/public/images/social_close.png" alt="Ocultar opciones" /></span>
         </aside>
+    </section>
+
+
+    <section class="section m--gris detalle_de_articulos__bottom">
+        <div class="limit detalle_de_articulos__bottom__list">
+            <div class="detalle_de_articulos__bottom__block1">
+                <h6 class="g-title">Lo más leído</h6>
+
+                <article class="columnas__item">
+                    <picture class="columnas__item__image">
+                        <img src="/assets/public/images/columnas.png" alt="" loading="lazy">
+                    </picture>
+                    <header class="columnas__item__header">
+                        <strong class="columnas__item__subtitle">Compromiso</strong>
+                        <time class="columnas__item__date">14 set 2021</time>
+                        <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y teletrabajo</h3>
+                        <aside class="columnas__item__timer">5 min de lectura</aside>
+                    </header>
+                    <a href="#" class="columnas__item__link">Más información</a>
+                </article>
+
+
+
+            </div>
+
+            <div class="detalle_de_articulos__bottom__block2">
+                <h6 class="g-title">Te puede interesar</h6>
+
+                @foreach($relacionados as $rel)
+                <article class="columnas__item">
+                    <picture class="columnas__item__image">
+                        <img src="/storage/{{@$rel->imagenbox}}" alt="" loading="lazy">
+                    </picture>
+                    <header class="columnas__item__header">
+                        <strong class="columnas__item__subtitle">{{ $rel->category->nombre}}</strong>
+                        <time class="columnas__item__date">14 set 2021</time>
+                        <h3 class="columnas__item__title">{{ $rel->titulo}}</h3>
+                        <aside class="columnas__item__timer">5 min de lectura</aside>
+                    </header>
+                    <a href="/{{$rel->category->slug}}/{{$rel->slug}}" class="columnas__item__link">Más información</a>
+                </article>
+                @endforeach
+
+            </div>
+
+        </div>
     </section>
 @endsection

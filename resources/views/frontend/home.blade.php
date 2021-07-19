@@ -69,7 +69,7 @@
     <section class="section columnas">
         <header class="limit columnas__header">
             <h2 class="g-title m--swiper">Columnas de opinión</h2>
-            <a href="#" class="columnas__link">Ver todo</a>
+            <a href="/articulos/columna" class="columnas__link">Ver todo</a>
         </header>
         <div class="limit columnas__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
         @if($columns != null)
@@ -97,44 +97,11 @@
         @endif
         </div>
         <div class="limit g-button-group">
-            <a href="#" class="g-button m--330">Ver todo</a>
+            <a href="/articulos/columna" class="g-button m--330">Ver todo</a>
         </div>
     </section>
 
-    <section class="section m--bg ultimos_videos">
-        <div class="limit">
-            <h3 class="g-title m--white">Últimos videos</h3>
-            <div class="ultimos_videos__list">
+   @include('layouts.frontend.partials.video')
 
-                <article class="ultimos_videos__item m--principal fnShowVideoTarget">
-                    <iframe class="ultimos_videos__item__video" src="https://www.youtube-nocookie.com/embed/{{ $videos[0]->video }}"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe></iframe>
-                    <header class="ultimos_videos__item__header">
-                        <strong class="ultimos_videos__item__subtitle">{{ $videos[0]->category->nombre }}</strong>
-                        <h4 class="ultimos_videos__item__title">{{ $videos[0]->titulo }}</h4>
-                    </header>
-                </article>
-                <div class="ultimos_videos__sublist">
 
-                  @foreach($videos as $key=>$vid)
-                    @if($key>0)
-                    <article class="ultimos_videos__item fnShowVideoButton" data-video="{{$vid->video}}">
-                        <picture class="ultimos_videos__item__image">
-                            <img src="assets/public/images/ultimos_videos.png" alt="" loading="lazy">
-                            <span class="ultimos_videos__item__image__timer">2 min</span>
-                        </picture>
-                        <header class="ultimos_videos__item__header">
-                            <strong class="ultimos_videos__item__subtitle">{{ $vid->category->nombre}}</strong>
-                            <h4 class="ultimos_videos__item__title">{{ $vid->titulo }}</h4>
-                        </header>
-                    </article>
-                    @endif
-                @endforeach
-
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection
