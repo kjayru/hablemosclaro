@@ -15,7 +15,7 @@
                 <li class="header__nav__item">
 					<a class="header__nav__link" href="/{{$cat->slug}}">{{$cat->nombre}}</a>
 
-                    @if(isset($cat->pariente))
+                    @if(isset($cat->pariente)&&$cat->pariente->count())
 
                         <span class="header__nav__arrow fnShowSubnav"></span>
                         <ul class="header__subnav">
