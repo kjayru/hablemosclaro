@@ -174,7 +174,7 @@ class HomeController extends Controller
                     ->where('posts.titulo','LIKE',"%{$request->word}%")
                     ->leftJoin('categories', 'posts.category_id', 'categories.id')
                     ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory')
-                    ->limit(3)
+                    ->limit(4)
                     ->get();
         return response()->json(['rpta'=>'ok',"data"=>$posts]);
     }

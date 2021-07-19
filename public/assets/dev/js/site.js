@@ -203,13 +203,20 @@ const site = (function(){
 
 		},
 
-		search : function ( data ) {
+		search : function ( data, word ) {
 
 			if ( data.length > 0 ) {
 				let html = '';
 				$.each(data, function(index, val) {
-					 html += '<span><a href="'+val.slugcategory+''+val.slug+'">'+val.titulo+'</a></span>';
+					if ( index <= 2 ) {
+						let pattern = new RegExp(word, 'gi');
+						let str = val.titulo.replace(pattern, '<strong>'+word+'</strong>');
+						html += '<span><a href="'+val.slugcategory+''+val.slug+'">'+str+'</a></span>';
+					}
 				});
+				if ( data.length > 3 ) {
+					html += '<span><a href="#" class="m--all">Ver todos los resultados <img src="/assets/public/images/arrow_celeste.png" loading="lazy" /></a></span>';
+				}
 				$('.fnSearchResults').addClass(dom.active);
 				$('.fnSearchResultsData').html(html);
 			}
@@ -268,7 +275,10 @@ const site = (function(){
 								if(response.rpta)
 								{
 									switch (tipoForm) {
-										case 'search_form': events.search(response.data); break;
+										case 'search_form':
+												const word = f.find('input[name="word"]').val();
+												events.search(response.data, word); 
+											break;
 									}
 									// setNewRecaptcha();
 									formBlock = true;

@@ -1121,6 +1121,17 @@ select {
   opacity: 1;
   width: 100%;
 }
+.search__results__data a.m--all {
+  color: #0fbddf;
+}
+.search__results__data a.m--all img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.625rem;
+}
+.search__results__data a.m--all:after {
+  background-color: #0fbddf;
+}
 .search__results__wanted {
   font-size: 1.125rem;
   display: -webkit-box;
