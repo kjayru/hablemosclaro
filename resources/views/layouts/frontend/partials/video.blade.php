@@ -21,7 +21,7 @@
             <div class="ultimos_videos__sublist">
 
               @foreach($videos as $key=>$vid)
-                @if($key>0)
+                @if($key<3)
                 @php
                     if(isset($vid->category->parent)){
                        $vid_url = "/".$vid->category->parent->slug."/".$vid->category->slug."/".$vid->slug;
@@ -29,7 +29,7 @@
                         $vid_url = "/".$vid->category->slug."/".$vid->slug;
                     }
                 @endphp
-                <article class="ultimos_videos__item fnShowVideoButton" data-video="{{$vid->video}}" data-url="{{$vid_url}}">
+                <article class="ultimos_videos__item <?= $key==0?'-active-':''; ?> fnShowVideoButton" data-video="{{$vid->video}}" data-url="{{$vid_url}}">
 
                     <picture class="ultimos_videos__item__image">
                         <img src="assets/public/images/ultimos_videos.png" alt="" loading="lazy">
@@ -37,7 +37,7 @@
                     </picture>
                     <header class="ultimos_videos__item__header">
                         <strong class="ultimos_videos__item__subtitle">{{ $vid->category->nombre}}</strong>
-                        <h4 class="ultimos_videos__item__title">{{ $vid->titulo }}</h4>
+                        <a href="{{ $vid_url }}" class="ultimos_videos__item__title">{{ $vid->titulo }}</a>
                     </header>
                 </article>
                 @endif

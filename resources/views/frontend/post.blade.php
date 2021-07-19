@@ -82,7 +82,7 @@
                 @if($previous!=null)
 
                 <span class="detalle_de_articulos__footer__bottom__block">
-                    <strong><img src="assets/public/images/ico_arrow_article.png" alt="">Artículo anterior</strong>
+                    <strong><img src="/assets/public/images/ico_arrow_article.png" alt="">Artículo anterior</strong>
 
                     @if($previous['subcategory'])
                     <a href="/{{ @$previous['category']}}/{{ @$previous['subcategory']}}/{{@$previous['slug']}}">{{ @$previous['titulo']}}</a>
@@ -94,7 +94,7 @@
 
                 @if($next!=null)
                 <span class="detalle_de_articulos__footer__bottom__block">
-                    <strong>Artículo siguiente<img src="assets/public/images/ico_arrow_article.png" alt=""></strong>
+                    <strong>Artículo siguiente<img src="/assets/public/images/ico_arrow_article.png" alt=""></strong>
 
                     @if($next['subcategory'])
                     <a href="/{{ @$next['category']}}/{{ @$next['subcategory']}}/{{@$next['slug']}}">{{ @$next['titulo']}}</a>
