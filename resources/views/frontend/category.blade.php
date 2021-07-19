@@ -33,10 +33,10 @@
                         class="header__button-mobile -active- fnCloseFilter"><span></span></span></strong>
                 <div class="listado_de_articulos__filter__select">
                     <span class="listado_de_articulos__filter__select__title">Más recientes</span>
-                    <span class="listado_de_articulos__filter__options">
-                        <a href="#" class="-active-">Todo</a>
-                        <a href="#">Más recientes</a>
-                        <a href="#">Más antiguos</a>
+                    <span class="listado_de_articulos__filter__options fnFilterOptions">
+                        <a href="#" class="-active-" data-order="default">Todo</a>
+                        <a href="#" data-order="recent">Más recientes</a>
+                        <a href="#" data-order="older">Más antiguos</a>
                     </span>
                 </div>
             </form>
@@ -62,7 +62,7 @@
         @endforeach
 
             <div class="g-button-group">
-                <a href="#" class="g-button m--211">Ver más</a>
+                <a href="#" class="g-button m--211 fnShowMoreArticles">Ver más</a>
             </div>
         </div>
     </section>

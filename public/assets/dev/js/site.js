@@ -90,6 +90,61 @@ const site = (function(){
 		},
 
 		interactions : function() {
+
+			// Listado de artículos
+			let displayedArticles = 6;
+			$(document)
+				.on('click', '.fnShowMoreArticles', function(e) {
+					e.preventDefault();
+					displayedArticles = displayedArticles + 6;
+					setViewedArticles( $(this) );
+				});
+
+			function setViewedArticles( _self = false ){
+				const list = $('.listado_de_articulos__list');
+				const items = list.find('.columnas__item');
+				list.addClass('-js-');
+				items.removeClass('-end-');
+				items.eq( (displayedArticles-1) ).addClass('-end-');
+				if ( _self && items.length < displayedArticles ) { _self.remove(); }
+			}
+
+
+
+			// Filtrar listado de articulos
+			let deFaultFilteredItems = false;
+			$(document)
+				.on('click', '.fnFilterOptions a', function(e){
+					e.preventDefault();
+					const _self = $(this);
+					const order = _self.data('order');
+					const list = $('.listado_de_articulos__list');
+					const items = list.find('.columnas__item');
+					if ( ! deFaultFilteredItems ) { deFaultFilteredItems = items; }
+					if ( order!='' ) {
+						const ordering = [];
+						$.each(items, function(index, val) { ordering.push($(this).data('order')); });
+						switch (order) {
+							case 'recent': ordering.sort((a, b) => b - a); break;
+							case 'older': ordering.sort((a, b) => a - b);  break;
+						}
+						const newItems = [];
+						$.each(ordering , function(index, val) {
+							newItems.push( list.find('.columnas__item[data-order="'+val+'"]') );
+						});
+						list.html('');
+						if ( order!='default' ) {
+							$.each(newItems, function(index, val) { list.append(val); });
+						} else {
+							list.html(deFaultFilteredItems);
+						}
+						list.append('<div class="g-button-group"><a href="#" class="g-button m--211 fnShowMoreArticles">Ver más</a></div>');
+					}
+					$('.fnFilterOptions a').removeClass('-active-');
+					_self.addClass('-active-');
+					setViewedArticles();
+				});
+
 			if ( navigator.share ) {
 				$('#detalle-de-articulos-footer-socials').addClass('-hide-');
 			}

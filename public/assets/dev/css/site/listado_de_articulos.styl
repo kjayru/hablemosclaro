@@ -148,15 +148,32 @@
 		display flex
 		flex-wrap wrap
 		
+		.g-button-group
+			order 99999
+		
 		.columnas__item
 			height auto
 			width calc(33.33% - 15px)
 			margin-right rem(22)
 			margin-bottom rem(22)
+			
+			&:nth-child(6n)
+				~ .columnas__item
+					display none
+			
 			@media (min-width 801px)
 				&:nth-child(3n)
 					margin-right 0
-
+				 
+		&.-js-
+			.columnas__item
+				display block
+				&:nth-child(6n)
+					~ .columnas__item
+						display block
+				&.-end-
+					~ .columnas__item
+						display none
 
 	@media (max-width 1080px)
 		
@@ -318,6 +335,17 @@
 				
 				&__timer
 					margin-top auto
+			
+
+			&.-js-
+				.columnas__item
+					display flex
+					&:nth-child(6n)
+						~ .columnas__item
+							display flex
+					&.-end-
+						~ .columnas__item
+							display none
 	
 
 	@media (max-width 480px)
