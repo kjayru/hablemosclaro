@@ -781,6 +781,11 @@
 
 	&__back
 		display block
+		position fixed
+		bottom 0
+		left 0
+		z-index 10
+		width 100%
 		&__share
 			display none
 		&__button
@@ -844,15 +849,11 @@
 			padding rem(20, 0)
 		&__back
 			background-color --blanco
-			width 100%
-			padding 0
-			display flex
-			align-items center
-			justify-content flex-end
-			position fixed
-			bottom 0
-			left 0
-			z-index 10
+			.limit
+				padding 0
+				display flex
+				align-items center
+				justify-content flex-end
 			&__share
 				display block
 			&__button

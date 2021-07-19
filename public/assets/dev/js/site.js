@@ -90,12 +90,23 @@ const site = (function(){
 		},
 
 		interactions : function() {
-
+			// console.log($('title').text());
 			$('.fnToShare')
 				.on('click', function(e){
-					const top = $('#detalle-de-articulos-footer-socials').offset().top;
-					const header = $('.header').outerHeight() + 20;
-					$('body, html').animate({ scrollTop: (top - header) }, 750);
+					if ( navigator.share ) {
+						navigator.share({
+							title: $('title').text(),
+							url: location.href
+						})
+						.then(() => {
+							console.log('Gracias por compartir');
+						})
+    					.catch(console.error);
+					} else {
+						const top = $('#detalle-de-articulos-footer-socials').offset().top;
+						const header = $('.header').outerHeight() + 20;
+						$('body, html').animate({ scrollTop: (top - header) }, 750);
+					}
 				});
 
 			$('.fnToTop')
@@ -205,8 +216,6 @@ const site = (function(){
 		forms : function(){
 			// Set Recaptach
 				// setNewRecaptcha();
-
-
 
 			let formBlock = true;
 			$('form').on('submit', function(e){

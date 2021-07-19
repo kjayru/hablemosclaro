@@ -241,8 +241,10 @@
         </div>
     </section>
 
-    <span class="limit detalle_de_articulos__back">
-        <img class="detalle_de_articulos__back__share fnToShare" src="/assets/public/images/ico_share.png" alt="">
-        <img class="detalle_de_articulos__back__button fnToTop" src="/assets/public/images/back_to_top.png" alt="">
-    </span>
+    <div class="detalle_de_articulos__back">
+        <div class="limit">
+            <img class="detalle_de_articulos__back__share fnToShare" src="/assets/public/images/ico_share.png" alt="">
+            <img class="detalle_de_articulos__back__button fnToTop" src="/assets/public/images/back_to_top.png" alt="">
+        </div>
+    </div>
 @endsection

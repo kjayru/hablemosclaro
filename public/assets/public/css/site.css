@@ -3566,6 +3566,11 @@ select {
 }
 .detalle_de_articulos__back {
   display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
 }
 .detalle_de_articulos__back__share {
   display: none;
@@ -3648,7 +3653,8 @@ select {
   }
   .detalle_de_articulos__back {
     background-color: #fff;
-    width: 100%;
+  }
+  .detalle_de_articulos__back .limit {
     padding: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -3659,10 +3665,6 @@ select {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
   }
   .detalle_de_articulos__back__share {
     display: block;
