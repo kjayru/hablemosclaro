@@ -4,8 +4,20 @@
     <aside class="limit breadcrumb">
         <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio"
                 loading="lazy" /></a>
+
+
+    @if(isset($articulo->category->parent))
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="#">Columnas de opinión</a>
+        <a class="breadcrumb__link" href="/{{$articulo->category->parent->slug}}">{{$articulo->category->parent->nombre}}</a>
+    @endif
+
+    @if(isset($articulo->category))
+        <span class="breadcrumb__space"></span>
+        <a class="breadcrumb__link" href="/{{$articulo->category->parent->slug}}/{{$articulo->category->slug}}">{{$articulo->category->nombre}}</a>
+    @endif
+
+
+
     </aside>
 
     <section class="section limit m--detalle detalle_de_articulos">
