@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Suscription;
+use App\Models\PostType;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 
@@ -180,12 +181,16 @@ class HomeController extends Controller
 
     public function posttype($posttype){
 
-        $type = PostType::where('nombre',$posttype)->first();
+
+        $type = PostType::where('tipo',$posttype)->first();
 
         $articulos = Post::where('post_type_id',$type->id)->get();
 
-        dd($articulos);
-        return view('frontend.articulos',['articulos'=>$articulos]);
+
+
+        $categorias = Category::wherenull('parent_id')->get();
+
+        return view('frontend.articulos',['articulos'=>$articulos,'posttype'=>$type,"categorias"=>$categorias]);
     }
 
 
