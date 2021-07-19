@@ -80,10 +80,12 @@ Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articu
 //Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articulo']);
 
 Route::get('/categories', [HomeController::class, 'categories']);
+Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
 
 //asinc
 Route::post('/suscribirse', [HomeController::class, 'suscribirse']);
 Route::post('/search', [HomeController::class, 'buscar']);
+
 
 
 

@@ -35,7 +35,65 @@
                 {!!$articulo->contenido!!}
             </div>
 
+            <!--tags-->
+            <aside class="detalle_de_articulos__article__tags">
+                <strong class="detalle_de_articulos__article__tags__title">Etiquetas:</strong>
+                <div class="detalle_de_articulos__article__tags__links">
+                    <a href="#">Telecomunicaciones</a>
+                    <a href="#">Teletrabajo</a>
+                    <a href="#">Teleeducación</a>
+                    <a href="#">Telesalud</a>
+                    <a href="#">Entretenimiento digital</a>
+                </div>
+            </aside>
+
         </article>
+
+        <!--redes-->
+        <footer class="detalle_de_articulos__footer">
+            <aside id="detalle-de-articulos-footer-socials" class="detalle_de_articulos__footer__socials m--hide">
+                <strong class="detalle_de_articulos__footer__socials__title">¿Te gustó este artículo? Compártelo</strong>
+                <a href="#" class="m--facebook"><img src="/assets/public/images/social_facebook.png" alt="Compartir en Facebook" loading="lazy"><span>Facebook</span></a>
+                <a href="#" class="m--twitter"><img src="/assets/public/images/social_twitter.png" alt="Compartir en Twitter" loading="lazy"><span>Twitter</span></a>
+                <a href="#" class="m--wsp"><img src="/assets/public/images/social_wsp.png" alt="Compartir en Whatsapp" loading="lazy"><span>Whatsapp</span></a>
+                <a href="#" class="m--gmail"><img src="/assets/public/images/social_gmail.png" alt="Compartir en Gmail" loading="lazy"><span>Gmail</span></a>
+                <a href="#" class="m--linkedin"><img src="/assets/public/images/social_linkedin.png" alt="Compartir en Linkedin" loading="lazy"><span>Linkedin</span></a>
+                <a href="#" class="m--msn"><img src="/assets/public/images/social_msn.png" alt="Compartir en Messenger" loading="lazy"><span>Mesenger</span></a>
+                <a href="#" class="m--telegram"><img src="/assets/public/images/social_telegram.png" alt="Compartir en Telegram" loading="lazy"><span>Telegram</span></a>
+                <a href="#" class="m--pinterest"><img src="/assets/public/images/social_pinterest.png" alt="Compartir en Pinterest" loading="lazy"><span>Pinterest</span></a>
+                <span class="detalle_de_articulos__footer__socials__button fnShowFooterSocials"><span></span></span>
+            </aside>
+            <aside class="detalle_de_articulos__footer__bottom">
+
+                @if($previous!=null)
+
+                <span class="detalle_de_articulos__footer__bottom__block">
+                    <strong><img src="assets/public/images/ico_arrow_article.png" alt="">Artículo anterior</strong>
+
+                    @if($previous['subcategory'])
+                    <a href="/{{ @$previous['category']}}/{{ @$previous['subcategory']}}/{{@$previous['slug']}}">{{ @$previous['titulo']}}</a>
+                    @else
+                    <a href="/{{ @$previous['category']}}/{{@$previous['slug']}}">{{ @$previous['titulo']}}</a>
+                    @endif
+                </span>
+                @endif
+
+                @if($next!=null)
+                <span class="detalle_de_articulos__footer__bottom__block">
+                    <strong>Artículo siguiente<img src="assets/public/images/ico_arrow_article.png" alt=""></strong>
+
+                    @if($next['subcategory'])
+                    <a href="/{{ @$next['category']}}/{{ @$next['subcategory']}}/{{@$next['slug']}}">{{ @$next['titulo']}}</a>
+                    @else
+                    <a href="/{{ @$next['category']}}/{{@$next['slug']}}">{{ @$next['titulo']}}</a>
+                    @endif
+                </span>
+                @endif
+
+            </aside>
+        </footer>
+
+
 
         <aside class="detalle_de_articulos__sidebar">
             <form action="/suscribirse" method="post" class="detalle_de_articulos__subscribe">

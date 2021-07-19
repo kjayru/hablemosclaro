@@ -69,7 +69,7 @@
     <section class="section columnas">
         <header class="limit columnas__header">
             <h2 class="g-title m--swiper">Columnas de opinión</h2>
-            <a href="#" class="columnas__link">Ver todo</a>
+            <a href="/articulos/columna" class="columnas__link">Ver todo</a>
         </header>
 
 

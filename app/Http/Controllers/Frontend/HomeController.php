@@ -96,12 +96,16 @@ class HomeController extends Controller
 
             $category_id = $post->category->id;
 
+
+
             $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
 
+            $next = Post::next($post->id);
+
+            $previous = Post::previous($post->id);
 
 
-
-            return view('frontend.post',['articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category]);
+            return view('frontend.post',['articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous]);
         }
 
        $current_url = url()->full();
@@ -122,10 +126,13 @@ class HomeController extends Controller
 
     public function articulo($categoria,$subcategoria,$articulo){
 
+        //dd($categoria." ".$subcategoria);
 
+        $articulo = Post::where('slug',$articulo)->first();
 
-        $post = Post::where('slug',$articulo)->first();
-
+        $next = Post::next($articulo->id);
+        $previous = Post::previous($articulo->id);
+       // dd($post);
 
         $posts = Post::all();
 
@@ -143,7 +150,7 @@ class HomeController extends Controller
 
        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.post',['videos'=>$videos,'columns'=>$columns,'articulo'=>$post,'relacionados'=>$relacionados]);
+        return view('frontend.post',['videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
 
     }
 
@@ -166,6 +173,15 @@ class HomeController extends Controller
         return response()->json(['rpta'=>'ok',"data"=>$request]);
     }
 
+    public function posttype($posttype){
+
+        $type = PostType::where('nombre',$posttype)->first();
+
+        $articulos = Post::where('post_type_id',$type->id)->get();
+
+        dd($articulos);
+        return view('frontend.articulos',['articulos'=>$articulos]);
+    }
 
 
 
