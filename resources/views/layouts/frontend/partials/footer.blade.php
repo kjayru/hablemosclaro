@@ -19,9 +19,9 @@
 		<aside class="footer__nav">
 			<strong class="footer__nav__title">Te puede interesar</strong>
 			<ul class="footer__nav__list">
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">Claro Portal</a></li>
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">Claro Institucional</a></li>
-				<li class="footer__nav__item"><a class="footer__nav__link" href="#">Aviso de privacidad</a></li>
+				<li class="footer__nav__item"><a class="footer__nav__link" target="_blank" href="https://www.claro.com.pe/personas/">Claro Portal</a></li>
+				<li class="footer__nav__item"><a class="footer__nav__link" target="_blank" href="https://www.claro.com.pe/institucional/">Claro Institucional</a></li>
+				<li class="footer__nav__item"><a class="footer__nav__link" target="_blank" href="https://static.claro.com.pe/img/otros/Aviso_Legal_de_uso_del_sitio_web.pdf">Aviso de privacidad</a></li>
 			</ul>
 		</aside>
 	</div>
