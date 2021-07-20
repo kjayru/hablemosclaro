@@ -142,6 +142,7 @@ const site = (function(){
 					}
 					$('.fnFilterOptions a').removeClass('-active-');
 					_self.addClass('-active-');
+					$('.fnFilterOptionsTitle').text( _self.text() );
 					setViewedArticles();
 				});
 

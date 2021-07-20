@@ -244,7 +244,7 @@
                         <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y teletrabajo</h3>
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
-                    <a href="#" class="columnas__item__link">Más información</a>
+                    <a href="{{ url()->current() }}" class="columnas__item__link">Más información</a>
                 </article>
 
 

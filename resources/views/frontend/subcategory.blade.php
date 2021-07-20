@@ -24,7 +24,6 @@
                 <li class="listado_de_articulos__nav__item"><a href="/{{$categoria}}" class="listado_de_articulos__nav__link">Todo</a>
                 </li>
                 @if(isset($categorias))
-
                     @foreach($categorias as $cat)
                     <li class="listado_de_articulos__nav__item">
                         @php
@@ -39,7 +38,7 @@
                 <strong class="listado_de_articulos__filter__title">Organizar por:<span
                         class="header__button-mobile -active- fnCloseFilter"><span></span></span></strong>
                 <div class="listado_de_articulos__filter__select">
-                    <span class="listado_de_articulos__filter__select__title">Más recientes</span>
+                    <span class="listado_de_articulos__filter__select__title fnFilterOptionsTitle">Más recientes</span>
                     <span class="listado_de_articulos__filter__options fnFilterOptions">
                         <a href="#" class="-active-" data-order="default">Todo</a>
                         <a href="#" data-order="recent">Más recientes</a>

@@ -3597,9 +3597,6 @@ select {
 .detalle_de_articulos__bottom .columnas__item__date {
   display: none;
 }
-.detalle_de_articulos__bottom .columnas__item__link {
-  display: none;
-}
 .detalle_de_articulos__bottom__list {
   display: -webkit-box;
   display: -ms-flexbox;
