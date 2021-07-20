@@ -151,6 +151,7 @@ const site = (function(){
 
 			$('.fnToShare')
 				.on('click', function(e){
+					e.preventDefault();
 					if ( navigator.share ) {
 						navigator.share({
 							title: $('title').text(),
