@@ -84,7 +84,7 @@ class HomeController extends Controller
 
         if(!is_null($category)){
 
-            $articulos = Post::where('category_id',$category->id)->get();
+            $articulos = Post::where('category_id',$category->id)->orderBy('id', 'desc')->get();
             $catcount = Category::where('parent_id',$category->parent_id)->count();
 
             if($catcount>0){
@@ -184,7 +184,7 @@ class HomeController extends Controller
 
         $type = PostType::where('tipo',$posttype)->first();
 
-        $articulos = Post::where('post_type_id',$type->id)->get();
+        $articulos = Post::where('post_type_id',$type->id)->orderBy('id', 'desc')->get();
 
 
 

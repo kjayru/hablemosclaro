@@ -32,10 +32,9 @@
                 <strong class="listado_de_articulos__filter__title">Organizar por:<span
                         class="header__button-mobile -active- fnCloseFilter"><span></span></span></strong>
                 <div class="listado_de_articulos__filter__select">
-                    <span class="listado_de_articulos__filter__select__title fnFilterOptionsTitle">Todo</span>
+                    <span class="listado_de_articulos__filter__select__title fnFilterOptionsTitle">Más recientes</span>
                     <span class="listado_de_articulos__filter__options fnFilterOptions">
-                        <a href="#" class="-active-" data-order="default">Todo</a>
-                        <a href="#" data-order="recent">Más recientes</a>
+                        <a href="#" class="-active-" data-order="recent">Más recientes</a>
                         <a href="#" data-order="older">Más antiguos</a>
                     </span>
                 </div>
