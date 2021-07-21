@@ -160,7 +160,6 @@ class HomeController extends Controller
 
     public function suscribirse(Request $request){
 
-
         $news = new Suscription();
         $news->email = $request->email;
         $news->temas = serialize($request->interes);
@@ -169,25 +168,47 @@ class HomeController extends Controller
         return response()->json(['rpta'=>"ok"]);
     }
 
+
     public function buscar(Request $request){
-        $posts = DB::table('posts')
+        /*$posts = DB::table('posts')
                     ->where('posts.titulo','LIKE',"%{$request->word}%")
                     ->leftJoin('categories', 'posts.category_id', 'categories.id')
                     ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory')
                     ->limit(4)
-                    ->get();
-        return response()->json(['rpta'=>'ok',"data"=>$posts]);
+                    ->get();*/
+
+
+         $posts = Post::where('posts.titulo','LIKE',"%{$request->word}%")->take(6)->get();
+
+         foreach($posts as $post){
+             if($post->category->parent){
+                 $result[] = array(
+                     "category"=>$post->category->parent->slug,
+                     "subcategory"=>$post->category->slug,
+                     "slug" => $post->slug,
+                     "titulo" => $post->titulo,
+                    );
+             }else{
+                $result[] = array(
+                    "category"=>$post->category->slug,
+                    "subcategory"=>"",
+                    "slug" => $post->slug,
+                    "titulo" => $post->titulo,
+                   );
+             }
+         }
+
+         //dd($result);
+
+        return response()->json(['rpta'=>'ok',"data"=>$result]);
     }
+
+
 
     public function posttype($posttype){
 
-
         $type = PostType::where('tipo',$posttype)->first();
-
         $articulos = Post::where('post_type_id',$type->id)->orderBy('id', 'desc')->get();
-
-
-
         $categorias = Category::wherenull('parent_id')->get();
 
         return view('frontend.articulos',['articulos'=>$articulos,'posttype'=>$type,"categorias"=>$categorias]);

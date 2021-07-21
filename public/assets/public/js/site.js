@@ -78,7 +78,7 @@ const site = (function(){
 										</div>`);
 						}
 					};
-					aditionals[type]();	
+					aditionals[type]();
 
 					const params = {
 						'slider_principal': {
@@ -104,7 +104,7 @@ const site = (function(){
 							scrollbar: { el: ".swiper-scrollbar", draggable : true,  reverseDirection: true }
 						},
 						'one_image': {
-							slidesPerView: 1, autoplay : { delay : 2000 }, speed : 1200, spaceBetween: 30, 
+							slidesPerView: 1, autoplay : { delay : 2000 }, speed : 1200, spaceBetween: 30,
 				            navigation: { nextEl: el.querySelector('.fnSwiperToLeft'), prevEl: el.querySelector('.fnSwiperToRight') },
 				            pagination: { el: el.querySelector('.fnSwiperFraction'), type: "fraction" }
 						}
@@ -293,7 +293,14 @@ const site = (function(){
 					if ( index <= 2 ) {
 						let pattern = new RegExp(word, 'gi');
 						let str = val.titulo.replace(pattern, '<strong>'+word+'</strong>');
-						html += '<span><a href="'+val.slugcategory+''+val.slug+'">'+str+'</a></span>';
+
+                        if(val.subcategory){
+                            html += `<span><a href="/${val.category}/${val.subcategory}/${val.slug}">${str}</a></span>`;
+                        }else{
+                            html += `<span><a href="/${val.category}/${val.slug}">${str}</a></span>`;
+                        }
+
+
 					}
 				});
 				if ( data.length > 3 ) {
@@ -302,7 +309,7 @@ const site = (function(){
 				$('.fnSearchResults').addClass(dom.active);
 				$('.fnSearchResultsData').html(html);
 			}
-			
+
 		},
 
 		forms : function(){
@@ -359,7 +366,7 @@ const site = (function(){
 									switch (tipoForm) {
 										case 'search_form':
 												const word = f.find('input[name="word"]').val();
-												events.search(response.data, word); 
+												events.search(response.data, word);
 											break;
 									}
 									// setNewRecaptcha();
