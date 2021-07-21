@@ -216,7 +216,35 @@ class HomeController extends Controller
 
 
     public function resultados($word){
-        dd($word);
+
+
+        $result = [];
+        $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->get();
+
+        foreach($articulos as $post){
+            if($post->category->parent){
+                $result[] = array(
+                    "category"=>$post->category->parent->slug,
+                    "subcategory"=>$post->category->slug,
+                    "slug" => $post->slug,
+                    "titulo" => $post->titulo,
+                    "banner" => $post->banner,
+                    "imagen" => $post->imagenbox,
+                    );
+            }else{
+               $result[] = array(
+                   "category"=>$post->category->slug,
+                   "subcategory"=>"",
+                   "slug" => $post->slug,
+                   "titulo" => $post->titulo,
+                   "imagenbox" => $post->imagenbox,
+                  );
+            }
+        }
+
+        $posts = collect($result);
+
+        return view('frontend.buscar',['posts'=>$posts,'word'=>$word]);
     }
 
 
