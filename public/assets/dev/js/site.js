@@ -268,11 +268,15 @@ const site = (function(){
 					if ( index <= 2 ) {
 						let pattern = new RegExp(word, 'gi');
 						let str = val.titulo.replace(pattern, '<strong>'+word+'</strong>');
-						html += '<span><a href="'+val.slugcategory+''+val.slug+'">'+str+'</a></span>';
+						if(val.subcategory){
+                            html += `<span><a href="/${val.category}/${val.subcategory}/${val.slug}">${str}</a></span>`;
+                        }else{
+                            html += `<span><a href="/${val.category}/${val.slug}">${str}</a></span>`;
+                        }
 					}
 				});
 				if ( data.length > 3 ) {
-					html += '<span><a href="#" class="m--all">Ver todos los resultados <img src="/assets/public/images/arrow_celeste.png" loading="lazy" /></a></span>';
+					html += '<span><a href="/buscar/'+word+'" class="m--all">Ver todos los resultados <img src="/assets/public/images/arrow_celeste.png" loading="lazy" /></a></span>';
 				}
 				$('.fnSearchResults').addClass(dom.active);
 				$('.fnSearchResultsData').html(html);

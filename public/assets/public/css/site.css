@@ -2777,6 +2777,9 @@ select {
 }
 .detalle_de_articulos__article__image img {
   width: 100%;
+  max-height: 12.6875rem;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .detalle_de_articulos__article .columnas__item__header {
   padding: 3rem 0 2.125rem;
