@@ -177,7 +177,7 @@ class HomeController extends Controller
                     ->limit(4)
                     ->get();*/
 
-
+        $result = [];
          $posts = Post::where('posts.titulo','LIKE',"%{$request->word}%")->take(6)->get();
 
          foreach($posts as $post){
@@ -212,6 +212,11 @@ class HomeController extends Controller
         $categorias = Category::wherenull('parent_id')->get();
 
         return view('frontend.articulos',['articulos'=>$articulos,'posttype'=>$type,"categorias"=>$categorias]);
+    }
+
+
+    public function resultados($word){
+        dd($word);
     }
 
 

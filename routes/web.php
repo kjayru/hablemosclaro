@@ -71,6 +71,8 @@ Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderCon
 
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
 
+Route::get('/buscar/{word}', [HomeController::class, 'resultados']);
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/{categoria}', [HomeController::class, 'categoria']);
 Route::get('/{categoria}/{subcategoria}', [HomeController::class, 'subcategoria']);
