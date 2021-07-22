@@ -165,7 +165,7 @@
                         <label>Categorias</label>
 
                             @foreach($categories->sortBy('id') as $key => $cat)
-                                @if(isset($cat->parent))
+
 
                                     <div class="form-check">
                                         <input class="form-check-input position-static" name="category[]" type="checkbox" id="maestro${{$key+1}}" value="{{$cat->id}}" @if(in_array($cat->id,$cats)) checked @endif>
@@ -174,7 +174,7 @@
                                         </label>
                                     </div>
 
-                                @endif
+
                             @endforeach
                     </div>
 

@@ -36,7 +36,8 @@ class PostController extends Controller
         $categories = Category::orderBy('id','desc')->get();
         $authors = Author::orderBy('nombre','asc')->get();
         $tags = Tag::orderBy('nombre','asc')->get();
-        return view('backend.publicaciones.create',['categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
+        $cats=[];
+        return view('backend.publicaciones.create',[ 'cats'=>$cats,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
