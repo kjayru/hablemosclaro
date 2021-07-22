@@ -51,6 +51,8 @@
                     <th></th>
                     <th>Nombre</th>
                     <th>Categoria</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
                     <th>Fecha </th>
 
                     <th></th>
@@ -61,8 +63,16 @@
                     <tr>
                         <th>{{$key + 1}}</th>
                         <td>{{ @$post->titulo}}</td>
-                        <td>{{ @$post->category->nombre}}</td>
+                        <td>@foreach($post->categories as $cat)
+                                @if(count($post->categories)>1)
+                                    {{ @$cat->nombre}} |
+                                @else
+                                    {{ @$cat->nombre }}
+                                @endif
+                            @endforeach
+                        </td>
 
+                        <td>{{ @$post->posttype->tipo }}</td>
                         <td>
                             {{ Carbon\Carbon::parse(@$post->created_at)->format('d/m/Y') }}</td>
 

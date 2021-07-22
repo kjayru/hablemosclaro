@@ -28,8 +28,8 @@
                 <img src="/storage/{{ $articulo->banner }}" alt="">
             </figure>
             <header class="columnas__item__header">
-                <strong class="columnas__item__subtitle">{{ $articulo->category->nombre }}</strong>
-                <h3 class="columnas__item__title">{{ $articulo->titulo }}</h3>
+                <strong class="columnas__item__subtitle">{{ @$articulo->category->nombre }}</strong>
+                <h3 class="columnas__item__title">{{ @$articulo->titulo }}</h3>
                 <time class="columnas__item__date">14 de mayo, 2021</time>
                 <!--<aside class="columnas__item__timer">5 min de lectura</aside>-->
 
@@ -189,11 +189,11 @@
                 @foreach($relacionados as $rel)
                 <article class="columnas__item">
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">{{ $rel->category->nombre}}</strong>
-                        <h3 class="columnas__item__title">{{ $rel->titulo}}</h3>
+                        <strong class="columnas__item__subtitle">{{ @$rel->category->nombre}}</strong>
+                        <h3 class="columnas__item__title">{{ @$rel->titulo}}</h3>
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
-                    <a href="/{{$rel->category->slug}}/{{$rel->slug}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$rel->category->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
                 </article>
                 @endforeach
             </section>
@@ -260,12 +260,12 @@
                         <img src="/storage/{{@$rel->imagenbox}}" alt="" loading="lazy">
                     </picture>
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">{{ $rel->category->nombre}}</strong>
+                        <strong class="columnas__item__subtitle">{{ @$rel->category->nombre}}</strong>
                         <time class="columnas__item__date">14 set 2021</time>
-                        <h3 class="columnas__item__title">{{ $rel->titulo}}</h3>
+                        <h3 class="columnas__item__title">{{ @$rel->titulo}}</h3>
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
-                    <a href="/{{$rel->category->slug}}/{{$rel->slug}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$rel->category->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
                 </article>
                 @endforeach
 

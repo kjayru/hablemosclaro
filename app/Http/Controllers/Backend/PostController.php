@@ -59,7 +59,7 @@ class PostController extends Controller
         $post->imagenbox = $request->imageCard;
         $post->destacado = $request->destacado;
         $post->estado = $request->estado;
-        $post->category_id = $request->categoria_blog_id;
+        //$post->category_id = $request->categoria_blog_id;
         $post->post_type_id = $request->tipo_id;
         $post->meta_titulo = $request->seotitle;
         $post->meta_image = $request->imageMeta;
@@ -67,10 +67,11 @@ class PostController extends Controller
         $post->meta_keywords = $request->keywords;
         $post->video = $request->video;
         $post->date_publish = $request->fechapublicacion;
-
+        $post->author_id = $request->author;
         $post->save();
-        $post->authors()->sync($request->author);
+       // $post->authors()->sync($request->author);
 
+        $post->categories()->sync($request->category);
         $post->tags()->sync($request->tags);
 
         return redirect(route('post.index'))
@@ -92,7 +93,13 @@ class PostController extends Controller
         $categories = Category::orderBy('id','desc')->get();
         $authors = Author::orderBy('nombre','asc')->get();
         $tags = Tag::orderBy('nombre','asc')->get();
-        return view('backend.publicaciones.edit',['articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
+        $cats=[];
+       foreach($articulo->categories as $cat){
+        $cats[] = $cat->id;
+       }
+
+
+        return view('backend.publicaciones.edit',['cats'=>$cats,'articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
@@ -125,7 +132,7 @@ class PostController extends Controller
         }
         $post->destacado = $request->destacado;
         $post->estado = $request->estado;
-        $post->category_id = $request->categoria_blog_id;
+        //$post->category_id = $request->categoria_blog_id;
         $post->post_type_id = $request->tipo_id;
         $post->meta_titulo = $request->seotitle;
         if($request->imageMeta){
@@ -135,14 +142,13 @@ class PostController extends Controller
         $post->meta_keywords = $request->keywords;
         $post->video = $request->video;
         $post->date_publish =  $request->fechapublicacion;
-
+        $post->author_id = $request->author;
 
         $post->save();
 
-
-        $post->authors()->sync($request->author);
+        //$post->authors()->sync($request->author);
         $post->tags()->sync($request->tags);
-
+        $post->categories()->sync($request->category);
 
         return redirect(route('post.index'))
         ->with('info', 'Artículo actualizado con exito.');

@@ -37,7 +37,7 @@
                                @endif
 
                             </figure>
-                            <input type="hidden" value="imagen" name="imageBanner" id="imageBanner" />
+                            <input type="hidden" value="" name="imageBanner" id="imageBanner" />
                             <a href="#" class="btn btn-default btn-abrirpopup">Seleccionar</a>
                         </div>
 
@@ -102,21 +102,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label for="titulo">Categoria</label>
-                            <select name="categoria_blog_id" id="categoria" class="custom-select" required>
-                                <option value="">Seleccione</option>
-                                @foreach($categories->sortBy('id') as $cat)
 
-                                    @if(isset($cat->parent))
-                                        <option value="{{$cat->id}}" @if(@$articulo->category_id == $cat->id) selected @endif>{{$cat->parent->nombre}} -- {{$cat->nombre}} </option>
-                                    @else
-                                        <option value="{{$cat->id}}" @if(@$articulo->category_id == $cat->id) selected @endif>{{$cat->nombre}}</option>
-                                    @endif
-
-                                @endforeach
-                            </select>
-                        </div>
 
                         <div class="form-group col-sm-6">
                             <label for="titulo">Tipo de Articulo</label>
@@ -127,6 +113,14 @@
                                 <option value="3" @if(@$articulo->post_type_id == 3) selected @endif>Columna</option>
                                 <option value="4" @if(@$articulo->post_type_id == 4) selected @endif>Slider</option>
                             </select>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="fechapublicacion">Fecha de publicación</label>
+                                <input type="date" name="fechapublicacion" id="fechapublicacion" value="{{@$articulo->date_publish}}" class="form-control">
+                            </div>
                         </div>
 
                     </div>
@@ -152,12 +146,7 @@
 
                     <div class="row">
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="fechapublicacion">Fecha de publicación</label>
-                                <input type="date" name="fechapublicacion" id="fechapublicacion" value="{{@$articulo->date_publish}}" class="form-control">
-                            </div>
-                        </div>
+
 
                         <div class="col-md-6">
                             <div class="form-group">
@@ -171,6 +160,23 @@
                         </div>
                     </div>
 
+                    <div class="form-group col-sm-6">
+
+                        <label>Categorias</label>
+
+                            @foreach($categories->sortBy('id') as $key => $cat)
+                                @if(isset($cat->parent))
+
+                                    <div class="form-check">
+                                        <input class="form-check-input position-static" name="category[]" type="checkbox" id="maestro${{$key+1}}" value="{{$cat->id}}" @if(in_array($cat->id,$cats)) checked @endif>
+                                        <label class="form-check-label" for="maestro${{$key+1}}">
+                                        {{$cat->nombre}}
+                                        </label>
+                                    </div>
+
+                                @endif
+                            @endforeach
+                    </div>
 
 
 

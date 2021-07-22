@@ -10,15 +10,16 @@
                     <img src="/storage/{{@$slide->banner}}" alt="" loading="lazy">
                 </picture>
                 <header class="slider_principal__item__header">
-                    <strong class="slider_principal__item__subtitle">{{@$slide->category->nombre}}</strong>
+                    <strong class="slider_principal__item__subtitle">{{@$slide->categories[0]->nombre}}</strong>
                     <time class="slider_principal__item__date">{{@$slide->publish_date}}</time>
                     <h3 class="slider_principal__item__title">{{@$slide->titulo}}</h3>
-                    <!--<aside class="slider_principal__item__timer">5 min de lectura</aside>-->
+
+                    <aside class="slider_principal__item__timer"> min de lectura</aside>
                 </header>
-                @if(isset($slide->category->parent))
-                    <a href="/{{@$slide->category->parent->slug}}/{{@$slide->category->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
+                @if(isset($slide->categories[0]->parent))
+                    <a href="/{{@$slide->categories[0]->parent->slug}}/{{@$slide->categories[0]->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
                 @else
-                    <a href="/{{@$slide->category->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
+                    <a href="/{{@$slide->categories[0]->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
                 @endif
             </article>
         @endforeach
@@ -37,12 +38,12 @@
                         <img src="{{ $post->imagenbox }}" alt="" loading="lazy">
                     </picture>
                     <header class="lo_ultimo__item__header">
-                        <strong class="lo_ultimo__item__subtitle">{{ $post->category->nombre}}</strong>
+                        <strong class="lo_ultimo__item__subtitle">{{ @$post->categories[0]->nombre}}</strong>
                         <time class="lo_ultimo__item__date">{{ @$post->created_at }}</time>
                         <h3 class="lo_ultimo__item__title">{{ $post->titulo}}</h3>
                         <!--<aside class="lo_ultimo__item__timer">5 min de lectura</aside>-->
                     </header>
-                    <a href="/{{@$post->category->slug}}/{{@$post->slug}}" class="lo_ultimo__item__link">Más información</a>
+                    <a href="/{{@$post->categories[0]->slug}}/{{@$post->slug}}" class="lo_ultimo__item__link">Más información</a>
                 </article>
             @endforeach
 
@@ -83,7 +84,7 @@
                     <img src="/storage/{{ @$col->imagenbox }}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{@$col->category->nombre}}</strong>
+                    <strong class="columnas__item__subtitle">{{@$col->categories[0]->nombre}}</strong>
                     <time class="columnas__item__date">{{ @$col->date_publish}}</time>
                     <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
                    <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
@@ -95,7 +96,7 @@
                         </p>
                     </div>
                 </header>
-                <a href="{{@$col->category->slug}}/{{@$col->slug}}" class="columnas__item__link">Más información</a>
+                <a href="{{@$col->categories[0]->slug}}/{{@$col->slug}}" class="columnas__item__link">Más información</a>
             </article>
         @endforeach
         @endif

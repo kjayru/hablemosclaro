@@ -9,8 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
-    public function category(){
-        return $this->belongsTo(Category::class);
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
 
     public function authors(){
@@ -22,77 +22,106 @@ class Post extends Model
     }
 
     public function posttype(){
-        return $this->belongsTo(PostType::class);
+        return $this->belongsTo(PostType::class,'post_type_id');
     }
 
-    public static function next($id){
-        // get next user
+    public static function next($id,$category_id=0,$subcategory_id=0){
 
-        //get category
         $art = Post::find($id);
 
-        $parent = $art->category->parent;
+
         $slug =null;
         $titulo = null;
+        $ids=[];
+        $category=null;
+        $subcategory=null;
+        $result=[];
 
+        if(isset($subcategory_id)){
+            $subcategory = Category::find($subcategory_id);
 
-        if(isset($parent)){
-            $subcategory = $art->category->slug;
-            $category = $art->category->parent->slug;
-            $category_id = $art->category->id;
+            //$category = $art->category->parent->slug;
+            $category = Category::find($category_id);
+            //$category_id = $art->category->id;
+            // $next_id =  Post::where('id', '>', $id)->where("category_id",$category_id)->min('id');
 
-            $next_id =  Post::where('id', '>', $id)->where("category_id",$category_id)->min('id');
+           $posts = $subcategory->posts;
 
-            if(isset($next_id)){
-                $post = Post::where('id',$next_id)->first();
-                if(isset($post)){
-                    $slug = $post->slug;
-                    $titulo = $post->titulo;
+           if(count($posts)){
+                foreach($posts as $ps){
+                        $ids[]=$ps->id;
                 }
-            }
+
+                $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 2, 1));
+
+
+
+                if(isset($currentKey)){
+                    $post = Post::where('id',$currentKey)->first();
+                    if(isset($post)){
+                        $slug = $post->slug;
+                        $titulo = $post->titulo;
+                    }
+                }
+           }
+            $result = [
+                "category" => $category,
+                "subcategory" => $subcategory,
+                "slug" => $slug,
+                "titulo" => $titulo,
+            ];
 
         }else{
-            $category = $art->category->slug;
-            $subcategory =null;
-            $category_id = $art->category->id;
-            $next_id =  Post::where('id', '>', $id)->where("category_id",$category_id)->min('id');
 
-            if(isset($next_id)){
-                $post = Post::where('id',$next_id)->first();
+            $category = Category::find($category_id);
 
-                if(isset($post)){
-                    $slug = $post->slug;
-                    $titulo = $post->titulo;
-                }
+
+            $posts = $category->posts;
+
+            if(count($posts)){
+                    foreach($posts as $ps){
+                        $ids[]=$ps->id;
+                    }
+
+
+                    $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 2, 1));
+
+
+
+                    if(isset($currentKey)){
+                        $post = Post::where('id',$currentKey)->first();
+                        if(isset($post)){
+                            $slug = $post->slug;
+                            $titulo = $post->titulo;
+                        }
+                    }
             }
+
+            $result = [
+                "category" => $category,
+                "subcategory" => $subcategory,
+                "slug" => $slug,
+                "titulo" => $titulo,
+            ];
         }
-
-
-
-        $result = [
-            "category" => $category,
-            "subcategory" => $subcategory,
-            "slug" => $slug,
-            "titulo" => $titulo,
-        ];
 
 
 
         return $result;
 
     }
-    public  static function previous($id){
+    public  static function previous($id,$category_id,$subcategory_id){
 
         $art = Post::find($id);
 
-        $parent = $art->category->parent;
         $slug =null;
         $titulo = null;
+        $ids=[];
+        $category=null;
+        $subcategory=null;
+        $result=[];
 
-///select * from posts where id = (select min(id)  from posts where id > 203  and  posts.category_id=17) next
-
-/// select * from posts where id = (select max(id) from posts where id < 203  and  posts.category_id=17 )   previu
-
+        /*
         if(isset($parent)){
             $subcategory = $art->category->slug;
             $category = $art->category->parent->slug;
@@ -122,20 +151,101 @@ class Post extends Model
                 }
             }
         }
-
-        //$posts = Post::where("category_id",$category_id)->orderBy('id','desc')->get();
-        //dd($posts);
+        */
 
 
+        if(isset($subcategory_id)){
+            $subcategory = Category::find($subcategory_id);
 
-        $result = [
+
+            $category = Category::find($category_id);
+
+           $posts = $subcategory->posts;
+
+           if(count($posts)){
+
+                foreach($posts as $ps){
+                        $ids[]=$ps->id;
+                }
+
+
+                $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 0, 1));
+
+
+
+                if(isset($currentKey)){
+                    $post = Post::where('id',$currentKey)->first();
+                    if(isset($post)){
+                        $slug = $post->slug;
+                        $titulo = $post->titulo;
+                    }
+                }
+           }
+            $result = [
+                "category" => $category,
+                "subcategory" => $subcategory,
+                "slug" => $slug,
+                "titulo" => $titulo,
+            ];
+
+
+        }else{
+
+           // dd($category);
+           $category = Category::find($category_id);
+
+
+           $posts = $category->posts;
+
+           if(count($posts)){
+                   foreach($posts as $ps){
+                       $ids[]=$ps->id;
+                   }
+
+
+                   $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 2, 1));
+
+
+
+                   if(isset($currentKey)){
+                       $post = Post::where('id',$currentKey)->first();
+                       if(isset($post)){
+                           $slug = $post->slug;
+                           $titulo = $post->titulo;
+                       }
+                   }
+           }
+
+           $result = [
             "category" => $category,
             "subcategory" => $subcategory,
             "slug" => $slug,
             "titulo" => $titulo,
-        ];
+            ];
+
+
+        }
+
+
+
+
 
         return $result;
     }
+
+
+
+    public static function TimeEstimate($text){
+        $words = strip_tags($text);
+        $words = str_word_count($words);
+        $minutes = round($words/200);
+        if ($minutes <= 1) {
+            $timetoread = "$minutes minuto";
+        }
+        else{
+            $timetoread = "$minutes minutos";
+        }
+    }
+
 
 }

@@ -34,6 +34,8 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
 
+            $table->integer('author_id')->nullable();
+
             $table->foreignId('post_type_id')->nullable();
             $table->foreign('post_type_id')->references('id')->on('categories')
             ->onDelete('SET NULL')

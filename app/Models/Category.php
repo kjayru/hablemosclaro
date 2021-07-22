@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     public function posts(){
-        return $this->hasMany(Post::class)->orderBy('id', 'desc');
+        return $this->belongsToMany(Post::class);
     }
 
     public function parent(){

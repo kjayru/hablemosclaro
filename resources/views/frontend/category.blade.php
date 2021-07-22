@@ -44,20 +44,18 @@
         <div class="listado_de_articulos__list">
 
         @foreach($articulos as $post)
-
-            <article class="columnas__item" data-order="{{$post->id}}">
+            <article class="columnas__item" data-order="{{@$post['id']}}">
                 <picture class="columnas__item__image">
-                    <img src="/storage/{{$post->imagenbox}}" alt="" loading="lazy">
+                    <img src="/storage/{{@$post['card']}}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{ $post->category->nombre}}</strong>
-                    <time class="columnas__item__date">{{$post->date_publish}}</time>
-                    <h3 class="columnas__item__title">{{ $post->titulo}}</h3>
-                    <!--<aside class="columnas__item__timer">5 min de lectura</aside>-->
+                    <strong class="columnas__item__subtitle">{{ @$categoria}}</strong>
+                    <time class="columnas__item__date">14 set 2021</time>
+                    <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
+                    <aside class="columnas__item__timer">5 min de lectura</aside>
                 </header>
-                <a href="/{{$categoria}}/{{$post->slug}}" class="columnas__item__link">Más información</a>
+                <a href="/{{$categoria}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
             </article>
-
         @endforeach
 
             <div class="g-button-group">
@@ -98,7 +96,7 @@
                             </p>
                         </div>
                     </header>
-                    <a href="/{{$categoria}}/{{$post->slug}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$categoria}}/{{@$post->slug}}" class="columnas__item__link">Más información</a>
                 </article>
             @endforeach
             @endif

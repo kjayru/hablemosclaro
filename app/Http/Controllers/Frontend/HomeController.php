@@ -23,7 +23,7 @@ class HomeController extends Controller
         $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
         $categorias = Category::wherenull('parent_id')->get();
         $sliders = Post::where('post_type_id',4)->get();
-        $posts = Post::all();
+        $posts = Post::where('estado',1)->orderBy('id','desc')->get();
 
         foreach($posts as $post){
             if(count($post->authors)>0){
@@ -32,7 +32,7 @@ class HomeController extends Controller
         }
 
 
-        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+        $videos = Post::where('post_type_id',3)->where('estado',1)->orderBy('id','asc')->take(4)->get();
         return view('frontend.home',['articulos'=>$articulos,'categorias'=>$categorias,'columns'=>$columns,'videos'=>$videos,'sliders'=>$sliders]);
     }
 
@@ -53,7 +53,9 @@ class HomeController extends Controller
                 if(count($cat->posts)>0){
 
                     foreach($cat->posts as $art){
-                        $post[] = $art;
+                        if($art->estado ==1){
+                            $post[] = $art;
+                        }
                       }
                 }
             }
@@ -80,31 +82,48 @@ class HomeController extends Controller
 
     public function subcategoria($categoria,$subcategoria){
         $categorias = null;
-        $category = Category::where('slug',$subcategoria)->first();
 
+        $category = Category::where('slug',$subcategoria)->first();
+        $articulos = [];
+        $subcategory_id = null;
         if(!is_null($category)){
 
-            $articulos = Post::where('category_id',$category->id)->orderBy('id', 'desc')->get();
-            $catcount = Category::where('parent_id',$category->parent_id)->count();
+            $posts = $category->posts;
+
+
+            $catcount = count($category->posts);
 
             if($catcount>0){
                 $categorias = Category::where('parent_id',$category->parent_id)->get();
-
             }
+            foreach($posts as $post){
+                if($post->estado==1){
+                    $articulos[] = array(
+                        "id"=>$post->id,
+                        "titulo"=>$post->titulo,
+                        "card" => $post->imagenbox,
+                        "slug" => $post->slug,
+                        "categoria" => $categoria,
+                        "subcategoria" => $subcategoria
+                    );
+                }
+            }
+
 
         }else{
 
             $post = Post::where('slug',$subcategoria)->first();
 
-            $category_id = $post->category->id;
+            $category = Category::where('slug',$categoria)->first();
+            $category_id = $category->id;
 
 
 
             $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
 
-            $next = Post::next($post->id);
+            $next = Post::next($post->id,$category_id,$subcategory_id);
 
-            $previous = Post::previous($post->id);
+            $previous = Post::previous($post->id,$category_id,$subcategory_id);
 
 
             return view('frontend.post',['articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous]);
@@ -128,12 +147,12 @@ class HomeController extends Controller
 
     public function articulo($categoria,$subcategoria,$articulo){
 
-        //dd($categoria." ".$subcategoria);
-
+        $category = Category::where("slug",$categoria)->first();
+        $subcategory = Category::where("slug",$subcategoria)->first();
         $articulo = Post::where('slug',$articulo)->first();
 
-        $next = Post::next($articulo->id);
-        $previous = Post::previous($articulo->id);
+        $next = Post::next($articulo->id,$category->id,$subcategory->id);
+        $previous = Post::previous($articulo->id,$category->id,$subcategory->id);
        // dd($post);
 
         $posts = Post::all();
@@ -145,7 +164,7 @@ class HomeController extends Controller
        }
 
 
-       $category_id = $post->category->id;
+       $category_id = $category->id;
 
        $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
 
@@ -246,7 +265,5 @@ class HomeController extends Controller
 
         return view('frontend.buscar',['posts'=>$posts,'word'=>$word]);
     }
-
-
 
 }
