@@ -65,7 +65,7 @@ class HomeController extends Controller
                                 "categoria" => @$category,
                                 "subcategoria" => @$art->categories[0]->parent,
                                 'date_publish'=> @$art->date_publish,
-
+                                'lectura' => @Post::TimeEstimate($art->contenido)
 
                             );
                         }
@@ -96,7 +96,7 @@ class HomeController extends Controller
                                 "categoria" => @$category,
                                 "subcategoria" => @$art->categories[0]->parent,
                                 'date_publish'=> @$art->date_publish,
-
+                                'lectura' => @Post::TimeEstimate($art->contenido)
 
                             );
                         }
@@ -139,7 +139,8 @@ class HomeController extends Controller
                         "slug" => $post->slug,
                         "categoria" => $categoria,
                         "subcategoria" => $subcategoria,
-                        'date_publish'=>$post->date_publish
+                        'date_publish'=>$post->date_publish,
+                        'lectura' => @Post::TimeEstimate($post->contenido)
                     );
                 }
             }

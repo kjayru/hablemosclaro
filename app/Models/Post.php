@@ -208,13 +208,20 @@ class Post extends Model
     public static function TimeEstimate($text){
         $words = strip_tags($text);
         $words = str_word_count($words);
+
+
         $minutes = round($words/200);
+
+
         if ($minutes <= 1) {
-            $timetoread = "$minutes minuto";
+            $timetoread = "$minutes ";
         }
         else{
-            $timetoread = "$minutes minutos";
+            $timetoread = "$minutes ";
         }
+
+
+        return $timetoread;
     }
 
 

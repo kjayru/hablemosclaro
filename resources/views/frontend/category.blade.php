@@ -53,7 +53,7 @@
                     <strong class="columnas__item__subtitle">{{ @$categoria}}</strong>
                     <time class="columnas__item__date">14 set 2021</time>
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
-                    <aside class="columnas__item__timer">{{ @$post['date_publish']}} min de lectura</aside>
+                    <aside class="columnas__item__timer"> {{@$post['lectura']}} min de lectura</aside>
                 </header>
                 @if(isset($post['subcategoria']))
                 <a href="/{{@$categoria->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
@@ -92,7 +92,7 @@
                         <strong class="columnas__item__subtitle">{{@$col->category->nombre}}</strong>
                         <time class="columnas__item__date">{{ @$col->date_publish}}</time>
                         <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
-                       <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
+                       <!--<aside class="columnas__item__timer"> min de lectura</aside>-->
                         <div class="columnas__item__author">
                             <img src="/storage/{{ @$col->authors[0]->imagen}}" alt="">
                             <p>

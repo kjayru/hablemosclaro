@@ -58,7 +58,7 @@
                     <strong class="columnas__item__subtitle">{{ @$subcategoria->nombre}}</strong>
                     <time class="columnas__item__date">{{ @$post['date_publish']}}</time>
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
-                    <aside class="columnas__item__timer">5 min de lectura</aside>
+                    <aside class="columnas__item__timer">{{ @$post['lectura']}} min de lectura</aside>
                 </header>
                 <a href="/{{$categoria->slug}}/{{$subcategoria->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
             </article>
