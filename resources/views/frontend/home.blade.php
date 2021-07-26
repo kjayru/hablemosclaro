@@ -35,7 +35,7 @@
 
                 <article class="lo_ultimo__item">
                     <picture class="lo_ultimo__item__image">
-                        <img src="{{ $post->imagenbox }}" alt="" loading="lazy">
+                        <img src="/storage/{{ $post->imagenbox }}" alt="" loading="lazy">
                     </picture>
                     <header class="lo_ultimo__item__header">
                         <strong class="lo_ultimo__item__subtitle">{{ @$post->categories[0]->nombre}}</strong>
