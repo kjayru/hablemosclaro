@@ -121,37 +121,7 @@ class Post extends Model
         $subcategory=null;
         $result=[];
 
-        /*
-        if(isset($parent)){
-            $subcategory = $art->category->slug;
-            $category = $art->category->parent->slug;
-            $category_id = $art->category->id;
 
-            $previous_id = Post::where('id', '<', $id)->where("category_id",$category_id)->max('id');
-
-            if(isset($previous_id)){
-                $post = Post::where('id',$previous_id)->first();
-                if(isset($post)){
-                    $slug = $post->slug;
-                    $titulo = $post->titulo;
-                }
-            }
-
-        }else{
-            $category = $art->category->slug;
-            $subcategory =null;
-            $category_id = $art->category->id;
-
-            $previous_id = Post::where('id', '<', $id)->where("category_id",$category_id)->max('id');
-            if(isset($previous_id)){
-                $post = Post::where('id',$previous_id)->first();
-                if(isset($post)){
-                    $slug = $post->slug;
-                    $titulo = $post->titulo;
-                }
-            }
-        }
-        */
 
 
         if(isset($subcategory_id)){

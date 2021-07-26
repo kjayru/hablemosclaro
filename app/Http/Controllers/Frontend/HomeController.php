@@ -54,16 +54,56 @@ class HomeController extends Controller
 
                     foreach($cat->posts as $art){
                         if($art->estado ==1){
-                            $post[] = $art;
+
+
+
+                            $post[] = array(
+                                "id" => $art->id,
+                                "titulo" => $art->titulo,
+                                "card" => $art->imagenbox,
+                                "slug" => $art->slug,
+                                "categoria" => @$category,
+                                "subcategoria" => @$art->categories[0]->parent,
+                                'date_publish'=> @$art->date_publish,
+
+
+                            );
                         }
                       }
                 }
             }
 
+
             $articulos = collect($post);
 
         }else{
-            $articulos = $category->posts;
+            $categorias = $category->posts;
+
+            foreach($categorias as $cat){
+
+                if(count($cat->posts)>0){
+
+                    foreach($cat->posts as $art){
+                        if($art->estado ==1){
+
+
+
+                            $post[] = array(
+                                "id" => $art->id,
+                                "titulo" => $art->titulo,
+                                "card" => $art->imagenbox,
+                                "slug" => $art->slug,
+                                "categoria" => @$category,
+                                "subcategoria" => @$art->categories[0]->parent,
+                                'date_publish'=> @$art->date_publish,
+
+
+                            );
+                        }
+                      }
+                }
+            }
+
         }
 
         $columns = Post::whereNotNull('author_id')->get();
@@ -99,7 +139,7 @@ class HomeController extends Controller
                         "slug" => $post->slug,
                         "categoria" => $categoria,
                         "subcategoria" => $subcategoria,
-                        'date_publisgh'=>$post->date_publish
+                        'date_publish'=>$post->date_publish
                     );
                 }
             }

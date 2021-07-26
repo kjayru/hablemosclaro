@@ -44,6 +44,7 @@
         <div class="listado_de_articulos__list">
 
         @foreach($articulos as $post)
+
             <article class="columnas__item" data-order="{{@$post['id']}}">
                 <picture class="columnas__item__image">
                     <img src="/storage/{{@$post['card']}}" alt="" loading="lazy">
@@ -52,9 +53,13 @@
                     <strong class="columnas__item__subtitle">{{ @$categoria}}</strong>
                     <time class="columnas__item__date">14 set 2021</time>
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
-                    <aside class="columnas__item__timer">5 min de lectura</aside>
+                    <aside class="columnas__item__timer">{{ @$post['date_publish']}} min de lectura</aside>
                 </header>
-                <a href="/{{$categoria}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
+                @if(isset($post['subcategoria']))
+                <a href="/{{@$categoria->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
+                @else
+                <a href="/{{@$categoria->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
+                @endif
             </article>
         @endforeach
 

@@ -73,6 +73,7 @@
                         </td>
 
                         <td>{{ @$post->posttype->tipo }}</td>
+                        <td></td>
                         <td>
                             {{ Carbon\Carbon::parse(@$post->created_at)->format('d/m/Y') }}</td>
 
