@@ -75,7 +75,7 @@
                         <td>{{ @$post->posttype->tipo }}</td>
                         <td></td>
                         <td>
-                            {{ Carbon\Carbon::parse(@$post->created_at)->format('d/m/Y') }}</td>
+                            {{ Carbon\Carbon::parse(@$post->date_publish)->format('d/m/Y') }}</td>
 
                         <td width="7%" style="text-center">
                             <a href="/admin/posts/{{$post->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
