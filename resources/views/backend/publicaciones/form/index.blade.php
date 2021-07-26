@@ -112,6 +112,7 @@
                                 <option value="2" @if(@$articulo->post_type_id == 2) selected @endif>Video</option>
                                 <option value="3" @if(@$articulo->post_type_id == 3) selected @endif>Columna</option>
                                 <option value="4" @if(@$articulo->post_type_id == 4) selected @endif>Slider</option>
+                                <option value="5" @if(@$articulo->post_type_id == 5) selected @endif>Entrevista</option>
                             </select>
                         </div>
 
