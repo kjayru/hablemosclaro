@@ -45,20 +45,20 @@
 
             @foreach($articulos as $post)
 
-                <article class="columnas__item" data-order="{{$post->id}}" @if(isset($post->category->parent))  data-category="{{$post->category->parent->slug}}" @else data-category="{{$post->category->slug}}" @endif>
+                <article class="columnas__item" data-order="{{@$post->id}}" @if(isset($post->categories[0]->parent))  data-category="{{@$post->categories[0]->parent->slug}}" @else data-category="{{@$post->categories[0]->slug}}" @endif>
                     <picture class="columnas__item__image">
-                        <img src="/storage/{{$post->imagenbox}}" alt="" loading="lazy">
+                        <img src="/storage/{{ @$post->imagenbox }}" alt="" loading="lazy">
                     </picture>
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">{{ $post->category->nombre}}</strong>
-                        <time class="columnas__item__date">{{$post->date_publish}}</time>
-                        <h3 class="columnas__item__title">{{ $post->titulo}}</h3>
+                        <strong class="columnas__item__subtitle">{{ @$post->categories[0]->nombre }}</strong>
+                        <time class="columnas__item__date">{{ @$post->date_publish }}</time>
+                        <h3 class="columnas__item__title">{{ @$post->titulo }}</h3>
                         <!--<aside class="columnas__item__timer">5 min de lectura</aside>-->
                     </header>
-                    @if(isset($post->category->parent))
-                    <a href="/{{$post->category->parent->slug}}/{{$post->category->slug}}/{{$post->slug}}" class="columnas__item__link">Más información</a>
+                    @if(isset($post->categories[0]->parent))
+                    <a href="/{{@$post->categories[0]->parent->slug}}/{{@$post->categories[0]->slug}}/{{@$post->slug}}" class="columnas__item__link">Más información</a>
                     @else
-                    <a href="/{{$post->category->slug}}/{{$post->slug}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$post->categories[0]->slug}}/{{@$post->slug}}" class="columnas__item__link">Más información</a>
                     @endif
                 </article>
 
