@@ -25,7 +25,7 @@ class HomeController extends Controller
 
         $ultimos = Post::where('estado',1)->where('post_type_id',1)->orderBy('id','desc')->take(4)->get();
         $categorias = Category::wherenull('parent_id')->get();
-        $sliders = Post::where('post_type_id',4)->get();
+        $sliders = Post::where('post_type_id',4)->orderBy('id','desc')->take(5)->get();
         $posts = Post::where('estado',1)->orderBy('id','desc')->get();
 
         foreach($posts as $post){
