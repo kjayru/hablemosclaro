@@ -31,7 +31,7 @@
         <h2 class="limit g-title m--swiper">Lo último</h2>
         <div class="limit lo_ultimo__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
 
-            @foreach($articulos as $post)
+            @foreach($ultimos as $post)
 
                 <article class="lo_ultimo__item">
                     <picture class="lo_ultimo__item__image">
