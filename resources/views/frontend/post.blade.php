@@ -6,16 +6,16 @@
                 loading="lazy" /></a>
 
 
-    @if(isset($articulo->category->parent))
+    @if(isset($subcategoria))
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="/{{$articulo->category->parent->slug}}">{{$articulo->category->parent->nombre}}</a>
+        <a class="breadcrumb__link" href="/{{$categoria->slug}}">{{$categoria->nombre}}</a>
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="/{{$articulo->category->parent->slug}}/{{$articulo->category->slug}}">{{$articulo->category->nombre}}</a>
+        <a class="breadcrumb__link" href="/{{$categoria->slug}}/{{$subcategoria->slug}}">{{$subcategoria->nombre}}</a>
     @endif
 
-    @if(isset($articulo->category))
+    @if(isset($categoria)&&!$subcategoria))
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="/{{$articulo->category->slug}}">{{$articulo->category->nombre}}</a>
+        <a class="breadcrumb__link" href="/{{$categoria->slug}}">{{$categoria->nombre}}</a>
     @endif
 
 
@@ -28,20 +28,20 @@
                 <img src="/storage/{{ $articulo->banner }}" alt="">
             </figure>
             <header class="columnas__item__header">
-                <strong class="columnas__item__subtitle">{{ @$articulo->category->nombre }}</strong>
+                <strong class="columnas__item__subtitle">{{ @$categoria->nombre }}</strong>
                 <h3 class="columnas__item__title">{{ @$articulo->titulo }}</h3>
                 <time class="columnas__item__date">14 de mayo, 2021</time>
                 <!--<aside class="columnas__item__timer">5 min de lectura</aside>-->
 
-              @if(count($articulo->authors)>0))
+            @if(isset($articulo->author)))
                 <div class="columnas__item__author">
-                    <img src="/storage/{{ @$articulo->authors[0]->imagen}}" alt="">
+                    <img src="/storage/{{ @$articulo->author->imagen}}" alt="">
                     <p>
-                        <strong>{{ @$articulo->authors[0]->nombre}}</strong>
-                        {{ @$articulo->authors[0]->cargo}}
+                        <strong>{{ @$articulo->author->nombre}}</strong>
+                        {{ @$articulo->author->cargo}}
                     </p>
                 </div>
-                @endif
+            @endif
 
             </header>
             <div class="detalle_de_articulos__article__content">
@@ -109,9 +109,9 @@
                     <strong><img src="/assets/public/images/ico_arrow_article.png" alt="">Artículo anterior</strong>
 
                     @if($previous['subcategory'])
-                    <a href="/{{ @$previous['category']}}/{{ @$previous['subcategory']}}/{{@$previous['slug']}}">{{ @$previous['titulo']}}</a>
+                    <a href="/{{ @$previous['category']}}/{{ @$previous['subcategory'] }}/{{ @$previous['slug'] }}">{{ @$previous['titulo'] }}</a>
                     @else
-                    <a href="/{{ @$previous['category']}}/{{@$previous['slug']}}">{{ @$previous['titulo']}}</a>
+                    <a href="/{{ @$previous['category']}}/{{ @$previous['slug'] }}">{{ @$previous['titulo'] }}</a>
                     @endif
                 </span>
                 @endif
@@ -189,11 +189,15 @@
                 @foreach($relacionados as $rel)
                 <article class="columnas__item">
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">{{ @$rel->category->nombre}}</strong>
+                        <strong class="columnas__item__subtitle">{{ @$categoria->nombre}}</strong>
                         <h3 class="columnas__item__title">{{ @$rel->titulo}}</h3>
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
-                    <a href="/{{@$rel->category->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+                    @if(isset($subcategoria))
+                    <a href="/{{@$categoria->slug}}/{{@$subcategoria->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+                    @else
+                    <a href="/{{@$categoria->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+                    @endif
                 </article>
                 @endforeach
             </section>
@@ -260,12 +264,18 @@
                         <img src="/storage/{{@$rel->imagenbox}}" alt="" loading="lazy">
                     </picture>
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">{{ @$rel->category->nombre}}</strong>
-                        <time class="columnas__item__date">14 set 2021</time>
+                        <strong class="columnas__item__subtitle">{{ @$categoria->nombre}}</strong>
+                        <time class="columnas__item__date">{{ @$rel->date_publish}}</time>
                         <h3 class="columnas__item__title">{{ @$rel->titulo}}</h3>
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
-                    <a href="/{{@$rel->category->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+
+                    @if(isset($subcategoria))
+                    <a href="/{{@$categoria->slug}}/{{@$subcategoria->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+                    @else
+                    <a href="/{{@$categoria->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+                    @endif
+
                 </article>
                 @endforeach
 

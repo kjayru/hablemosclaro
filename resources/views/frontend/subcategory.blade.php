@@ -5,14 +5,14 @@
         <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio"
                 loading="lazy" /></a>
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="/{{ @$category->parent->slug }}">{{ @$category->parent->slug }}</a>
+        <a class="breadcrumb__link" href="/{{ @$categoria->slug }}">{{ @$categoria->nombre }}</a>
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="/{{ @$category->parent->slug }}/{{ $category->slug }}">{{ $category->slug }}</a>
+        <a class="breadcrumb__link" href="/{{ @$categoria->slug }}/{{ $subcategoria->slug }}">{{ $subcategoria->nombre }}</a>
     </aside>
 
     <section class="section limit listado_de_articulos">
         <header class="listado_de_articulos__header">
-            <h2 class="g-bigtitle">{{ @$category->parent->nombre }}</h2>
+            <h2 class="g-bigtitle">{{ @$subcategoria->nombre }}</h2>
             <h3 class="g-title">Artículos</h3>
             <img src="/assets/public/images/ico_show_filter.png" loading="lazy" alt="Mostrar filtros"
                 class="listado_de_articulos__showfilter fnShowFilter" />
@@ -21,7 +21,7 @@
         <nav class="listado_de_articulos__nav">
 
             <ul class="listado_de_articulos__nav__inset">
-                <li class="listado_de_articulos__nav__item"><a href="/{{$categoria}}" class="listado_de_articulos__nav__link">Todo</a>
+                <li class="listado_de_articulos__nav__item"><a href="/{{$categoria->slug}}" class="listado_de_articulos__nav__link">Todo</a>
                 </li>
                 @if(isset($categorias))
                     @foreach($categorias as $cat)
@@ -55,12 +55,12 @@
                     <img src="/storage/{{@$post['card']}}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{ @$subcategoria}}</strong>
-                    <time class="columnas__item__date">14 set 2021</time>
+                    <strong class="columnas__item__subtitle">{{ @$subcategoria->nombre}}</strong>
+                    <time class="columnas__item__date">{{ @$post['date_publish']}}</time>
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
                     <aside class="columnas__item__timer">5 min de lectura</aside>
                 </header>
-                <a href="/{{$categoria}}/{{$subcategoria}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
+                <a href="/{{$categoria->slug}}/{{$subcategoria->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
             </article>
         @endforeach
 
@@ -72,7 +72,7 @@
     <section class="section columnas">
         <header class="limit columnas__header">
             <h2 class="g-title m--swiper">Columnas de opinión</h2>
-            <a href="listado_de_articulos.php" class="columnas__link">Ver todo</a>
+            <a href="/articulos/columna" class="columnas__link">Ver todo</a>
         </header>
 
 
@@ -83,22 +83,31 @@
             @foreach($columns as $col)
             <article class="columnas__item">
                 <picture class="columnas__item__image">
-                    <img src="/storage/{{ @$col->imagenbox }}" alt="" loading="lazy">
+                    <img src="/storage/{{ @$col['imagenbox'] }}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{@$col->category->nombre}}</strong>
-                    <time class="columnas__item__date">{{ @$col->date_publish}}</time>
-                    <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
+                    <strong class="columnas__item__subtitle">{{@$col->categoria_nombre }}</strong>
+                    <time class="columnas__item__date">{{ @$col->date_publish }}</time>
+                    <h3 class="columnas__item__title">{{@$col->titulo }}</h3>
                    <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
                     <div class="columnas__item__author">
-                        <img src="/storage/{{ @$col->authors[0]->imagen}}" alt="">
+                        <img src="/storage/{{ @$col->author->imagen}}" alt="">
                         <p>
-                            <strong>{{ @$col->authors[0]->nombre}}</strong>
-                            {{ @$col->authors[0]->cargo}}
+                            <strong>{{ @$col->author->nombre}}</strong>
+                            {{ @$col->author->cargo}}
                         </p>
                     </div>
                 </header>
-                <a href="{{@$col->category->slug}}/{{@$col->slug}}" class="columnas__item__link">Más información</a>
+
+                @if(isset($col->categories[0]->parent))
+                <a href="/{{@$col->categories[0]->slug}}/{{@$col->categories[0]->parent->slug}}/{{@$col->slug}}" class="columnas__item__link obos">Más información</a>
+
+                @else
+
+                <a href="/{{@$col->$categories[0]->slug}}/{{@$col->slug}}" class="columnas__item__link">Más información</a>
+
+                @endif
+
             </article>
         @endforeach
 

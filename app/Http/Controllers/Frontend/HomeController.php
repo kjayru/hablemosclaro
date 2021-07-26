@@ -66,13 +66,7 @@ class HomeController extends Controller
             $articulos = $category->posts;
         }
 
-        $posts = Post::all();
-
-        foreach($posts as $post){
-            if(count($post->authors)>0){
-                $columns[] = $post;
-            }
-        }
+        $columns = Post::whereNotNull('author_id')->get();
 
         $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
@@ -104,7 +98,8 @@ class HomeController extends Controller
                         "card" => $post->imagenbox,
                         "slug" => $post->slug,
                         "categoria" => $categoria,
-                        "subcategoria" => $subcategoria
+                        "subcategoria" => $subcategoria,
+                        'date_publisgh'=>$post->date_publish
                     );
                 }
             }
@@ -113,35 +108,29 @@ class HomeController extends Controller
         }else{
 
             $post = Post::where('slug',$subcategoria)->first();
-
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
-
-
             $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
-
             $next = Post::next($post->id,$category_id,$subcategory_id);
-
             $previous = Post::previous($post->id,$category_id,$subcategory_id);
 
-
-            return view('frontend.post',['articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous]);
+            return view('frontend.post',['categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous]);
         }
 
        $current_url = url()->full();
 
-       $posts = Post::all();
+        /**Columnas */
+       $columns = Post::whereNotNull('author_id')->get();
 
-       foreach($posts as $post){
-           if(count($post->authors)>0){
-               $columns[] = $post;
-           }
-       }
+
 
        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.subcategory',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categoria,"subcategoria"=>$subcategoria,'current_url'=>$current_url,'category'=>$category]);
+       $categor = Category::where('slug',$categoria)->first();
+       $subcategor = Category::where('slug',$subcategoria)->first();
+
+        return view('frontend.subcategory',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categor,"subcategoria"=>$subcategor,'current_url'=>$current_url,'category'=>$category]);
     }
 
 
@@ -155,13 +144,7 @@ class HomeController extends Controller
         $previous = Post::previous($articulo->id,$category->id,$subcategory->id);
        // dd($post);
 
-        $posts = Post::all();
-
-       foreach($posts as $post){
-           if(count($post->authors)>0){
-               $columns[] = $post;
-           }
-       }
+       $columns = Post::whereNotNull('author_id')->get();
 
 
        $category_id = $category->id;
@@ -171,7 +154,7 @@ class HomeController extends Controller
 
        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.post',['videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
+        return view('frontend.post',['categoria'=>$category,'subcategoria'=>$subcategory,'videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
 
     }
 
