@@ -23,9 +23,9 @@ class HomeController extends Controller
     {
         $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
 
-        $ultimos = Post::where('estado',1)->where('post_type_id',1)->orderBy('id','desc')->take(4)->get();
+        $ultimos = Post::where('estado',1)->where('post_type_id',1)->orderBy('date_publish','desc')->take(4)->get();
         $categorias = Category::wherenull('parent_id')->get();
-        $sliders = Post::where('post_type_id',4)->orderBy('id','desc')->take(5)->get();
+        $sliders = Post::where('post_type_id',4)->orderBy('date_publish','desc')->take(5)->get();
         $posts = Post::where('estado',1)->orderBy('id','desc')->get();
 
         foreach($posts as $post){
@@ -35,7 +35,7 @@ class HomeController extends Controller
         }
 
 
-        $videos = Post::where('post_type_id',3)->where('estado',1)->orderBy('id','asc')->take(4)->get();
+        $videos = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','asc')->take(4)->get();
         return view('frontend.home',['ultimos'=>$ultimos,'articulos'=>$articulos,'categorias'=>$categorias,'columns'=>$columns,'videos'=>$videos,'sliders'=>$sliders]);
     }
 
