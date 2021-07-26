@@ -183,16 +183,16 @@ class HomeController extends Controller
          $posts = Post::where('posts.titulo','LIKE',"%{$request->word}%")->take(6)->get();
 
          foreach($posts as $post){
-             if($post->categories[0]->parent){
+             if(isset($post->categories[0]->parent)){
                  $result[] = array(
-                     "category"=>$post->categories[0]->parent->slug,
-                     "subcategory"=>$post->categories[0]->slug,
+                     "category"=>@$post->categories[0]->parent->slug,
+                     "subcategory"=>@$post->categories[0]->slug,
                      "slug" => $post->slug,
                      "titulo" => $post->titulo,
                     );
              }else{
                 $result[] = array(
-                    "category"=>$post->categories[0]->slug,
+                    "category"=>@$post->categories[0]->slug,
                     "subcategory"=>"",
                     "slug" => $post->slug,
                     "titulo" => $post->titulo,
@@ -224,10 +224,10 @@ class HomeController extends Controller
         $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->get();
 
         foreach($articulos as $post){
-            if($post->categories[0]->parent){
+            if(isset($post->categories[0]->parent)){
                 $result[] = array(
-                    "category"=>$post->categories[0]->parent->slug,
-                    "subcategory"=>$post->categories[0]->slug,
+                    "category"=>@$post->categories[0]->parent->slug,
+                    "subcategory"=>@$post->categories[0]->slug,
                     "slug" => $post->slug,
                     "titulo" => $post->titulo,
                     "banner" => $post->banner,
@@ -235,7 +235,7 @@ class HomeController extends Controller
                     );
             }else{
                $result[] = array(
-                   "category"=>$post->categories[0]->slug,
+                   "category"=>@$post->categories[0]->slug,
                    "subcategory"=>"",
                    "slug" => $post->slug,
                    "titulo" => $post->titulo,
