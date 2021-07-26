@@ -10,6 +10,7 @@ use App\Models\Suscription;
 use App\Models\PostType;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use App\Models\Visit;
 
 class HomeController extends Controller
 {
@@ -195,7 +196,42 @@ class HomeController extends Controller
 
        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.post',['categoria'=>$category,'subcategoria'=>$subcategory,'videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
+       //contador de visitas
+       $remote_ip  = $_SERVER['REMOTE_ADDR'];
+       $post_id = $articulo->id;
+
+       $contador = Visit::where('ip',$remote_ip)->where('post_id',$post_id)->count();
+       $indice = 1;
+       if($contador==0){
+            $visita = new Visit();
+            $visita->ip = $remote_ip;
+            $visita->post_id = $post_id;
+            $visita->save();
+
+            $postvisited = Post::find($post_id);
+
+            $pv = $postvisited->visited;
+
+            $postvisited->visited = intval($pv) + 1;
+            $postvisited->save();
+       }
+
+
+       $max = Post::orderBy('visited','desc')->first();
+
+
+       $postmax = array(
+        "id"=>$max->id,
+        "titulo"=>$max->titulo,
+        "card" => $max->imagenbox,
+        "slug" => $max->slug,
+        "categoria" => @$category,
+        "subcategoria" => @$subcategory,
+        'date_publish'=>$max->date_publish,
+        'lectura' => @Post::TimeEstimate($max->contenido)
+       );
+
+        return view('frontend.post',['postmax'=>$postmax,'categoria'=>$category,'subcategoria'=>$subcategory,'videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
 
     }
 

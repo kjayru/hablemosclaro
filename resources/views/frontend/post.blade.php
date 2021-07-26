@@ -240,15 +240,19 @@
 
                 <article class="columnas__item">
                     <picture class="columnas__item__image">
-                        <img src="/assets/public/images/columnas.png" alt="" loading="lazy">
+                        <img src="/storage/{{@$postmax['imagenbox']}}" alt="" loading="lazy">
                     </picture>
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">Compromiso</strong>
-                        <time class="columnas__item__date">14 set 2021</time>
-                        <h3 class="columnas__item__title">Conectados para el teletrabajo, la teleducación, la telesalud y teletrabajo</h3>
+                        <strong class="columnas__item__subtitle">{{@$postmax['categoria']->nombre}}</strong>
+                        <time class="columnas__item__date">{{@$postmax['date_publish'] }}</time>
+                        <h3 class="columnas__item__title">{{@$postmax['titulo'] }}</h3>
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
-                    <a href="{{ url()->current() }}" class="columnas__item__link">Más información</a>
+                    @if(isset($subcategoria))
+                    <a href="/{{$categoria->slug}}/{{$subcategoria->slug}}/{{$postmax['slug']}}" class="columnas__item__link">Más información</a>
+                    @else
+                    <a href="/{{$categoria->slug}}/{{$postmax['slug']}}" class="columnas__item__link">Más información</a>
+                    @endif
                 </article>
 
 

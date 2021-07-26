@@ -30,6 +30,7 @@ class CreatePostsTable extends Migration
             $table->string("twitter_create")->nullable();
 
             $table->integer('destacado')->default(0);
+            $table->integer('visited')->default(0);
 
             $table->foreignId('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
