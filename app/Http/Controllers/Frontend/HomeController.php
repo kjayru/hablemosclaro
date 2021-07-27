@@ -113,7 +113,7 @@ class HomeController extends Controller
 
         $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
-
+        dd($articulos);
 
         $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
 
