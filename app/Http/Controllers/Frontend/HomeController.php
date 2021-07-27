@@ -82,7 +82,7 @@ class HomeController extends Controller
         }else{
             $categorias = $category->posts;
 
-            dd($category->posts);
+
 
             foreach($categorias as $art){
 
@@ -99,7 +99,7 @@ class HomeController extends Controller
                                 "card" => $art->imagenbox,
                                 "slug" => $art->slug,
                                 "categoria" => @$category,
-                                "subcategoria" => @$art->categories[0]->parent,
+                                "subcategoria" => '',
                                 'date_publish'=> @$art->date_publish,
                                 'lectura' => @Post::TimeEstimate($art->contenido)
 
