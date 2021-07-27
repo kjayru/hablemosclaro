@@ -107,7 +107,7 @@ class HomeController extends Controller
 
             foreach($llaves as $k){
 
-                $p = Post::find($k);
+                $p = Post::where('id',$k)->where('date_publish','desc')->first();
 
                 $post[] = array(
 
