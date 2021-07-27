@@ -29,7 +29,7 @@
                         @php
                             $seturl = env('APP_URL')."/".$categoria."/".$cat->slug;
                         @endphp
-                            <a href="/{{$categoria}}/{{$cat->slug}}" class="listado_de_articulos__nav__link @if($current_url == $seturl) -active- @endif">{{ $cat->nombre}}</a>
+                            <a href="/{{$categoria->slug}}/{{$cat->slug}}" class="listado_de_articulos__nav__link @if($current_url == $seturl) -active- @endif">{{ $cat->nombre}}</a>
                     </li>
                     @endforeach
                 @endif
