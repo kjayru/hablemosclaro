@@ -52,8 +52,8 @@ class HomeController extends Controller
         if($contador>0){
             $categorias = Category::where('parent_id',$category->id)->get();
 
-            $singlecat = Category::where('id',$category->id)->get();
-            dd($singlecat->posts);
+            //$singlecat = Category::where('id',$category->id)->get();
+            dd($category->posts);
             foreach($categorias as $cat){
 
 
