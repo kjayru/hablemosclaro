@@ -184,7 +184,7 @@ class HomeController extends Controller
 
         $max = Post::orderBy('visited','desc')->first();
 
-
+       dd($max);
         $postmax = array(
             "id"=>$max->id,
             "titulo"=>$max->titulo,
