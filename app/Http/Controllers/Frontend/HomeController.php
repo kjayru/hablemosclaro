@@ -114,8 +114,8 @@ class HomeController extends Controller
                     if(isset($c->parent_id)){
 
                         if($c->parent_id == $category->id){
-                            dd($c);
-                            $subcat = $c->parent;
+
+                            $subcat = $c;
                         }
                     }
                 }
