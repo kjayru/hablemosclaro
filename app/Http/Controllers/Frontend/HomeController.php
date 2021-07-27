@@ -160,7 +160,7 @@ class HomeController extends Controller
             $next = Post::next($post->id,$category_id,$subcategory_id);
             $previous = Post::previous($post->id,$category_id,$subcategory_id);
 
-            return view('frontend.post',['categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous]);
+            return view('frontend.post',['categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous,'subcategoria'=>null]);
         }
 
        $current_url = url()->full();
