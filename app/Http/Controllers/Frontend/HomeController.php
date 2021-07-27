@@ -103,7 +103,11 @@ class HomeController extends Controller
             }
 
            // dd($post_ids);
-            dd(array_unique($post_ids));
+            $llaves = array_unique($post_ids);
+
+            foreach($llaves as $k){
+                dd($k);
+            }
             $articulos = collect($post);
 
         }else{
