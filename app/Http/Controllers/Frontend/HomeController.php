@@ -163,7 +163,7 @@ class HomeController extends Controller
 
             //contador de visitas
        $remote_ip  = $_SERVER['REMOTE_ADDR'];
-       $post_id = $articulo->id;
+       $post_id = $post->id;
 
        $contador = Visit::where('ip',$remote_ip)->where('post_id',$post_id)->count();
        $indice = 1;
