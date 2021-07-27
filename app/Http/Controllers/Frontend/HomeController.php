@@ -172,6 +172,7 @@ class HomeController extends Controller
         $categorias = null;
 
         $category = Category::where('slug',$subcategoria)->first();
+        $menu = Category::where('parent_id',$category->parent_id)->get();
         $articulos = [];
         $subcategory_id = null;
 
@@ -182,7 +183,7 @@ class HomeController extends Controller
             if($catcount>0){
                 $categorias = Category::where('parent_id',$category->parent_id)->get();
 
-                $menu = Category::where('parent_id',$category->parent_id)->get();
+
             }
             foreach($posts as $post){
                 if($post->estado==1){
