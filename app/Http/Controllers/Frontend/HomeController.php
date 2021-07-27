@@ -108,7 +108,7 @@ class HomeController extends Controller
             foreach($llaves as $k){
 
                 $p = Post::where('id',$k)->orderBy('date_publish','desc')->first();
-                dd($category);
+
                 $post[] = array(
 
                     "id" => $p->id,
@@ -128,7 +128,7 @@ class HomeController extends Controller
         }else{
             $categorias = $category->posts;
 
-
+            dd($category);
 
             foreach($categorias as $art){
 
