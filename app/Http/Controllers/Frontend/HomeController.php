@@ -103,7 +103,7 @@ class HomeController extends Controller
             }
 
            // dd($post_ids);
-            dd($post_ids);
+            dd(array_unique($post_ids));
             $articulos = collect($post);
 
         }else{
