@@ -112,8 +112,9 @@ class HomeController extends Controller
                 foreach($p->categories as $c){
 
                     if(isset($c->parent_id)){
-                        dd($c);
-                        if($c->parent->parent_id == $category->id){
+
+                        if($c->parent_id == $category->id){
+                            dd($c);
                             $subcat = $c->parent;
                         }
                     }
