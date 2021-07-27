@@ -172,11 +172,12 @@ class HomeController extends Controller
         $categorias = null;
 
         $category = Category::where('slug',$subcategoria)->first();
-        $menu = Category::where('parent_id',$category->parent_id)->get();
+
         $articulos = [];
         $subcategory_id = null;
 
         if(!is_null($category)){
+            $menu = Category::where('parent_id',$category->parent_id)->get();
             $posts = $category->posts;
             $catcount = count($category->posts);
 
