@@ -191,7 +191,7 @@ class HomeController extends Controller
             "card" => $max->imagenbox,
             "slug" => $max->slug,
             "categoria" => @$category,
-            "subcategoria" => @$subcategory,
+            "subcategoria" => null,
             'date_publish'=>$max->date_publish,
             'lectura' => @Post::TimeEstimate($max->contenido)
         );
