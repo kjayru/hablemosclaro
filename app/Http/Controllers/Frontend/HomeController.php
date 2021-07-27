@@ -153,7 +153,7 @@ class HomeController extends Controller
 
             }
 
-            dd($articulos);
+
 
         }
 
