@@ -42,7 +42,7 @@ class HomeController extends Controller
     public function categoria($categoria){
 
         $category = Category::where('slug',$categoria)->first();
-        dd($category->posts);
+
         $categorias = null;
         $articulos = null;
         $subcategoria = null;
@@ -82,7 +82,7 @@ class HomeController extends Controller
         }else{
             $categorias = $category->posts;
 
-
+            dd($category->posts);
 
             foreach($categorias as $art){
 
