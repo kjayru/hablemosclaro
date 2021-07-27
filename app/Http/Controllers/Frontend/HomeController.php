@@ -106,10 +106,25 @@ class HomeController extends Controller
             $llaves = array_unique($post_ids);
 
             foreach($llaves as $k){
-                dd($k);
+
+                $p = Post::find($k);
+
+                $post[] = array(
+
+                    "id" => $sin->id,
+                     "titulo" => $sin->titulo,
+                     "card" => $sin->imagenbox,
+                     "slug" => $sin->slug,
+                     "categoria" => @$category,
+                     "subcategoria" => @$sin->categories[0]->parent,
+                     'date_publish'=> @$sin->date_publish,
+                     'lectura' => @Post::TimeEstimate($sin->contenido)
+
+                 );
             }
             $articulos = collect($post);
 
+            dd($articulos);
         }else{
             $categorias = $category->posts;
 
