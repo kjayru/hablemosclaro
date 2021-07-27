@@ -35,7 +35,7 @@ class HomeController extends Controller
         }
 
 
-        $videos = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','asc')->take(4)->get();
+        $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','asc')->take(4)->get();
         return view('frontend.home',['ultimos'=>$ultimos,'articulos'=>$articulos,'categorias'=>$categorias,'columns'=>$columns,'videos'=>$videos,'sliders'=>$sliders]);
     }
 
@@ -112,7 +112,7 @@ class HomeController extends Controller
 
         $columns = Post::whereNotNull('author_id')->get();
 
-        $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+        $videos = Post::where('post_type_id',2)->orderBy('id','asc')->take(4)->get();
 
         return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category,'subcategoria'=>$subcategoria]);
     }
@@ -206,7 +206,7 @@ class HomeController extends Controller
 
 
 
-       $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+       $videos = Post::where('post_type_id',2)->orderBy('id','asc')->take(4)->get();
 
        $categor = Category::where('slug',$categoria)->first();
        $subcategor = Category::where('slug',$subcategoria)->first();
@@ -233,7 +233,7 @@ class HomeController extends Controller
        $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
 
 
-       $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
+       $videos = Post::where('post_type_id',2)->orderBy('id','asc')->take(4)->get();
 
        //contador de visitas
        $remote_ip  = $_SERVER['REMOTE_ADDR'];
