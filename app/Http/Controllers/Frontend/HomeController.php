@@ -53,7 +53,7 @@ class HomeController extends Controller
             $categorias = Category::where('parent_id',$category->id)->get();
 
             $singlecat = Category::where('id',$category->id)->get();
-            dd($singlecat);
+            dd($singlecat->posts);
             foreach($categorias as $cat){
 
 
