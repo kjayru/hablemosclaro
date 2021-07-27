@@ -53,6 +53,7 @@ class HomeController extends Controller
             $categorias = Category::where('parent_id',$category->id)->get();
 
             foreach($categorias as $cat){
+                dd($cat->nombre);
                 if($cat->nombre == "entretenimiento"){
                     if(count($cat->posts)>0){
 
