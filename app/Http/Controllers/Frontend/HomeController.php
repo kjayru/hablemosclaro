@@ -91,7 +91,7 @@ class HomeController extends Controller
 
 
 
-                            $post[] = array(
+                            $articulos[] = array(
                                 "id" => $art->id,
                                 "titulo" => $art->titulo,
                                 "card" => $art->imagenbox,
