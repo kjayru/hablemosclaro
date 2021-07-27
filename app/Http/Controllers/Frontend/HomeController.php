@@ -53,26 +53,28 @@ class HomeController extends Controller
             $categorias = Category::where('parent_id',$category->id)->get();
 
             foreach($categorias as $cat){
-                if(count($cat->posts)>0){
+                if($cat == "entretenimiento"){
+                    if(count($cat->posts)>0){
 
-                    foreach($cat->posts as $art){
-                        if($art->estado ==1){
+                        foreach($cat->posts as $art){
+                            if($art->estado ==1){
 
 
 
-                            $post[] = array(
-                                "id" => $art->id,
-                                "titulo" => $art->titulo,
-                                "card" => $art->imagenbox,
-                                "slug" => $art->slug,
-                                "categoria" => @$category,
-                                "subcategoria" => @$art->categories[0]->parent,
-                                'date_publish'=> @$art->date_publish,
-                                'lectura' => @Post::TimeEstimate($art->contenido)
+                                $post[] = array(
+                                    "id" => $art->id,
+                                    "titulo" => $art->titulo,
+                                    "card" => $art->imagenbox,
+                                    "slug" => $art->slug,
+                                    "categoria" => @$category,
+                                    "subcategoria" => @$art->categories[0]->parent,
+                                    'date_publish'=> @$art->date_publish,
+                                    'lectura' => @Post::TimeEstimate($art->contenido)
 
-                            );
+                                );
+                            }
                         }
-                      }
+                    }
                 }
             }
 
