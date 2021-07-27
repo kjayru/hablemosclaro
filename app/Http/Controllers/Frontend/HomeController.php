@@ -111,14 +111,14 @@ class HomeController extends Controller
 
                 $post[] = array(
 
-                    "id" => $sin->id,
-                     "titulo" => $sin->titulo,
-                     "card" => $sin->imagenbox,
-                     "slug" => $sin->slug,
+                    "id" => $p->id,
+                     "titulo" => $p->titulo,
+                     "card" => $p->imagenbox,
+                     "slug" => $p->slug,
                      "categoria" => @$category,
-                     "subcategoria" => @$sin->categories[0]->parent,
-                     'date_publish'=> @$sin->date_publish,
-                     'lectura' => @Post::TimeEstimate($sin->contenido)
+                     "subcategoria" => @$p->categories[0]->parent,
+                     'date_publish'=> @$p->date_publish,
+                     'lectura' => @Post::TimeEstimate($p->contenido)
 
                  );
             }
