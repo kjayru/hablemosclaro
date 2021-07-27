@@ -124,7 +124,7 @@ class HomeController extends Controller
             }
             $articulos = collect($post);
 
-            dd($articulos);
+
         }else{
             $categorias = $category->posts;
 
