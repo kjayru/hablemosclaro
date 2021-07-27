@@ -249,9 +249,9 @@
                         <aside class="columnas__item__timer">5 min de lectura</aside>
                     </header>
                     @if(isset($subcategoria))
-                    <a href="/{{$categoria->slug}}/{{$subcategoria->slug}}/{{$postmax['slug']}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$categoria->slug}}/{{@$subcategoria->slug}}/{{$postmax['slug']}}" class="columnas__item__link">Más información</a>
                     @else
-                    <a href="/{{$categoria->slug}}/{{$postmax['slug']}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$categoria->slug}}/{{@$postmax['slug']}}" class="columnas__item__link">Más información</a>
                     @endif
                 </article>
 
