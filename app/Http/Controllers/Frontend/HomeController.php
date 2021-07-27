@@ -110,8 +110,10 @@ class HomeController extends Controller
                 $p = Post::where('id',$k)->orderBy('date_publish','desc')->first();
 
                 foreach($p->categories as $c){
-                    if($c->parent->parent_id == $category->id){
-                        $subcat = $c->parent;
+                    if(isset($c->parent)){
+                        if($c->parent->parent_id == $category->id){
+                            $subcat = $c->parent;
+                        }
                     }
                 }
 
