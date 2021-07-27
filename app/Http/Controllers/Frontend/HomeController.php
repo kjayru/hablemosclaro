@@ -64,9 +64,10 @@ class HomeController extends Controller
 
 
 
-                                $post_ids[] = array(
-                                    $art->id,
-                                   /* "id" => $art->id,
+                                $post_ids[] = $art->id;
+                                 /*array(
+
+                                   "id" => $art->id,
                                     "titulo" => $art->titulo,
                                     "card" => $art->imagenbox,
                                     "slug" => $art->slug,
@@ -85,9 +86,10 @@ class HomeController extends Controller
             foreach( $category->posts as $sin){
                 if($sin->estado ==1){
 
-                    $post_ids[] = array(
-                        $sin->id,
-                     /*   "id" => $sin->id,
+                    $post_ids[] = $sin->id;
+                    /*  array(
+
+                       "id" => $sin->id,
                         "titulo" => $sin->titulo,
                         "card" => $sin->imagenbox,
                         "slug" => $sin->slug,
