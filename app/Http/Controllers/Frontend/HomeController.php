@@ -74,9 +74,9 @@ class HomeController extends Controller
                                     "categoria" => @$category,
                                     "subcategoria" => @$art->categories[0]->parent,
                                     'date_publish'=> @$art->date_publish,
-                                    'lectura' => @Post::TimeEstimate($art->contenido)*/
+                                    'lectura' => @Post::TimeEstimate($art->contenido)
 
-                                );
+                                );*/
                             }
                         }
                     }
@@ -97,8 +97,8 @@ class HomeController extends Controller
                         "subcategoria" => @$sin->categories[0]->parent,
                         'date_publish'=> @$sin->date_publish,
                         'lectura' => @Post::TimeEstimate($sin->contenido)
-                        */
-                    );
+
+                    );*/
                 }
             }
 
