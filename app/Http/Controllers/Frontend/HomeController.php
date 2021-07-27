@@ -184,19 +184,10 @@ class HomeController extends Controller
        }
 
 
-        $max = Post::orderBy('visited','desc')->first();
 
 
-        $postmax = array(
-            "id"=>$max->id,
-            "titulo"=>$max->titulo,
-            "card" => $max->imagenbox,
-            "slug" => $max->slug,
-            "categoria" => @$category,
-            "subcategoria" => null,
-            'date_publish'=>$max->date_publish,
-            'lectura' => @Post::TimeEstimate($max->contenido)
-        );
+
+
 
             return view('frontend.post',['categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous,'subcategoria'=>null]);
         }
@@ -212,6 +203,18 @@ class HomeController extends Controller
 
        $categor = Category::where('slug',$categoria)->first();
        $subcategor = Category::where('slug',$subcategoria)->first();
+
+       $max = Post::orderBy('visited','desc')->first();
+       $postmax = array(
+        "id"=>$max->id,
+        "titulo"=>$max->titulo,
+        "card" => $max->imagenbox,
+        "slug" => $max->slug,
+        "categoria" => @$category,
+        "subcategoria" => null,
+        'date_publish'=>$max->date_publish,
+        'lectura' => @Post::TimeEstimate($max->contenido)
+    );
 
         return view('frontend.subcategory',['postmax'=>$postmax,'videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categor,"subcategoria"=>$subcategor,'current_url'=>$current_url,'category'=>$category]);
     }
