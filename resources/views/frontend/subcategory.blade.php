@@ -27,7 +27,7 @@
                     @foreach($menu as $cat)
                     <li class="listado_de_articulos__nav__item">
                         @php
-                            $seturl = env('APP_URL')."/".$categoria."/".$cat->slug;
+                            $seturl = env('APP_URL')."/".$categoria->slug."/".$cat->slug;
                         @endphp
                             <a href="/{{$categoria->slug}}/{{$cat->slug}}" class="listado_de_articulos__nav__link @if($current_url == $seturl) -active- @endif">{{ $cat->nombre}}</a>
                     </li>
