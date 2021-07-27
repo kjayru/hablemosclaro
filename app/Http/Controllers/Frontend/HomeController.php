@@ -52,9 +52,11 @@ class HomeController extends Controller
         if($contador>0){
             $categorias = Category::where('parent_id',$category->id)->get();
 
+            $singlecat = Category::where('id',$category->id)->get();
+
             foreach($categorias as $cat){
-                dd($cat->nombre);
-                if($cat->nombre == "entretenimiento"){
+
+
                     if(count($cat->posts)>0){
 
                         foreach($cat->posts as $art){
@@ -76,6 +78,23 @@ class HomeController extends Controller
                             }
                         }
                     }
+
+            }
+
+            foreach( $singlecat->posts as $sin){
+                if($sin->estado ==1){
+
+                    $post[] = array(
+                        "id" => $sin->id,
+                        "titulo" => $sin->titulo,
+                        "card" => $sin->imagenbox,
+                        "slug" => $sin->slug,
+                        "categoria" => @$category,
+                        "subcategoria" => @$sin->categories[0]->parent,
+                        'date_publish'=> @$sin->date_publish,
+                        'lectura' => @Post::TimeEstimate($sin->contenido)
+
+                    );
                 }
             }
 
