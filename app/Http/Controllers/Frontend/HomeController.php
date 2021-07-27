@@ -128,13 +128,11 @@ class HomeController extends Controller
         }else{
             $categorias = $category->posts;
 
-            dd($category);
+
 
             foreach($categorias as $art){
 
-               /* if(count($cat)>0){
 
-                    foreach($cat as $art){*/
                         if($art->estado ==1){
 
 
@@ -151,11 +149,11 @@ class HomeController extends Controller
 
                             );
                         }
-                   /*   }
-                }*/
+
+
             }
 
-
+            dd($articulos);
 
         }
 
