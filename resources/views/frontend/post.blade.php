@@ -109,9 +109,9 @@
                     <strong><img src="/assets/public/images/ico_arrow_article.png" alt="">Artículo anterior</strong>
 
                     @if($previous['subcategory'])
-                    <a href="/{{ @$previous['category']}}/{{ @$previous['subcategory'] }}/{{ @$previous['slug'] }}">{{ @$previous['titulo'] }}</a>
+                    <a href="/{{ @$previous['category']->slug}}/{{ @$previous['subcategory']->slug }}/{{ @$previous['slug'] }}">{{ @$previous['titulo'] }}</a>
                     @else
-                    <a href="/{{ @$previous['category']}}/{{ @$previous['slug'] }}">{{ @$previous['titulo'] }}</a>
+                    <a href="/{{ @$previous['category']->slug}}/{{ @$previous['slug'] }}">{{ @$previous['titulo'] }}</a>
                     @endif
                 </span>
                 @endif
@@ -121,9 +121,9 @@
                     <strong>Artículo siguiente<img src="/assets/public/images/ico_arrow_article.png" alt=""></strong>
 
                     @if($next['subcategory'])
-                    <a href="/{{ @$next['category']}}/{{ @$next['subcategory']}}/{{@$next['slug']}}">{{ @$next['titulo']}}</a>
+                    <a href="/{{ @$next['category']->slug}}/{{ @$next['subcategory']->slug}}/{{@$next['slug']}}">{{ @$next['titulo']}}</a>
                     @else
-                    <a href="/{{ @$next['category']}}/{{@$next['slug']}}">{{ @$next['titulo']}}</a>
+                    <a href="/{{ @$next['category']->slug}}/{{@$next['slug']}}">{{ @$next['titulo']}}</a>
                     @endif
                 </span>
                 @endif
