@@ -53,7 +53,7 @@ class HomeController extends Controller
             $categorias = Category::where('parent_id',$category->id)->get();
 
             //$singlecat = Category::where('id',$category->id)->get();
-            dd($category->posts);
+
             foreach($categorias as $cat){
 
 
@@ -64,15 +64,16 @@ class HomeController extends Controller
 
 
 
-                                $post[] = array(
-                                    "id" => $art->id,
+                                $post_ids[] = array(
+                                    $art->id,
+                                   /* "id" => $art->id,
                                     "titulo" => $art->titulo,
                                     "card" => $art->imagenbox,
                                     "slug" => $art->slug,
                                     "categoria" => @$category,
                                     "subcategoria" => @$art->categories[0]->parent,
                                     'date_publish'=> @$art->date_publish,
-                                    'lectura' => @Post::TimeEstimate($art->contenido)
+                                    'lectura' => @Post::TimeEstimate($art->contenido)*/
 
                                 );
                             }
@@ -81,11 +82,12 @@ class HomeController extends Controller
 
             }
 
-            foreach( $singlecat->posts as $sin){
+            foreach( $category->posts as $sin){
                 if($sin->estado ==1){
 
-                    $post[] = array(
-                        "id" => $sin->id,
+                    $post_ids[] = array(
+                        $art->id,
+                     /*   "id" => $sin->id,
                         "titulo" => $sin->titulo,
                         "card" => $sin->imagenbox,
                         "slug" => $sin->slug,
@@ -93,14 +95,15 @@ class HomeController extends Controller
                         "subcategoria" => @$sin->categories[0]->parent,
                         'date_publish'=> @$sin->date_publish,
                         'lectura' => @Post::TimeEstimate($sin->contenido)
-
+                        */
                     );
                 }
             }
 
+            dd($post_ids);
 
             $articulos = collect($post);
-            dd($articulos);
+
         }else{
             $categorias = $category->posts;
 
