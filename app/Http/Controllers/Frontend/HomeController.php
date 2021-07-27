@@ -45,6 +45,7 @@ class HomeController extends Controller
 
         $categorias = null;
         $articulos = null;
+        $subcategoria = null;
 
         $contador = Category::where('parent_id',$category->id)->count();
 
@@ -113,7 +114,7 @@ class HomeController extends Controller
 
         $videos = Post::where('post_type_id',3)->orderBy('id','asc')->take(4)->get();
 
-        return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category]);
+        return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category,'subcategoria'=>$subcategoria]);
     }
 
 
