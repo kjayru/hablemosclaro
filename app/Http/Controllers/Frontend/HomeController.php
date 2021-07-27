@@ -42,7 +42,7 @@ class HomeController extends Controller
     public function categoria($categoria){
 
         $category = Category::where('slug',$categoria)->first();
-
+        dd($category->posts);
         $categorias = null;
         $articulos = null;
         $subcategoria = null;
@@ -51,7 +51,6 @@ class HomeController extends Controller
 
         if($contador>0){
             $categorias = Category::where('parent_id',$category->id)->get();
-           // $articulos = $category->posts;
 
             foreach($categorias as $cat){
                 if(count($cat->posts)>0){
@@ -82,6 +81,8 @@ class HomeController extends Controller
 
         }else{
             $categorias = $category->posts;
+
+
 
             foreach($categorias as $art){
 
@@ -126,11 +127,9 @@ class HomeController extends Controller
         $category = Category::where('slug',$subcategoria)->first();
         $articulos = [];
         $subcategory_id = null;
+
         if(!is_null($category)){
-
             $posts = $category->posts;
-
-
             $catcount = count($category->posts);
 
             if($catcount>0){
@@ -164,29 +163,24 @@ class HomeController extends Controller
 
 
             //contador de visitas
-       $remote_ip  = $_SERVER['REMOTE_ADDR'];
-       $post_id = $post->id;
+            $remote_ip  = $_SERVER['REMOTE_ADDR'];
+            $post_id = $post->id;
 
-       $contador = Visit::where('ip',$remote_ip)->where('post_id',$post_id)->count();
-       $indice = 1;
-       if($contador==0){
-            $visita = new Visit();
-            $visita->ip = $remote_ip;
-            $visita->post_id = $post_id;
-            $visita->save();
+            $contador = Visit::where('ip',$remote_ip)->where('post_id',$post_id)->count();
+            $indice = 1;
+            if($contador==0){
+                    $visita = new Visit();
+                    $visita->ip = $remote_ip;
+                    $visita->post_id = $post_id;
+                    $visita->save();
 
-            $postvisited = Post::find($post_id);
+                    $postvisited = Post::find($post_id);
 
-            $pv = $postvisited->visited;
+                    $pv = $postvisited->visited;
 
-            $postvisited->visited = intval($pv) + 1;
-            $postvisited->save();
-       }
-
-
-
-
-
+                    $postvisited->visited = intval($pv) + 1;
+                    $postvisited->save();
+            }
 
 
             return view('frontend.post',['categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous,'subcategoria'=>null]);
