@@ -50,15 +50,15 @@
                     <img src="/storage/{{@$post['card']}}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">__{{ @$categoria->nombre}}</strong>
+                    <strong class="columnas__item__subtitle">__{{ @$post['categoria']->nombre}}</strong>
                     <time class="columnas__item__date">{{@$post['date_publish']}}</time>
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
                     <aside class="columnas__item__timer"> {{@$post['lectura']}} min de lectura</aside>
                 </header>
                 @if(isset($post['subcategoria']))
-                <a href="/{{@$categoria->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
+                <a href="/{{@$post['categoria']->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
                 @else
-                <a href="/{{@$category->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
+                <a href="/{{@$post['categoria']->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
                 @endif
             </article>
         @endforeach
