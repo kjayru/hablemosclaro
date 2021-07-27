@@ -50,7 +50,7 @@
                     <img src="/storage/{{@$post['card']}}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">---{{ @$categoria}}</strong>
+                    <strong class="columnas__item__subtitle">{{ @$categoria}}</strong>
                     <time class="columnas__item__date">{{@$post['date_publish']}}</time>
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
                     <aside class="columnas__item__timer"> {{@$post['lectura']}} min de lectura</aside>
