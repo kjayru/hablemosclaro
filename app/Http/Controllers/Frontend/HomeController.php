@@ -106,7 +106,7 @@ class HomeController extends Controller
             $llaves = array_unique($post_ids);
 
             foreach($llaves as $k){
-
+                dd($k);
                 $p = Post::where('id',$k)->where('date_publish','desc')->first();
                 dd($p);
                 $post[] = array(
