@@ -42,7 +42,7 @@
         </nav>
 
         <div class="listado_de_articulos__list">
-            {{dd($articulos)}}
+
         @foreach($articulos as $post)
 
             <article class="columnas__item" data-order="{{@$post['id']}}">
