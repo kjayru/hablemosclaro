@@ -110,7 +110,7 @@ class HomeController extends Controller
 
         }
 
-        $columns = Post::whereNotNull('author_id')->get();
+        $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
         $videos = Post::where('post_type_id',2)->orderBy('id','asc')->take(4)->get();
 
@@ -202,7 +202,7 @@ class HomeController extends Controller
        $current_url = url()->full();
 
         /**Columnas */
-       $columns = Post::whereNotNull('author_id')->get();
+        $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
 
 
@@ -225,7 +225,7 @@ class HomeController extends Controller
         $previous = Post::previous($articulo->id,$category->id,$subcategory->id);
        // dd($post);
 
-       $columns = Post::whereNotNull('author_id')->get();
+       $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
 
        $category_id = $category->id;
