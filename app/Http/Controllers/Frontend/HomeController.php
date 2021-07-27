@@ -86,7 +86,7 @@ class HomeController extends Controller
                 if($sin->estado ==1){
 
                     $post_ids[] = array(
-                        $art->id,
+                        $sin->id,
                      /*   "id" => $sin->id,
                         "titulo" => $sin->titulo,
                         "card" => $sin->imagenbox,
@@ -100,8 +100,8 @@ class HomeController extends Controller
                 }
             }
 
-            dd($post_ids);
-
+           // dd($post_ids);
+            dd( array_keys($post_ids));
             $articulos = collect($post);
 
         }else{
