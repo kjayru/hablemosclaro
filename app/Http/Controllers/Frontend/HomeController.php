@@ -48,7 +48,7 @@ class HomeController extends Controller
         $subcategoria = null;
 
         $contador = Category::where('parent_id',$category->id)->count();
-
+        dd($contador);
         if($contador>0){
             $categorias = Category::where('parent_id',$category->id)->get();
 
