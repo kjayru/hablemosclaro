@@ -116,7 +116,7 @@ class HomeController extends Controller
                      "card" => $p->imagenbox,
                      "slug" => $p->slug,
                      "categoria" => @$category,
-                     "subcategoria" => @$p->categories[0]->parent,
+                     "subcategoria" => @$p->categories[1]->parent,
                      'date_publish'=> @$p->date_publish,
                      'lectura' => @Post::TimeEstimate($p->contenido)
 
