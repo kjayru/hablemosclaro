@@ -58,7 +58,7 @@
                 @if(isset($post['subcategoria']))
                 <a href="/{{@$categoria->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
                 @else
-                <a href="/{{@$categoria->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
+                <a href="/{{@$category->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
                 @endif
             </article>
         @endforeach
