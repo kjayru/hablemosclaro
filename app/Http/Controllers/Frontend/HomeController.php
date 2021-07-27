@@ -109,6 +109,12 @@ class HomeController extends Controller
 
                 $p = Post::where('id',$k)->orderBy('date_publish','desc')->first();
 
+                foreach($p->categories as $c){
+                    if($c->parent->parent_id == $category->id){
+                        $subcat = $c->parent;
+                    }
+                }
+
                 $post[] = array(
 
                     "id" => $p->id,
@@ -116,7 +122,7 @@ class HomeController extends Controller
                      "card" => $p->imagenbox,
                      "slug" => $p->slug,
                      "categoria" => @$category,
-                     "subcategoria" => @$p->categories[1]->parent,
+                     "subcategoria" => @$subcat,
                      'date_publish'=> @$p->date_publish,
                      'lectura' => @Post::TimeEstimate($p->contenido)
 
