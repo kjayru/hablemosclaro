@@ -55,8 +55,8 @@
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
                     <aside class="columnas__item__timer"> {{@$post['lectura']}} min de lectura</aside>
                 </header>
-                @if(($post['subcategoria']!='')
-                <a href="/{{@$post['categoria']->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">Más información</a>
+                @if($post['subcategoria']!='')
+                <a href="/{{@$post['categoria']->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">--Más información</a>
                 @else
                 <a href="/{{@$post['categoria']->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
                 @endif
