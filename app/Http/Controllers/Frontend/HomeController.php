@@ -181,6 +181,8 @@ class HomeController extends Controller
 
             if($catcount>0){
                 $categorias = Category::where('parent_id',$category->parent_id)->get();
+
+                $menu = Category::where('parent_id',$category->parent_id)->get();
             }
             foreach($posts as $post){
                 if($post->estado==1){
@@ -257,7 +259,7 @@ class HomeController extends Controller
         'lectura' => @Post::TimeEstimate($max->contenido)
     );
 
-        return view('frontend.subcategory',['postmax'=>$postmax,'videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categor,"subcategoria"=>$subcategor,'current_url'=>$current_url,'category'=>$category]);
+        return view('frontend.subcategory',['menu'=>$menu,'postmax'=>$postmax,'videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categor,"subcategoria"=>$subcategor,'current_url'=>$current_url,'category'=>$category]);
     }
 
 

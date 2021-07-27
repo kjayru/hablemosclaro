@@ -23,8 +23,8 @@
             <ul class="listado_de_articulos__nav__inset">
                 <li class="listado_de_articulos__nav__item"><a href="/{{$categoria->slug}}" class="listado_de_articulos__nav__link">Todo</a>
                 </li>
-                @if(isset($categorias))
-                    @foreach($categorias as $cat)
+                @if(isset($menu))
+                    @foreach($menu as $cat)
                     <li class="listado_de_articulos__nav__item">
                         @php
                             $seturl = env('APP_URL')."/".$categoria."/".$cat->slug;
