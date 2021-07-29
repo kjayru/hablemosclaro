@@ -43,7 +43,7 @@
                                 </div>
                             @endif
 
-                          <form class="form-horizontal" action="{{ route('usuario.store') }}" method="POST" enctype="multipart/form-data">
+                          <form class="form-horizontal" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
 
                             <div class="card-header with-border">
 
@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <a href="{{ route('usuario.index') }}" class="btn btn-back">Cancelar</a>
+                                <a href="{{ route('user.index') }}" class="btn btn-back">Cancelar</a>
                                 <button type="submit" class="btn btn-info pull-right">Guardar</button>
                             </div>
                           </form>

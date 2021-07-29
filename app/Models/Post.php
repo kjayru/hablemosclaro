@@ -166,7 +166,7 @@ class Post extends Model
 
 
            $posts = $category->posts;
-
+            dd($posts);
            if(count($posts)){
                    foreach($posts as $ps){
                        $ids[]=$ps->id;

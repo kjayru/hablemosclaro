@@ -29,26 +29,18 @@
             <!-- general form elements -->
             <div class="card card-primary">
 
+                <form role="form" action="{{ route('user.update',$user->id) }}" method="POST" enctype="multipart/form-data">
+                    <div class="card-body">
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT">
+                        @include('backend.usuario.form.edit')
+                    </div>
 
-
-              <form role="form" action="{{ route('usuario.update',$user->id) }}" method="POST" enctype="multipart/form-data">
-                <div class="card-body">
-
-                    @csrf
-                    <input type="hidden" name="_method" value="PUT">
-
-
-                    @include('backend.usuario.form.edit')
-
-                  </div>
-
-                  <div class="card-footer">
-                    <a href="{{ route('usuario.index') }}" class="btn btn-back">Cancelar</a>
-                    <button type="submit" class="btn btn-info pull-right">Guardar</button>
-
-                  </div>
-              </form>
-
+                    <div class="card-footer">
+                        <a href="{{ route('user.index') }}" class="btn btn-back">Cancelar</a>
+                        <button type="submit" class="btn btn-info pull-right">Guardar</button>
+                    </div>
+                </form>
 
             </div>
         </div>

@@ -23,12 +23,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
-         <!-- <li class="nav-item has-treeview ">
-            <a href="/admin" class="nav-link {{{ (Request::is('admin') ? 'active' : '') }}}">
+          <li class="nav-item has-treeview ">
+            <a href="/admin/users" class="nav-link {{{ (Request::is('admin/users') ? 'active' : '') }}}">
 
               <p>Usuarios </p>
             </a>
-          </li>-->
+          </li>
 
           <li class="nav-item has-treeview ">
             <a href="/admin/categories" class="nav-link {{{ (Request::is('admin/Categorias') ? 'active' : '') }}}">
@@ -63,6 +63,13 @@
             <a href="/admin/media" class="nav-link {{{ (Request::is('admin/media') ? 'active' : '') }}}">
 
               <p>Media </p>
+            </a>
+          </li>
+
+          <li class="nav-item has-treeview ">
+            <a href="/admin/configuration" class="nav-link {{{ (Request::is('admin/configuration') ? 'active' : '') }}}">
+
+              <p>Configuración </p>
             </a>
           </li>
 

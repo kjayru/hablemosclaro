@@ -30,12 +30,20 @@ Auth::routes([
 
     Route::get('/', [AdminController::class,'index'])->name('dashboard');
 
+    Route::get('/users', [UserController::class,'index'])->name('user.index');
+    Route::get('/users/create', [UserController::class,'create'])->name('user.create');
+    Route::post('/users', [UserController::class,'store'])->name('user.store');
+    Route::get('/users/{user}/edit', [UserController::class,'edit'])->name('user.edit');
+    Route::put('/users/{user}', [UserController::class,'update'])->name('user.update');
+    Route::delete('/users/{user}', [UserController::class,'destroy'])->name('user.destroy');
+
+
     Route::get('/categories', [CategoryController::class,'index'])->name('category.index');
     Route::get('/categories/create', [CategoryController::class,'create'])->name('category.create');
     Route::post('/categories', [CategoryController::class,'store'])->name('category.store');
-    Route::get('/categories/{user}/edit', [CategoryController::class,'edit'])->name('category.edit');
-    Route::put('/categories/{user}', [CategoryController::class,'update'])->name('category.update');
-    Route::delete('/categories/{user}', [CategoryController::class,'destroy'])->name('category.destroy');
+    Route::get('/categories/{categoria}/edit', [CategoryController::class,'edit'])->name('category.edit');
+    Route::put('/categories/{categoria}', [CategoryController::class,'update'])->name('category.update');
+    Route::delete('/categories/{categoria}', [CategoryController::class,'destroy'])->name('category.destroy');
 
     Route::get('/posts', [PostController::class,'index'])->name('post.index');
     Route::get('/posts/create', [PostController::class,'create'])->name('post.create');

@@ -28,15 +28,21 @@ class HomeController extends Controller
         $sliders = Post::where('post_type_id',4)->orderBy('date_publish','desc')->take(5)->get();
         $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
-       /* foreach($posts as $post){
-            if(count($post->author_id)>0){
-                $columns[] = $post;
-            }
-        }*/
+
+
+
+
 
 
         $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
-        return view('frontend.home',['ultimos'=>$ultimos,'articulos'=>$articulos,'categorias'=>$categorias,'columns'=>$columns,'videos'=>$videos,'sliders'=>$sliders]);
+        return view('frontend.home',[
+
+            'ultimos'=>$ultimos,
+            'articulos'=>$articulos,
+            'categorias'=>$categorias,
+            'columns'=>$columns,
+            'videos'=>$videos,
+            'sliders'=>$sliders]);
     }
 
     public function categoria($categoria){
@@ -106,15 +112,10 @@ class HomeController extends Controller
             $llaves = array_unique($post_ids);
 
             foreach($llaves as $k){
-
                 $p = Post::where('id',$k)->orderBy('date_publish','desc')->first();
-
                 foreach($p->categories as $c){
-
                     if(isset($c->parent_id)){
-
                         if($c->parent_id == $category->id){
-
                             $subcat = $c;
                         }
                     }
@@ -346,39 +347,6 @@ class HomeController extends Controller
     }
 
 
-    public function buscar(Request $request){
-        /*$posts = DB::table('posts')
-                    ->where('posts.titulo','LIKE',"%{$request->word}%")
-                    ->leftJoin('categories', 'posts.category_id', 'categories.id')
-                    ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory')
-                    ->limit(4)
-                    ->get();*/
-
-        $result = [];
-         $posts = Post::where('posts.titulo','LIKE',"%{$request->word}%")->take(6)->get();
-
-         foreach($posts as $post){
-             if(isset($post->categories[0]->parent)){
-                 $result[] = array(
-                     "category"=>@$post->categories[0]->parent->slug,
-                     "subcategory"=>@$post->categories[0]->slug,
-                     "slug" => $post->slug,
-                     "titulo" => $post->titulo,
-                    );
-             }else{
-                $result[] = array(
-                    "category"=>@$post->categories[0]->slug,
-                    "subcategory"=>"",
-                    "slug" => $post->slug,
-                    "titulo" => $post->titulo,
-                   );
-             }
-         }
-
-         //dd($result);
-
-        return response()->json(['rpta'=>'ok',"data"=>$result]);
-    }
 
 
 
@@ -422,6 +390,42 @@ class HomeController extends Controller
         $posts = collect($result);
 
         return view('frontend.buscar',['posts'=>$posts,'word'=>$word]);
+    }
+
+
+    public function buscar(Request $request){
+        /*$posts = DB::table('posts')
+                    ->where('posts.titulo','LIKE',"%{$request->word}%")
+                    ->leftJoin('categories', 'posts.category_id', 'categories.id')
+                    ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory')
+                    ->limit(4)
+                    ->get();*/
+
+        $result = [];
+         $posts = Post::where('titulo','LIKE',"%{$request->word}%")->take(6)->get();
+
+         foreach($posts as $post){
+
+             if(isset($post->categories[0]->parent)){
+                 $result[] = array(
+                     "category"=>@$post->categories[0]->parent->slug,
+                     "subcategory"=>@$post->categories[0]->slug,
+                     "slug" => $post->slug,
+                     "titulo" => $post->titulo,
+                    );
+             }else{
+                $result[] = array(
+                    "category"=>@$post->categories[0]->slug,
+                    "subcategory"=>"",
+                    "slug" => $post->slug,
+                    "titulo" => $post->titulo,
+                   );
+             }
+         }
+
+         //dd($result);
+
+        return response()->json(['rpta'=>'ok',"data"=>$result]);
     }
 
 }

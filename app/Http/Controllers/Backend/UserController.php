@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -17,7 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::orderBy('id','desc')->get();
+
+        return view('backend.usuario.index',['users'=>$users]);
     }
 
     /**
@@ -27,7 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.usuario.create');
     }
 
     /**
@@ -38,19 +45,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        return redirect(route('user.index'))
+        ->with('info', 'Usuario creado con éxito.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -60,7 +67,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('backend.usuario.edit',['user'=>$user]);
     }
 
     /**
@@ -72,7 +81,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if(isset($user->password)){
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        return redirect(route('user.index'))
+        ->with('info', 'Usuario actualizada con éxito.');
     }
 
     /**
@@ -81,8 +100,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        User::find($request->id)->delete();
+        return redirect()->route('user.index')->with('info','Usuario eliminado con éxito');
     }
 }

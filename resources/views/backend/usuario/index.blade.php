@@ -41,7 +41,7 @@
             <div class="card-body">
                 <div class="row">
                   <div class="col-md-3">
-                      <a href="/admin/usuarios/create" class="btn btn-block btn-outline-primary btn-flat mb-4 mt-2">Crear Usuario</a>
+                      <a href="/admin/users/create" class="btn btn-block btn-outline-primary btn-flat mb-4 mt-2">Crear Usuario</a>
                   </div>
               </div>
 
@@ -50,11 +50,7 @@
                 <tr>
                     <th></th>
                     <th>Nombres</th>
-                    <th>Apellidos</th>
                     <th>Email</th>
-                    <th>Empresa</th>
-                    <th>Unidad</th>
-                    <th>Creador</th>
                     <th>Fecha</th>
                     <th></th>
                 </tr>
@@ -62,57 +58,18 @@
                 <tbody>
 
                     @foreach($users->sortBy('id') as $key=>$row)
-
-                    @if($rol=="administrador")
                     <tr>
                         <td>{{$key+1}} </td>
                         <td>{{$row->name}}</td>
-                        <td>{{$row->lastname}}</td>
                         <td>{{$row->email}}</td>
-
-                        <td>
-                            {{@$row->agency['nombre']}}
-                        </td>
-                        <td>
-                            {{@$row->unit['nombre']}}
-                        </td>
-                        <td>{{ @$row->parent[0]->name }} {{ @$row->parent[0]->lastname }}</td>
-
                         <td>{{Carbon\Carbon::parse($row->created_at)->format('d/m/Y h:m:s')}}</td>
                         <td width="7%">
-                            <a href="/admin/usuarios/{{$row->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
+                            <a href="/admin/users/{{$row->id}}/edit" class="btn-xs btn btn-outline-info"><i class="far fa-edit"></i></a>
                             <a href="#" data-id="{{$row->id}}" data-toggle="modal" data-target="#delobjeto" class="btn btn-xs btn-dangers btn-object-delete"><i class="far fa-trash-alt"></i></a>
 
-                          </td>
+                        </td>
                     </tr>
-                   @else
-                        @if($agenciarol==$row->agency['nombre'])
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{$row->name}}</td>
-                                <td>{{$row->lastname}}</td>
-                                <td>{{$row->email}}</td>
-
-                                <td>
-                                    {{@$row->agency['nombre']}}
-                                </td>
-                                <td>
-                                    {{@$row->unit['nombre']}}
-                                </td>
-                                <td>{{$row->created_at}}</td>
-                                <td width="7%">
-                                    <a href="/admin/usuarios/{{$row->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
-                                    <a href="#" data-id="{{$row->id}}" data-toggle="modal" data-target="#delobjeto" class="btn btn-xs btn-dangers btn-object-delete"><i class="far fa-trash-alt"></i></a>
-
-                                </td>
-                            </tr>
-                        @endif
-
-                   @endif
-
                     @endforeach
-
-
                 </tbody>
 
               </table>
@@ -137,7 +94,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-danger">
 
-            <form class="delete-objeto" action="/admin/usuarios/delete" method="POST">
+            <form class="delete-objeto" action="/admin/users/delete" method="POST">
                 @csrf
 
                 <div class="modal-header">
