@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\AuthorController;
+use App\Http\Controllers\Backend\ConfigurationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Auth::routes([
   Route::group(['prefix' => 'admin'],function(){
 
     Route::get('/', [AdminController::class,'index'])->name('dashboard');
+
+    Route::get('/configuration', [ConfigurationController::class,'index'])->name('configuration.index');
+    Route::put('/configuration/{config}', [ConfigurationController::class,'update'])->name('configuration.update');
 
     Route::get('/users', [UserController::class,'index'])->name('user.index');
     Route::get('/users/create', [UserController::class,'create'])->name('user.create');

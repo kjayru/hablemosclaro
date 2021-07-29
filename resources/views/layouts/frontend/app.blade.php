@@ -10,6 +10,12 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <link rel="dns-prefetch" href="//www.facebook.com/"  />
+        <link rel="dns-prefetch" href="//www.google-analytics.com/" />
+        <link rel="dns-prefetch" href="//www.google.com/" />
+        <link rel="dns-prefetch" href="//gstatic.com/" />
+        <link rel="preconnect" href="//www.google-analytics.com/">
+
         <link rel="canonical" href="https://hablandoclaro.pe/" />
 
 
@@ -29,6 +35,7 @@
 
         <link rel="shortcut icon" href="/favicon.ico" />
         <link id="site-css" rel="stylesheet" href="/assets/public/css/site.css?v={{uniqid()}}">
+
 
 
     </head>

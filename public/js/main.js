@@ -367,3 +367,103 @@ $(".btn-abrirautor").on('click',function (e) {
         }
     });
 });
+
+
+
+
+$(".btn-abrirpop1").on('click',function (e) {
+    e.preventDefault();
+    $("#imagenfacebook").html("");
+    CKFinder.popup({
+        chooseFiles: true,
+        onInit: function (finder) {
+            finder.on('files:choose', function (evt) {
+
+                var file = evt.data.files.first();
+
+
+                var folder = file.get('folder');
+                var folderName1 = folder.get('name');
+                var parentFolder1 = folder.get('parent');
+                if (parentFolder1 != null) {
+                    var folderName2 = parentFolder1.get('name');
+                    var parentFolder2 = parentFolder1.get('parent');
+                }
+                if (parentFolder2 != null) {
+                    var folderName3 = parentFolder2.get('name');
+                    var parentFolder3 = parentFolder2.get('parent');
+                }
+
+                var pathfile = null;
+
+                if (parentFolder3 == null) {
+                    pathfile = folderName3 + '/' + folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder2 == null) {
+                    pathfile = folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder1 == null) {
+                    pathfile = folderName1 + '/' + file.get('name');
+                }
+                if (folder == null) {
+                    pathfile = file.get('name');
+                }
+
+                document.getElementById('imagenfacebook').value = pathfile;
+
+                $("#urlfacebook").attr("src", hostedUrl + "/" + pathfile);
+
+            });
+
+        }
+    });
+});
+
+
+$(".btn-abrirpop2").on('click',function (e) {
+    e.preventDefault();
+    $("#imagentwitter").html("");
+    CKFinder.popup({
+        chooseFiles: true,
+        onInit: function (finder) {
+            finder.on('files:choose', function (evt) {
+
+                var file = evt.data.files.first();
+
+
+                var folder = file.get('folder');
+                var folderName1 = folder.get('name');
+                var parentFolder1 = folder.get('parent');
+                if (parentFolder1 != null) {
+                    var folderName2 = parentFolder1.get('name');
+                    var parentFolder2 = parentFolder1.get('parent');
+                }
+                if (parentFolder2 != null) {
+                    var folderName3 = parentFolder2.get('name');
+                    var parentFolder3 = parentFolder2.get('parent');
+                }
+
+                var pathfile = null;
+
+                if (parentFolder3 == null) {
+                    pathfile = folderName3 + '/' + folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder2 == null) {
+                    pathfile = folderName2 + '/' + folderName1 + '/' + file.get('name');
+                }
+                if (parentFolder1 == null) {
+                    pathfile = folderName1 + '/' + file.get('name');
+                }
+                if (folder == null) {
+                    pathfile = file.get('name');
+                }
+
+                document.getElementById('imagentwitter').value = pathfile;
+
+                $("#urltwitter").attr("src", hostedUrl + "/" + pathfile);
+
+            });
+
+        }
+    });
+});
