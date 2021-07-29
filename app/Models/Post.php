@@ -13,8 +13,8 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function authors(){
-        return $this->belongsToMany(Author::class);
+    public function author(){
+        return $this->belongsTo(Author::class);
     }
 
     public function tags(){
