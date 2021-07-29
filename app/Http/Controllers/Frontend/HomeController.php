@@ -218,7 +218,23 @@ class HomeController extends Controller
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
-            $relacionados = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
+            $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
+
+            //relacionados arreglo
+            foreach($relacion as $rel){
+                $relacionados[] = array(
+                    "id"=>$rel->id,
+                    "titulo"=>$rel->titulo,
+                    "imagenbox" => $rel->imagenbox,
+                    "slug" => $rel->slug,
+                    "categoria" => @$category,
+                    "subcategoria" => null,
+                    'date_publish'=>$rel->date_publish,
+                    'lectura' => @Post::TimeEstimate($rel->contenido)
+                );
+            }
+
+
             $next = Post::next($post->id,$category_id,$subcategory_id);
             $previous = Post::previous($post->id,$category_id,$subcategory_id);
 
@@ -301,7 +317,21 @@ class HomeController extends Controller
 
        $category_id = $category->id;
 
-       $relacionados = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
+       $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
+
+       //relacionados arreglo
+       foreach($relacion as $rel){
+            $relacionados[] = array(
+                "id"=>$rel->id,
+                "titulo"=>$rel->titulo,
+                "imagenbox" => $rel->imagenbox,
+                "slug" => $rel->slug,
+                "categoria" => @$category,
+                "subcategoria" => null,
+                'date_publish'=>$rel->date_publish,
+                'lectura' => @Post::TimeEstimate($rel->contenido)
+            );
+        }
 
 
        $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
