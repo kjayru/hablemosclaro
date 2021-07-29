@@ -188,14 +188,14 @@
                 @foreach($relacionados as $rel)
                 <article class="columnas__item">
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">{{ @$categoria->nombre}}</strong>
-                        <h3 class="columnas__item__title">{{ @$rel->titulo}}</h3>
-                        <aside class="columnas__item__timer">5 min de lectura</aside>
+                        <strong class="columnas__item__subtitle">{{ @$categoria['nombre']}}</strong>
+                        <h3 class="columnas__item__title">{{ @$rel['titulo']}}</h3>
+                        <aside class="columnas__item__timer">{{@$rel['lectura'] }} min de lectura</aside>
                     </header>
                     @if(isset($subcategoria))
-                    <a href="/{{@$categoria->slug}}/{{@$subcategoria->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$categoria->slug}}/{{@$subcategoria->slug}}/{{@$rel['slug']}}" class="columnas__item__link">Más información</a>
                     @else
-                    <a href="/{{@$categoria->slug}}/{{@$rel->slug}}" class="columnas__item__link">Más información</a>
+                    <a href="/{{@$categoria->slug}}/{{@$rel['slug']}}" class="columnas__item__link">Más información</a>
                     @endif
                 </article>
                 @endforeach
