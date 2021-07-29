@@ -353,7 +353,7 @@ class HomeController extends Controller
     public function posttype($posttype){
 
         $type = PostType::where('tipo',$posttype)->first();
-        $articulos = Post::where('post_type_id',$type->id)->orderBy('id', 'desc')->get();
+        $articulos = Post::where('post_type_id',$type->id)->orderBy('id', 'desc')->where('estado',1)->get();
         $categorias = Category::wherenull('parent_id')->get();
 
         return view('frontend.articulos',['articulos'=>$articulos,'posttype'=>$type,"categorias"=>$categorias]);
@@ -364,7 +364,7 @@ class HomeController extends Controller
 
 
         $result = [];
-        $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->get();
+        $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->where('estado',1)->get();
 
         foreach($articulos as $post){
             if(isset($post->categories[0]->parent)){
@@ -402,7 +402,7 @@ class HomeController extends Controller
                     ->get();*/
 
         $result = [];
-         $posts = Post::where('titulo','LIKE',"%{$request->word}%")->take(6)->get();
+         $posts = Post::where('titulo','LIKE',"%{$request->word}%")->where('estado',1)->take(6)->get();
 
          foreach($posts as $post){
 
