@@ -218,7 +218,7 @@ class HomeController extends Controller
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
-            $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
+            $relacionados = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
             $next = Post::next($post->id,$category_id,$subcategory_id);
             $previous = Post::previous($post->id,$category_id,$subcategory_id);
 
@@ -290,7 +290,7 @@ class HomeController extends Controller
 
        $category_id = $category->id;
 
-       $relacionados = Post::where('category_id',$category_id)->inRandomOrder()->take(5)->get();
+       $relacionados = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
 
 
        $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
