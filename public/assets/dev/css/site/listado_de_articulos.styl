@@ -1,6 +1,7 @@
 .listado_de_articulos
 	display flex
 	flex-wrap wrap
+	align-items flex-start
 	
 	&__header
 		width 100%
@@ -37,6 +38,7 @@
 			color --gris
 			font-size rem(25)
 			font-weight 500
+			cursor pointer
 			transition all ease .25s
 			&:after
 				content ''
@@ -174,6 +176,15 @@
 				&.-end-
 					~ .columnas__item
 						display none
+					
+		&__no-results
+			width 100%
+			font-size rem(22)
+			text-align center
+			font-weight 500
+			color #91979e
+			border rem(1) solid #ddd
+			padding rem(25, 15)
 
 	@media (max-width 1080px)
 		

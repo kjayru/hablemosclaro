@@ -2104,6 +2104,9 @@ select {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 .listado_de_articulos__header {
   width: 100%;
@@ -2142,6 +2145,7 @@ select {
   color: #91979e;
   font-size: 1.5625rem;
   font-weight: 500;
+  cursor: pointer;
   -webkit-transition: all ease 0.25s;
   transition: all ease 0.25s;
 }
@@ -2299,6 +2303,15 @@ select {
 }
 .listado_de_articulos__list.-js- .columnas__item.-end- ~ .columnas__item {
   display: none;
+}
+.listado_de_articulos__list__no-results {
+  width: 100%;
+  font-size: 1.375rem;
+  text-align: center;
+  font-weight: 500;
+  color: #91979e;
+  border: 0.0625rem solid #ddd;
+  padding: 1.5625rem 0.9375rem;
 }
 @media (max-width: 1080px) {
   .listado_de_articulos {

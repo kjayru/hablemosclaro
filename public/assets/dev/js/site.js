@@ -109,42 +109,83 @@ const site = (function(){
 				if ( _self && items.length < displayedArticles ) { _self.remove(); }
 			}
 
-
-
 			// Filtrar listado de articulos
-			let deFaultFilteredItems = false;
+			let defaultFilteredItems = false;
+			let defaultOrder = 'recent';
 			$(document)
 				.on('click', '.fnFilterOptions a', function(e){
 					e.preventDefault();
 					const _self = $(this);
 					const order = _self.data('order');
-					const list = $('.listado_de_articulos__list');
-					const items = list.find('.columnas__item');
-					if ( ! deFaultFilteredItems ) { deFaultFilteredItems = items; }
-					if ( order!='' ) {
-						const ordering = [];
-						$.each(items, function(index, val) { ordering.push($(this).data('order')); });
-						switch (order) {
-							case 'recent': ordering.sort((a, b) => b - a); break;
-							case 'older': ordering.sort((a, b) => a - b);  break;
-						}
-						const newItems = [];
-						$.each(ordering , function(index, val) {
-							newItems.push( list.find('.columnas__item[data-order="'+val+'"]') );
-						});
-						list.html('');
-						if ( order!='default' ) {
-							$.each(newItems, function(index, val) { list.append(val); });
-						} else {
-							list.html(deFaultFilteredItems);
-						}
+					orderItems(order);
+				});
+
+			function orderItems(order='') {
+				const list = $('.listado_de_articulos__list');
+				const items = list.find('.columnas__item');
+				if ( ! defaultFilteredItems ) { defaultFilteredItems = items; }
+				if ( order!='' ) {
+					const ordering = [];
+					$.each(items, function(index, val) { ordering.push($(this).data('order')); });
+					console.log('order => '+order);
+					switch (order) {
+						case 'recent': ordering.sort((a, b) => b - a); break;
+						case 'older': ordering.sort((a, b) => a - b);  break;
+					}
+					const newItems = [];
+					$.each(ordering , function(index, val) {
+						newItems.push( list.find('.columnas__item[data-order="'+val+'"]') );
+					});
+					list.html('');
+					if ( order!='default' ) {
+						$.each(newItems, function(index, val) { list.append(val); });
+					} else {
+						list.html(defaultFilteredItems);
+					}
+					if ( list.find('.columnas__item').length == 0 ) {
+						list.append('<p class="listado_de_articulos__list__no-results">No se hallaron resultados</p>');
+					} else if( list.find('.columnas__item').length > 6 && list.find('.columnas__item.-end-').length ) {
 						list.append('<div class="g-button-group"><a href="#" class="g-button m--211 fnShowMoreArticles">Ver más</a></div>');
 					}
-					$('.fnFilterOptions a').removeClass('-active-');
-					_self.addClass('-active-');
-					$('.fnFilterOptionsTitle').text( _self.text() );
-					setViewedArticles();
-				});
+					
+				}
+				$('.fnFilterOptions a').removeClass('-active-');
+				$('.fnFilterOptions a[data-order="'+order+'"]').addClass('-active-');
+				$('.fnFilterOptionsTitle').text( $('.fnFilterOptions a[data-order="'+order+'"]').text() );
+				setViewedArticles();
+				defaultOrder = order;
+			}
+
+			// Filtrar listado de articulos - Columnas
+			if ( $('.fnFilterColumns').length ) {
+				const columns = $('.listado_de_articulos__list');
+				const originalColumnsArticles = columns.find('.columnas__item');
+				$('.fnFilterColumns')
+					.on('click', function(e){
+						const _self = $(this);
+						const isActive = _self.hasClass('-active-');
+						const filter = _self.data('filter');
+						if ( ! isActive ) {
+							columns.html('');
+							if ( filter != '' ) {
+								$.each(originalColumnsArticles, function(index, val) {
+									$(val).data('category') == filter && columns.append(val);
+								});
+							} else {
+								columns.append(originalColumnsArticles);
+							}
+							if ( columns.find('.columnas__item').length == 0 ) {
+								columns.append('<p class="listado_de_articulos__list__no-results">No se hallaron resultados</p>');
+							} else if( columns.find('.columnas__item').length > 6 && columns.find('.columnas__item.-end-').length ) {
+								columns.append('<div class="g-button-group"><a href="#" class="g-button m--211 fnShowMoreArticles">Ver más</a></div>');
+							}
+							setViewedArticles();
+							$('.fnFilterColumns').removeClass('-active-');
+							_self.addClass('-active-');
+							orderItems(defaultOrder);
+						}
+					});
+			}
 
 			if ( navigator.share ) {
 				$('#detalle-de-articulos-footer-socials').addClass('-hide-');
