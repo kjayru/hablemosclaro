@@ -259,7 +259,7 @@ class HomeController extends Controller
        $categor = Category::where('slug',$categoria)->first();
        $subcategor = Category::where('slug',$subcategoria)->first();
 
-       $max = Post::orderBy('visited','desc')->first();
+       $max = Post::orderBy('visited','desc')->where('estado',1)->first();
        $postmax = array(
         "id"=>$max->id,
         "titulo"=>$max->titulo,
@@ -316,7 +316,7 @@ class HomeController extends Controller
        }
 
 
-       $max = Post::orderBy('visited','desc')->first();
+       $max = Post::orderBy('visited','desc')->where('estado',1)->first();
 
 
        $postmax = array(
