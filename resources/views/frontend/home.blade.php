@@ -91,10 +91,10 @@
                     <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
                    <!-- <aside class="columnas__item__timer">5 min de lectura</aside>-->
                     <div class="columnas__item__author">
-                        <img src="/storage/{{ @$col->authors[0]->imagen}}" alt="">
+                        <img src="/storage/{{ @$col->author->imagen}}" alt="">
                         <p>
-                            <strong>{{ @$col->authors[0]->nombre}}</strong>
-                            {{ @$col->authors[0]->cargo}}
+                            <strong>{{ @$col->author->nombre}}</strong>
+                            {{ @$col->author->cargo}}
                         </p>
                     </div>
                 </header>
