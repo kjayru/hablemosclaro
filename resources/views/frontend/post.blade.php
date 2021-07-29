@@ -239,7 +239,7 @@
 
                 <article class="columnas__item">
                     <picture class="columnas__item__image">
-                        <img src="/storage/{{@$postmax['imagenbox']}}" alt="" loading="lazy">
+                        <img src="/storage/{{@$postmax['card']}}" alt="" loading="lazy">
                     </picture>
                     <header class="columnas__item__header">
                         <strong class="columnas__item__subtitle">{{@$postmax['categoria']->nombre}}</strong>

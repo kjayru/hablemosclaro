@@ -243,8 +243,19 @@ class HomeController extends Controller
                     $postvisited->save();
             }
 
+            $max = Post::orderBy('visited','desc')->where('estado',1)->first();
+            $postmax = array(
+                "id"=>$max->id,
+                "titulo"=>$max->titulo,
+                "card" => $max->imagenbox,
+                "slug" => $max->slug,
+                "categoria" => @$category,
+                "subcategoria" => null,
+                'date_publish'=>$max->date_publish,
+                'lectura' => @Post::TimeEstimate($max->contenido)
+            );
 
-            return view('frontend.post',['categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous,'subcategoria'=>null]);
+            return view('frontend.post',['postmax'=>$postmax,'categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous,'subcategoria'=>null]);
         }
 
        $current_url = url()->full();
