@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Configuration;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,10 +30,11 @@ class AppServiceProvider extends ServiceProvider
 
 
        view()->composer('layouts.frontend.app', function($view) {
-
             $menu =  Category::where('parent_id',null)->get();
-
-        $view->with(['menu'=>$menu]);
+            $global = Configuration::find(1);
+        $view->with(['menu'=>$menu,'global'=>$global]);
        });
+
+
     }
 }

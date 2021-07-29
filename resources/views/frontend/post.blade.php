@@ -2,8 +2,7 @@
 @section('content')
 
     <aside class="limit breadcrumb">
-        <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio"
-                loading="lazy" /></a>
+        <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio" loading="lazy" /></a>
 
 
     @if(isset($subcategoria))
@@ -13,7 +12,7 @@
         <a class="breadcrumb__link" href="/{{$categoria->slug}}/{{$subcategoria->slug}}">{{$subcategoria->nombre}}</a>
     @endif
 
-    @if(isset($categoria)&&!$subcategoria))
+    @if(isset($categoria)&&!$subcategoria)
         <span class="breadcrumb__space"></span>
         <a class="breadcrumb__link" href="/{{$categoria->slug}}">{{$categoria->nombre}}</a>
     @endif

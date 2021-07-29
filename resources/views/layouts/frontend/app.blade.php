@@ -4,33 +4,46 @@
         <meta http-equiv="Cache-control" content="public">
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Hablando Claro | Tendencias en telecomunicaciones en el Perú</title>
-        <meta name="description" content="Conoce las últimas tendencias en transformación digital, innovación, tecnología, telecomunicaciones y RSC que están cambiando nuestro país y el mundo">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{{ @$global->titulo }}</title>
+        <meta name="description" content="{{ @$global->descripcion }}">
 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="canonical" href="{{ $global->canonical }}" />
+        <meta property="fb:app_id" content="{{ @$global->facebook_app_id}}" />
+
+    @if(isset($articulo))
+
+
+        <meta property="og:url" content="{{ url()->full() }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{ @$articulo->meta_titulo }}" />
+        <meta property="og:description" content="{{ @$articulo->meta_descripcion }}" />
+        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $articulo->meta_image}}" />
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ @$articulo->titulo }}">
+        <meta name="twitter:description" content="{{ @$articulo->descripcion }}">
+        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ $global->meta_image}}">
+
+    @else
+
+
+        <meta property="og:url" content="{{ env('APP_URL')}}/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="{{ @$global->titulo }}" />
+        <meta property="og:description" content="{{ @$global->descripcion }}" />
+        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $global->imagen_facebook}}" />
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ @$global->titulo }}">
+        <meta name="twitter:description" content="{{ @$global->descripcion }}">
+        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ $global->imagen_twitter}}">
+      @endif
 
         <link rel="dns-prefetch" href="//www.facebook.com/"  />
         <link rel="dns-prefetch" href="//www.google-analytics.com/" />
         <link rel="dns-prefetch" href="//www.google.com/" />
         <link rel="dns-prefetch" href="//gstatic.com/" />
         <link rel="preconnect" href="//www.google-analytics.com/">
-
-        <link rel="canonical" href="https://hablandoclaro.pe/" />
-
-
-        <meta property="fb:app_id" content="421018219318355" />
-        <meta property="og:url" content="https://hablandoclaro.pe/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Tendencias en telecomunicaciones en el Perú" />
-        <meta property="og:description" content="Conoce las últimas tendencias en transformación digital, innovación, tecnología, telecomunicaciones y RSC que están cambiando nuestro país y el mundo" />
-        <meta property="og:image" content="https://hablandoclaro.pe/images/Hablandoclaro-logo.jpeg" />
-
-        <meta name="twitter:card" content="summary">
-
-        <meta name="twitter:title" content="Tendencias en telecomunicaciones en el Perú">
-        <meta name="twitter:description" content="Conoce las últimas tendencias en transformación digital, innovación, tecnología, telecomunicaciones y RSC que están cambiando nuestro país y el mundo">
-        <meta name="twitter:image" content="https://hablandoclaro.pe/images/Hablandoclaro-logo.jpeg">
 
 
         <link rel="shortcut icon" href="/favicon.ico" />

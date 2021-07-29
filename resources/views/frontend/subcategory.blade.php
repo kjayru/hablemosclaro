@@ -2,8 +2,7 @@
 @section('content')
 
     <aside class="limit breadcrumb">
-        <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio"
-                loading="lazy" /></a>
+        <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio" loading="lazy" /></a>
         <span class="breadcrumb__space"></span>
         <a class="breadcrumb__link" href="/{{ @$categoria->slug }}">{{ @$categoria->nombre }}</a>
         <span class="breadcrumb__space"></span>
