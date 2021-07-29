@@ -14,7 +14,7 @@
                     <time class="slider_principal__item__date">{{@$slide->publish_date}}</time>
                     <h3 class="slider_principal__item__title">{{@$slide->titulo}}</h3>
 
-                    <aside class="slider_principal__item__timer"> min de lectura</aside>
+                    <!--<aside class="slider_principal__item__timer"> min de lectura</aside>-->
                 </header>
                 @if(isset($slide->categories[0]->parent))
                     <a href="/{{@$slide->categories[0]->parent->slug}}/{{@$slide->categories[0]->slug}}/{{@$slide->slug}}" class="slider_principal__item__link">Más información</a>
@@ -57,6 +57,7 @@
             <ul class="categorias__list">
 
             @foreach($categorias as $cat)
+            @if($cat->slug!="otros")
                 <li class="categorias__item">
                     <a class="categorias__item__link" href="/{{$cat->slug}}">
                         <figure class="categorias__item__image">
@@ -65,6 +66,7 @@
                         <strong class="categorias__item__title">{{ $cat->nombre}}</strong>
                     </a>
                 </li>
+                @endif
             @endforeach
 
             </ul>
