@@ -18,12 +18,13 @@
 
         <nav class="listado_de_articulos__nav">
             <ul class="listado_de_articulos__nav__inset">
-                <li class="listado_de_articulos__nav__item"><a href="/articulos/{{ $posttype->tipo }}" class="listado_de_articulos__nav__link -active-">Todo</a>
+                <li class="listado_de_articulos__nav__item">
+                    <span data-filter="" class="listado_de_articulos__nav__link fnFilterColumns -active-">Todo</span>
                 </li>
                 @if(!is_null($categorias))
                     @foreach($categorias as $cat)
                     <li class="listado_de_articulos__nav__item">
-                        <a href="/{{$cat->slug}}" class="listado_de_articulos__nav__link ">{{ $cat->nombre}}</a>
+                        <span data-filter="{{$cat->slug}}" class="listado_de_articulos__nav__link fnFilterColumns">{{ $cat->nombre}}</span>
                     </li>
                     @endforeach
                 @endif
@@ -65,7 +66,7 @@
             @endforeach
 
             <div class="g-button-group">
-                <a href="#" class="g-button m--211">Ver más</a>
+                <a href="#" class="g-button m--211 fnShowMoreArticles">Ver más</a>
             </div>
         </div>
     </section>
