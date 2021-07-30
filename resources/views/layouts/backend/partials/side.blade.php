@@ -12,7 +12,7 @@
             A
         </div>
         <div class="info user-panel__info">
-            <span class="user-panel__nombre"></span>
+            <span class="user-panel__nombre">&nbsp;</span>
 
             <a href="/admin" class="d-block user-panel__rol"> Administrador</a>
 
