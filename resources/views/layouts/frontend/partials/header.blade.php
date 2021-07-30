@@ -64,10 +64,10 @@
 		</div>
 		<strong class="search__results__title m--2">Más buscados</strong>
 		<aside class="search__results__wanted">
-			<a href="#">Teletrabajo</a>
-			<a href="#">Gaming</a>
-			<a href="#">Entretenimiento digital</a>
-			<a href="#">Innovación</a>
+			<a href="/buscar/teletrabajo">Teletrabajo</a>
+			<a href="/buscar/gaming">Gaming</a>
+			<a href="/buscar/entretenimiento-digital">Entretenimiento digital</a>
+			<a href="/buscar/innovacion">Innovación</a>
 		</aside>
 	</div>
 </div>
