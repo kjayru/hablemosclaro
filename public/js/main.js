@@ -1,11 +1,15 @@
 try {
 
-    CKFinder.config({ connectorPath: '/ckfinder/connector' });
+    CKFinder.config({
+        connectorPath: '/ckfinder/connector',
+
+     });
    //("") CKFinder.start();
     CKFinder.widget( 'file-editor',{
            width: '100%',
            height: 700
        });
+
 
 
 } catch (error) {
@@ -21,6 +25,11 @@ try {
 
     });
     CKEDITOR.config.allowedContent = true;
+    CKEDITOR.plugins.addExternal('youtube', '/js/ckfinder/plugins/youtube/');
+    CKEDITOR.config.extraPlugins = 'youtube';
+
+   // CKEDITOR.plugins.addExternal('slider', '/js/ckfinder/plugins/slider/');
+   // CKEDITOR.config.extraPlugins = 'slider';
 
    /* CKEDITOR.on( 'instanceCreated', function( e ){
         e.editor.addCss("@font-face{'Alfa Slab One', cursive; src:url('http://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');"  );
@@ -467,3 +476,6 @@ $(".btn-abrirpop2").on('click',function (e) {
         }
     });
 });
+
+
+
