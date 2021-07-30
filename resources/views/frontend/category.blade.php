@@ -85,22 +85,26 @@
             @foreach($columns as $col)
                 <article class="columnas__item">
                     <picture class="columnas__item__image">
-                        <img src="/storage/{{ @$col->imagenbox }}" alt="" loading="lazy">
+                        <img src="/storage/{{ @$col['card'] }}" alt="" loading="lazy">
                     </picture>
                     <header class="columnas__item__header">
-                        <strong class="columnas__item__subtitle">{{@$col->category->nombre}}</strong>
-                        <time class="columnas__item__date">{{ @$col->date_publish}}</time>
-                        <h3 class="columnas__item__title">{{@$col->titulo}}</h3>
-                       <!--<aside class="columnas__item__timer"> min de lectura</aside>-->
+                        <strong class="columnas__item__subtitle">{{@$col['category']->nombre}}</strong>
+                        <time class="columnas__item__date">{{ @$col['date_publish']}}</time>
+                        <h3 class="columnas__item__title">{{@$col['titulo']}}</h3>
+                        <aside class="columnas__item__timer">{{@$col['lectura']}} min de lectura</aside>
                         <div class="columnas__item__author">
-                            <img src="/storage/{{ @$col->authors[0]->imagen}}" alt="">
+                            <img src="/storage/{{ @$col['imagen']}}" alt="">
                             <p>
-                                <strong>{{ @$col->authors[0]->nombre}}</strong>
-                                {{ @$col->authors[0]->cargo}}
+                                <strong>{{ @$col['nombre']}}</strong>
+                                {{ @$col['cargo']}}
                             </p>
                         </div>
                     </header>
-                    <a href="/{{@$categoria}}/{{@$post->slug}}" class="columnas__item__link">Más información</a>
+                   @if(isset($col['subcategoria']))
+                    <a href="/{{@$col['categoria']->slug}}/{{@$col['slug']}}" class="columnas__item__link">_Más información</a>
+                    @else
+                    <a href="/{{@$col['subcategoria']->slug}}//{{@$col['categoria']->slug}}/{{@$col['slug']}}" class="columnas__item__link">--Más información</a>
+                    @endif
                 </article>
             @endforeach
             @endif

@@ -54,8 +54,6 @@ class Post extends Model
 
                 $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 2, 1));
 
-
-
                 if(isset($currentKey)){
                     $post = Post::where('id',$currentKey)->first();
                     if(isset($post)){

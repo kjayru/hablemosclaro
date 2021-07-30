@@ -26,9 +26,31 @@ class HomeController extends Controller
         $ultimos = Post::where('estado',1)->where('post_type_id',1)->orderBy('date_publish','desc')->take(4)->get();
         $categorias = Category::wherenull('parent_id')->get();
         $sliders = Post::where('post_type_id',4)->orderBy('date_publish','desc')->take(5)->get();
-        $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
+        $cols = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
         $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+
+
+        //column
+        foreach($cols as $key=> $col){
+
+                $colum[] = array(
+                    "id" => $col->id,
+                    "titulo" => $col->titulo,
+                    "card" => $col->imagenbox,
+                    "slug" => $col->slug,
+                    "categoria" => @$category,
+                    "subcategoria" => @$col->categories[0]->parent,
+                    'date_publish'=> @$col->date_publish,
+                    'lectura' => @Post::TimeEstimate($col->contenido),
+                    'foto' => @$col->author->imagen,
+                    'nombre' => @$col->author->nombre,
+                    'cargo'=>$col->author->cargo
+                );
+
+
+         }
+         $columns = collect($colum);
 
         return view('frontend.home',[
 
@@ -135,14 +157,8 @@ class HomeController extends Controller
         }else{
             $categorias = $category->posts;
 
-
-
             foreach($categorias as $art){
-
-
                         if($art->estado ==1){
-
-
 
                             $articulos[] = array(
                                 "id" => $art->id,
@@ -164,14 +180,34 @@ class HomeController extends Controller
 
         }
 
-        $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
+        $cols = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
+        //column
+        foreach($cols as $key=> $col){
+
+            if($key>3){
+                $colum[] = array(
+                    "id" => $col->id,
+                    "titulo" => $col->titulo,
+                    "card" => $col->imagenbox,
+                    "slug" => $col->slug,
+                    "categoria" => @$category,
+                    "subcategoria" => @$col->categories[0]->parent,
+                    'date_publish'=> @$col->date_publish,
+                    'lectura' => @Post::TimeEstimate($col->contenido),
+                    'foto' => @$col->author->imagen,
+                    'nombre' => @$col->author->nombre,
+                    'cargo'=>$col->author->cargo
+                );
+            }
+
+         }
+        $columns = collect($colum);
 
         $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
 
         return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category,'subcategoria'=>$subcategoria]);
     }
-
 
     public function subcategoria($categoria,$subcategoria){
         $categorias = null;
@@ -272,7 +308,27 @@ class HomeController extends Controller
        $current_url = url()->full();
 
         /**Columnas */
-        $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
+        $cols = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
+
+        //column
+        foreach($cols as $key=> $col){
+
+                $colum[] = array(
+                    "id" => $col->id,
+                    "titulo" => $col->titulo,
+                    "card" => $col->imagenbox,
+                    "slug" => $col->slug,
+                    "categoria" => @$category,
+                    "subcategoria" => @$col->categories[0]->parent,
+                    'date_publish'=> @$col->date_publish,
+                    'lectura' => @Post::TimeEstimate($col->contenido),
+                    'foto' => @$col->author->imagen,
+                    'nombre' => @$col->author->nombre,
+                    'cargo'=>$col->author->cargo
+                );
+        }
+        $columns = collect($colum);
+
 
 
 
@@ -283,19 +339,18 @@ class HomeController extends Controller
 
        $max = Post::orderBy('visited','desc')->where('estado',1)->first();
        $postmax = array(
-        "id"=>$max->id,
-        "titulo"=>$max->titulo,
-        "card" => $max->imagenbox,
-        "slug" => $max->slug,
-        "categoria" => @$category,
-        "subcategoria" => null,
-        'date_publish'=>$max->date_publish,
-        'lectura' => @Post::TimeEstimate($max->contenido)
-    );
+            "id"=>$max->id,
+            "titulo"=>$max->titulo,
+            "card" => $max->imagenbox,
+            "slug" => $max->slug,
+            "categoria" => @$category,
+            "subcategoria" => null,
+            'date_publish'=>$max->date_publish,
+            'lectura' => @Post::TimeEstimate($max->contenido)
+        );
 
         return view('frontend.subcategory',['menu'=>$menu,'postmax'=>$postmax,'videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,"categoria"=>$categor,"subcategoria"=>$subcategor,'current_url'=>$current_url,'category'=>$category]);
     }
-
 
     public function articulo($categoria,$subcategoria,$articulo){
         $relacionados=[];
@@ -366,11 +421,13 @@ class HomeController extends Controller
         'lectura' => @Post::TimeEstimate($max->contenido)
        );
 
+       //tags
+
+       //dd($articulo->tags);
+
         return view('frontend.post',['postmax'=>$postmax,'categoria'=>$category,'subcategoria'=>$subcategory,'videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
 
     }
-
-
 
     public function suscribirse(Request $request){
 
@@ -387,10 +444,6 @@ class HomeController extends Controller
         return response()->json(['rpta'=>"ok"]);
     }
 
-
-
-
-
     public function posttype($posttype){
 
         $type = PostType::where('tipo',$posttype)->first();
@@ -399,7 +452,6 @@ class HomeController extends Controller
 
         return view('frontend.articulos',['articulos'=>$articulos,'posttype'=>$type,"categorias"=>$categorias]);
     }
-
 
     public function resultados($word){
 
@@ -432,7 +484,6 @@ class HomeController extends Controller
 
         return view('frontend.buscar',['posts'=>$posts,'word'=>$word]);
     }
-
 
     public function buscar(Request $request){
         /*$posts = DB::table('posts')
