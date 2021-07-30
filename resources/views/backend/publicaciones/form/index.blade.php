@@ -23,12 +23,6 @@
                         </div>
 
                         <div class="form-group col-sm-12">
-                           __ <a href="#" class="btn btn-add-slide" id="btn-add-slide">Agregar slide contenido</a>
-                        </div>
-
-
-
-                        <div class="form-group col-sm-12">
                             <label for="resumen">Imagen banner</label>
                             <figure style="width:70px;">
 

@@ -12,7 +12,7 @@
             {{@$caracter}}
         </div>
         <div class="info user-panel__info">
-            <span class="user-panel__nombre">{{@$usuario->name}}</span>
+            <span class="user-panel__nombre">A</span>
 
             <a href="/admin" class="d-block user-panel__rol"> Administrador</a>
 
@@ -37,7 +37,7 @@
 
           <li class="nav-item has-treeview ">
             <a href="/admin/categories" class="nav-link {{{ (Request::is('admin/Categorias') ? 'active' : '') }}}">
-              <p>Categorias </p>
+              <p>Categorías </p>
             </a>
           </li>
 
