@@ -303,7 +303,7 @@ class HomeController extends Controller
 
 
     public function articulo($categoria,$subcategoria,$articulo){
-
+        $relacionados=[];
         $category = Category::where("slug",$categoria)->first();
         $subcategory = Category::where("slug",$subcategoria)->first();
         $articulo = Post::where('slug',$articulo)->first();
