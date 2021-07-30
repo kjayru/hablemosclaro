@@ -6,7 +6,7 @@
         </div>
         <div class="form-group col-md-6">
 
-            <input type="text" id="imageAutor" class="form-control"  name="imagen">
+            <input type="text" id="imageAutor" class="form-control"  name="imageautor">
             <picture class="figure category__figure">
                 <img src="/storage/{{ @$autor->imagen}}" alt="" id="urlautor" class="img-thumbnail rounded">
             </picture>

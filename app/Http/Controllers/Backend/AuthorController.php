@@ -45,8 +45,8 @@ class AuthorController extends Controller
         $autor = new Author();
         $autor->nombre = $request->nombre;
         $autor->titulo = $request->titulo;
-        if($request->imagen){
-            $autor->imagen = $request->imagen;
+        if($request->imageautor){
+            $autor->imagen = $request->imageautor;
         }
 
         $autor->cargo = $request->cargo;
@@ -84,7 +84,9 @@ class AuthorController extends Controller
         $autor = Author::find($id);
         $autor->nombre = $request->nombre;
         $autor->titulo = $request->titulo;
-        $autor->imagen = $request->imagen;
+        if($request->imageautor){
+            $autor->imagen = $request->imageautor;
+        }
         $autor->cargo = $request->cargo;
         $autor->save();
 
