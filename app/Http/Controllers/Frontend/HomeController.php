@@ -213,7 +213,7 @@ class HomeController extends Controller
 
 
         }else{
-
+            $relacionados=[];
             $post = Post::where('slug',$subcategoria)->first();
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
