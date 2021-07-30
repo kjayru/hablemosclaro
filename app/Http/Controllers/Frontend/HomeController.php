@@ -28,13 +28,8 @@ class HomeController extends Controller
         $sliders = Post::where('post_type_id',4)->orderBy('date_publish','desc')->take(5)->get();
         $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
-
-
-
-
-
-
         $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+
         return view('frontend.home',[
 
             'ultimos'=>$ultimos,
@@ -378,6 +373,11 @@ class HomeController extends Controller
 
 
     public function suscribirse(Request $request){
+
+
+        /*$validated = $request->validate([
+            'email' => 'required|unique:suscriptions|max:255',
+        ]);*/
 
         $news = new Suscription();
         $news->email = $request->email;

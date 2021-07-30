@@ -45,7 +45,10 @@ class AuthorController extends Controller
         $autor = new Author();
         $autor->nombre = $request->nombre;
         $autor->titulo = $request->titulo;
-        $autor->imagen = $request->imagen;
+        if($request->imagen){
+            $autor->imagen = $request->imagen;
+        }
+
         $autor->cargo = $request->cargo;
         $autor->save();
 
