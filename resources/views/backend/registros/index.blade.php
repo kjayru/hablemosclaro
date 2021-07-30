@@ -62,9 +62,11 @@
                         <td>{{ @$reg->email}}</td>
                         <td>
                             @php
-                                $tema = unserialize($reg->temas);
+                                $temas = unserialize($reg->temas);
                             @endphp
-                            {{ @$tema}}
+                            @foreach($temas as $t)
+                            {{ $t }}|
+                            @endforeach
                         </td>
 
                         <td>{{ Carbon\Carbon::parse(@$reg->created_at)->format('d/m/Y') }} </td>
