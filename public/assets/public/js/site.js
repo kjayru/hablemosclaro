@@ -328,8 +328,7 @@ const site = (function(){
 		},
 
 		search : function ( data, word ) {
-
-			if ( data.length > 0 ) {
+			if ( data.length ) {
 				let html = '';
 				$.each(data, function(index, val) {
 					if ( index <= 2 ) {
@@ -347,6 +346,8 @@ const site = (function(){
 				}
 				$('.fnSearchResults').addClass(dom.active);
 				$('.fnSearchResultsData').html(html);
+			} else {
+				$('.fnSearchResultsData').html('<p>No se hallaron resultados.</p>');
 			}
 			
 		},
@@ -357,8 +358,6 @@ const site = (function(){
 
 			let formBlock = true;
 			$('form').on('submit', function(e){
-
-
 
 				let f = $(this);
 				let fields = f.find('input, textarea, select');
