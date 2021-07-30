@@ -60,8 +60,8 @@
                     <tr>
                         <th>{{ $key+1}}</th>
                         <td>{{ $reg->email}}</td>
-                        <td>{{ @$cat->temas}}</td>
-                        <td>{{ \Carbon\Carbon::parse($cat->created_at)->format('d/m/Y') }} </td>
+                        <td>{{ @$reg->temas}}</td>
+                        <td>{{ \Carbon\Carbon::parse($reg->created_at)->format('d/m/Y') }} </td>
 
                     </tr>
                     @endforeach
