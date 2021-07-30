@@ -196,7 +196,7 @@ class HomeController extends Controller
 
 
             }
-            foreach($posts as $post){
+            foreach($posts->sortByDesc('date_publish') as $post){
                 if($post->estado==1){
                     $articulos[] = array(
                         "id"=>$post->id,
