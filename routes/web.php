@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\ConfigurationController;
+use App\Http\Controllers\Backend\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Auth::routes([
 
     Route::get('/configuration', [ConfigurationController::class,'index'])->name('configuration.index');
     Route::put('/configuration/{config}', [ConfigurationController::class,'update'])->name('configuration.update');
+
+    Route::get('/register', [RegisterController::class,'index'])->name('register.index');
 
     Route::get('/users', [UserController::class,'index'])->name('user.index');
     Route::get('/users/create', [UserController::class,'create'])->name('user.create');
