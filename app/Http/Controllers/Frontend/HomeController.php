@@ -185,7 +185,7 @@ class HomeController extends Controller
         //column
         foreach($cols as $key=> $col){
 
-            if($key>3){
+
                 $colum[] = array(
                     "id" => $col->id,
                     "titulo" => $col->titulo,
@@ -199,7 +199,7 @@ class HomeController extends Controller
                     'nombre' => @$col->author->nombre,
                     'cargo'=>$col->author->cargo
                 );
-            }
+
 
          }
         $columns = collect($colum);
