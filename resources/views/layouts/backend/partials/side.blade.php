@@ -9,10 +9,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="user-panel__radio">
-            {{@$caracter}}
+            A
         </div>
         <div class="info user-panel__info">
-            <span class="user-panel__nombre">A</span>
+            <span class="user-panel__nombre"></span>
 
             <a href="/admin" class="d-block user-panel__rol"> Administrador</a>
 
