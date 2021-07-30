@@ -282,6 +282,7 @@ const site = (function(){
 			// Mostrar videos
 			$('.fnShowVideoButton')
 				.on('click', function(e) {
+					e.preventDefault();
 					const video = $(this).data('video');
 					const header = $(this).find('.ultimos_videos__item__header').clone();
 					$('.fnShowVideoTarget').find('.ultimos_videos__item__video').attr('src', 'https://www.youtube-nocookie.com/embed/' + video);

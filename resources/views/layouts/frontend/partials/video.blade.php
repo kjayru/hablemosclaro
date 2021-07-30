@@ -29,9 +29,8 @@
                     }
                 @endphp
                 <article class="ultimos_videos__item <?= $key==0?'-active-':''; ?> fnShowVideoButton" data-video="{{@$vid->video}}" data-url="{{@$vid_url}}">
-
                     <picture class="ultimos_videos__item__image">
-                        <img src="/assets/public/images/ultimos_videos.png" alt="" loading="lazy">
+                        <img src="https://img.youtube.com/vi/{{@$vid->video}}/0.jpg" alt="" loading="lazy">
                         <span class="ultimos_videos__item__image__timer">2 min</span>
                     </picture>
                     <header class="ultimos_videos__item__header">
