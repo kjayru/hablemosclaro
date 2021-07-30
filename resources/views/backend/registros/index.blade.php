@@ -59,9 +59,9 @@
                     @foreach($registros as $key=>$reg)
                     <tr>
                         <th>{{ $key+1}}</th>
-                        <td>{{ $reg->email}}</td>
+                        <td>{{ @$reg->email}}</td>
                         <td>{{ @$reg->temas}}</td>
-                        <td>{{ \Carbon\Carbon::parse($reg->created_at)->format('d/m/Y') }} </td>
+                        <td>{{ @$reg->created_at }} </td>
 
                     </tr>
                     @endforeach
