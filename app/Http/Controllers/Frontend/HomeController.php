@@ -546,7 +546,7 @@ class HomeController extends Controller
 
         $articulos = collect($result);
 
-        dd($articulos);
+
 
         $categorias = Category::wherenull('parent_id')->get();
 
