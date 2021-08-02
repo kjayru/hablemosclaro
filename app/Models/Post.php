@@ -197,7 +197,7 @@ class Post extends Model
 
     public static function getCategory($id){
       //get categories post
-        $cat_parent_id=null;
+        $subcat_id=null;
         $post = Post::find($id);
         $categories = $post->categories;
      //get category
