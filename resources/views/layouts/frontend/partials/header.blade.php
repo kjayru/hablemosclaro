@@ -40,8 +40,8 @@
 
             </ul>
 			<aside class="header__nav__socials">
-				<a href="#"><img src="/assets/public/images/ico_twitter.png" alt="Twitter" loading="lazy"></a>
-				<a href="#"><img src="/assets/public/images/ico_linkedin.png" alt="Linkedin" loading="lazy"></a>
+				<a href="https://twitter.com/hablandoclarope" target="_blank"><img src="/assets/public/images/ico_twitter.png" alt="Twitter" loading="lazy"></a>
+				<a href="https://www.linkedin.com/company/claroperu/" target="_blank"><img src="/assets/public/images/ico_linkedin.png" alt="Linkedin" loading="lazy"></a>
 			</aside>
 		</nav>
 		<span class="header__button-lupa"><img class="header__nav__item__search fnShowSearchform" src="/assets/public/images/lupa_2.png" alt="" loading="lazy"></span>
