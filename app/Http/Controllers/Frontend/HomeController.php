@@ -533,8 +533,8 @@ class HomeController extends Controller
 
             $result[] = array(
                 "id" =>$post->id,
-                "category"=> @Post::getCategory($post->id)['category'],
-                "subcategory"=> @Post::getCategory($post->id)['subcategory'],
+                "categoria"=> @Post::getCategory($post->id)['category'],
+                "subcategoria"=> @Post::getCategory($post->id)['subcategory'],
                 "slug" => $post->slug,
                 "titulo" => $post->titulo,
                 "banner" => $post->banner,
@@ -545,6 +545,8 @@ class HomeController extends Controller
         }
 
         $articulos = collect($result);
+
+        dd($articulos);
 
         $categorias = Category::wherenull('parent_id')->get();
 
@@ -621,8 +623,8 @@ class HomeController extends Controller
         foreach($tag->posts as $post){
 
             $result[] = array(
-                "category"=> @Post::getCategory($post->id)['category'],
-                "subcategory"=> @Post::getCategory($post->id)['subcategory'],
+                "categoria"=> @Post::getCategory($post->id)['category'],
+                "subcategoria"=> @Post::getCategory($post->id)['subcategory'],
                 "slug" => $post->slug,
                 "titulo" => $post->titulo,
                 "banner" => $post->banner,
