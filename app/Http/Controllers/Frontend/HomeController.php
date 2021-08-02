@@ -532,6 +532,7 @@ class HomeController extends Controller
         foreach($arts as $post){
 
             $result[] = array(
+                "id" =>$post->id,
                 "category"=> @Post::getCategory($post->id)['category'],
                 "subcategory"=> @Post::getCategory($post->id)['subcategory'],
                 "slug" => $post->slug,

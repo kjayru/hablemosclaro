@@ -45,7 +45,7 @@
 
             @foreach($articulos as $post)
 
-            <article class="columnas__item" data-order="{{@$post['id']}}" @if(isset($post['subcategoria']))  data-category="{{@$post['subcategoria']->slug}}" @else data-category="{{@$post['categoria']->slug}}" @endif>
+            <article class="columnas__item" data-order="{{@$post['id']}}"  data-category="{{@$post['categoria']->slug}}" @endif>
                 <picture class="columnas__item__image">
                     <img src="/storage/{{ @$post['card'] }}" alt="" loading="lazy">
                 </picture>
