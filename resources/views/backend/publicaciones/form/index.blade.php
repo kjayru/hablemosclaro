@@ -122,20 +122,20 @@
 
                     </div>
 
-                    <div class="row row__video">
+                    <div class="row row__video" @if($articulo->post_type_id==2) style="display:block;" @endif>
                         <div class="form-group col-sm-6">
                             <label for="video">Codigo Embed video</label>
                             <input type="text" name="video" id="video" class="form-control" value="{{@$articulo->video}}" placeholder="Codigo Embed video">
                         </div>
                     </div>
 
-                    <div class="row row__author">
+                    <div class="row row__author" @if($articulo->post_type_id==3) style="display:block;" @endif>
                         <div class="form-group col-sm-6">
                             <label for="author">Autor</label>
                             <select name="author" id="author" class="custom-select">
                                 <option value="">Seleccione</option>
                                 @foreach($authors as $autor)
-                                <option value="{{$autor->id}}"  @if(@$articulo->author[0]->id == $autor->id) selected @endif>{{$autor->nombre}}</option>
+                                <option value="{{$autor->id}}"  @if(@$articulo->author->id == $autor->id) selected @endif>{{$autor->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -148,9 +148,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Tags</label>
+
                                 <select class="select2" multiple="multiple" name="tags[]" data-placeholder="Seleciones tags" style="width: 100%;">
                                     @foreach($tags as $tag)
-                                    <option value="{{$tag->id}}">{{ $tag->nombre }} </option>
+                                    <option value="{{$tag->id}}" @if(in_array($tag->id,$itags)) selected @endif >{{ $tag->nombre }} </option>
                                     @endforeach
                                 </select>
                               </div>

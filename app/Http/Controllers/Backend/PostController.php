@@ -37,7 +37,8 @@ class PostController extends Controller
         $authors = Author::orderBy('nombre','asc')->get();
         $tags = Tag::orderBy('nombre','asc')->get();
         $cats=[];
-        return view('backend.publicaciones.create',[ 'cats'=>$cats,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
+        $itags=[];
+        return view('backend.publicaciones.create',[ 'itags'=>$itags,'cats'=>$cats,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
@@ -95,12 +96,20 @@ class PostController extends Controller
         $authors = Author::orderBy('nombre','asc')->get();
         $tags = Tag::orderBy('nombre','asc')->get();
         $cats=[];
+        $itags=[];
+
        foreach($articulo->categories as $cat){
         $cats[] = $cat->id;
        }
 
+       if(isset($articulo->tags)){
+            foreach($articulo->tags as $tag){
+                $itags[] = $tag->id;
+            }
+        }
 
-        return view('backend.publicaciones.edit',['cats'=>$cats,'articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
+
+        return view('backend.publicaciones.edit',['itags'=>$itags,'cats'=>$cats,'articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
