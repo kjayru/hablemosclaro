@@ -176,7 +176,7 @@ class HomeController extends Controller
         }else{
             $categorias = $category->posts;
 
-            foreach($categorias as $art){
+            foreach($categorias->sortByDesc('date_publish') as $art){
                         if($art->estado ==1){
 
                             $articulos[] = array(
