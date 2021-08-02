@@ -540,15 +540,19 @@ class HomeController extends Controller
                 "banner" => $post->banner,
                 "card" => $post->imagenbox,
                 "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
-                );
+                "lectura" => @Post::TimeEstimate($post->contenido),
+                'foto' => @$post->author->imagen,
+                "nombre" => @$post->author->nombre,
+                "cargo" => @$post->author->cargo
+            );
 
         }
 
         $articulos = collect($result);
 
-
-
         $categorias = Category::wherenull('parent_id')->get();
+
+        // dd( $articulos );
 
         return view('frontend.articulos',['articulos'=>$articulos,'posttype'=>$type,"categorias"=>$categorias]);
     }
