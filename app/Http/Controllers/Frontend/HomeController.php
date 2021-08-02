@@ -103,8 +103,6 @@ class HomeController extends Controller
          }
          $columns = collect($colum);
 
-         dd($columns);
-
         return view('frontend.home',[
 
             'ultimos'=>$ultimos,
