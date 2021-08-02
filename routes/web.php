@@ -87,6 +87,7 @@ Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderCon
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
 
 Route::get('/buscar/{word}', [HomeController::class, 'resultados']);
+Route::get('/tag/{tag}', [HomeController::class, 'tag']);
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/{categoria}', [HomeController::class, 'categoria']);
@@ -94,9 +95,6 @@ Route::get('/{categoria}/{subcategoria}', [HomeController::class, 'subcategoria'
 
 
 Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articulo']);
-
-
-//Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articulo']);
 
 Route::get('/categories', [HomeController::class, 'categories']);
 

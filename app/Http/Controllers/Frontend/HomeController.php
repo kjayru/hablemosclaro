@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\Models\Visit;
 use Carbon\Carbon;
+use App\Models\Tag;
 
 class HomeController extends Controller
 {
@@ -524,7 +525,24 @@ class HomeController extends Controller
     public function posttype($posttype){
 
         $type = PostType::where('tipo',$posttype)->first();
-        $articulos = Post::where('post_type_id',$type->id)->orderBy('id', 'desc')->where('estado',1)->get();
+        $arts = Post::where('post_type_id',$type->id)->orderBy('id', 'desc')->where('estado',1)->get();
+
+        foreach($arts as $post){
+
+            $result[] = array(
+                "category"=> @Post::getCategory($post->id)['category'],
+                "subcategory"=> @Post::getCategory($post->id)['subcategory'],
+                "slug" => $post->slug,
+                "titulo" => $post->titulo,
+                "banner" => $post->banner,
+                "card" => $post->imagenbox,
+                "date_publish" => @Carbon::parse($col->date_publish)->format('d M Y'),
+                );
+
+        }
+
+        $articulos = collect($result);
+
         $categorias = Category::wherenull('parent_id')->get();
 
         return view('frontend.articulos',['articulos'=>$articulos,'posttype'=>$type,"categorias"=>$categorias]);
@@ -547,16 +565,7 @@ class HomeController extends Controller
                     "imagen" => $post->imagenbox,
                     "date_publish" => @Carbon::parse($col->date_publish)->format('d M Y'),
                     );
-           /* }else{
-               $result[] = array(
-                   "category"=>  @Post::getCategory($post->id)['category'],
-                   "subcategory"=>"",
-                   "slug" => $post->slug,
-                   "titulo" => $post->titulo,
-                   "imagenbox" => $post->imagenbox,
-                   "date_publish" => @Carbon::parse($col->date_publish)->format('d M Y'),
-                  );
-            }*/
+
         }
 
         $posts = collect($result);
@@ -597,6 +606,35 @@ class HomeController extends Controller
          //dd($result);
 
         return response()->json(['rpta'=>'ok',"data"=>$result]);
+    }
+
+
+    public function tag($tag){
+
+        $tag = Tag::where('slug',$tag)->first();
+
+
+        foreach($tag->posts as $post){
+
+            $result[] = array(
+                "category"=> @Post::getCategory($post->id)['category'],
+                "subcategory"=> @Post::getCategory($post->id)['subcategory'],
+                "slug" => $post->slug,
+                "titulo" => $post->titulo,
+                "banner" => $post->banner,
+                "card" => $post->imagenbox,
+                "date_publish" => @Carbon::parse($col->date_publish)->format('d M Y'),
+                );
+
+        }
+
+        $articulos = collect($result);
+
+
+        $categorias = Category::wherenull('parent_id')->get();
+
+        return view('frontend.tags',['articulos'=>$articulos,'tag'=>$tag,"categorias"=>$categorias]);
+
     }
 
 }

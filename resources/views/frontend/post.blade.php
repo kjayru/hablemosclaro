@@ -51,12 +51,15 @@
             <!--tags-->
             <aside class="detalle_de_articulos__article__tags">
                 <strong class="detalle_de_articulos__article__tags__title">Etiquetas:</strong>
+
                 <div class="detalle_de_articulos__article__tags__links">
-                    <a href="#">Telecomunicaciones</a>
-                    <a href="#">Teletrabajo</a>
-                    <a href="#">Teleeducación</a>
-                    <a href="#">Telesalud</a>
-                    <a href="#">Entretenimiento digital</a>
+                    @if(isset($articulo->tags))
+                        @foreach ( $articulo->tags as $tg)
+                        <a href="/tag/{{@$tg->slug}}">{{ @$tg->nombre }}</a>
+                        @endforeach
+                    @endif
+
+
                 </div>
             </aside>
 

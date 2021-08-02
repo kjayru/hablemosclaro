@@ -4,12 +4,12 @@
     <aside class="limit breadcrumb">
         <a class="breadcrumb__link" href="/"><img src="/assets/public/images/ico_home.png" alt="Inicio" loading="lazy" /></a>
         <span class="breadcrumb__space"></span>
-        <a class="breadcrumb__link" href="/articulos/{{ $posttype->tipo }}">{{ $posttype->tipo }}</a>
+        <a class="breadcrumb__link" href="/articulos/{{ $tag->slug }}">{{ $tag->nombre }}</a>
     </aside>
 
     <section class="section limit listado_de_articulos">
         <header class="listado_de_articulos__header">
-            <h2 class="g-bigtitle">{{ @$posttype->tipo }}</h2>
+            <h2 class="g-bigtitle">{{ @$tag->nombre }}</h2>
             <h3 class="g-title">Artículos</h3>
             <img src="/assets/public/images/ico_show_filter.png" loading="lazy" alt="Mostrar filtros"
                 class="listado_de_articulos__showfilter fnShowFilter" />
@@ -45,22 +45,22 @@
 
             @foreach($articulos as $post)
 
-            <article class="columnas__item" data-order="{{@$post['id']}}" @if(isset($post['subcategoria']))  data-category="{{@$post['subcategoria']->slug}}" @else data-category="{{@$post['categoria']->slug}}" @endif>
-                <picture class="columnas__item__image">
-                    <img src="/storage/{{ @$post['card'] }}" alt="" loading="lazy">
-                </picture>
-                <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{ @$post['categoria']->nombre }}</strong>
-                    <time class="columnas__item__date">{{ @$post['date_publish'] }}</time>
-                    <h3 class="columnas__item__title">{{ @$post['titulo'] }}</h3>
-                    <aside class="columnas__item__timer">{{@$post['lectura']}} min de lectura</aside>
-                </header>
-                @if(isset($post['subcategoria']))
-                <a href="/{{@$post['categoria']->slug}}/{{@$post['subcategoria']->slug}}/{{@$post['slug']}}" class="columnas__item__link">Más información</a>
-                @else
-                <a href="/{{@$post['categoria']->slug}}/{{@$post['slug']}}" class="columnas__item__link">Más información</a>
-                @endif
-            </article>
+                <article class="columnas__item" data-order="{{@$post['id']}}" @if(isset($post['subcategoria']))  data-category="{{@$post['subcategoria']->slug}}" @else data-category="{{@$post['categoria']->slug}}" @endif>
+                    <picture class="columnas__item__image">
+                        <img src="/storage/{{ @$post['card'] }}" alt="" loading="lazy">
+                    </picture>
+                    <header class="columnas__item__header">
+                        <strong class="columnas__item__subtitle">{{ @$post['categoria']->nombre }}</strong>
+                        <time class="columnas__item__date">{{ @$post['date_publish'] }}</time>
+                        <h3 class="columnas__item__title">{{ @$post['titulo'] }}</h3>
+                        <aside class="columnas__item__timer">{{@$post['lectura']}} min de lectura</aside>
+                    </header>
+                    @if(isset($post['subcategoria']))
+                    <a href="/{{@$post['categoria']->slug}}/{{@$post['subcategoria']->slug}}/{{@$post['slug']}}" class="columnas__item__link">Más información</a>
+                    @else
+                    <a href="/{{@$post['categoria']->slug}}/{{@$post['slug']}}" class="columnas__item__link">Más información</a>
+                    @endif
+                </article>
 
             @endforeach
 
