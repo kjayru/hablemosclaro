@@ -40,10 +40,8 @@ class Post extends Model
         if(isset($subcategory_id)){
             $subcategory = Category::find($subcategory_id);
 
-            //$category = $art->category->parent->slug;
+
             $category = Category::find($category_id);
-            //$category_id = $art->category->id;
-            // $next_id =  Post::where('id', '>', $id)->where("category_id",$category_id)->min('id');
 
            $posts = $subcategory->posts;
 
@@ -72,8 +70,6 @@ class Post extends Model
         }else{
 
             $category = Category::find($category_id);
-
-
             $posts = $category->posts;
 
             if(count($posts)){
@@ -81,10 +77,7 @@ class Post extends Model
                         $ids[]=$ps->id;
                     }
 
-
                     $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 2, 1));
-
-
 
                     if(isset($currentKey)){
                         $post = Post::where('id',$currentKey)->first();
@@ -102,8 +95,6 @@ class Post extends Model
                 "titulo" => $titulo,
             ];
         }
-
-
 
         return $result;
 
@@ -124,8 +115,6 @@ class Post extends Model
 
         if(isset($subcategory_id)){
             $subcategory = Category::find($subcategory_id);
-
-
             $category = Category::find($category_id);
 
            $posts = $subcategory->posts;
@@ -136,10 +125,7 @@ class Post extends Model
                         $ids[]=$ps->id;
                 }
 
-
                 $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 0, 1));
-
-
 
                 if(isset($currentKey)){
                     $post = Post::where('id',$currentKey)->first();
@@ -170,10 +156,7 @@ class Post extends Model
                        $ids[]=$ps->id;
                    }
 
-
                    $currentKey =  current(array_slice($ids, array_search($art->id, array_keys($ids)) + 2, 1));
-
-
 
                    if(isset($currentKey)){
                        $post = Post::where('id',$currentKey)->first();
@@ -191,12 +174,7 @@ class Post extends Model
             "titulo" => $titulo,
             ];
 
-
         }
-
-
-
-
 
         return $result;
     }
@@ -206,20 +184,39 @@ class Post extends Model
     public static function TimeEstimate($text){
         $words = strip_tags($text);
         $words = str_word_count($words);
-
-
         $minutes = round($words/200);
-
-
         if ($minutes <= 1) {
             $timetoread = "$minutes ";
         }
         else{
             $timetoread = "$minutes ";
         }
-
-
         return $timetoread;
+    }
+
+
+    public static function getCategory($id){
+      //get categories post
+        $cat_parent_id=null;
+        $post = Post::find($id);
+        $categories = $post->categories;
+     //get category
+
+        foreach($categories as $cat){
+            if(isset($cat->parent_id)){
+                $subcat_id = $cat->id;
+            }
+          /* if($cat->parent_id == $category->id){
+                $subcat = $cat;
+            }*/
+        }
+        //dd($subcat_id);
+        $subcategory = Category::where('id',$subcat_id)->first();
+
+        $category = Category::where('id',$subcategory->parent_id)->first();
+
+
+        return array("category_slug"=>$category->slug,"subcategory_slug"=>$subcategory->slug);
     }
 
 

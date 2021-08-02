@@ -39,18 +39,18 @@ class HomeController extends Controller
                     "titulo" => $col->titulo,
                     "card" => $col->imagenbox,
                     "slug" => $col->slug,
-                    "categoria" => @$category,
-                    "subcategoria" => @$col->categories[0]->parent,
+                    "categoria" =>  @Post::getCategory($col->id)['category_slug'],
+                    "subcategoria" => @Post::getCategory($col->id)['subcategory_slug'],
                     'date_publish'=> @$col->date_publish,
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,
                     'cargo'=>$col->author->cargo
                 );
-
-
          }
          $columns = collect($colum);
+
+
 
         return view('frontend.home',[
 
@@ -65,7 +65,6 @@ class HomeController extends Controller
     public function categoria($categoria){
 
         $category = Category::where('slug',$categoria)->first();
-
         $categorias = null;
         $articulos = null;
         $subcategoria = null;
@@ -74,60 +73,28 @@ class HomeController extends Controller
 
         if($contador>0){
             $categorias = Category::where('parent_id',$category->id)->get();
-
-            //$singlecat = Category::where('id',$category->id)->get();
-
             foreach($categorias as $cat){
-
 
                     if(count($cat->posts)>0){
 
                         foreach($cat->posts as $art){
                             if($art->estado ==1){
 
-
-
                                 $post_ids[] = $art->id;
-                                 /*array(
 
-                                   "id" => $art->id,
-                                    "titulo" => $art->titulo,
-                                    "card" => $art->imagenbox,
-                                    "slug" => $art->slug,
-                                    "categoria" => @$category,
-                                    "subcategoria" => @$art->categories[0]->parent,
-                                    'date_publish'=> @$art->date_publish,
-                                    'lectura' => @Post::TimeEstimate($art->contenido)
-
-                                );*/
                             }
                         }
                     }
-
             }
 
             foreach( $category->posts as $sin){
                 if($sin->estado ==1){
-
                     $post_ids[] = $sin->id;
-                    /*  array(
-
-                       "id" => $sin->id,
-                        "titulo" => $sin->titulo,
-                        "card" => $sin->imagenbox,
-                        "slug" => $sin->slug,
-                        "categoria" => @$category,
-                        "subcategoria" => @$sin->categories[0]->parent,
-                        'date_publish'=> @$sin->date_publish,
-                        'lectura' => @Post::TimeEstimate($sin->contenido)
-
-                    );*/
                 }
             }
 
            // dd($post_ids);
             $llaves = array_unique($post_ids);
-
             foreach($llaves as $k){
                 $p = Post::where('id',$k)->orderBy('date_publish','desc')->first();
                 foreach($p->categories as $c){
@@ -139,7 +106,6 @@ class HomeController extends Controller
                 }
 
                 $post[] = array(
-
                     "id" => $p->id,
                      "titulo" => $p->titulo,
                      "card" => $p->imagenbox,
@@ -148,9 +114,9 @@ class HomeController extends Controller
                      "subcategoria" => @$subcat,
                      'date_publish'=> @$p->date_publish,
                      'lectura' => @Post::TimeEstimate($p->contenido)
-
                  );
             }
+
             $articulos = collect($post);
 
 
@@ -186,13 +152,14 @@ class HomeController extends Controller
         foreach($cols as $key=> $col){
 
 
+
                 $colum[] = array(
                     "id" => $col->id,
                     "titulo" => $col->titulo,
                     "card" => $col->imagenbox,
                     "slug" => $col->slug,
-                    "categoria" => @$category,
-                    "subcategoria" => @$col->categories[0]->parent,
+                    "categoria" =>  @Post::getCategory($col->id)['category_slug'],
+                    "subcategoria" => @Post::getCategory($col->id)['subcategory_slug'],
                     'date_publish'=> @$col->date_publish,
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
@@ -203,6 +170,7 @@ class HomeController extends Controller
 
          }
         $columns = collect($colum);
+
 
         $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
 
@@ -319,8 +287,8 @@ class HomeController extends Controller
                     "card" => $col->imagenbox,
                     "slug" => $col->slug,
                     "categoria" => @$category,
-                    "subcategoria" => @$col->categories[0]->parent,
-                    'date_publish'=> @$col->date_publish,
+                    "categoria" =>  @Post::getCategory($col->id)['category_slug'],
+                    "subcategoria" => @Post::getCategory($col->id)['subcategory_slug'],
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,

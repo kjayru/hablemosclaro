@@ -97,11 +97,11 @@
                             </p>
                         </div>
                     </header>
-                    @if(isset($col['subcategoria']))
-                    <a href="/{{@$col['subcategoria']->slug}}/{{@$col['categoria']->slug}}/{{@$col['slug']}}" class="columnas__item__link">_Más información</a>
-                    @else
-                    <a href="/{{@$col['categoria']->slug}}/{{@$col['slug']}}" class="columnas__item__link">Más información</a>
-                    @endif
+                @if(isset($col['subcategoria']))
+                    <a href="/{{@$col['categoria']}}/{{@$col['subcategoria']}}/{{@$col['slug']}}" class="columnas__item__link">_Más información</a>
+                @else
+                    <a href="/{{@$col['categoria']}}/{{@$col['slug']}}" class="columnas__item__link">Más información</a>
+                @endif
                 </article>
             @endforeach
 
