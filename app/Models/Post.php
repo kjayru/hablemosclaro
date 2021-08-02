@@ -198,6 +198,9 @@ class Post extends Model
     public static function getCategory($id){
       //get categories post
         $subcat_id=null;
+        $cat_id = null;
+        $subcategory=null;
+        $category=null;
         $post = Post::find($id);
         $categories = $post->categories;
      //get category
@@ -206,17 +209,26 @@ class Post extends Model
             if(isset($cat->parent_id)){
                 $subcat_id = $cat->id;
             }
-          /* if($cat->parent_id == $category->id){
-                $subcat = $cat;
-            }*/
+        }
+        if(!isset($subcat_id)){
+
+            foreach($categories as $cat){
+                if(!isset($cat->parent_id)){
+                    $cat_id = $cat->id;
+                }
+            }
+
         }
         //dd($subcat_id);
-        $subcategory = Category::where('id',$subcat_id)->first();
+        if(isset($subcat_id)){
+            $subcategory = Category::where('id',$subcat_id)->first();
+            $category = Category::where('id',$subcategory->parent_id)->first();
+        }else{
+            $category = Category::where('id',$cat_id)->first();
+        }
 
-        $category = Category::where('id',$subcategory->parent_id)->first();
 
-
-        return array("category_slug"=>$category->slug,"subcategory_slug"=>$subcategory->slug);
+        return array("category"=>$category,"subcategory"=>$subcategory);
     }
 
 
