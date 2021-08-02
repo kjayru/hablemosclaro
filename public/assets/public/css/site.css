@@ -1773,6 +1773,7 @@ select {
 }
 .columnas__item__date {
   font-weight: 500;
+  color: #91979e;
 }
 .columnas__item__title {
   width: 100%;
