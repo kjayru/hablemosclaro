@@ -554,7 +554,7 @@ class HomeController extends Controller
 
 
         $result = [];
-        $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->where('estado',1)->get();
+        $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->where('estado',1)->orderBy('date_publish','desc')->get();
 
         foreach($articulos as $post){
 
@@ -566,6 +566,7 @@ class HomeController extends Controller
                     "banner" => $post->banner,
                     "imagen" => $post->imagenbox,
                     "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    "id" => $post->id
                     );
 
         }

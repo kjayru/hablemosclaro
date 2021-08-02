@@ -17,13 +17,25 @@
             class="listado_de_articulos__showfilter fnShowFilter" />
     </header>
 
-
+    <nav class="listado_de_articulos__nav m--empty">
+        <form id="filtro_de_articulos" action="" method="get" class="listado_de_articulos__filter">
+            <strong class="listado_de_articulos__filter__title">Organizar por:<span
+                    class="header__button-mobile -active- fnCloseFilter"><span></span></span></strong>
+            <div class="listado_de_articulos__filter__select">
+                <span class="listado_de_articulos__filter__select__title fnFilterOptionsTitle">Más recientes</span>
+                <span class="listado_de_articulos__filter__options fnFilterOptions">
+                    <a href="#" class="-active-" data-order="recent">Más recientes</a>
+                    <a href="#" data-order="older">Más antiguos</a>
+                </span>
+            </div>
+        </form>
+    </nav>
 
     <div class="listado_de_articulos__list">
 
         @foreach($posts as $post)
 
-            <article class="columnas__item">
+            <article class="columnas__item" data-order="{{@$post['id']}}">
                 <picture class="columnas__item__image">
                     <img src="/storage/{{@$post['imagen']}}" alt="" loading="lazy">
                 </picture>
