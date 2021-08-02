@@ -1882,6 +1882,12 @@ select {
   .columnas__item__header {
     padding: 1.4375rem 1rem;
   }
+  .columnas__item__title {
+    margin-bottom: 1.0625rem;
+  }
+  .columnas__item__author {
+    padding-top: 1.25rem;
+  }
   .columnas__item__author img {
     display: none;
   }
