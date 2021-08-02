@@ -9,7 +9,7 @@
 
     <section class="section limit listado_de_articulos">
         <header class="listado_de_articulos__header">
-            <h2 class="g-bigtitle">{{ @$posttype->tipo }}</h2>
+            <h2 class="g-bigtitle">{{ @$posttype->nombre }}</h2>
             <h3 class="g-title">Artículos</h3>
             <img src="/assets/public/images/ico_show_filter.png" loading="lazy" alt="Mostrar filtros"
                 class="listado_de_articulos__showfilter fnShowFilter" />
