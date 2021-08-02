@@ -116,6 +116,11 @@ const site = (function(){
 
 		interactions : function() {
 
+			// Mostrar avance de lectura
+			if ( $('.detalle_de_articulos').length ) {
+				$('.header__advance').addClass('-active-');
+			}
+
 			// Listado de artículos
 			let displayedArticles = 6;
 			$(document)

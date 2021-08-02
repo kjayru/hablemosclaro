@@ -507,6 +507,10 @@ select {
   background-color: #ef2539;
   position: absolute;
   bottom: -0.25rem;
+  opacity: 0;
+}
+.header__advance.-active- {
+  opacity: 1;
 }
 .header__height {
   height: 4rem;
@@ -1473,10 +1477,8 @@ select {
 .lo_ultimo__item:hover .lo_ultimo__item__header {
   padding-bottom: 2.5rem;
 }
-.lo_ultimo__item:hover .lo_ultimo__item__image {
-  opacity: 0.65;
-}
 .lo_ultimo__item:hover .lo_ultimo__item__image img {
+  opacity: 0.85;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -1497,6 +1499,17 @@ select {
      object-fit: cover;
   -webkit-transition: all ease 0.25s;
   transition: all ease 0.25s;
+}
+.lo_ultimo__item__image:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.9)));
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
 }
 .lo_ultimo__item__header {
   position: relative;
@@ -1817,6 +1830,10 @@ select {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.columnas__item__author img {
+  width: 2.375rem;
+  height: 2.375rem;
 }
 .columnas__item__author p {
   padding-left: 0.75rem;
