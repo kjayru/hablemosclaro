@@ -45,7 +45,7 @@ class HomeController extends Controller
         //videos
        // $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
        //videos
-       $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+       $vids = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
 
        foreach($vids as $key => $col){
            $video[] = array(
@@ -64,21 +64,6 @@ class HomeController extends Controller
        $videos = collect($video);
 
 
-        foreach($vids as $key => $col){
-            $video[] = array(
-                "id" => $col->id,
-                "titulo" => $col->titulo,
-                "card" => $col->imagenbox,
-                "slug" => $col->slug,
-                "video" => $col->video,
-                "categoria" =>  @Post::getCategory($col->id)['category'],
-                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @$col->date_publish,
-                'lectura' => @Post::TimeEstimate($col->contenido)
-
-                );
-            }
-        $videos = collect($video);
 
 
         //sliders
@@ -242,7 +227,7 @@ class HomeController extends Controller
 
 
         //videos
-        $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+        $vids = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
 
         foreach($vids as $key => $col){
             $video[] = array(
@@ -389,7 +374,7 @@ class HomeController extends Controller
 
         //$videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
         //videos
-        $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+        $vids = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
 
         foreach($vids as $key => $col){
             $video[] = array(
@@ -460,7 +445,7 @@ class HomeController extends Controller
 
        //$videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
        //videos
-       $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+       $vids = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
 
        foreach($vids as $key => $col){
            $video[] = array(
