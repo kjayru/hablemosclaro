@@ -572,3 +572,23 @@ p.lista__parrafo {
 .row__video, .row__author{
     display: none;
 }
+
+.camp__activo {
+
+    background: lawngreen;
+
+}
+.camp__inactivo{
+    background: rgb(180, 180, 180);
+}
+.camp__estado {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    padding-top: 4px;
+    color: white;
+    margin: 0 auto;
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 13px;
+}

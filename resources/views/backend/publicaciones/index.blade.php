@@ -73,7 +73,18 @@
                         </td>
 
                         <td>{{ @$post->posttype->tipo }}</td>
-                        <td></td>
+                        <td class="text-left">
+
+                            @if($post->estado==1)
+                                <div class=" camp__estado camp__activo">
+
+                                </div> Activo
+                            @else
+                            <div class=" camp__estado camp__inactivo">
+
+                            </div>Innactivo
+                            @endif
+                        </td>
                         <td>
                             {{ Carbon\Carbon::parse(@$post->date_publish)->format('d/m/Y') }}</td>
 

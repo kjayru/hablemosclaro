@@ -49,9 +49,8 @@
                             </div>
 
                             <div class="card-body">
+
                                 @csrf
-
-
                                 @include('backend.autores.form.index')
 
 
