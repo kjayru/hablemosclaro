@@ -50,7 +50,7 @@
                 <tr>
                     <th></th>
                     <th>Nombres</th>
-                    <th>Titulo</th>
+                    <!--<th>Titulo</th>-->
                     <th>Cargo</th>
                     <th></th>
                 </tr>
@@ -60,7 +60,7 @@
                     <tr>
                         <th>{{ $key+1}}</th>
                         <td>{{ @$autor->nombre}}</td>
-                        <td>{{ @$autor->titulo }}</td>
+                        <!--<td>{{ @$autor->titulo }}</td>-->
                         <td>{{ @$autor->cargo }}</td>
 
                         <td width="7%" style="text-center">
