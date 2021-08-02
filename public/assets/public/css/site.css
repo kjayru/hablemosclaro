@@ -2352,6 +2352,11 @@ select {
     height: 2.8125rem;
     margin-bottom: 1.25rem;
   }
+  .listado_de_articulos__nav.m--empty {
+    height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
   .listado_de_articulos__nav__inset {
     display: -webkit-box;
     display: -ms-flexbox;

@@ -15,18 +15,18 @@
                 class="listado_de_articulos__showfilter fnShowFilter" />
         </header>
 
-        <nav class="listado_de_articulos__nav">
+        <nav class="listado_de_articulos__nav {{ !is_null($categorias) && !is_null($categorias[0]->parent_id) ? '':'m--empty' }}">
+            @if( !is_null($categorias) && !is_null($categorias[0]->parent_id) )
             <ul class="listado_de_articulos__nav__inset">
                 <li class="listado_de_articulos__nav__item"><a href="/{{$categoria}}" class="listado_de_articulos__nav__link -active-">Todo</a>
                 </li>
-                @if(!is_null($categorias))
-                    @foreach($categorias as $cat)
-                    <li class="listado_de_articulos__nav__item">
-                        <a href="/{{$categoria}}/{{$cat->slug}}" class="listado_de_articulos__nav__link ">{{ $cat->nombre}}</a>
-                    </li>
-                    @endforeach
-                @endif
+                @foreach($categorias as $cat)
+                <li class="listado_de_articulos__nav__item">
+                    <a href="/{{$categoria}}/{{$cat->slug}}" class="listado_de_articulos__nav__link ">{{ $cat->nombre}}</a>
+                </li>
+                @endforeach
             </ul>
+            @endif
             <form id="filtro_de_articulos" action="" method="get" class="listado_de_articulos__filter">
                 <strong class="listado_de_articulos__filter__title">Organizar por:<span
                         class="header__button-mobile -active- fnCloseFilter"><span></span></span></strong>
