@@ -18,11 +18,11 @@
               <span class="help-block">{{ $errors->first('nombre') }}</span>
     </div>
 
-    <div class="form-group @if($errors->first('titulo')) has-error @endif">
+    <!--<div class="form-group @if($errors->first('titulo')) has-error @endif">
         <label for="titulo" class="control-label">Titulo</label>
             <input type="text"  name="titulo" class="form-control" value="{{ @$autor->titulo}}" id="titulo" placeholder="Titulo" required>
             <span class="help-block">{{ $errors->first('titulo') }}</span>
-  </div>
+  </div>-->
 
   <div class="form-group @if($errors->first('cargo')) has-error @endif">
     <label for="cargo" class="control-label">Cargo</label>
