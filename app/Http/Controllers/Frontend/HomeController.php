@@ -289,7 +289,7 @@ class HomeController extends Controller
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
-            $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
+            $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(4)->get();
 
             //relacionados arreglo
             foreach($relacion as $rel){
@@ -427,7 +427,7 @@ class HomeController extends Controller
 
        $category_id = $category->id;
 
-       $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(5)->get();
+       $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(4)->get();
 
        //relacionados arreglo
        foreach($relacion as $rel){
