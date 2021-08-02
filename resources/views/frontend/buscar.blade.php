@@ -25,18 +25,18 @@
 
             <article class="columnas__item">
                 <picture class="columnas__item__image">
-                    <img src="/storage/{{@$post['imagenbox']}}" alt="" loading="lazy">
+                    <img src="/storage/{{@$post['imagen']}}" alt="" loading="lazy">
                 </picture>
                 <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{ @$post->category->nombre}}</strong>
+                    <strong class="columnas__item__subtitle">{{ @$post['category']->nombre}}</strong>
                     <time class="columnas__item__date">{{@$post['date_publish']}}</time>
                     <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
                     <!--<aside class="columnas__item__timer">5 min de lectura</aside>-->
                 </header>
                 @if(isset($post['subcategory']))
-                <a href="/{{$post['category']}}/{{$post['subcategory']}}/{{$post['slug']}}" class="columnas__item__link">Más información</a>
+                <a href="/{{$post['category']->slug}}/{{$post['subcategory']->slug}}/{{$post['slug']}}" class="columnas__item__link">Más información</a>
                 @else
-                <a href="/{{$post['category']}}/{{$post['slug']}}" class="columnas__item__link">Más información</a>
+                <a href="/{{$post['category']->slug}}/{{$post['slug']}}" class="columnas__item__link">Más información</a>
                 @endif
             </article>
 

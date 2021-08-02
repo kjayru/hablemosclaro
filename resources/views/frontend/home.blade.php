@@ -11,7 +11,7 @@
                 </picture>
                 <header class="slider_principal__item__header">
                     <strong class="slider_principal__item__subtitle">{{@$slide['categoria']->nombre}}</strong>
-                    <time class="slider_principal__item__date">{{@$slide['publish_date']}}</time>
+                    <time class="slider_principal__item__date">{{@$slide['date_publish']}}</time>
                     <h3 class="slider_principal__item__title">{{@$slide['titulo']}}</h3>
 
                     <aside class="slider_principal__item__timer">{{@$slide['lectura']}} min de lectura</aside>
@@ -39,7 +39,7 @@
                     </picture>
                     <header class="lo_ultimo__item__header">
                         <strong class="lo_ultimo__item__subtitle">{{ @$post['categoria']->nombre}}</strong>
-                        <time class="lo_ultimo__item__date">{{ @$post['publish_date'] }}</time>
+                        <time class="lo_ultimo__item__date">{{ @$post['date_publish'] }}</time>
                         <h3 class="lo_ultimo__item__title">{{ $post['titulo']}}</h3>
                         <aside class="lo_ultimo__item__timer">{{@$post['lectura']}} min de lectura</aside>
                     </header>

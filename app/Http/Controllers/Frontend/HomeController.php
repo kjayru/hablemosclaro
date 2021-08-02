@@ -11,6 +11,7 @@ use App\Models\PostType;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\Models\Visit;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -34,7 +35,7 @@ class HomeController extends Controller
                 "slug" => $col->slug,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @$col->date_publish,
+                'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
                 );
@@ -56,7 +57,7 @@ class HomeController extends Controller
                "video" => $col->video,
                "categoria" =>  @Post::getCategory($col->id)['category'],
                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-               'date_publish'=> @$col->date_publish,
+               'date_publish'=>  @Carbon::parse($col->date_publish)->format('d M Y'),
                'lectura' => @Post::TimeEstimate($col->contenido)
 
                );
@@ -76,7 +77,7 @@ class HomeController extends Controller
                 "slug" => $col->slug,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @$col->date_publish,
+                'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
             );
@@ -94,7 +95,7 @@ class HomeController extends Controller
                     "slug" => $col->slug,
                     "categoria" =>  @Post::getCategory($col->id)['category'],
                     "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                    'date_publish'=> @$col->date_publish,
+                    'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,
@@ -163,7 +164,7 @@ class HomeController extends Controller
                      "slug" => $p->slug,
                      "categoria" => @$category,
                      "subcategoria" => @$subcat,
-                     'date_publish'=> @$p->date_publish,
+                     'date_publish'=>  @Carbon::parse($p->date_publish)->format('d M Y'),
                      'lectura' => @Post::TimeEstimate($p->contenido)
                  );
             }
@@ -184,7 +185,7 @@ class HomeController extends Controller
                                 "slug" => $art->slug,
                                 "categoria" => @$category,
                                 "subcategoria" => '',
-                                'date_publish'=> @$art->date_publish,
+                                'date_publish'=> @Carbon::parse($art->date_publish)->format('d M Y'),
                                 'lectura' => @Post::TimeEstimate($art->contenido)
 
                             );
@@ -211,7 +212,7 @@ class HomeController extends Controller
                     "slug" => $col->slug,
                     "categoria" =>  @Post::getCategory($col->id)['category'],
                     "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                    'date_publish'=> @$col->date_publish,
+                    'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,
@@ -236,7 +237,7 @@ class HomeController extends Controller
                 "video" => $col->video,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @$col->date_publish,
+                'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
                 );
@@ -274,7 +275,7 @@ class HomeController extends Controller
                         "slug" => $post->slug,
                         "categoria" => $categoria,
                         "subcategoria" => $subcategoria,
-                        'date_publish'=>$post->date_publish,
+                        'date_publish'=> @Carbon::parse($post->date_publish)->format('d M Y'),
                         'lectura' => @Post::TimeEstimate($post->contenido)
                     );
                 }
@@ -298,7 +299,7 @@ class HomeController extends Controller
                     "slug" => $rel->slug,
                     "categoria" => @$category,
                     "subcategoria" => null,
-                    'date_publish'=>$rel->date_publish,
+                    'date_publish'=> @Carbon::parse($rel->date_publish)->format('d M Y'),
                     'lectura' => @Post::TimeEstimate($rel->contenido)
                 );
             }
@@ -336,7 +337,7 @@ class HomeController extends Controller
                 "slug" => $max->slug,
                 "categoria" => @$category,
                 "subcategoria" => null,
-                'date_publish'=>$max->date_publish,
+                'date_publish'=>@Carbon::parse($max->date_publish)->format('d M Y'),
                 'lectura' => @Post::TimeEstimate($max->contenido)
             );
 
@@ -359,6 +360,7 @@ class HomeController extends Controller
                     "categoria" => @$category,
                     "categoria" =>  @Post::getCategory($col->id)['category'],
                     "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+                    'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,
@@ -383,7 +385,7 @@ class HomeController extends Controller
                 "video" => $col->video,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @$col->date_publish,
+                'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
                 );
@@ -402,7 +404,7 @@ class HomeController extends Controller
             "slug" => $max->slug,
             "categoria" => @$category,
             "subcategoria" => null,
-            'date_publish'=>$max->date_publish,
+            'date_publish'=> @Carbon::parse($max->date_publish)->format('d M Y'),
             'lectura' => @Post::TimeEstimate($max->contenido)
         );
 
@@ -435,7 +437,7 @@ class HomeController extends Controller
                 "slug" => $rel->slug,
                 "categoria" => @$category,
                 "subcategoria" => null,
-                'date_publish'=>$rel->date_publish,
+                'date_publish'=> @Carbon::parse($rel->date_publish)->format('d M Y'),
                 'lectura' => @Post::TimeEstimate($rel->contenido)
             );
         }
@@ -454,7 +456,7 @@ class HomeController extends Controller
                "video" => $col->video,
                "categoria" =>  @Post::getCategory($col->id)['category'],
                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-               'date_publish'=> @$col->date_publish,
+               'date_publish'=> @Carbon::parse($col->date_publish)->format('d M Y'),
                'lectura' => @Post::TimeEstimate($col->contenido)
 
                );
@@ -492,7 +494,7 @@ class HomeController extends Controller
         "slug" => $max->slug,
         "categoria" => @$category,
         "subcategoria" => @$subcategory,
-        'date_publish'=>$max->date_publish,
+        'date_publish'=> @Carbon::parse($max->date_publish)->format('d M Y'),
         'lectura' => @Post::TimeEstimate($max->contenido)
        );
 
@@ -535,24 +537,26 @@ class HomeController extends Controller
         $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->where('estado',1)->get();
 
         foreach($articulos as $post){
-            if(isset($post->categories[0]->parent)){
+
                 $result[] = array(
-                    "category"=>@$post->categories[0]->parent->slug,
-                    "subcategory"=>@$post->categories[0]->slug,
+                    "category"=> @Post::getCategory($post->id)['category'],
+                    "subcategory"=> @Post::getCategory($post->id)['subcategory'],
                     "slug" => $post->slug,
                     "titulo" => $post->titulo,
                     "banner" => $post->banner,
                     "imagen" => $post->imagenbox,
+                    "date_publish" => @Carbon::parse($col->date_publish)->format('d M Y'),
                     );
-            }else{
+           /* }else{
                $result[] = array(
-                   "category"=>@$post->categories[0]->slug,
+                   "category"=>  @Post::getCategory($post->id)['category'],
                    "subcategory"=>"",
                    "slug" => $post->slug,
                    "titulo" => $post->titulo,
                    "imagenbox" => $post->imagenbox,
+                   "date_publish" => @Carbon::parse($col->date_publish)->format('d M Y'),
                   );
-            }
+            }*/
         }
 
         $posts = collect($result);
@@ -575,14 +579,14 @@ class HomeController extends Controller
 
              if(isset($post->categories[0]->parent)){
                  $result[] = array(
-                     "category"=>@$post->categories[0]->parent->slug,
-                     "subcategory"=>@$post->categories[0]->slug,
+                    "category"=> @Post::getCategory($post->id)['category']->slug,
+                    "subcategory"=> @Post::getCategory($post->id)['subcategory']->slug,
                      "slug" => $post->slug,
                      "titulo" => $post->titulo,
                     );
              }else{
                 $result[] = array(
-                    "category"=>@$post->categories[0]->slug,
+                    "category"=> @Post::getCategory($post->id)['category']->slug,
                     "subcategory"=>"",
                     "slug" => $post->slug,
                     "titulo" => $post->titulo,
