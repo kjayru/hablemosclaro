@@ -3646,6 +3646,9 @@ select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 .detalle_de_articulos__bottom__block1 {
   -webkit-box-flex: 1;
