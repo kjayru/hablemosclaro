@@ -32,7 +32,7 @@
                 <time class="columnas__item__date">14 de mayo, 2021</time>
                 <!--<aside class="columnas__item__timer">5 min de lectura</aside>-->
 
-            @if(isset($articulo->author)))
+            @if(isset($articulo->author))
                 <div class="columnas__item__author">
                     <img src="/storage/{{ @$articulo->author->imagen}}" alt="">
                     <p>
@@ -196,9 +196,9 @@
                         <aside class="columnas__item__timer">{{@$rel['lectura'] }} min de lectura</aside>
                     </header>
                     @if(isset($subcategoria))
-                    <a href="/{{@$categoria->slug}}/{{@$subcategoria->slug}}/{{@$rel['slug']}}" class="columnas__item__link">Más información</a>
+                        <a href="/{{@$categoria->slug}}/{{@$subcategoria->slug}}/{{@$rel['slug']}}" class="columnas__item__link">Más información</a>
                     @else
-                    <a href="/{{@$categoria->slug}}/{{@$rel['slug']}}" class="columnas__item__link">Más información</a>
+                        <a href="/{{@$categoria->slug}}/{{@$rel['slug']}}" class="columnas__item__link">Más información</a>
                     @endif
                 </article>
                 @endforeach
