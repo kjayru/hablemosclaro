@@ -501,7 +501,9 @@ class HomeController extends Controller
 
        //tags
 
-       //dd($articulo->tags);
+       $articulo->publicado = @Carbon::parse($articulo->date_publish)->locale('es')->isoFormat('D \\d\e MMMM\\,\\ YYYY');
+       $articulo->tiempoLectura = @Post::TimeEstimate($articulo->contenido);
+       // dd($articulo);
 
         return view('frontend.post',['postmax'=>$postmax,'categoria'=>$category,'subcategoria'=>$subcategory,'videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
 
