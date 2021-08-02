@@ -44,6 +44,7 @@ class TagController extends Controller
         $tag = new Tag();
 
         $tag->nombre = $request->nombre;
+        $tag->slug = Str::slug($request->nombre, '-');
         $tag->save();
 
 
@@ -75,6 +76,7 @@ class TagController extends Controller
     {
         $tag =  Tag::find($id);
         $tag->nombre = $request->nombre;
+        $tag->slug = Str::slug($request->nombre, '-');
         $tag->save();
 
         return redirect(route('tag.index'))
