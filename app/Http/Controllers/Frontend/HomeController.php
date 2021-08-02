@@ -21,17 +21,85 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categorias = Category::wherenull('parent_id')->get();
         $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
 
-        $ultimos = Post::where('estado',1)->where('post_type_id',1)->orderBy('date_publish','desc')->take(4)->get();
-        $categorias = Category::wherenull('parent_id')->get();
-        $sliders = Post::where('post_type_id',4)->orderBy('date_publish','desc')->take(5)->get();
+        //ultimos
+        $ults = Post::where('estado',1)->where('post_type_id',1)->orderBy('date_publish','desc')->take(4)->get();
+        foreach($ults as $key=> $col){
+            $ultimo[] = array(
+                "id" => $col->id,
+                "titulo" => $col->titulo,
+                "card" => $col->imagenbox,
+                "slug" => $col->slug,
+                "categoria" =>  @Post::getCategory($col->id)['category'],
+                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+                'date_publish'=> @$col->date_publish,
+                'lectura' => @Post::TimeEstimate($col->contenido)
+
+                );
+            }
+        $ultimos = collect($ultimo);
+
+
+        //videos
+       // $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+       //videos
+       $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+
+       foreach($vids as $key => $col){
+           $video[] = array(
+               "id" => $col->id,
+               "titulo" => $col->titulo,
+               "card" => $col->imagenbox,
+               "slug" => $col->slug,
+               "video" => $col->video,
+               "categoria" =>  @Post::getCategory($col->id)['category'],
+               "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+               'date_publish'=> @$col->date_publish,
+               'lectura' => @Post::TimeEstimate($col->contenido)
+
+               );
+           }
+       $videos = collect($video);
+
+
+        foreach($vids as $key => $col){
+            $video[] = array(
+                "id" => $col->id,
+                "titulo" => $col->titulo,
+                "card" => $col->imagenbox,
+                "slug" => $col->slug,
+                "video" => $col->video,
+                "categoria" =>  @Post::getCategory($col->id)['category'],
+                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+                'date_publish'=> @$col->date_publish,
+                'lectura' => @Post::TimeEstimate($col->contenido)
+
+                );
+            }
+        $videos = collect($video);
+
+
+        //sliders
+        $slids = Post::where('post_type_id',4)->orderBy('date_publish','desc')->take(5)->get();
+        foreach($slids as $key=> $col){
+            $slider[] = array(
+                "id" => $col->id,
+                "titulo" => $col->titulo,
+                "banner" => $col->banner,
+                "slug" => $col->slug,
+                "categoria" =>  @Post::getCategory($col->id)['category'],
+                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+                'date_publish'=> @$col->date_publish,
+                'lectura' => @Post::TimeEstimate($col->contenido)
+
+            );
+        }
+     $sliders = collect($slider);
+
+        //columnas
         $cols = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
-
-        $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
-
-
-        //column
         foreach($cols as $key=> $col){
 
                 $colum[] = array(
@@ -172,7 +240,26 @@ class HomeController extends Controller
         $columns = collect($colum);
 
 
-        $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+
+        //videos
+        $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+
+        foreach($vids as $key => $col){
+            $video[] = array(
+                "id" => $col->id,
+                "titulo" => $col->titulo,
+                "card" => $col->imagenbox,
+                "slug" => $col->slug,
+                "video" => $col->video,
+                "categoria" =>  @Post::getCategory($col->id)['category'],
+                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+                'date_publish'=> @$col->date_publish,
+                'lectura' => @Post::TimeEstimate($col->contenido)
+
+                );
+            }
+        $videos = collect($video);
+
 
         return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category,'subcategoria'=>$subcategoria]);
     }
@@ -300,7 +387,26 @@ class HomeController extends Controller
 
 
 
-        $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+        //$videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+        //videos
+        $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+
+        foreach($vids as $key => $col){
+            $video[] = array(
+                "id" => $col->id,
+                "titulo" => $col->titulo,
+                "card" => $col->imagenbox,
+                "slug" => $col->slug,
+                "video" => $col->video,
+                "categoria" =>  @Post::getCategory($col->id)['category'],
+                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+                'date_publish'=> @$col->date_publish,
+                'lectura' => @Post::TimeEstimate($col->contenido)
+
+                );
+            }
+        $videos = collect($video);
+
 
        $categor = Category::where('slug',$categoria)->first();
        $subcategor = Category::where('slug',$subcategoria)->first();
@@ -352,7 +458,25 @@ class HomeController extends Controller
         }
 
 
-       $videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+       //$videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+       //videos
+       $vids = Post::where('post_type_id',3)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
+
+       foreach($vids as $key => $col){
+           $video[] = array(
+               "id" => $col->id,
+               "titulo" => $col->titulo,
+               "card" => $col->imagenbox,
+               "slug" => $col->slug,
+               "video" => $col->video,
+               "categoria" =>  @Post::getCategory($col->id)['category'],
+               "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+               'date_publish'=> @$col->date_publish,
+               'lectura' => @Post::TimeEstimate($col->contenido)
+
+               );
+           }
+       $videos = collect($video);
 
        //contador de visitas
        $remote_ip  = $_SERVER['REMOTE_ADDR'];
