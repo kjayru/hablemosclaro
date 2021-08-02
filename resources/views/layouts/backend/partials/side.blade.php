@@ -19,64 +19,70 @@
         </div>
       </div>
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item has-treeview ">
+                    <a href="/admin" class="nav-link {{{ (Request::is('admin') ? 'active' : '') }}}">
+                    <p>Dashboard </p>
+                    </a>
+                </li>
+
 
             <li class="nav-item has-treeview ">
-                <a href="/admin" class="nav-link {{{ (Request::is('admin') ? 'active' : '') }}}">
-                  <p>Dashboard </p>
+                <a href="/admin/users" class="nav-link {{{ (Request::is('admin/users') ? 'active' : '') }}}">
+                <p>Usuarios </p>
                 </a>
-              </li>
+            </li>
+
+            <li class="nav-item has-treeview ">
+                <a href="/admin/categories" class="nav-link {{{ (Request::is('admin/Categorias') ? 'active' : '') }}}">
+                <p>Categorías </p>
+                </a>
+            </li>
+
+            <li class="nav-item has-treeview ">
+                <a href="/admin/posts" class="nav-link {{{ (Request::is('admin/posts') ? 'active' : '') }}}">
+                <p>Publicaciones </p>
+                </a>
+            </li>
+
+            <li class="nav-item has-treeview ">
+                <a href="/admin/authors" class="nav-link {{{ (Request::is('admin/authors') ? 'active' : '') }}}">
+                <p>Autores </p>
+                </a>
+            </li>
+
+            <li class="nav-item has-treeview ">
+                <a href="/admin/tags" class="nav-link {{{ (Request::is('admin/tags') ? 'active' : '') }}}">
+                <p>Tags </p>
+                </a>
+            </li>
 
 
-          <li class="nav-item has-treeview ">
-            <a href="/admin/users" class="nav-link {{{ (Request::is('admin/users') ? 'active' : '') }}}">
-              <p>Usuarios </p>
-            </a>
-          </li>
+            <li class="nav-item has-treeview ">
+                <a href="/admin/media" class="nav-link {{{ (Request::is('admin/media') ? 'active' : '') }}}">
+                <p>Media </p>
+                </a>
+            </li>
 
-          <li class="nav-item has-treeview ">
-            <a href="/admin/categories" class="nav-link {{{ (Request::is('admin/Categorias') ? 'active' : '') }}}">
-              <p>Categorías </p>
-            </a>
-          </li>
+            <li class="nav-item has-treeview ">
+                <a href="/admin/register" class="nav-link {{{ (Request::is('admin/register') ? 'active' : '') }}}">
+                <p>Suscripciones </p>
+                </a>
+            </li>
 
-          <li class="nav-item has-treeview ">
-            <a href="/admin/posts" class="nav-link {{{ (Request::is('admin/posts') ? 'active' : '') }}}">
-              <p>Publicaciones </p>
-            </a>
-          </li>
-
-          <li class="nav-item has-treeview ">
-            <a href="/admin/authors" class="nav-link {{{ (Request::is('admin/authors') ? 'active' : '') }}}">
-              <p>Autores </p>
-            </a>
-          </li>
-
-          <li class="nav-item has-treeview ">
-            <a href="/admin/tags" class="nav-link {{{ (Request::is('admin/tags') ? 'active' : '') }}}">
-              <p>Tags </p>
-            </a>
-          </li>
+            <li class="nav-item has-treeview ">
+                <a href="/admin/configuration" class="nav-link {{{ (Request::is('admin/configuration') ? 'active' : '') }}}">
+                <p>Configuración </p>
+                </a>
+            </li>
 
 
-          <li class="nav-item has-treeview ">
-            <a href="/admin/media" class="nav-link {{{ (Request::is('admin/media') ? 'active' : '') }}}">
-              <p>Media </p>
-            </a>
-          </li>
+            </ul>
 
-          <li class="nav-item has-treeview ">
-            <a href="/admin/configuration" class="nav-link {{{ (Request::is('admin/configuration') ? 'active' : '') }}}">
-              <p>Configuración </p>
-            </a>
-          </li>
-
-
-        </ul>
-
-      </nav>
-
+        </nav>
 
       <!-- /.sidebar-menu -->
     </div>
