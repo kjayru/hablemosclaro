@@ -122,7 +122,7 @@
 <script>CKFinder.config( { connectorPath: "https://hablemos.test/ckfinder/connector" } );</script>
 
 
-<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
 
 <script src="/js/main.js?v={{ uniqid() }}"></script>
 <!--script ckfinder-->
@@ -175,7 +175,7 @@
                     "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
                     "sInfoPostFix":    "",
                     "sSearch":         "Buscar",
-                    "searchPlaceholder": "Nombre de campaña",
+                    "searchPlaceholder": "Nombre ",
 
                     "sUrl":            "",
                     "sInfoThousands":  ",",

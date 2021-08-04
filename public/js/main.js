@@ -23,10 +23,34 @@ try {
     var newCKEdit = CKEDITOR.replace('contenido', {
         height: '600px',
 
+
+
+
     });
     CKEDITOR.config.allowedContent = true;
     CKEDITOR.plugins.addExternal('youtube', '/js/ckfinder/plugins/youtube/');
     CKEDITOR.config.extraPlugins = 'youtube';
+
+    // Toolbar configuration generated automatically by the editor based on config.toolbarGroups.
+    CKEDITOR.config.toolbar = [
+	{ name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'ExportPdf', 'Preview', 'Print', '-', 'Templates' ] },
+	{ name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+	{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+	{ name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
+	'/',
+	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
+	{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
+	{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+	{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+	'/',
+	{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+	{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+	{ name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
+	{ name: 'others', items: [ '-' ] },
+	{ name: 'about', items: [ 'About' ] }
+];
+
+
 
    // CKEDITOR.plugins.addExternal('slider', '/js/ckfinder/plugins/slider/');
    // CKEDITOR.config.extraPlugins = 'slider';
@@ -37,15 +61,17 @@ try {
 
           CKEDITOR.editorConfig = function( config ) {
 
-            config.contentsCss = 'https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap';
+            //config.contentsCss = 'https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap';
 
-            config.font_names = config.font_names + 'Alfa Slab One/Alfa Slab One;';
-            config.font_names = config.font_names + 'Open Sans/Open Sans;';
+            //config.font_names = config.font_names + 'Alfa Slab One/Alfa Slab One;';
+            //config.font_names = config.font_names + 'Open Sans/Open Sans;';
 
 
             }
 
     CKEDITOR.config.contentsCss = '/assets/public/css/site.css?v=2';
+    CKEDITOR.config.templates_files = [ '/ckeditor/plugins/templates/templates/default.js' ];
+
     CKFinder.config({ connectorPath: '/ckfinder/connector' });
 
 
