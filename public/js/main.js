@@ -45,7 +45,7 @@ try {
 
             }
 
-    CKEDITOR.config.contentsCss = '/css/main.css?v=23033';
+    CKEDITOR.config.contentsCss = '/assets/public/css/site.css?v=2';
     CKFinder.config({ connectorPath: '/ckfinder/connector' });
 
 
