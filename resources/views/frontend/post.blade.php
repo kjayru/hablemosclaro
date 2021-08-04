@@ -77,21 +77,21 @@
                     <img src="/assets/public/images/social_twitter.png" alt="Compartir en Twitter" loading="lazy">
                     <span>Twitter</span>
                 </a>
-                <a href="https://api.whatsapp.com/send?text={{ url()->current() }}" target="_blank" class="m--wsp">
-                    <img src="/assets/public/images/social_wsp.png" alt="Compartir en Whatsapp" loading="lazy">
-                    <span>Whatsapp</span>
-                </a>
-                <a href="mailto:info@example.com?&subject=&cc=&bcc=&body={{ url()->current() }}" target="_blank" class="m--gmail">
-                    <img src="/assets/public/images/social_gmail.png" alt="Compartir en Gmail" loading="lazy">
-                    <span>Gmail</span>
-                </a>
                 <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}" target="_blank" class="m--linkedin">
                     <img src="/assets/public/images/social_linkedin.png" alt="Compartir en Linkedin" loading="lazy">
                     <span>Linkedin</span>
                 </a>
+                <a href="https://api.whatsapp.com/send?text={{ url()->current() }}" target="_blank" class="m--wsp">
+                    <img src="/assets/public/images/social_wsp.png" alt="Compartir en Whatsapp" loading="lazy">
+                    <span>Whatsapp</span>
+                </a>
                 <a href="http://www.facebook.com/dialog/send?app_id=1127021294451565&link={{ url()->current() }}&redirect_uri={{ url()->current() }}" target="_blank" class="m--msn">
                     <img src="/assets/public/images/social_msn.png" alt="Compartir en Messenger" loading="lazy">
                     <span>Mesenger</span>
+                </a>
+                <a href="mailto:info@example.com?&subject=&cc=&bcc=&body={{ url()->current() }}" target="_blank" class="m--gmail">
+                    <img src="/assets/public/images/social_gmail.png" alt="Compartir en Gmail" loading="lazy">
+                    <span>Gmail</span>
                 </a>
                 <a href="https://t.me/share?url={{ url()->current() }}" target="_blank" class="m--telegram">
                     <img src="/assets/public/images/social_telegram.png" alt="Compartir en Telegram" loading="lazy">
@@ -211,17 +211,17 @@
             <a href="https://twitter.com/intent/tweet?url={{ url()->current() }}" target="_blank">
                 <img src="/assets/public/images/social_twitter.png" alt="Compartir en Twitter" loading="lazy">
             </a>
-            <a href="https://api.whatsapp.com/send?text={{ url()->current() }}" target="_blank">
-                <img src="/assets/public/images/social_wsp.png" alt="Compartir en Whatsapp" loading="lazy">
-            </a>
-            <a href="mailto:info@example.com?&subject=&cc=&bcc=&body={{ url()->current() }}" target="_blank">
-                <img src="/assets/public/images/social_gmail.png" alt="Compartir en Gmail" loading="lazy">
-            </a>
             <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url()->current() }}" target="_blank">
                 <img src="/assets/public/images/social_linkedin.png" alt="Compartir en Linkedin" loading="lazy">
             </a>
+            <a href="https://api.whatsapp.com/send?text={{ url()->current() }}" target="_blank">
+                <img src="/assets/public/images/social_wsp.png" alt="Compartir en Whatsapp" loading="lazy">
+            </a>
             <a href="http://www.facebook.com/dialog/send?app_id=1127021294451565&link={{ url()->current() }}&redirect_uri={{ url()->current() }}" target="_blank">
                 <img src="/assets/public/images/social_msn.png" alt="Compartir en Messenger" loading="lazy">
+            </a>
+            <a href="mailto:info@example.com?&subject=&cc=&bcc=&body={{ url()->current() }}" target="_blank">
+                <img src="/assets/public/images/social_gmail.png" alt="Compartir en Gmail" loading="lazy">
             </a>
             <a href="https://t.me/share?url={{ url()->current() }}" target="_blank">
                 <img src="/assets/public/images/social_telegram.png" alt="Compartir en Telegram" loading="lazy">
