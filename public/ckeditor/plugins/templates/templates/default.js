@@ -56,6 +56,27 @@ CKEDITOR.addTemplates( 'default', {
 
         <!-- fin de bloque-->
     </div>`
-    	}
+    	},{
+    title:'Bloque autor',
+    image:'template.gif',
+    description:'Bloque presentación de autores',
+    html:`<dl class="detalle_de_articulos__article__author">
+            <dt class="detalle_de_articulos__article__author__header">
+                <figure class="detalle_de_articulos__article__author__image">
+
+                <!--with:70 height:70-->
+                foto aqui
+                </figure>
+                <strong>
+                    nombre aqui
+                </strong>
+                <p>
+                Cargo
+                </p>
+
+            </dt>
+
+        </dl>`
+        }
 ]
 } );
