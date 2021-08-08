@@ -122,14 +122,14 @@
 
                     </div>
 
-                    <div class="row row__video" @if($articulo->post_type_id==2) style="display:block;" @endif>
+                    <div class="row row__video" @if(@$articulo->post_type_id==2) style="display:block;" @endif>
                         <div class="form-group col-sm-6">
                             <label for="video">Codigo Embed video</label>
                             <input type="text" name="video" id="video" class="form-control" value="{{@$articulo->video}}" placeholder="Codigo Embed video">
                         </div>
                     </div>
 
-                    <div class="row row__author" @if($articulo->post_type_id==3) style="display:block;" @endif>
+                    <div class="row row__author" @if(@$articulo->post_type_id==3) style="display:block;" @endif>
                         <div class="form-group col-sm-6">
                             <label for="author">Autor</label>
                             <select name="author" id="author" class="custom-select">
