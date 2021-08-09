@@ -285,7 +285,12 @@ class HomeController extends Controller
 
         }else{
             $relacionados=[];
+
             $post = Post::where('slug',$subcategoria)->first();
+
+            $post->publicado = @Carbon::parse($post->date_publish)->locale('es')->isoFormat('D \\d\e MMMM\\,\\ YYYY');
+            $post->tiempoLectura = @Post::TimeEstimate($post->contenido);
+
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
