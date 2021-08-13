@@ -589,18 +589,18 @@ class HomeController extends Controller
     }
 
     public function buscar(Request $request){
-        /*$posts = DB::table('posts')
-                    ->where('posts.titulo','LIKE',"%{$request->word}%")
-                    ->leftJoin('categories', 'posts.category_id', 'categories.id')
-                    ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory')
-                    ->limit(4)
-                    ->get();*/
+        // $posts = DB::table('posts')
+        //             ->where('posts.titulo','LIKE',"%{$request->word}%")
+        //             ->leftJoin('categories', 'posts.category_id', 'categories.id')
+        //             ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory', 'posts.id as post_id')
+        //             ->limit(6)
+        //             ->get();
 
         $result = [];
-         $posts = Post::where('titulo','LIKE',"%{$request->word}%")->where('estado',1)->take(6)->get();
+        $posts = Post::where('titulo','LIKE',"%{$request->word}%")->where('estado',1)->get();
+        // $posts = Post::where('estado',1)->get();
 
          foreach($posts as $post){
-
              if(isset($post->categories[0]->parent)){
                  $result[] = array(
                     "category"=> @Post::getCategory($post->id)['category']->slug,
@@ -618,9 +618,28 @@ class HomeController extends Controller
              }
          }
 
-         //dd($result);
+        $buscados = [];
+        foreach ($result as $post) {
+            if ( ! is_null( $post['category'] ) ) {
+                array_push($buscados, $post['category']);
+            }
+        }
+        $counted = array_count_values($buscados);
+        asort($counted);
+        $counted = array_reverse($counted);
+        $mas_buscados = [];
+        $limit = 4;
+        $i = 1;
+        foreach ($counted as $key => $value) {
+            if ( $i <= $limit) {
+                array_push( $mas_buscados, Category::where('slug', $key)->select('nombre', 'slug')->get() );
+                $i++;
+            }
+        }
 
-        return response()->json(['rpta'=>'ok',"data"=>$result]);
+        // dd( $counted, $mas_buscados, $result);
+
+        return response()->json(['rpta'=>'ok',"data"=>$result, 'mas_buscados'=>$mas_buscados]);
     }
 
 

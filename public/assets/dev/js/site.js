@@ -307,7 +307,7 @@ const site = (function(){
 
 		},
 
-		search : function ( data, word ) {
+		search : function ( data, mas_buscados, word ) {
 			if ( data.length ) {
 				let html = '';
 				$.each(data, function(index, val) {
@@ -326,7 +326,13 @@ const site = (function(){
 				}
 				$('.fnSearchResults').addClass(dom.active);
 				$('.fnSearchResultsData').html(html);
+				// Más buscados
+				let text_mas_buscados = '';
+				$.each(mas_buscados, function(index, val) { text_mas_buscados+=`<a href="/${val[0].slug}">${val[0].nombre}</a>`; });
+				$('.fnSearchResultsWantedWrapper').addClass(dom.active);
+				$('.fnSearchResultsWanted').html(text_mas_buscados);
 			} else {
+				$('.fnSearchResultsWantedWrapper').removeClass(dom.active);
 				$('.fnSearchResultsData').html('<p>No se hallaron resultados.</p>');
 			}
 			
@@ -384,7 +390,7 @@ const site = (function(){
 									switch (tipoForm) {
 										case 'search_form':
 												const word = f.find('input[name="word"]').val();
-												events.search(response.data, word); 
+												events.search(response.data, response.mas_buscados, word); 
 											break;
 									}
 									// setNewRecaptcha();

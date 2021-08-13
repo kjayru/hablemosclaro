@@ -229,11 +229,11 @@
 						
 		&__content
 			line-height 1.55
-			p, ul, ol
+			p, ul, ol, blockquote
 				margin-bottom rem(15)
 			a
 				color --celeste
-			a, strong
+			a, strong, b
 				font-weight 700
 			ul
 				padding-left rem(15)
@@ -245,7 +245,11 @@
 				li
 					list-style-type auto
 					margin-bottom rem(5)
-					
+			blockquote
+				background-color #f4f6f9
+				margin rem(0,0,15)
+				padding rem(20)
+				border-radius rem(5)
 			*:last-child
 				margin-bottom 0
 		
@@ -273,6 +277,7 @@
 		&__simple-slide
 			width 100%
 			height fit-content
+			max-height rem(300)
 			padding-bottom rem(25)
 			&.m--one
 				padding-bottom rem(50)
@@ -291,9 +296,6 @@
 				padding-right rem(24)
 				&:last-child
 					padding-right 0
-			
-			
-			
 			&__image
 				img
 					max-width 100%
@@ -303,6 +305,8 @@
 					width 100%
 					img
 						margin 0 auto
+						max-height rem(350)
+						width auto
 			
 			&__item
 				width rem(259)
