@@ -370,6 +370,8 @@ const site = (function(){
 			let formBlock = true;
 			$('form').on('submit', function(e){
 
+				if ( $(this).hasClass('detalle_de_articulos__subscribe') ) { e.preventDefault(); return false; }
+
 				let f = $(this);
 				let fields = f.find('input, textarea, select');
 				let tipoForm = f.data('tipo');
