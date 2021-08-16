@@ -277,7 +277,7 @@
 		&__simple-slide
 			width 100%
 			height fit-content
-			max-height rem(300)
+			// max-height rem(300)
 			padding-bottom rem(25)
 			&.m--one
 				padding-bottom rem(50)
@@ -310,6 +310,8 @@
 			
 			&__item
 				width rem(259)
+				&:marker
+					display none
 				dl
 					padding rem(17, 14)
 					font-size rem(14)
@@ -377,6 +379,8 @@
 					padding rem(10, 0, 0, 17)
 			li
 				margin-bottom rem(10)
+				&:marker
+					display none
 				&:before
 					content counters(item, ".") " "
 					counter-increment item
