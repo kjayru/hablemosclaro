@@ -172,7 +172,7 @@
 					filter grayscale(1)
 					cursor not-allowed
 		
-		&__content, &__donwload, &__simple-slide, &__nav, &__links, &__myths, &__social-cards, &__author
+		&__content, &__donwload, &__simple-slide, &__nav, &__links, &__myths, &__social-cards, &__author, &__form-test
 			margin-bottom var(--items-var)
 			&:last-child
 				margin-bottom 0
@@ -622,6 +622,121 @@
 						color --blanco
 					&:last-child
 						margin-right 0
+		
+		&__form-test
+			padding-top rem(20)
+			&__question
+				display flex
+				flex-wrap wrap
+				margin-bottom rem(40)
+				&__title
+					width 100%
+					font-size rem(26)
+					font-weight 700
+					margin-bottom rem(25)
+					display flex
+					align-items center
+					span
+						background-color --negro
+						color --blanco
+						width rem(36)
+						height rem(36)
+						border-radius 50%
+						font-size rem(21)
+						margin-right rem(10)
+						flex none
+						display flex
+						justify-content center
+						align-items center
+						line-height 1
+					strong
+						line-height 1
+				@media (max-width 600px)
+					flex-direction column
+					&__title
+						font-size rem(22)
+						span
+							width rem(30)
+							height rem(30)
+							font-size rem(18)
+			
+			&__figure
+				margin-right rem(26)
+				width rem(295)
+				border rem(1) solid #e5e7e8
+				display flex
+				justify-content center
+				align-items center
+				img
+					width 100%
+					height value
+				@media (max-width 600px)
+					width 100%
+					margin rem(0, 0, 15)
+						
+			&__labels
+				flex 1
+				&.-checked-
+					pointer-events none
+					.detalle_de_articulos__article__form-test__label
+						border-color #eee
+						span
+							opacity 0.2
+						&.-true-, &[data-true]
+							opacity 1
+							box-shadow rem(0, 2, 13, 0) rgba(209, 209, 209, 0.5)
+							border-color #b2b6bb
+							span
+								opacity 1
+						&[data-true]
+							&:after
+								background url('../images/test_check.svg') no-repeat
+			&__label
+				display flex
+				align-items center
+				justify-content space-between
+				position relative
+				
+				border rem(1) solid #b2b6bb
+				min-height rem(64)
+				border-radius rem(5)
+				padding rem(12, 27)
+				margin-bottom rem(10)
+				cursor pointer
+				
+				&:last-child
+					margin-bottom 0
+					
+				&:after
+					content ''
+					display block
+					width rem(36)
+					height rem(36)
+					
+				&.-true-
+					&:after
+						background url('../images/test_check.svg') no-repeat
+				&.-false-
+					&:after
+						background url('../images/test_fail.svg') no-repeat
+					
+				input
+					opacity 0
+					position absolute
+					top 0
+					left 0
+					
+					// &:checked + span
+					// 	color red
+				
+				span
+					color negro
+					font-size rem(18)
+					padding-right rem(15)
+			
+			
+				
+
 	
 	&__footer
 		order 4

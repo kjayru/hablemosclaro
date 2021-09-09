@@ -116,6 +116,15 @@ const site = (function(){
 
 		interactions : function() {
 
+			// Encuesta simple
+			$('.detalle_de_articulos__article__form-test__label input')
+				.on('input', function(e){
+					const _self = $(this);
+					const label = _self.parent();
+					_self.closest('.detalle_de_articulos__article__form-test__labels').addClass('-checked-');
+					undefined !== label.data('true') ? label.addClass('-true-') : label.addClass('-false-') ;
+				});
+
 			// Mostrar avance de lectura
 			if ( $('.detalle_de_articulos').length ) {
 				$('.header__advance').addClass('-active-');
