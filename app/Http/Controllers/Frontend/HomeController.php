@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Visit;
 use Carbon\Carbon;
 use App\Models\Tag;
+use App\Models\ResultQuiz;
 
 class HomeController extends Controller
 {
@@ -508,7 +509,7 @@ class HomeController extends Controller
 
        $articulo->publicado = @Carbon::parse($articulo->date_publish)->locale('es')->isoFormat('D \\d\e MMMM\\,\\ YYYY');
        $articulo->tiempoLectura = @Post::TimeEstimate($articulo->contenido);
-       // dd($articulo);
+
 
         return view('frontend.post',['postmax'=>$postmax,'categoria'=>$category,'subcategoria'=>$subcategory,'videos'=>$videos,'columns'=>$columns,'articulo'=>$articulo,'relacionados'=>$relacionados,'next'=>$next,'previous'=>$previous]);
 
@@ -671,4 +672,10 @@ class HomeController extends Controller
 
     }
 
+    public function getOptResult(Request $request){
+         $result = ResultQuiz::where('quiz_id',$request->quiz_id)
+        ->where('question_id',$request->question_id)->first();
+
+        return response()->json($result);
+    }
 }

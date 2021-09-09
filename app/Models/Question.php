@@ -10,11 +10,11 @@ class Question extends Model
     use HasFactory;
 
     public function quiz(){
-        return belongsTo(Quiz::class);
+        return $this->belongsTo(Quiz::class);
     }
 
     public function options(){
-        return hasMany(Option::class);
+        return $this->hasMany(Option::class);
     }
 
      public function resultquiz(){

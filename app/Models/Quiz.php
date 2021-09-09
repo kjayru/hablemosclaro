@@ -18,4 +18,8 @@ class Quiz extends Model
      public function resultquiz(){
         return $this->hasOne(ResultQuiz::class);
     }
+
+    public function post(){
+        return $this->belongsTo(Post::class,'quiz_id');
+    }
 }

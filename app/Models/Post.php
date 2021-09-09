@@ -231,5 +231,8 @@ class Post extends Model
         return array("category"=>$category,"subcategory"=>$subcategory);
     }
 
+    public function quiz(){
+        return $this->hasOne(Quiz::class,'id','quiz_id');
+    }
 
 }

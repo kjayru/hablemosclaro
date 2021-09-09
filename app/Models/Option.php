@@ -13,6 +13,6 @@ class Option extends Model
     }
 
     public function question(){
-        return belongsTo(Question::class);
+        return $this->belongsTo(Question::class);
     }
 }

@@ -132,5 +132,6 @@ Route::post('/suscribirse', [HomeController::class, 'suscribirse']);
 Route::post('/search', [HomeController::class, 'buscar']);
 
 
+ Route::post('/getoptresult', [HomeController::class,'getOptResult']);
 
 

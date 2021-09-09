@@ -49,7 +49,7 @@
                 {!!$articulo->contenido!!}
 
                 <div class="detalle_de_articulos__article__form-test">
-                    <div class="detalle_de_articulos__article__form-test__question">
+                    <!--<div class="detalle_de_articulos__article__form-test__question">
                         <h4 class="detalle_de_articulos__article__form-test__question__title">
                             <span>1</span>
                             <strong>¿Cuántos emails se envían?</strong>
@@ -71,27 +71,29 @@
                                 <span class="detalle_de_articulos__article__form-test__label__text">Respuesta 3</span>
                             </label>
                         </div>
-                    </div>
+                    </div>-->
+                @if(isset($articulo->quiz))
+                    @foreach($articulo->quiz->questions as $k => $quest)
                     <div class="detalle_de_articulos__article__form-test__question">
                         <h4 class="detalle_de_articulos__article__form-test__question__title">
-                            <span>2</span>
-                            <strong>¿Cuántos emails se envían por Gmail?</strong>
+                            <span>{{$k+1}}</span>
+                            <strong>{{ $quest->pregunta}}</strong>
                         </h4>
                         <div class="detalle_de_articulos__article__form-test__labels">
+
+                            @foreach($quest->options as $opt)
                             <label class="detalle_de_articulos__article__form-test__label" data-true>
-                                <input type="radio" name="test" value="Respuesta 1">
-                                <span class="detalle_de_articulos__article__form-test__label__text">Respuesta 1</span>
+                                <input type="radio" name="opcion" value="{{$opt->id}}" data-quiz="{{$quest->id}}" data-question="{{$articulo->quiz_id}}">
+                                <span class="detalle_de_articulos__article__form-test__label__text">{{$opt->opcion}}</span>
                             </label>
-                            <label class="detalle_de_articulos__article__form-test__label">
-                                <input type="radio" name="test" value="Respuesta 2">
-                                <span class="detalle_de_articulos__article__form-test__label__text">Respuesta 2</span>
-                            </label>
-                            <label class="detalle_de_articulos__article__form-test__label">
-                                <input type="radio" name="test" value="Respuesta 3">
-                                <span class="detalle_de_articulos__article__form-test__label__text">Respuesta 3</span>
-                            </label>
+                           @endforeach
+
                         </div>
                     </div>
+
+                    @endforeach
+                @endif
+
                 </div>
 
             </div>
