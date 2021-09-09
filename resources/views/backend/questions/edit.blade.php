@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Editar Artículo</h1>
+            <h1>Editar Pregunta</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/admin/pasts">Artículos</a></li>
-              <li class="breadcrumb-item active">Editar Artículo</li>
+              <li class="breadcrumb-item"><a href="/admin/quizzes">Pregunta</a></li>
+              <li class="breadcrumb-item active">Editar Pregunta</li>
             </ol>
           </div>
         </div>
@@ -31,19 +31,19 @@
 
 
 
-              <form role="form" action="{{ route('post.update',$articulo->id) }}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{ route('question.update',['ques'=>$question->id]) }}" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
 
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
 
-
-                    @include('backend.publicaciones.form.index')
+                    <input type="hidden" name="quiz_id" value="{{$quiz_id}}">
+                    @include('backend.questions.form.index')
 
                   </div>
 
                   <div class="card-footer">
-                    <a href="{{ route('post.index') }}" class="btn btn-back">Cancelar</a>
+                    <a href="{{ route('question.show',['ques'=>$quiz_id]) }}" class="btn btn-back">Cancelar</a>
                     <button type="submit" class="btn btn-info pull-right">Guardar</button>
 
                   </div>

@@ -11,6 +11,10 @@ use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\ConfigurationController;
 use App\Http\Controllers\Backend\RegisterController;
+use App\Http\Controllers\Backend\QuizController;
+use App\Http\Controllers\Backend\QuestionController;
+use App\Http\Controllers\Backend\OptionController;
+use App\Http\Controllers\Backend\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,13 +48,43 @@ Auth::routes([
     Route::put('/users/{user}', [UserController::class,'update'])->name('user.update');
     Route::delete('/users/{user}', [UserController::class,'destroy'])->name('user.destroy');
 
-
     Route::get('/categories', [CategoryController::class,'index'])->name('category.index');
     Route::get('/categories/create', [CategoryController::class,'create'])->name('category.create');
     Route::post('/categories', [CategoryController::class,'store'])->name('category.store');
     Route::get('/categories/{categoria}/edit', [CategoryController::class,'edit'])->name('category.edit');
     Route::put('/categories/{categoria}', [CategoryController::class,'update'])->name('category.update');
     Route::delete('/categories/{categoria}', [CategoryController::class,'destroy'])->name('category.destroy');
+
+
+    Route::get('/quizzes', [QuizController::class,'index'])->name('quiz.index');
+    Route::get('/quizzes/create', [QuizController::class,'create'])->name('quiz.create');
+    Route::post('/quizzes', [QuizController::class,'store'])->name('quiz.store');
+    Route::get('/quizzes/{quiz}/edit', [QuizController::class,'edit'])->name('quiz.edit');
+    Route::put('/quizzes/{quiz}', [QuizController::class,'update'])->name('quiz.update');
+    Route::delete('/quizzes/{quiz}', [QuizController::class,'destroy'])->name('quiz.destroy');
+
+    Route::get('/questions', [QuestionController::class,'index'])->name('question.index');
+    Route::get('/questions/create/{quiz_id}', [QuestionController::class,'create'])->name('question.create');
+    Route::post('/questions', [QuestionController::class,'store'])->name('question.store');
+    Route::get('/questions/{ques}', [QuestionController::class,'show'])->name('question.show');
+    Route::get('/questions/{ques}/edit/{quiz_id}', [QuestionController::class,'edit'])->name('question.edit');
+    Route::put('/questions/{ques}', [QuestionController::class,'update'])->name('question.update');
+    Route::delete('/questions/{ques}', [QuestionController::class,'destroy'])->name('question.destroy');
+
+
+    Route::get('/options/create', [OptionController::class,'create'])->name('option.create');
+    Route::post('/options', [OptionController::class,'store'])->name('option.store');
+    Route::get('/options/{op}/edit', [OptionController::class,'edit'])->name('option.edit');
+    Route::put('/options/{op}', [OptionController::class,'update'])->name('option.update');
+    Route::delete('/options/{op}', [OptionController::class,'destroy'])->name('option.destroy');
+    Route::get('/options/{op}', [OptionController::class,'show'])->name('option.show');
+
+    Route::post('/options/setresult',[OptionController::class,'setResult']);
+    Route::post('/options/getresult',[OptionController::class,'getResult']);
+
+
+    Route::post('/resultquiz', [ResultController::class,'store'])->name('result.destroy');
+    Route::put('/resultquiz/{res}', [ResultController::class,'update'])->name('result.destroy');
 
     Route::get('/posts', [PostController::class,'index'])->name('post.index');
     Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
@@ -85,20 +119,14 @@ Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderCon
     ->name('ckfinder_browser');
 
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
-
 Route::get('/buscar/{word}', [HomeController::class, 'resultados']);
 Route::get('/tag/{tag}', [HomeController::class, 'tag']);
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/{categoria}', [HomeController::class, 'categoria']);
 Route::get('/{categoria}/{subcategoria}', [HomeController::class, 'subcategoria']);
-
-
 Route::get('/{categoria}/{subcategoria}/{slug}', [HomeController::class, 'articulo']);
-
 Route::get('/categories', [HomeController::class, 'categories']);
-
-
 //asinc
 Route::post('/suscribirse', [HomeController::class, 'suscribirse']);
 Route::post('/search', [HomeController::class, 'buscar']);

@@ -404,8 +404,6 @@ $(".btn-abrirautor").on('click',function (e) {
 });
 
 
-
-
 $(".btn-abrirpop1").on('click',function (e) {
     e.preventDefault();
     $("#imagenfacebook").html("");
@@ -503,5 +501,293 @@ $(".btn-abrirpop2").on('click',function (e) {
     });
 });
 
+$(".btn___opciones").on("click", function () {
+    id = $(this).data("id");
+    $("#questionoption").val(id);
+    console.log(id);
+    htm = '';
+    $.ajax({
+        url: "/admin/options/" + id,
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            if (response!='') {
+
+                $.each(response, function (i, e) {
+                  htm += `<tr>
+            <td>${i + 1}</td>
+            <td>${e.opcion}</td>
+            <td width="10%">
+             <a href="#" data-id="${
+                 e.id
+             }" class="btn-xs btn btn-outline-info btn__editar_opcion" data-id="${
+                      e.id
+                  }" data-question="${
+                      e.question_id
+                  }"  data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i></a>
+             <a href="#"   data-id="${
+                 e.id
+             }" data-question="${e.question_id}"  class="btn btn-xs btn-dangers btn__option_destroy"><i class="far fa-trash-alt"></i></a>
+
+            </td>
+            </tr>`;
+                });
+
+                $(".tbopciones").html(htm);
+
+            } else {
+                $(".tbopciones").html(`<tr><td colspan="3" class="text-center firsttd">No tiene opciones cargadas</td></tr>`);
+            }
+        }
+    })
+});
 
 
+$(".btn__saveoption").on('click', function (e) {
+    let token = $("meta[name=csrf-token]").attr("content");
+    let question_id = $("#questionoption").val();
+    let option = $("#inputoption").val();
+
+    let datasend = ({ '_token': token, '_method': 'POST', 'question_id': question_id, 'option': option });
+
+    $.ajax({
+        url: "/admin/options",
+        type: "POST",
+        dataType: 'json',
+        data: datasend,
+        success: function (response) {
+
+            $(".firsttd").remove();
+            $(".tbopciones").append(`<tr>
+            <td></td>
+            <td>${response.opcion}</td>
+            <td width="10%">
+             <a href="#" data-id="${response.id}" data-question="${question_id}" class="btn-xs btn btn-outline-info btn__editar_opcion"><i class="far fa-edit"></i></a>
+             <a href="#"   data-id="${response.id}"  data-question="${question_id}" class="btn btn-xs btn-dangers btn__option_destroy"><i class="far fa-trash-alt"></i></a>
+
+            </td>
+            </tr>`);
+
+            $("#inputoption").val('');
+
+        }
+    });
+});
+
+$(document).on("click", ".btn__editar_opcion", function (e) {
+    e.preventDefault();
+    let id = $(this).data('id');
+    let question_id = $(this).data("question");
+
+    $("#questionoptionedit").val(question_id);
+
+    $("#option_edit_id").val(id);
+
+    $.ajax({
+        url: `/admin/options/${id}/edit`,
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            $("#inputoptionedit").val(response.opcion);
+        }
+    })
+    console.log("identificador :"+id);
+ });
+
+
+$(".btn__actualizar_option").on('click', function (e) {
+    let id =  $("#option_edit_id").val();
+
+     let token = $("meta[name=csrf-token]").attr("content");
+     let question_id = $("#questionoptionedit").val();
+     let option = $("#inputoptionedit").val();
+
+     let datasend = {
+         _token: token,
+         _method: "PUT",
+         question_id: question_id,
+         option: option,
+
+     };
+
+
+     $.ajax({
+         url: "/admin/options/"+id,
+         type: "POST",
+         dataType: "json",
+         data: datasend,
+         beforeSend: function () {
+             htm = "";
+             $(".tbopciones").empty();
+         },
+         success: function (response) {
+              updateOpcion(response, question_id);
+             $("#editModal").modal('hide');
+             $(".tbopciones").html(htm);
+         },
+     });
+
+});
+
+$(document).on("click", ".btn__option_destroy", function () {
+    let id = $(this).data("id");
+    let question_id = $(this).data("question");
+
+    let token = $("meta[name=csrf-token]").attr("content");
+
+    let datasend = {
+        _token: token,
+        _method: "DELETE",
+        id: id,
+        question_id :question_id
+    };
+
+    $.ajax({
+        url: "/admin/options/" + id,
+        type: "POST",
+        dataType: "json",
+        data: datasend,
+
+        success: function (response) {
+            $(".mensaje__text").html("Opción eliminada");
+            updateOpcion(response, question_id);
+            $(".tbopciones").html(htm);
+        },
+    });
+
+
+});
+
+
+$(document).on("focus", "#inputoption", function () {
+    $(".mensaje__text").html("");
+});
+
+
+function updateOpcion(response, question_id) {
+     htm = "";
+    $(".tbopciones").empty();
+
+    $.each(response, function (i, e) {
+        htm += `<tr>
+                    <td>${i + 1}</td>
+                    <td>${e.opcion}</td>
+                    <td width="10%">
+                    <a href="#" data-id="${
+                        e.id
+                    }" class="btn-xs btn btn-outline-info btn__editar_opcion" data-question="${question_id}"  data-toggle="modal" data-target="#editModal"><i class="far fa-edit"></i></a>
+                    <a href="#"   data-id="${
+                        e.id
+                    }" data-question="${question_id}" class="btn btn-xs btn-dangers btn__option_destroy"><i class="far fa-trash-alt"></i></a>
+
+                    </td>
+                </tr>`;
+    });
+}
+
+
+$(".btn___resultados").on("click", function () {
+
+
+
+    id = $(this).data("id");
+    $("#questionoption").val(id);
+    let quiz_id = $("#quizid").val();
+    let token = $("meta[name=csrf-token]").attr("content");
+
+     let datasend = {
+         _token: token,
+         _method: "POST",
+         quiz_id: quiz_id,
+         question_id: id,
+     };
+
+
+    htm = "";
+    $.ajax({
+        url: "/admin/options/" + id,
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+
+            if (response != "") {
+                $.each(response, function (i, e) {
+                    htm += `<a href="#" id="preg-${e.id}" data-id="${e.id}" data-question="${e.question_id}" class="list-group-item list-group-item-action opcion__seleccion">${e.opcion}</a>`;
+                });
+
+                $(".list__opcion").html(htm);
+
+                 $.ajax({
+                     url: "/admin/options/getresult",
+                     type: "POST",
+                     dataType: "json",
+                     data: datasend,
+                     success: function (response) {
+                         console.log(response.option_id);
+                         let pregunta = "#preg-"+ response.option_id;
+                         $(pregunta).addClass("active")
+                     },
+                 });
+
+
+            } else {
+                $(".list__opcion").html(
+                    `<a href="#" class="text-center firsttd">No tiene opciones cargadas</a>`
+                );
+            }
+        },
+    });
+
+
+
+
+
+
+});
+
+
+
+$(".btn__registrar_opcion").on('click', function (e) {
+    e.preventDefault();
+    let quizid = $("#quizid").val();
+    let question = $("#resquestion").val();
+    let option = $("#resoption").val();
+    let token = $("meta[name=csrf-token]").attr("content");
+
+    let datasend = {
+        _token: token,
+        _method: "POST",
+        quiz_id: quizid,
+        question_id: question,
+        option_id:option
+
+    };
+
+    $.ajax({
+        url: "/admin/options/setresult",
+        type: "POST",
+        dataType: "json",
+        data: datasend,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+            alert("Registrado");
+        },
+    });
+});
+
+$(document).on("click", ".opcion__seleccion", function (e) {
+    e.preventDefault();
+
+    $(".opcion__seleccion").removeClass("active");
+    let resquestion = $(this).data("question");
+    let resoption = $(this).data("id");
+
+    $("#resquestion").val(resquestion);
+    $("#resoption").val(resoption);
+
+    $(this).addClass("active");
+
+});

@@ -74,6 +74,12 @@
             </li>
 
             <li class="nav-item has-treeview ">
+                <a href="/admin/quizzes" class="nav-link {{{ (Request::is('admin/quizzes') ? 'active' : '') }}}">
+                <p>Cuestionarios </p>
+                </a>
+            </li>
+
+            <li class="nav-item has-treeview ">
                 <a href="/admin/configuration" class="nav-link {{{ (Request::is('admin/configuration') ? 'active' : '') }}}">
                 <p>Configuración </p>
                 </a>
