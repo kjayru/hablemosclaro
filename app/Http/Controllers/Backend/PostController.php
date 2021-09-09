@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Author;
 use Illuminate\Support\Str;
 use App\Models\Tag;
+use App\Models\Quiz;
 
 class PostController extends Controller
 {
@@ -38,7 +39,11 @@ class PostController extends Controller
         $tags = Tag::orderBy('nombre','asc')->get();
         $cats=[];
         $itags=[];
-        return view('backend.publicaciones.create',[ 'itags'=>$itags,'cats'=>$cats,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
+        $iquiz=[];
+        $quizes = Quiz::orderBy('titulo')->get();
+
+
+        return view('backend.publicaciones.create',['iquiz'=>$iquiz,'quizes'=>$quizes,'itags'=>$itags,'cats'=>$cats,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
@@ -70,6 +75,7 @@ class PostController extends Controller
         $post->video = $request->video;
         $post->date_publish = $request->fechapublicacion;
         $post->author_id = $request->author;
+        $post->quiz_id = $request->quiz;
         $post->save();
        // $post->authors()->sync($request->author);
 
@@ -81,14 +87,6 @@ class PostController extends Controller
     }
 
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
     public function edit($id)
     {
         $articulo = Post::find($id);
@@ -97,6 +95,7 @@ class PostController extends Controller
         $tags = Tag::orderBy('nombre','asc')->get();
         $cats=[];
         $itags=[];
+        $iquiz=[];
 
        foreach($articulo->categories as $cat){
         $cats[] = $cat->id;
@@ -108,8 +107,13 @@ class PostController extends Controller
             }
         }
 
+         $quizes = Quiz::orderBy('titulo')->get();
 
-        return view('backend.publicaciones.edit',['itags'=>$itags,'cats'=>$cats,'articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
+        foreach($quizes as $quiz){
+            $iquiz[] = $quiz->id;
+        }
+
+        return view('backend.publicaciones.edit',['iquiz'=>$iquiz,'quizes'=>$quizes,'itags'=>$itags,'cats'=>$cats,'articulo'=>$articulo,'categories'=>$categories,'authors'=>$authors,'tags'=>$tags]);
     }
 
     /**
@@ -153,7 +157,7 @@ class PostController extends Controller
         $post->video = $request->video;
         $post->date_publish =  $request->fechapublicacion;
         $post->author_id = $request->author;
-
+        $post->quiz_id = $request->quiz;
         $post->save();
 
         //$post->authors()->sync($request->author);

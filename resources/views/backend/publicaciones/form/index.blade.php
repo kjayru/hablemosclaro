@@ -177,6 +177,19 @@
                     </div>
 
 
+                     <div class="form-group col-sm-6">
+                        <div class="form-group">
+                            <label>Quiz</label>
+
+                            <select class="custom-select"  name="quiz">
+                                <option value="">Seleccionar</option>
+                                @foreach($quizes as $quiz)
+                                <option value="{{$quiz->id}}" @if(in_array($articulo->quiz_id,$iquiz)) selected @endif >{{ $quiz->titulo }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                     </div>
+
 
 
                 </div>
