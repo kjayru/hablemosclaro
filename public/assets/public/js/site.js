@@ -130,7 +130,7 @@ const site = (function(){
 						url: '/getoptresult',
 						type: 'POST',
 						dataType: 'json',
-						data: { _token: token, quiz_id: quiz_id, question_id: question_id},
+						data: { _token: token, quiz_id: question_id, question_id: quiz_id},
 					})
 					.done(function(response) {
 						console.log(response);
