@@ -96,8 +96,28 @@ const site = (function(){
 				.on('input', function(e){
 					const _self = $(this);
 					const label = _self.parent();
-					_self.closest('.detalle_de_articulos__article__form-test__labels').addClass('-checked-');
-					undefined !== label.data('true') ? label.addClass('-true-') : label.addClass('-false-') ;
+					const value = _self.val();
+					const quiz_id = _self.data('quiz');
+					const question_id = _self.data('question');
+					let token = $('meta[name="csrf-token"]').attr('content');
+
+					$.ajax({
+						url: '/getoptresult',
+						type: 'POST',
+						dataType: 'json',
+						data: { _token: token, quiz_id: quiz_id, question_id: question_id},
+					})
+					.done(function(response) {
+						console.log(response);
+						_self.closest('.detalle_de_articulos__article__form-test__labels').addClass('-checked-');					
+						if ( response.option_id == value ) {
+							label.addClass('-true-');
+						} else { 
+							label.addClass('-false-');
+							label.parent().find('input[value="'+response.option_id +'"]').parent().addClass('-true-');
+						}
+					});
+					
 				});
 
 			// Mostrar avance de lectura

@@ -82,7 +82,7 @@
                         <div class="detalle_de_articulos__article__form-test__labels">
 
                             @foreach($quest->options as $opt)
-                            <label class="detalle_de_articulos__article__form-test__label" data-true>
+                            <label class="detalle_de_articulos__article__form-test__label">
                                 <input type="radio" name="opcion" value="{{$opt->id}}" data-quiz="{{$quest->id}}" data-question="{{$articulo->quiz_id}}">
                                 <span class="detalle_de_articulos__article__form-test__label__text">{{$opt->opcion}}</span>
                             </label>
