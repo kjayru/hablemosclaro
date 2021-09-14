@@ -42,6 +42,9 @@ class QuestionController extends Controller
         $preg = new Question();
         $preg->pregunta = $request->pregunta;
         $preg->quiz_id = $request->quiz_id;
+        if(isset($request->imagen)){
+            $preg->imagen = $request->imagen;
+        }
         $preg->save();
 
         return redirect(route('question.show',['ques'=>$request->quiz_id]))
@@ -89,6 +92,9 @@ class QuestionController extends Controller
 
         $preg->pregunta = $request->pregunta;
         $preg->quiz_id = $request->quiz_id;
+        if(isset($request->imagen)){
+            $preg->imagen = $request->imagen;
+        }
         $preg->save();
 
         return redirect(route('question.show',['ques'=>$request->quiz_id]))

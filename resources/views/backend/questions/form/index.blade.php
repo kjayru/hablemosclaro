@@ -15,6 +15,19 @@
                         </div>
 
 
+                        <div class="form-group col-sm-12">
+                            <label for="resumen">Imagen</label>
+                            <figure style="width:70px;">
+                                @if(@isset($question->imagen))
+                                    <img src="/storage/{{@$question->imagen}}" class="img-fluid" id="urlcard" />
+                                @else
+                                    <img src="https://via.placeholder.com/150" class="img-fluid" id="urlcard" />
+                                @endif
+                            </figure>
+                            <input type="hidden" value="" name="imagen" id="imagenQuestion" />
+                            <a href="#" class="btn btn-default btn-abrirpopQuesion">Seleccionar</a>
+                        </div>
+
 
 
 

@@ -49,47 +49,56 @@
                 {!!$articulo->contenido!!}
 
                 <div class="detalle_de_articulos__article__form-test">
-                    <!--<div class="detalle_de_articulos__article__form-test__question">
-                        <h4 class="detalle_de_articulos__article__form-test__question__title">
-                            <span>1</span>
-                            <strong>¿Cuántos emails se envían?</strong>
-                        </h4>
-                        <figure class="detalle_de_articulos__article__form-test__figure">
-                            <img src="https://img.playbuzz.com/image/upload/ar_1.5,c_pad,f_jpg,b_auto/q_auto:good,f_auto,fl_lossy,w_640,c_limit,dpr_1/cdn/b93141d0-90a2-4d69-bed2-3ea1481bd0f6/d05c228b-2675-48c2-a416-d8b479d6fea8.jpg" alt="">
-                        </figure>
-                        <div class="detalle_de_articulos__article__form-test__labels">
-                            <label class="detalle_de_articulos__article__form-test__label" data-true>
-                                <input type="radio" name="test" value="Respuesta 1">
-                                <span class="detalle_de_articulos__article__form-test__label__text">Respuesta 1</span>
-                            </label>
-                            <label class="detalle_de_articulos__article__form-test__label">
-                                <input type="radio" name="test" value="Respuesta 2">
-                                <span class="detalle_de_articulos__article__form-test__label__text">Respuesta 2</span>
-                            </label>
-                            <label class="detalle_de_articulos__article__form-test__label">
-                                <input type="radio" name="test" value="Respuesta 3">
-                                <span class="detalle_de_articulos__article__form-test__label__text">Respuesta 3</span>
-                            </label>
-                        </div>
-                    </div>-->
+                    <!---->
+
                 @if(isset($articulo->quiz))
+
                     @foreach($articulo->quiz->questions as $k => $quest)
-                    <div class="detalle_de_articulos__article__form-test__question">
-                        <h4 class="detalle_de_articulos__article__form-test__question__title">
-                            <span>{{$k+1}}</span>
-                            <strong>{{ $quest->pregunta}}</strong>
-                        </h4>
-                        <div class="detalle_de_articulos__article__form-test__labels">
+                    @if(isset($quest->imagen))
+
+                        <div class="detalle_de_articulos__article__form-test__question">
+                            <h4 class="detalle_de_articulos__article__form-test__question__title">
+                              <span>{{$k+1}}</span>
+                                <strong>{{ $quest->pregunta}}</strong>
+                            </h4>
+                            <figure class="detalle_de_articulos__article__form-test__figure">
+                                <img src="/storage/{{$quest->imagen}}" alt="">
+                            </figure>
+                            <div class="detalle_de_articulos__article__form-test__labels">
+
+                                @foreach($quest->options as $opt)
+                                    <label class="detalle_de_articulos__article__form-test__label">
+                                        <input type="radio" name="opcion" value="{{$opt->id}}" data-quiz="{{$quest->id}}" data-question="{{$articulo->quiz_id}}">
+                                        <span class="detalle_de_articulos__article__form-test__label__text">{{$opt->opcion}}</span>
+                                    </label>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    @else
+
+
+
+                        <div class="detalle_de_articulos__article__form-test__question">
+                            <h4 class="detalle_de_articulos__article__form-test__question__title">
+                                <span>{{$k+1}}</span>
+                                <strong>{{ $quest->pregunta}}</strong>
+                            </h4>
+                            <div class="detalle_de_articulos__article__form-test__labels">
 
                             @foreach($quest->options as $opt)
-                            <label class="detalle_de_articulos__article__form-test__label">
-                                <input type="radio" name="opcion" value="{{$opt->id}}" data-quiz="{{$quest->id}}" data-question="{{$articulo->quiz_id}}">
-                                <span class="detalle_de_articulos__article__form-test__label__text">{{$opt->opcion}}</span>
-                            </label>
-                           @endforeach
+                                <label class="detalle_de_articulos__article__form-test__label">
+                                    <input type="radio" name="opcion" value="{{$opt->id}}" data-quiz="{{$quest->id}}" data-question="{{$articulo->quiz_id}}">
+                                    <span class="detalle_de_articulos__article__form-test__label__text">{{$opt->opcion}}</span>
+                                </label>
+                            @endforeach
 
+                            </div>
                         </div>
-                    </div>
+
+                    @endif
+
+
 
                     @endforeach
                 @endif
