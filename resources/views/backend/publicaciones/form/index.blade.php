@@ -184,7 +184,7 @@
                             <select class="custom-select"  name="quiz">
                                 <option value="">Seleccionar</option>
                                 @foreach($quizes as $quiz)
-                                <option value="{{$quiz->id}}" @if(in_array($articulo->quiz_id,$iquiz)) selected @endif >{{ $quiz->titulo }} </option>
+                                <option value="{{$quiz->id}}" @if(in_array(@$articulo->quiz_id,$iquiz)) selected @endif >{{ $quiz->titulo }} </option>
                                 @endforeach
                             </select>
                         </div>
