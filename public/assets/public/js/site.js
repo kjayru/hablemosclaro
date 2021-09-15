@@ -42,7 +42,8 @@ const site = (function(){
 	const events = {
 
 		runPlugins : function () {
-			dom.swipers.length && getPlugins( ['https://unpkg.com/swiper/swiper-bundle.min.css', 'https://unpkg.com/swiper/swiper-bundle.min.js'], events.swiperExecution );
+			// dom.swipers.length && getPlugins( ['https://unpkg.com/swiper/swiper-bundle.min.css', 'https://unpkg.com/swiper/swiper-bundle.min.js'], events.swiperExecution );
+			dom.swipers.length && getPlugins( ['/assets/dev/css/vendor/swiper-5.2.1.css', '/assets/dev/js/vendor/swiper-5.2.1.js'], events.swiperExecution );
 		},
 
 		swiperExecution : function () {
@@ -115,6 +116,23 @@ const site = (function(){
 		},
 
 		interactions : function() {
+
+			// hover html
+			$('.h_btn')
+				.on('mouseenter', function(){
+					let target = '.'+$(this).data('hover');
+					$(target).fadeIn(250);
+				})
+				.on('mouseleave', function(){
+					let target = '.'+$(this).data('hover');
+					$(target).fadeOut(250);
+				});
+
+			// Acordeon
+			$('.fnAcordeonItem')
+				.on('click', function(){
+					$(this).toggleClass(dom.active);
+				});
 
 			// Encuesta simple
 			$('.detalle_de_articulos__article__form-test__label input')

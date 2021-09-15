@@ -3593,6 +3593,77 @@ select {
   font-size: 1.125rem;
   padding-right: 0.9375rem;
 }
+.detalle_de_articulos__article__infografia .detalle_de_articulos__article__acordeon {
+  display: none;
+}
+.detalle_de_articulos__article__acordeon__title {
+  text-align: center;
+  display: block;
+  font-size: 1.375rem;
+  line-height: 1.2;
+  margin-bottom: 1.5625rem;
+  font-weight: 700;
+}
+.detalle_de_articulos__article__acordeon__title span {
+  color: #ef2539;
+  display: block;
+}
+.detalle_de_articulos__article__acordeon__item {
+  font-size: 0.875rem;
+  margin-bottom: 0.625rem;
+}
+.detalle_de_articulos__article__acordeon__item__title {
+  background-color: #000;
+  color: #fff;
+  height: 3.25rem;
+  border-radius: 0.25rem;
+  padding: 0 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  line-height: 1.3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.detalle_de_articulos__article__acordeon__item__title img:first-child {
+  margin-right: 1.25rem;
+}
+.detalle_de_articulos__article__acordeon__item__title img:last-child {
+  margin-left: auto;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.detalle_de_articulos__article__acordeon__item__title.-active- + .detalle_de_articulos__article__acordeon__item__resume {
+  display: block;
+}
+.detalle_de_articulos__article__acordeon__item__resume {
+  display: none;
+  background-color: #f2f2f2;
+  padding: 1.25rem;
+}
+.detalle_de_articulos__article__acordeon__button {
+  display: block;
+  height: 3.4375rem;
+  border-radius: 0.25rem;
+  background-color: #ef2539;
+  color: #fff !important;
+  margin-top: 1.25rem;
+  letter-spacing: 0.03125rem;
+  line-height: 1.2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
 .detalle_de_articulos__footer {
   -webkit-box-ordinal-group: 5;
       -ms-flex-order: 4;
@@ -3887,6 +3958,12 @@ select {
   }
   .detalle_de_articulos__bottom__block1 .columnas__item {
     width: 50%;
+  }
+  .detalle_de_articulos__article__infografia .detalle_de_articulos__article__acordeon {
+    display: block;
+  }
+  .detalle_de_articulos__article__infografia .detalle_de_articulos__article__svg {
+    display: none;
   }
 }
 @media (max-width: 880px) {
