@@ -31,7 +31,7 @@
 
 
 
-              <form role="form" action="{{ route('quiz.update') }}" method="POST" enctype="multipart/form-data">
+              <form role="form" action="{{ route('quiz.update',['quiz'=>$quiz->id]) }}" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
 
                     @csrf
