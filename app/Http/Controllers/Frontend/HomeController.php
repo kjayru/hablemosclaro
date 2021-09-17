@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        setlocale(LC_TIME, "spanish");
+
         $categorias = Category::wherenull('parent_id')->get();
         $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
 
