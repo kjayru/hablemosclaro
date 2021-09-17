@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
     Carbon::setUTF8(true);
-    Carbon::setLocale(config('app.locale'));
+    Carbon::setLocale('es');
     setlocale(LC_ALL, 'es_ES', 'es', 'ES', 'es_ES.utf8');
 
        view()->composer('layouts.frontend.app', function($view) {
