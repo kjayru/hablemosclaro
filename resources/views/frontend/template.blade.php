@@ -575,7 +575,7 @@
                        </div>
                        <a href="https://www.claro.com.pe/empresas/ciberseguridad" target="_blank" class="detalle_de_articulos__article__acordeon__button">Solicita estos servicios aquí</a>
                    </div>
-               </div>-->
+               </div>
 
             </div>
 
