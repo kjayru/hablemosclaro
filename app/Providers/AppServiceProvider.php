@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Configuration;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
+    Carbon::setUTF8(true);
+    Carbon::setLocale(config('app.locale'));
+    setlocale(LC_ALL, 'es_ES', 'es', 'ES', 'es_ES.utf8');
 
        view()->composer('layouts.frontend.app', function($view) {
             $menu =  Category::where('parent_id',null)->get();
