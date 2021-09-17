@@ -40,7 +40,7 @@ class HomeController extends Controller
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
                 //'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat(' MMM d Y'),
-                'date_publish' => @strftime("%d %B %Y", date (strtotime($col->date_publish )) ),
+                'date_publish' => @strftime("%d %h %Y", date (strtotime($col->date_publish )) ),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
                 );
@@ -62,7 +62,7 @@ class HomeController extends Controller
                "video" => $col->video,
                "categoria" =>  @Post::getCategory($col->id)['category'],
                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-               'date_publish'=>  @strftime("%d %B %Y", date (strtotime($col->date_publish )) ),
+               'date_publish'=>  @strftime("%d %h %Y", date (strtotime($col->date_publish )) ),
                'lectura' => @Post::TimeEstimate($col->contenido)
 
                );
@@ -82,7 +82,7 @@ class HomeController extends Controller
                 "slug" => $col->slug,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @strftime("%d %B %Y", date (strtotime($col->date_publish )) ),
+                'date_publish'=> @strftime("%d %h %Y", date (strtotime($col->date_publish )) ),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
             );
@@ -100,7 +100,7 @@ class HomeController extends Controller
                     "slug" => $col->slug,
                     "categoria" =>  @Post::getCategory($col->id)['category'],
                     "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                    'date_publish'=> @strftime("%d %B %Y", date (strtotime($col->date_publish )) ),
+                    'date_publish'=> @strftime("%d %h %Y", date (strtotime($col->date_publish )) ),
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,
