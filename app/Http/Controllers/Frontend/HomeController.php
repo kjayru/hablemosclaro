@@ -79,6 +79,8 @@ class HomeController extends Controller
                 "id" => $col->id,
                 "titulo" => $col->titulo,
                 "banner" => $col->banner,
+                "movil" => $col->movil,
+                "tablet" => $col->tablet,
                 "slug" => $col->slug,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],

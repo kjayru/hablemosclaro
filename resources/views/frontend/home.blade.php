@@ -7,7 +7,8 @@
         @foreach($sliders as $slide)
             <article class="slider_principal__item">
                 <picture class="slider_principal__item__image">
-                    <source media="(max-width:800px)" srcset="/storage/{{@$slide['banner']}}">
+                    <source media="(max-width:800px)" srcset="/storage/{{@$slide['movil']}}">
+                    <source media="(max-width:1024px)" srcset="/storage/{{@$slide['tablet']}}">
                     <img src="/storage/{{@$slide['banner']}}" alt="" loading="lazy">
                 </picture>
                 <header class="slider_principal__item__header">
