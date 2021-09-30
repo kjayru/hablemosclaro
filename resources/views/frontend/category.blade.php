@@ -41,26 +41,27 @@
         </nav>
 
         <div class="listado_de_articulos__list">
+            @if(isset($articulos))
+                @foreach($articulos as $post)
 
-        @foreach($articulos as $post)
-
-            <article class="columnas__item" data-order="{{@$post['id']}}">
-                <picture class="columnas__item__image">
-                    <img src="/storage/{{@$post['card']}}" alt="" loading="lazy">
-                </picture>
-                <header class="columnas__item__header">
-                    <strong class="columnas__item__subtitle">{{ @$post['categoria']->nombre}}</strong>
-                    <time class="columnas__item__date">{{@$post['date_publish']}}</time>
-                    <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
-                    <aside class="columnas__item__timer"> {{@$post['lectura']}} min de lectura</aside>
-                </header>
-                @if($post['subcategoria']!='')
-                <a href="/{{@$post['categoria']->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">--Más información</a>
-                @else
-                <a href="/{{@$post['categoria']->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
-                @endif
-            </article>
-        @endforeach
+                    <article class="columnas__item" data-order="{{@$post['id']}}">
+                        <picture class="columnas__item__image">
+                            <img src="/storage/{{@$post['card']}}" alt="" loading="lazy">
+                        </picture>
+                        <header class="columnas__item__header">
+                            <strong class="columnas__item__subtitle">{{ @$post['categoria']->nombre}}</strong>
+                            <time class="columnas__item__date">{{@$post['date_publish']}}</time>
+                            <h3 class="columnas__item__title">{{ @$post['titulo']}}</h3>
+                            <aside class="columnas__item__timer"> {{@$post['lectura']}} min de lectura</aside>
+                        </header>
+                        @if($post['subcategoria']!='')
+                        <a href="/{{@$post['categoria']->slug}}/{{@$post['subcategoria']->slug}}/{{$post["slug"]}}" class="columnas__item__link">--Más información</a>
+                        @else
+                        <a href="/{{@$post['categoria']->slug}}/{{@$post["slug"]}}" class="columnas__item__link">Más información</a>
+                        @endif
+                    </article>
+                @endforeach
+            @endif
 
             <div class="g-button-group">
                 <a href="#" class="g-button m--211 fnShowMoreArticles">Ver más</a>

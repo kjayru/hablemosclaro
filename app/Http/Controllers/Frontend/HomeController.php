@@ -298,7 +298,7 @@ class HomeController extends Controller
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
-            $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(4)->get();
+            /*$relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(4)->get();
 
             //relacionados arreglo
             foreach($relacion as $rel){
@@ -312,7 +312,32 @@ class HomeController extends Controller
                     'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
                     'lectura' => @Post::TimeEstimate($rel->contenido)
                 );
+            }*/
+            foreach($post->categories as $rela){
+                if($rela->slug == $category->slug){
+                    // dd($rel->posts);
+                     $i = 1;
+                        foreach($rela->posts as $k => $rel){
+                            if($rel->id != $post->id && $rel->estado == 1){
+                                if($i<5){
+                                        $relacionados[] = array(
+                                            "id"=>$rel->id,
+                                            "titulo"=>$rel->titulo,
+                                            "imagenbox" => $rel->imagenbox,
+                                            "slug" => $rel->slug,
+                                            "categoria" => @$category,
+                                            "subcategoria" => null,
+                                            'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                            'lectura' => @Post::TimeEstimate($rel->contenido)
+                                        );
+                                }
+                            }
+                            $i++;
+                        }
+
+                }
             }
+
 
 
             $next = Post::next($post->id,$category_id,$subcategory_id);
@@ -352,6 +377,7 @@ class HomeController extends Controller
             );
 
             return view('frontend.post',['postmax'=>$postmax,'categoria'=>$category,'articulo'=>$post,'relacionados'=>$relacionados,'category'=>$category,'next'=>$next,'previous'=>$previous,'subcategoria'=>null]);
+
         }
 
        $current_url = url()->full();
@@ -436,21 +462,45 @@ class HomeController extends Controller
 
        $category_id = $category->id;
 
-       $relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(4)->get();
+
+       foreach($articulo->categories as $rela){
+           if($rela->slug == $subcategory->slug){
+              // dd($rel->posts);
+             $i = 1;
+               foreach($rela->posts as $k => $rel ){
+
+                   if($rel->id != $articulo->id && $rel->estado == 1){
+
+                    if($i<5){
+
+
+                            $relacionados[] = array(
+                                "id"=>$rel->id,
+                                "titulo"=>$rel->titulo,
+                                "imagenbox" => $rel->imagenbox,
+                                "slug" => $rel->slug,
+                                "categoria" => @$category,
+                                "subcategoria" => null,
+                                'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                'lectura' => @Post::TimeEstimate($rel->contenido)
+                            );
+
+
+                    }
+                    $i++;
+                  }
+                }
+
+
+           }
+       }
+
+      // $relacion = Post::where('category_id',$category_id)->where('id','<>',$articulo->id)->where('estado',1)->inRandomOrder()->take(4)->get();
+
+
 
        //relacionados arreglo
-       foreach($relacion as $rel){
-            $relacionados[] = array(
-                "id"=>$rel->id,
-                "titulo"=>$rel->titulo,
-                "imagenbox" => $rel->imagenbox,
-                "slug" => $rel->slug,
-                "categoria" => @$category,
-                "subcategoria" => null,
-                'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
-                'lectura' => @Post::TimeEstimate($rel->contenido)
-            );
-        }
+
 
 
        //$videos = Post::where('post_type_id',2)->where('estado',1)->orderBy('date_publish','desc')->take(4)->get();
