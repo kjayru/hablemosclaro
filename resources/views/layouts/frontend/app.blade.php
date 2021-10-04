@@ -20,6 +20,7 @@
         <meta property="og:title" content="{{ @$articulo->meta_titulo }}" />
         <meta property="og:description" content="{{ @$articulo->meta_descripcion }}" />
         <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $articulo->meta_image}}" />
+
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="{{ @$articulo->meta_titulo }}">
         <meta name="twitter:description" content="{{ @$articulo->meta_descripcion }}">
@@ -27,17 +28,18 @@
 
     @else
 
-
         <meta property="og:url" content="{{ env('APP_URL')}}/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="{{ @$global->titulo }}" />
+        <meta property="og:title" content="{{ @$global->metitulo }}" />
         <meta property="og:description" content="{{ @$global->descripcion }}" />
         <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $global->imagen_facebook}}" />
+
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="{{ @$global->titulo }}">
         <meta name="twitter:description" content="{{ @$global->descripcion }}">
         <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ $global->imagen_twitter}}">
-      @endif
+
+     @endif
 
         <link rel="dns-prefetch" href="//www.facebook.com/"  />
         <link rel="dns-prefetch" href="//www.google-analytics.com/" />
