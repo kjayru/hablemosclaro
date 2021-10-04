@@ -18,12 +18,12 @@
         <meta property="og:url" content="{{ url()->full() }}" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="{{ @$articulo->meta_titulo }}" />
-        <meta property="og:description" content="{{ @$articulo->meta_descripcion }}" />
+        <meta property="og:description" content="{{ @$articulo->meta_description }}" />
         <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $articulo->meta_image}}" />
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="{{ @$articulo->meta_titulo }}">
-        <meta name="twitter:description" content="{{ @$articulo->meta_descripcion }}">
+        <meta name="twitter:description" content="{{ @$articulo->meta_description }}">
         <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ $global->meta_image}}">
 
     @else

@@ -455,6 +455,7 @@ class HomeController extends Controller
         $subcategory = Category::where("slug",$subcategoria)->first();
         $articulo = Post::where('slug',$articulo)->first();
 
+
         $next = Post::next($articulo->id,$category->id,$subcategory->id);
         $previous = Post::previous($articulo->id,$category->id,$subcategory->id);
        // dd($post);
