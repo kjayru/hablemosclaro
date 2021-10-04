@@ -21,8 +21,8 @@
         <meta property="og:description" content="{{ @$articulo->meta_descripcion }}" />
         <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $articulo->meta_image}}" />
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="{{ @$articulo->titulo }}">
-        <meta name="twitter:description" content="{{ @$articulo->descripcion }}">
+        <meta name="twitter:title" content="{{ @$articulo->meta_titulo }}">
+        <meta name="twitter:description" content="{{ @$articulo->meta_descripcion }}">
         <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ $global->meta_image}}">
 
     @else
