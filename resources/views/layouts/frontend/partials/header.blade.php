@@ -1,8 +1,8 @@
 <header class="header">
 	<div class="limit header__inset">
-		<h1 class="header__logo">
+		<strong class="header__logo">
 			<a href="/"><img src="/assets/public/images/hablando-claro.png" alt="Hablando Claro" loading="lazy"></a>
-		</h1>
+		</strong>
 
         <nav class="header__nav fnNavTarget">
 			<strong class="header__nav__title">Categorías</strong>

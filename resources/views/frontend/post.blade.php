@@ -28,7 +28,7 @@
             </figure>
             <header class="columnas__item__header">
                 <strong class="columnas__item__subtitle">{{ @$categoria->nombre }}</strong>
-                <h3 class="columnas__item__title">{{ @$articulo->titulo }}</h3>
+                <h1 class="columnas__item__title">{{ @$articulo->titulo }}</h1>
                 <time class="columnas__item__date">{{ $articulo->publicado }} </time>
                 <aside class="columnas__item__timer">{{ $articulo->tiempoLectura }} min de lectura</aside>
 

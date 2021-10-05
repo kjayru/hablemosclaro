@@ -1,6 +1,6 @@
 <section class="section m--bg ultimos_videos">
     <div class="limit">
-        <h3 class="g-title m--white">Últimos videos</h3>
+        <h5 class="g-title m--white">Últimos videos</h5>
         <div class="ultimos_videos__list">
 
             <article class="ultimos_videos__item m--principal fnShowVideoTarget">

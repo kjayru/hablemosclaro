@@ -1,6 +1,6 @@
 <section class="section columnas">
     <header class="limit columnas__header">
-        <h2 class="g-title m--swiper">Columnas de opinión</h2>
+        <h4 class="g-title m--swiper">Columnas de opinión</h4>
         <a href="/articulos/columna" class="columnas__link">Ver todo</a>
     </header>
     <div class="limit columnas__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
