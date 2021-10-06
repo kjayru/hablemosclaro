@@ -124,6 +124,7 @@ class HomeController extends Controller
     public function categoria($categoria){
 
         $category = Category::where('slug',$categoria)->first();
+
         $categorias = null;
         $articulos = null;
         $subcategoria = null;

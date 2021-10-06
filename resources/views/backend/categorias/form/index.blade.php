@@ -31,4 +31,45 @@
     </div>
 
 
+     <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <legend>Metas</legend>
+
+                        <div class="form-group col-sm-12">
+                            <label for="seotitle">Titulo Meta</label>
+                            <input type="text" class="form-control" name="seotitle" id="seotitle" value="{{@$category->meta_titulo }}" placeholder="Titulo Meta" required>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <label for="seodescripcion">Descripción Meta</label>
+                            <input type="text" class="form-control" name="seodescripcion" id="seodescripcion" value="{{@$category->meta_description }}" placeholder="Descripción Meta" required>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <label for="keywords">Keywords</label>
+                            <input type="text" class="form-control" name="keywords" id="keywords" value="{{@$category->meta_keywords }}" placeholder="Keywords">
+                        </div>
+
+
+
+                        <div class="form-group col-sm-12">
+                            <label for="resumen">Imagen meta</label>
+                            <figure style="width:70px;">
+                                @if(@isset($category->meta_image))
+                                    <img src="/storage/{{@$category->meta_image}}" class="img-fluid" id="urlmeta" />
+                                @else
+                                    <img src="https://via.placeholder.com/150" class="img-fluid" id="urlmeta" />
+                                @endif
+                            </figure>
+                            <input type="hidden" value="" name="imageMeta" id="imageMeta" />
+                            <a href="#" class="btn btn-default btn-abrirpopup5">Seleccionar</a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
 

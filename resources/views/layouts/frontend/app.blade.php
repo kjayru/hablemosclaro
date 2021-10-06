@@ -19,12 +19,38 @@
         <meta property="og:type" content="article" />
         <meta property="og:title" content="{{ @$articulo->meta_titulo }}" />
         <meta property="og:description" content="{{ @$articulo->meta_description }}" />
-        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $articulo->meta_image}}" />
+        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ @$articulo->meta_image}}" />
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="{{ @$articulo->meta_titulo }}">
         <meta name="twitter:description" content="{{ @$articulo->meta_description }}">
-        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ $global->meta_image}}">
+        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ @$articulo->meta_image}}">
+
+    @elseif(isset($category) && $subcategoria == null)
+
+        <meta property="og:url" content="{{ url()->full() }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{ @$category->meta_titulo }}" />
+        <meta property="og:description" content="{{ @$category->meta_description }}" />
+        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ @$category->meta_image}}" />
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ @$category->meta_titulo }}">
+        <meta name="twitter:description" content="{{ @$category->meta_description }}">
+        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ @$category->meta_image}}">
+
+    @elseif(isset($category) &&  isset($subcategoria))
+
+        <meta property="og:url" content="{{ url()->full() }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{ @$subcategoria->meta_titulo }}" />
+        <meta property="og:description" content="{{ @$subcategoria->meta_description }}" />
+        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ @$subcategoria->meta_image}}" />
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{ @$subcategoria->meta_titulo }}">
+        <meta name="twitter:description" content="{{ @$subcategoria->meta_description }}">
+        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ @$subcategoria->meta_image}}">
 
     @else
 
@@ -32,12 +58,12 @@
         <meta property="og:type" content="website" />
         <meta property="og:title" content="{{ @$global->metitulo }}" />
         <meta property="og:description" content="{{ @$global->descripcion }}" />
-        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ $global->imagen_facebook}}" />
+        <meta property="og:image" content="{{ env('APP_URL')}}/storage/{{ @$global->imagen_facebook}}" />
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="{{ @$global->titulo }}">
         <meta name="twitter:description" content="{{ @$global->descripcion }}">
-        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ $global->imagen_twitter}}">
+        <meta name="twitter:image" content="{{ env('APP_URL')}}/storage/{{ @$global->imagen_twitter}}">
 
      @endif
 

@@ -48,6 +48,13 @@ class CategoryController extends Controller
        $category->nombre = $request->nombre;
        $category->slug =  Str::slug($request->nombre, '-');
        $category->parent_id = $request->parent_id;
+         $category->meta_titulo = $request->seotitle;
+       if($request->imageMeta){
+        $category->meta_image = $request->imageMeta;
+        }
+        $category->meta_description = $request->seodescripcion;
+        $category->meta_keywords = $request->keywords;
+
        $category->save();
 
        return redirect(route('category.index'))
@@ -82,6 +89,14 @@ class CategoryController extends Controller
         $category->nombre = $request->nombre;
         $category->slug =  Str::slug($request->nombre, '-');
         $category->parent_id = $request->parent_id;
+         $category->meta_titulo = $request->seotitle;
+        if($request->imageMeta){
+            $category->meta_image = $request->imageMeta;
+        }
+
+        $category->meta_description = $request->seodescripcion;
+        $category->meta_keywords = $request->keywords;
+
         $category->save();
 
 
