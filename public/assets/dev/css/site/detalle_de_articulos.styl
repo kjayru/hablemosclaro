@@ -406,35 +406,37 @@
 			ul, ol
 				display flex
 				flex-wrap wrap
-			li
-				width calc(33.3% - 12px)
-				margin rem(0, 18, 18, 0)
-				&:nth-child(3n)
-					margin-right 0
-				a
-					line-height 1.5
-					border rem(1) solid --rojo
-					border-radius rem(5)
-					display block
-					width 100%
-					height 100%
-					color --rojo
-					padding rem(14, 40, 14, 22)
-					font-weight 500
-					position relative
-					transition all ease .25s
-					
-					img
-						position absolute
-						top rem(14)
-						right rem(11)
+				padding 0
+				li
+					width calc(33.3% - 12px)
+					margin rem(0, 18, 18, 0)
+					list-style none
+					&:nth-child(3n)
+						margin-right 0
+					a
+						line-height 1.5
+						border rem(1) solid --rojo
+						border-radius rem(5)
+						display block
+						width 100%
+						height 100%
+						color --rojo
+						padding rem(14, 40, 14, 22)
+						font-weight 500
+						position relative
 						transition all ease .25s
 						
-					&:hover
-						background-color --rojo
-						color --blanco
 						img
-							filter brightness(1000)
+							position absolute
+							top rem(14)
+							right rem(11)
+							transition all ease .25s
+							
+						&:hover
+							background-color --rojo
+							color --blanco
+							img
+								filter brightness(1000)
 								
 		&__myths
 			display flex
