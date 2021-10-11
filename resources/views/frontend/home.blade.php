@@ -1,6 +1,18 @@
 @extends('layouts.frontend.app')
 @section('content')
 
+ @if(session('info'))
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success">
+                        {{ session('info')}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <section class="slider_principal fnSetSwiper" data-swiper="slider_principal" data-swiper-activate="active"
         data-swiper-arrows="assets/public/images/slider_arrow.png">
 

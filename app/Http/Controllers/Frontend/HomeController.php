@@ -123,7 +123,12 @@ class HomeController extends Controller
 
     public function categoria($categoria){
 
+
+
         $category = Category::where('slug',$categoria)->first();
+        if(!isset($category)){
+             return abort(404);
+        }
 
         $categorias = null;
         $articulos = null;
@@ -653,6 +658,8 @@ class HomeController extends Controller
         //             ->select('posts.titulo as titulo', 'posts.slug as slug', 'categories.slug as slugcategory', 'posts.id as post_id')
         //             ->limit(6)
         //             ->get();
+
+
 
         $result = [];
         $posts = Post::where('titulo','LIKE',"%{$request->word}%")->where('estado',1)->get();

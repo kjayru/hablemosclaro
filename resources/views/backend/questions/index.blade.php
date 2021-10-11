@@ -222,17 +222,12 @@
                                 <p class="mensaje__text"></p>
                             </div>
                     <div class="col-md-12">
+                            <div class="list-group list__opcion">
 
-
-                        <div class="list-group list__opcion">
-
-
-
+                            </div>
                         </div>
-
-
                     </div>
-                </div>
+
                 </div>
             </div>
       </div>
