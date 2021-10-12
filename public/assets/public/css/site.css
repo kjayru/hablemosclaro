@@ -4300,5 +4300,49 @@ select {
     margin-bottom: 0.5625rem;
   }
 }
+.error {
+  background-color: #f4f6f9;
+  padding: 6.25rem 0;
+  text-align: center;
+}
+.error__title {
+  font-size: 6.9375rem;
+  color: #d1d6df;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.error__title strong {
+  display: block;
+  font-size: 12.5rem;
+  font-weight: 700;
+}
+.error__subtitle {
+  font-weight: 700;
+  font-size: 2.1875rem;
+  margin-top: 1.875rem;
+  display: block;
+}
+.error__text {
+  font-size: 1.875rem;
+  margin-top: 0.9375rem;
+}
+@media (max-width: 800px) {
+  .error {
+    padding: 4.375rem 0;
+  }
+  .error__title {
+    font-size: 3.25rem;
+  }
+  .error__title strong {
+    font-size: 5.8125rem;
+  }
+  .error__subtitle {
+    font-size: 1.5625rem;
+  }
+  .error__text {
+    font-size: 1.25rem;
+  }
+}
 /* -- Website -- */
 /* -- Support -- */
