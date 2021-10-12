@@ -405,6 +405,7 @@ const site = (function(){
 				$('.fnSearchResultsWanted').html(text_mas_buscados);
 			} else {
 				$('.fnSearchResultsWantedWrapper').removeClass(dom.active);
+				$('.fnSearchResults').addClass(dom.active);
 				$('.fnSearchResultsData').html('<p>No se hallaron resultados.</p>');
 			}
 			
