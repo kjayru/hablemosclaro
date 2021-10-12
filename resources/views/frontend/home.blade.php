@@ -85,4 +85,10 @@
    @include('layouts.frontend.partials.columna')
    @include('layouts.frontend.partials.video')
 
+   <section class="section error">
+       <article class="error__content">
+           
+       </article>
+   </section>
+
 @endsection

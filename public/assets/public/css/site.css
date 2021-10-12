@@ -1232,6 +1232,7 @@ select {
           transform: scale(1.05);
 }
 .slider_principal__item__image {
+  height: 100%;
   -webkit-box-flex: 70%;
       -ms-flex: 70%;
           flex: 70%;
@@ -1402,6 +1403,8 @@ select {
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
+    width: 100%;
+    height: auto;
   }
   .slider_principal__item__header {
     -webkit-box-flex: 0;
