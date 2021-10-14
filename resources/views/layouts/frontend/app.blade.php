@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="canonical" href="{{ $global->canonical }}" />
+        <meta name="google-site-verification" content="cJnLYjQb8WhdZGvqQGSn3p1TyINDZTdRu8RfnJd67cY" />
         <meta property="fb:app_id" content="{{ @$global->facebook_app_id}}" />
 
     @if(isset($articulo))
