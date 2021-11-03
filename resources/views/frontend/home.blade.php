@@ -31,7 +31,7 @@
 
 
     <section class="section lo_ultimo">
-        <h2 class="limit g-title m--swiper">Lo más leido</h2>
+        <h2 class="limit g-title m--swiper">Lo más leído</h2>
         <div class="limit lo_ultimo__list m--default fnSetSwiper" data-swiper="4_columnas" data-swiper-activate="active">
 
 
