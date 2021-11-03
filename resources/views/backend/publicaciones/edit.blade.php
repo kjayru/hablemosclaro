@@ -38,7 +38,7 @@
                     <input type="hidden" name="_method" value="PUT">
 
 
-                    @include('backend.publicaciones.form.index')
+                    @include('backend.publicaciones.form.edit')
 
                   </div>
 
