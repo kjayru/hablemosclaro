@@ -541,7 +541,7 @@ return [
         '/cine-en-casa-no-acabes-el-mes-sin-ver-los-estrenos-de-claro-video/' => 'https://hablandoclaro.pe/innovacion/cine-en-casa-no-acabes-el-mes-sin-ver-los-estrenos-de-claro-video',
         '/hablasocialmedia-linkedin-le-dice-adios-a-sus-stories/' => 'https://hablandoclaro.pe/innovacion/hablasocialmedia-linkedin-le-dice-adios-a-sus-stories',
         '/playstation-plus-conoce-los-juegos-de-descarga-gratis-para-ps4-y-ps5-en-octubre/' => 'https://hablandoclaro.pe/entretenimiento/gaming/playstation-plus-conoce-los-juegos-de-descarga-gratis-para-ps4-y-ps5-en-octubre',
-
+        '/protegerse-ciberataques-estafas-internet/' =>'https://hablandoclaro.pe/seguridad/como-protegerse-de-los-ciberataques-mas-comunes',
     ],
 
 ];
