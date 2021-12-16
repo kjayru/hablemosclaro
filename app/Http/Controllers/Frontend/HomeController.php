@@ -177,7 +177,8 @@ class HomeController extends Controller
                      "slug" => $p->slug,
                      "categoria" => @$category,
                      "subcategoria" => @$subcat,
-                     'date_publish'=>  @Carbon::parse($p->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    // 'date_publish'=>  @Carbon::parse($p->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                     'date_publish' =>  @strftime("%d %b %Y", date (strtotime($p->date_publish )) ),
                      'lectura' => @Post::TimeEstimate($p->contenido)
                  );
             }
@@ -198,7 +199,8 @@ class HomeController extends Controller
                                 "slug" => $art->slug,
                                 "categoria" => @$category,
                                 "subcategoria" => '',
-                                'date_publish'=> @Carbon::parse($art->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                //'date_publish'=> @Carbon::parse($art->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                'date_publish' =>  @strftime("%d %b %Y", date (strtotime($art->date_publish )) ),
                                 'lectura' => @Post::TimeEstimate($art->contenido)
 
                             );
@@ -225,7 +227,8 @@ class HomeController extends Controller
                     "slug" => $col->slug,
                     "categoria" =>  @Post::getCategory($col->id)['category'],
                     "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                    'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    //'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    'date_publish' =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,
@@ -250,7 +253,8 @@ class HomeController extends Controller
                 "video" => $col->video,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                //'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                'date_publish' =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
                 );
@@ -262,6 +266,8 @@ class HomeController extends Controller
     }
 
     public function subcategoria($categoria,$subcategoria){
+
+       
         $categorias = null;
 
         $category = Category::where('slug',$subcategoria)->first();
@@ -288,7 +294,10 @@ class HomeController extends Controller
                         "slug" => $post->slug,
                         "categoria" => $categoria,
                         "subcategoria" => $subcategoria,
-                        'date_publish'=> @Carbon::parse($post->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                        //'date_publish'=> @Carbon::parse($post->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                        //'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                        //'date_publish'=> $post->date_publish,
+                        'date_publish' => @strftime("%d %b %Y", date (strtotime($post->date_publish )) ),
                         'lectura' => @Post::TimeEstimate($post->contenido)
                     );
                 }
@@ -306,21 +315,7 @@ class HomeController extends Controller
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
-            /*$relacion = Post::where('category_id',$category_id)->where('estado',1)->inRandomOrder()->take(4)->get();
-
-            //relacionados arreglo
-            foreach($relacion as $rel){
-                $relacionados[] = array(
-                    "id"=>$rel->id,
-                    "titulo"=>$rel->titulo,
-                    "imagenbox" => $rel->imagenbox,
-                    "slug" => $rel->slug,
-                    "categoria" => @$category,
-                    "subcategoria" => null,
-                    'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
-                    'lectura' => @Post::TimeEstimate($rel->contenido)
-                );
-            }*/
+           
             foreach($post->categories as $rela){
                 if($rela->slug == $category->slug){
                     // dd($rel->posts);
@@ -335,7 +330,8 @@ class HomeController extends Controller
                                             "slug" => $rel->slug,
                                             "categoria" => @$category,
                                             "subcategoria" => null,
-                                            'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                            //'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                            'date_publish' =>  @strftime("%d %b %Y", date (strtotime($rel->date_publish )) ),
                                             'lectura' => @Post::TimeEstimate($rel->contenido)
                                         );
                                 }
@@ -380,7 +376,8 @@ class HomeController extends Controller
                 "slug" => $max->slug,
                 "categoria" => @$category,
                 "subcategoria" => null,
-                'date_publish'=>@Carbon::parse($max->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                //'date_publish'=>@Carbon::parse($max->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                'date_publish' =>  @strftime("%d %b %Y", date (strtotime($max->date_publish )) ),
                 'lectura' => @Post::TimeEstimate($max->contenido)
             );
 
@@ -404,7 +401,8 @@ class HomeController extends Controller
                     "categoria" => @$category,
                     "categoria" =>  @Post::getCategory($col->id)['category'],
                     "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                    'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    //'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    'date_publish' => @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                     'lectura' => @Post::TimeEstimate($col->contenido),
                     'foto' => @$col->author->imagen,
                     'nombre' => @$col->author->nombre,
@@ -429,7 +427,7 @@ class HomeController extends Controller
                 "video" => $col->video,
                 "categoria" =>  @Post::getCategory($col->id)['category'],
                 "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-                'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                'date_publish'=> @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                 'lectura' => @Post::TimeEstimate($col->contenido)
 
                 );
@@ -448,7 +446,7 @@ class HomeController extends Controller
             "slug" => $max->slug,
             "categoria" => @$category,
             "subcategoria" => null,
-            'date_publish'=> @Carbon::parse($max->date_publish)->locale('es')->isoFormat('d MMM Y'),
+            'date_publish'=>  @strftime("%d %b %Y", date (strtotime($max->date_publish )) ),
             'lectura' => @Post::TimeEstimate($max->contenido)
         );
 
@@ -490,7 +488,8 @@ class HomeController extends Controller
                                 "slug" => $rel->slug,
                                 "categoria" => @$category,
                                 "subcategoria" => null,
-                                'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                //'date_publish'=> @Carbon::parse($rel->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                                'date_publish' =>  @strftime("%d %b %Y", date (strtotime($rel->date_publish )) ),
                                 'lectura' => @Post::TimeEstimate($rel->contenido)
                             );
 
@@ -525,7 +524,8 @@ class HomeController extends Controller
                "video" => $col->video,
                "categoria" =>  @Post::getCategory($col->id)['category'],
                "subcategoria" => @Post::getCategory($col->id)['subcategory'],
-               'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+              // 'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+               'date_publish' =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                'lectura' => @Post::TimeEstimate($col->contenido)
 
                );
@@ -563,7 +563,8 @@ class HomeController extends Controller
         "slug" => $max->slug,
         "categoria" => @$category,
         "subcategoria" => @$subcategory,
-        'date_publish'=> @Carbon::parse($max->date_publish)->locale('es')->isoFormat('d MMM Y'),
+        //'date_publish'=> @Carbon::parse($max->date_publish)->locale('es')->isoFormat('d MMM Y'),
+        'date_publish' =>  @strftime("%d %b %Y", date (strtotime($max->date_publish )) ),
         'lectura' => @Post::TimeEstimate($max->contenido)
        );
 
@@ -607,7 +608,8 @@ class HomeController extends Controller
                 "titulo" => $post->titulo,
                 "banner" => $post->banner,
                 "card" => $post->imagenbox,
-                "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                //"date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                "date_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                 "lectura" => @Post::TimeEstimate($post->contenido),
                 'foto' => @$post->author->imagen,
                 "nombre" => @$post->author->nombre,
@@ -640,7 +642,8 @@ class HomeController extends Controller
                     "titulo" => $post->titulo,
                     "banner" => $post->banner,
                     "imagen" => $post->imagenbox,
-                    "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    //"date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    "date_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                     "id" => $post->id
                     );
 
@@ -722,7 +725,8 @@ class HomeController extends Controller
                 "titulo" => $post->titulo,
                 "banner" => $post->banner,
                 "card" => $post->imagenbox,
-                "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                //"date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                "datep_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                 );
 
         }
