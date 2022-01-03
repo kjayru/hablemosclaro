@@ -64,9 +64,11 @@
                             @php
                                 $temas = unserialize($reg->temas);
                             @endphp
-                            @foreach($temas as $t)
-                            {{ $t }}|
-                            @endforeach
+                            @if($temas)
+                              @foreach($temas as $t)
+                              {{ $t }}|
+                              @endforeach
+                            @endif
                         </td>
 
                         <td>{{ Carbon\Carbon::parse(@$reg->created_at)->format('d/m/Y') }} </td>
@@ -74,7 +76,7 @@
                     </tr>
                     @endforeach
 
-
+ 
 
                 </tbody>
 
