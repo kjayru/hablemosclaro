@@ -109,5 +109,5 @@ Route::post('/search', [HomeController::class, 'buscar']);
 Route::post('/getoptresult', [HomeController::class,'getOptResult']);
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
     ->name('ckfinder_connector');
-Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
-    ->name('ckfinder_browser');
+//Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+//    ->name('ckfinder_browser');
