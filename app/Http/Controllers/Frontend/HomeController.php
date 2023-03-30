@@ -642,8 +642,8 @@ class HomeController extends Controller
                     "titulo" => $post->titulo,
                     "banner" => $post->banner,
                     "imagen" => $post->imagenbox,
-                    //"date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
-                    "date_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
+                    "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                   // "date_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                     "id" => $post->id
                     );
 
