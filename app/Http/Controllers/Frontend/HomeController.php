@@ -608,7 +608,7 @@ class HomeController extends Controller
                 "titulo" => $post->titulo,
                 "banner" => $post->banner,
                 "card" => $post->imagenbox,
-                "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                "date_publish" => @Carbon::parse($post->date_publish)->locale('es')->isoFormat('d MMM Y'),
                // "date_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                 "lectura" => @Post::TimeEstimate($post->contenido),
                 'foto' => @$post->author->imagen,
@@ -619,6 +619,8 @@ class HomeController extends Controller
         }
 
         $articulos = collect($result);
+
+       
 
         $categorias = Category::wherenull('parent_id')->get();
 
@@ -642,7 +644,7 @@ class HomeController extends Controller
                     "titulo" => $post->titulo,
                     "banner" => $post->banner,
                     "imagen" => $post->imagenbox,
-                    "date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    "date_publish" => @Carbon::parse($post->date_publish)->locale('es')->isoFormat('d MMM Y'),
                    // "date_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                     "id" => $post->id
                     );
@@ -726,7 +728,7 @@ class HomeController extends Controller
                 "banner" => $post->banner,
                 "card" => $post->imagenbox,
                 //"date_publish" => @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
-                "datep_publish" =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
+                "datep_publish" =>  @strftime("%d %b %Y", date (strtotime($post->date_publish )) ),
                 );
 
         }

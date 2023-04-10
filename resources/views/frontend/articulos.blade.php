@@ -40,7 +40,7 @@
                 </div>
             </form>
         </nav>
-
+ 
         <div class="listado_de_articulos__list">
 
             @foreach($articulos as $post)
