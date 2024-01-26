@@ -698,7 +698,7 @@ class HomeController extends Controller
         asort($counted);
         $counted = array_reverse($counted);
         $mas_buscados = [];
-        $limit = 4;
+        $limit = 100;
         $i = 1;
         foreach ($counted as $key => $value) {
             if ( $i <= $limit) {

@@ -383,7 +383,7 @@ const site = (function(){
 			if ( data.length ) {
 				let html = '';
 				$.each(data, function(index, val) {
-					if ( index <= 2 ) {
+					if ( index <= 20 ) {
 						let pattern = new RegExp(word, 'gi');
 						let str = val.titulo.replace(pattern, '<strong>'+word+'</strong>');
 						if(val.subcategory){
@@ -393,7 +393,7 @@ const site = (function(){
                         }
 					}
 				});
-				if ( data.length > 3 ) {
+				if ( data.length >21) {
 					html += '<span><a href="/buscar/'+word+'" class="m--all">Ver todos los resultados <img src="/assets/public/images/arrow_celeste.png" loading="lazy" /></a></span>';
 				}
 				$('.fnSearchResults').addClass(dom.active);
