@@ -14,7 +14,7 @@ use App\Http\Controllers\Backend\RegisterController;
 use App\Http\Controllers\Backend\QuizController;
 use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Controllers\Backend\OptionController;
-use App\Http\Controllers\Backend\ResultController;
+//use App\Http\Controllers\Backend\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +31,8 @@ Auth::routes([
     'reset' => false,
     'verify' => false,
   ]);
+
+  Route::get('/testing',[HomeController::class,'testing']);
 
   Route::group(['prefix' => 'admin'],function(){
 
@@ -71,8 +73,8 @@ Auth::routes([
     Route::get('/options/{op}', [OptionController::class,'show'])->name('option.show');
     Route::post('/options/setresult',[OptionController::class,'setResult']);
     Route::post('/options/getresult',[OptionController::class,'getResult']);
-    Route::post('/resultquiz', [ResultController::class,'store'])->name('result.destroy');
-    Route::put('/resultquiz/{res}', [ResultController::class,'update'])->name('result.destroy');
+    //Route::post('/resultquiz', [ResultController::class,'store'])->name('result.destroy');
+    //Route::put('/resultquiz/{res}', [ResultController::class,'update'])->name('result.destroy');
     Route::get('/posts', [PostController::class,'index'])->name('post.index');
     Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
     Route::post('/posts', [PostController::class,'store'])->name('post.store');
@@ -92,7 +94,7 @@ Auth::routes([
     Route::put('/authors/{post}', [AuthorController::class,'update'])->name('author.update');
     Route::delete('/authors/{post}', [AuthorController::class,'destroy'])->name('author.destroy');
     Route::get('/media', [AdminController::class,'media']);
-    
+
 });
 
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
@@ -107,6 +109,8 @@ Route::get('/categories', [HomeController::class, 'categories']);
 Route::post('/suscribirse', [HomeController::class, 'suscribirse']);
 Route::post('/search', [HomeController::class, 'buscar']);
 Route::post('/getoptresult', [HomeController::class,'getOptResult']);
+
+
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
     ->name('ckfinder_connector');
 //Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')

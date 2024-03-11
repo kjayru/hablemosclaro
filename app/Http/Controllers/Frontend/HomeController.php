@@ -25,6 +25,10 @@ class HomeController extends Controller
     public function index()
     {
 
+        $new_url = "https://www.claro.com.pe/hablando-claro/";
+
+        return redirect($new_url);
+
         $categorias = Category::wherenull('parent_id')->get();
         $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
 
@@ -133,6 +137,15 @@ class HomeController extends Controller
         $categorias = null;
         $articulos = null;
         $subcategoria = null;
+
+
+
+
+        $new_url = "https://www.claro.com.pe/hablando-claro/".$category->slug;
+
+        return redirect($new_url);
+
+
 
         $contador = Category::where('parent_id',$category->id)->count();
 
@@ -267,13 +280,21 @@ class HomeController extends Controller
 
     public function subcategoria($categoria,$subcategoria){
 
-       
+
+
+
         $categorias = null;
 
         $category = Category::where('slug',$subcategoria)->first();
 
         $articulos = [];
         $subcategory_id = null;
+
+
+        $new_url = "https://www.claro.com.pe/hablando-claro/".$category->parent->slug."/".$category->slug;
+
+        return redirect($new_url);
+
 
         if(!is_null($category)){
             $menu = Category::where('parent_id',$category->parent_id)->get();
@@ -315,7 +336,7 @@ class HomeController extends Controller
             $category = Category::where('slug',$categoria)->first();
             $category_id = $category->id;
 
-           
+
             foreach($post->categories as $rela){
                 if($rela->slug == $category->slug){
                     // dd($rel->posts);
@@ -463,6 +484,12 @@ class HomeController extends Controller
         $next = Post::next($articulo->id,$category->id,$subcategory->id);
         $previous = Post::previous($articulo->id,$category->id,$subcategory->id);
        // dd($post);
+
+
+       $new_url = "https://www.claro.com.pe/hablando-claro/".$subcategory->parent->slug."/".$subcategory->slug."/post/?=".$articulo->slug;
+
+       return redirect($new_url);
+
 
        $columns = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
 
@@ -620,7 +647,7 @@ class HomeController extends Controller
 
         $articulos = collect($result);
 
-       
+
 
         $categorias = Category::wherenull('parent_id')->get();
 
@@ -747,5 +774,52 @@ class HomeController extends Controller
         ->where('question_id',$request->question_id)->first();
 
         return response()->json($result);
+    }
+
+    public function testing(){
+
+        $redirect ="";
+        $categorias = Category::orderBy('id','desc')->get();
+
+        foreach($categorias as $cat){
+
+            if($cat->parent_id>0){
+                $old_url = "/".$cat->parent->slug."/".$cat->slug;
+                $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->parent->slug."/".$cat->slug;
+            $redirect .="'".$old_url."' => '".$new_url."',<br>";
+            }else{
+
+                $old_url = "/".$cat->slug;
+                $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->slug;
+                $redirect .="'".$old_url."' => '".$new_url."',<br>";
+            }
+        }
+
+
+        foreach($categorias as $cat){
+           if($cat->parent_id>0){
+
+
+           if(count($cat->posts)>0)
+           {
+               foreach($cat->posts as $post){
+                   //dump(env('APP_URL')."/".$cat->parent->slug."/".$cat->slug."/".$post->slug);
+
+                   $old_url = "/".$cat->parent->slug."/".$cat->slug."/".$post->slug;
+                   $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->parent->slug."/".$cat->slug."/post/?=".$post->slug;
+
+
+                  $redirect .="'".$old_url."' => '".$new_url."',<br>";
+               }
+           }
+
+           }
+        }
+
+
+
+
+       // dd($redirect);
+        return view('testing.index',['redireccionar'=>$redirect]);
     }
 }
