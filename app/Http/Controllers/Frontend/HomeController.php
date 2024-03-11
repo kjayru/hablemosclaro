@@ -141,9 +141,7 @@ class HomeController extends Controller
 
 
 
-        $new_url = "https://www.claro.com.pe/hablando-claro/".$category->slug;
 
-        return redirect($new_url);
 
 
 
@@ -198,6 +196,10 @@ class HomeController extends Controller
 
             $articulos = collect($post);
 
+              $new_url = "https://www.claro.com.pe/hablando-claro/".$category->slug."/".$subcat->slug."/".$p->slug;
+
+             return redirect($new_url);
+
 
         }else{
             $categorias = $category->posts;
@@ -219,6 +221,19 @@ class HomeController extends Controller
                             );
                         }
 
+
+            }
+
+            if($category->parent_id > 0){
+
+                $new_url = "https://www.claro.com.pe/hablando-claro/".$category->parent->slug."/".$category->slug;
+                return redirect($new_url);
+
+
+            }else{
+
+                $new_url = "https://www.claro.com.pe/hablando-claro/".$category->slug;
+                return redirect($new_url);
 
             }
 
@@ -291,9 +306,7 @@ class HomeController extends Controller
         $subcategory_id = null;
 
 
-        $new_url = "https://www.claro.com.pe/hablando-claro/".$category->parent->slug."/".$category->slug;
 
-        return redirect($new_url);
 
 
         if(!is_null($category)){
@@ -325,7 +338,38 @@ class HomeController extends Controller
             }
 
 
+
         }else{
+
+            //
+            if(Category::where('slug',$subcategoria)->count()==0){
+
+                if($category = Post::where('slug',$subcategoria)->count()>0){
+
+                    $articulo =  Post::where('slug',$subcategoria)->first();
+                    $category = Category::where('slug',$categoria)->first();
+
+                    $new_url = "https://www.claro.com.pe/hablando-claro/".$category->parent->slug."/".$category->slug."/post/?=".$articulo->slug;
+                    return redirect($new_url);
+                }
+            }else{
+
+                $category = Category::where('slug',$categoria)->first();
+
+
+                if(isset($category->parent_id )){
+
+
+                    $new_url = "https://www.claro.com.pe/hablando-claro/".$category->parent->slug."/".$category->slug;
+                    return redirect($new_url);
+                }else{
+                    $new_url = "https://www.claro.com.pe/hablando-claro/".$category->slug;
+                    return redirect($new_url);
+                }
+            }
+
+
+
             $relacionados=[];
 
             $post = Post::where('slug',$subcategoria)->first();
