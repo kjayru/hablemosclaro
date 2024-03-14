@@ -25,9 +25,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        $new_url = "https://www.claro.com.pe/hablando-claro/";
+        // $new_url = "https://www.claro.com.pe/hablando-claro/";
 
-        return redirect($new_url);
+        // return redirect($new_url);
 
         $categorias = Category::wherenull('parent_id')->get();
         $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
@@ -344,15 +344,32 @@ class HomeController extends Controller
             //
             if(Category::where('slug',$subcategoria)->count()==0){
 
-                if($category = Post::where('slug',$subcategoria)->count()>0){
+
+                if(Post::where('slug',$subcategoria)->count()>0){
+
 
                     $articulo =  Post::where('slug',$subcategoria)->first();
+
+
+
                     $category = Category::where('slug',$categoria)->first();
 
-                    $new_url = "https://www.claro.com.pe/hablando-claro/".$category->parent->slug."/".$category->slug."/post/?=".$articulo->slug;
+                    $articulo_categoria=null;
+                    foreach($articulo->categories as $cat){
+
+                        if($cat->parent_id==0){
+                            $articulo_categoria = $cat->slug;
+                        }
+
+                    }
+
+                    $new_url = "https://www.claro.com.pe/hablando-claro/".$articulo_categoria."/post/?=".@$articulo->slug;
+
+                   // dd($new_url);
                     return redirect($new_url);
                 }
             }else{
+
 
                 $category = Category::where('slug',$categoria)->first();
 
