@@ -25,9 +25,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        // $new_url = "https://www.claro.com.pe/hablando-claro/";
+        $new_url = "https://www.claro.com.pe/hablando-claro/";
 
-        // return redirect($new_url);
+        return redirect($new_url);
 
         $categorias = Category::wherenull('parent_id')->get();
         $articulos = Post::where('destacado',1)->where('post_type_id',1)->get();
