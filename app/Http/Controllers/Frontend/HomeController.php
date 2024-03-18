@@ -127,6 +127,7 @@ class HomeController extends Controller
 
     public function categoria($categoria){
 
+       // dd("aqui");
 
 
         $category = Category::where('slug',$categoria)->first();
@@ -141,7 +142,9 @@ class HomeController extends Controller
 
 
 
+        $new_url = "https://www.claro.com.pe/hablando-claro/".$category->slug;
 
+        return redirect($new_url);
 
 
 
@@ -149,6 +152,7 @@ class HomeController extends Controller
 
         if($contador>0){
             $categorias = Category::where('parent_id',$category->id)->get();
+
             foreach($categorias as $cat){
 
                     if(count($cat->posts)>0){
@@ -337,7 +341,8 @@ class HomeController extends Controller
                 }
             }
 
-
+            $new_url = "https://www.claro.com.pe/hablando-claro/".$category->parent->slug."/".$category->slug;
+            return redirect($new_url);
 
         }else{
 
