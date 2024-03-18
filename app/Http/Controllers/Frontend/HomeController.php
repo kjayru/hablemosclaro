@@ -302,6 +302,7 @@ class HomeController extends Controller
 
 
 
+
         $categorias = null;
 
         $category = Category::where('slug',$subcategoria)->first();
