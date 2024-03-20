@@ -810,7 +810,7 @@ class HomeController extends Controller
     public function tag($tag){
 
 
-        $new_url = "https://www.claro.com.pe/hablando-claro/tag/".$tag;
+        $new_url = "https://www.claro.com.pe/hablando-claro/tag/?=".$tag;
 
         return redirect($new_url);
 
