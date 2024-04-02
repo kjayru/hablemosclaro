@@ -894,4 +894,76 @@ class HomeController extends Controller
        // dd($redirect);
         return view('testing.index',['redireccionar'=>$redirect]);
     }
+
+
+    //API
+    public function apiCategoria(){
+
+        // dd("aqui");
+
+
+         $categorias = Category::whereNull('parent_id')->get();
+        $category=null;
+        $categoria = null;
+         foreach($categorias as $cat){
+            $subcat=null;
+            if($cat->pariente){
+                foreach($cat->pariente as $sc){
+                    $subcat[] = [
+                        'id'=>$sc->id,
+
+                        'nombre'=>$sc->nombre,
+                        'url'=>$sc->slug
+                    ];
+                }
+            }
+                $category[] = [
+                    'id'=>$cat->id,
+
+                    'url'=> $cat->slug,
+                    'childs'=>$subcat,
+                ];
+
+
+
+         }
+
+
+
+         $cols = Post::where('estado',1)->whereNotNull('author_id')->orderBy('date_publish','desc')->take(4)->get();
+
+        //column
+        foreach($cols as $key=> $col){
+
+
+
+                $colum[] = array(
+                    "id" => $col->id,
+                    "titulo" => $col->titulo,
+                    "card" => $col->imagenbox,
+                    "slug" => $col->slug,
+                    "categoria" =>  @Post::getCategory($col->id)['category'],
+                    "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+                    //'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
+                    'date_publish' =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
+                    'lectura' => @Post::TimeEstimate($col->contenido),
+                    'foto' => @$col->author->imagen,
+                    'nombre' => @$col->author->nombre,
+                    'cargo'=>$col->author->cargo
+                );
+
+
+         }
+        $columns = collect($colum);
+
+
+
+
+
+
+         return response()->json(['categorias'=>$category,'opinion'=>$columns]);
+
+        // return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category,'subcategoria'=>$subcategoria]);
+     }
+
 }

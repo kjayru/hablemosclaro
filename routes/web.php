@@ -97,6 +97,10 @@ Auth::routes([
 
 });
 
+Route::group(['prefix' => 'api'],function(){
+    Route::get('/categories', [HomeController::class, 'apiCategoria']);
+});
+
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
 Route::get('/buscar/{word}', [HomeController::class, 'resultados']);
 Route::get('/tag/{tag}', [HomeController::class, 'tag']);
@@ -115,3 +119,6 @@ Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderC
     ->name('ckfinder_connector');
 //Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
 //    ->name('ckfinder_browser');
+
+
+
