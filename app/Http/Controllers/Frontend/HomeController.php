@@ -942,8 +942,7 @@ class HomeController extends Controller
                     "titulo" => $col->titulo,
                     "card" => $col->imagenbox,
                     "slug" => $col->slug,
-                    "categoria" =>  @Post::getCategory($col->id)['category'],
-                    "subcategoria" => @Post::getCategory($col->id)['subcategory'],
+
                     //'date_publish'=> @Carbon::parse($col->date_publish)->locale('es')->isoFormat('d MMM Y'),
                     'date_publish' =>  @strftime("%d %b %Y", date (strtotime($col->date_publish )) ),
                     'lectura' => @Post::TimeEstimate($col->contenido),
