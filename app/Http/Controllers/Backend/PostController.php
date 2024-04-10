@@ -283,11 +283,11 @@ class PostController extends Controller
 
         $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
-        if(isset($post->parent->slug)){
+        if(!isset($post->parent->slug)){
             //remitir post
             $urlfinal = $baseurl."/".$post->slug."/post/?=".Str::slug($post->titulo, '-');
 
-            Post::find($request->id)->delete();
+
 
 
             $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
