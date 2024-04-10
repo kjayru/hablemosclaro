@@ -60,14 +60,12 @@ class TagController extends Controller
 
         $baseurl= 'https://www.claro.com.pe/hablando-claro';
         $urltag = $baseurl."/tag/?=".Str::slug($request->nombre, '-');
-        $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
         [
             'url' => $urltag,
         ]);
 
-        $rpta = $getdata->json();
-
-        Log::info($rpta);
+        Log::info($getdata->successful());
 
         return redirect(route('tag.index'))
         ->with('info', 'Tag creado con éxito.');
@@ -117,13 +115,12 @@ class TagController extends Controller
 
         $baseurl= 'https://www.claro.com.pe/hablando-claro';
         $urltag = $baseurl."/tag/?=".$tag->slug;
-        $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
+        $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
         [
             'url' => $urltag,
         ]);
 
-        $rpta = $getdata->json();
-        Log::info($rpta);
+        Log::info($getdata->successful());
 
         Tag::find($request->id)->delete();
         return redirect()->route('tag.index')->with('info','Tag eliminado con éxito');
