@@ -283,7 +283,7 @@ class PostController extends Controller
 
         $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
-        if($post->parent->slug == null){
+        if(isset($post->parent->slug)){
             //remitir post
             $urlfinal = $baseurl."/".$post->slug."/post/?=".Str::slug($post->titulo, '-');
 
