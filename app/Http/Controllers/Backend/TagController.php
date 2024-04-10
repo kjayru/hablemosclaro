@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Http;
 class TagController extends Controller
 {
     public function __construct(){

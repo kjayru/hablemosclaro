@@ -10,6 +10,8 @@ use App\Models\Author;
 use Illuminate\Support\Str;
 use App\Models\Tag;
 use App\Models\Quiz;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -55,13 +57,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-          $validated = $request->validate([
-            'titulo' => 'required',
-            'contenido' => 'required',
-            'imageBanner' => 'required',
-            'imageCard' => 'required',
+        //   $validated = $request->validate([
+        //     'titulo' => 'required',
+        //     'contenido' => 'required',
+        //     'imageBanner' => 'required',
+        //     'imageCard' => 'required',
 
-        ]);
+        // ]);
 
 
 
@@ -90,6 +92,67 @@ class PostController extends Controller
 
         $post->categories()->sync($request->category);
         $post->tags()->sync($request->tags);
+
+            $pariente=null;
+          $baseurl= 'https://www.claro.com.pe/hablando-claro';
+
+        foreach($request->category as $cat){
+            if(Category::where('id',$cat)->whereNull('parent_id')->first()){
+                $categorias[] = $cat;
+            }else{
+                $subcategorias[]=$cat;
+            }
+        }
+
+        foreach($subcategorias as $sub){
+           $scat =  Category::where('id',$sub)->first();
+
+           //remitir post
+            $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/".Str::slug($request->titulo, '-');
+
+            $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                [
+                    'url' => $urlfinal,
+                ]);
+                $rpta = $getdata->json();
+                Log::info($rpta);
+        }
+
+        //dd($urlfinal);
+        foreach($subcategorias as $sub){
+
+            $categoria = Category::where('id',$sub)->first();
+
+            if (array_key_exists($categoria->parent->id, $categorias)) {
+                $pariente[]=$categoria->parent->id;
+            }
+
+        }
+
+        //anexamos post a categoria huerfana
+        if($pariente!=null){
+
+            $huerfanos = array_diff($categorias,$pariente);
+
+
+
+            foreach($huerfanos as $row){
+                $hcat = Category::find($row);
+
+                $urlfinalcat = $baseurl."/".$hcat->slug."/".Str::slug($request->titulo, '-');
+
+                $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                [
+                    'url' => $urlfinalcat,
+                ]);
+                $rpta = $getdata->json();
+                Log::info($rpta);
+
+            }
+        }
+
+
+
 
         return redirect(route('post.index'))
         ->with('info', 'Artículo actualizado con exito.');
