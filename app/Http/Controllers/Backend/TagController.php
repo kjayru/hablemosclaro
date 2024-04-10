@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 class TagController extends Controller
 {
     public function __construct(){
@@ -42,6 +43,10 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
+
         $validated = $request->validate([
             'nombre' => ['required', 'string', 'max:255', 'unique:tags']
         ]);
@@ -52,6 +57,17 @@ class TagController extends Controller
         $tag->slug = Str::slug($request->nombre, '-');
         $tag->save();
 
+
+        $baseurl= 'https://www.claro.com.pe/hablando-claro';
+        $urltag = $baseurl."/tag/?=".Str::slug($request->nombre, '-');
+        $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        [
+            'url' => $urltag,
+        ]);
+
+        $rpta = $getdata->json();
+
+        Log::info("tag: ",$rpta);
 
         return redirect(route('tag.index'))
         ->with('info', 'Tag creado con éxito.');
@@ -96,6 +112,19 @@ class TagController extends Controller
      */
     public function destroy(Request $request)
     {
+
+        $tag= Tag::find($request->id);
+
+        $baseurl= 'https://www.claro.com.pe/hablando-claro';
+        $urltag = $baseurl."/tag/?=".$tag->slug;
+        $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
+        [
+            'url' => $urltag,
+        ]);
+
+        $rpta = $getdata->json();
+        Log::info("tag: ",$rpta);
+
         Tag::find($request->id)->delete();
         return redirect()->route('tag.index')->with('info','Tag eliminado con éxito');
     }

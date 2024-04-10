@@ -198,8 +198,6 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
 
-
-
         $post = Post::find($id);
         $post->titulo  = $request->titulo;
         $post->slug =  Str::slug($request->titulo, '-');
@@ -249,7 +247,41 @@ class PostController extends Controller
      */
     public function destroy(Request $request)
     {
+        $post = Post::find($request->id);
+
         Post::find($request->id)->delete();
+
+        $baseurl= 'https://www.claro.com.pe/hablando-claro';
+
+        if($post->parent->slug == null){
+            //remitir post
+            $urlfinal = $baseurl."/".$post->slug."/post/?=".Str::slug($post->titulo, '-');
+
+            Post::find($request->id)->delete();
+
+
+            $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
+                [
+                    'url' => $urlfinal,
+                ]);
+                $rpta = $getdata->json();
+                Log::info($rpta);
+        }else{
+
+            $urlfinal = $baseurl."/".$post->parent->slug."/".$post->slug."/post/?=".Str::slug($post->titulo, '-');
+
+
+
+
+            $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
+                [
+                    'url' => $urlfinal,
+                ]);
+                $rpta = $getdata->json();
+                Log::info($rpta);
+        }
+
+
         return redirect()->route('post.index')->with('info','Artículo eliminado con éxito');
     }
 }
