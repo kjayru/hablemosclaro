@@ -279,7 +279,7 @@ class PostController extends Controller
     {
         $post = Post::find($request->id);
 
-        Post::find($request->id)->delete();
+
 
         $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
@@ -311,6 +311,7 @@ class PostController extends Controller
                 Log::info($getdata->successful());
         }
 
+        Post::find($request->id)->delete();
 
         return redirect()->route('post.index')->with('info','Artículo eliminado con éxito');
     }
