@@ -161,6 +161,20 @@ class PostController extends Controller
                 Log::info($getdata->successful());
 
             }
+        }else{
+            foreach($categorias as $row){
+                $hcat = Category::find($row);
+
+                $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
+
+                $getdata =  Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                [
+                    'url' => $urlfinalcat,
+                ]);
+
+                Log::info($getdata->successful());
+
+            }
         }
 
 
