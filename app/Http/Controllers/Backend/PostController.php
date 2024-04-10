@@ -57,13 +57,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        //   $validated = $request->validate([
-        //     'titulo' => 'required',
-        //     'contenido' => 'required',
-        //     'imageBanner' => 'required',
-        //     'imageCard' => 'required',
+          $validated = $request->validate([
+            'titulo' => 'required',
+            'contenido' => 'required',
+            'imageBanner' => 'required',
+            'imageCard' => 'required',
 
-        // ]);
+        ]);
 
 
 
