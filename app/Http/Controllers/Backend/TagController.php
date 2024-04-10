@@ -67,7 +67,7 @@ class TagController extends Controller
 
         $rpta = $getdata->json();
 
-        Log::info("tag: ",$rpta);
+        Log::info($rpta);
 
         return redirect(route('tag.index'))
         ->with('info', 'Tag creado con éxito.');
@@ -123,7 +123,7 @@ class TagController extends Controller
         ]);
 
         $rpta = $getdata->json();
-        Log::info("tag: ",$rpta);
+        Log::info($rpta);
 
         Tag::find($request->id)->delete();
         return redirect()->route('tag.index')->with('info','Tag eliminado con éxito');
