@@ -57,13 +57,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        //   $validated = $request->validate([
-        //     'titulo' => 'required',
-        //     'contenido' => 'required',
-        //     'imageBanner' => 'required',
-        //     'imageCard' => 'required',
+          $validated = $request->validate([
+            'titulo' => 'required',
+            'contenido' => 'required',
+            'imageBanner' => 'required',
+            'imageCard' => 'required',
 
-        // ]);
+        ]);
 
 
 
@@ -108,7 +108,7 @@ class PostController extends Controller
            $scat =  Category::where('id',$sub)->first();
 
            //remitir post
-            $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/".Str::slug($request->titulo, '-');
+            $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
 
             $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
                 [
@@ -139,7 +139,7 @@ class PostController extends Controller
             foreach($huerfanos as $row){
                 $hcat = Category::find($row);
 
-                $urlfinalcat = $baseurl."/".$hcat->slug."/".Str::slug($request->titulo, '-');
+                $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
 
                 $getdata = Http::post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
                 [
