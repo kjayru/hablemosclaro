@@ -57,6 +57,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
+        $subcategorias=null;
+
           $validated = $request->validate([
             'titulo' => 'required',
             'contenido' => 'required',
@@ -104,41 +106,43 @@ class PostController extends Controller
             }
         }
 
-        foreach($subcategorias as $sub){
-           $scat =  Category::where('id',$sub)->first();
+        if($subcategorias!=null){
+            foreach($subcategorias as $sub){
+            $scat =  Category::where('id',$sub)->first();
 
-           //remitir post
-            $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
+            //remitir post
+                $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
 
-            $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-                [
-                    'url' => $urlfinal,
-                ]);
-
-
-                Log::info($getdata->successful());
-
-               // dd($getdata->successful());
-
-            // $response = Http::acceptJson()->withHeaders([
-            //     'Connection' => 'keep-alive',
-            //     'Content-Type' => 'application/json',
-            //     'Accept' => '*/*',
-            // ])->withBody("'url':'".$urlfinal."'",'application/json' )->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost');
-
-            // dd($response);
-        }
+                $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                    [
+                        'url' => $urlfinal,
+                    ]);
 
 
-        //dd($urlfinal);
-        foreach($subcategorias as $sub){
+                    Log::info($getdata->successful());
 
-            $categoria = Category::where('id',$sub)->first();
+                // dd($getdata->successful());
 
-            if (array_key_exists($categoria->parent->id, $categorias)) {
-                $pariente[]=$categoria->parent->id;
+                // $response = Http::acceptJson()->withHeaders([
+                //     'Connection' => 'keep-alive',
+                //     'Content-Type' => 'application/json',
+                //     'Accept' => '*/*',
+                // ])->withBody("'url':'".$urlfinal."'",'application/json' )->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost');
+
+                // dd($response);
             }
 
+
+            //dd($urlfinal);
+            foreach($subcategorias as $sub){
+
+                $categoria = Category::where('id',$sub)->first();
+
+                if (array_key_exists($categoria->parent->id, $categorias)) {
+                    $pariente[]=$categoria->parent->id;
+                }
+
+            }
         }
 
         //anexamos post a categoria huerfana
