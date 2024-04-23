@@ -899,9 +899,6 @@ class HomeController extends Controller
     //API
     public function apiCategoria(){
 
-        // dd("aqui");
-
-
          $categorias = Category::whereNull('parent_id')->get();
         $category=null;
         $categoria = null;
@@ -955,14 +952,15 @@ class HomeController extends Controller
          }
         $columns = collect($colum);
 
-
-
-
-
-
          return response()->json(['categorias'=>$category,'opinion'=>$columns]);
 
         // return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category,'subcategoria'=>$subcategoria]);
+     }
+
+     public function apiPost($slug){
+        $post = Post::where('slug',$slug)->first();
+
+        return response()->json($post);
      }
 
 }

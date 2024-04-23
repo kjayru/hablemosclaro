@@ -99,6 +99,7 @@ Auth::routes([
 
 Route::group(['prefix' => 'api'],function(){
     Route::get('/categories', [HomeController::class, 'apiCategoria']);
+    Route::get('/post/{slug}', [HomeController::class, 'apiPost']);
 });
 
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
