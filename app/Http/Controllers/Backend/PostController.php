@@ -290,7 +290,7 @@ class PostController extends Controller
 
 
 
-            $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
+            $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
                 [
                     'url' => $urlfinal,
                 ]);
@@ -303,7 +303,7 @@ class PostController extends Controller
 
 
 
-            $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
+            $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/eliminaPost',
                 [
                     'url' => $urlfinal,
                 ]);
