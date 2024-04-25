@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Suscription;
 use App\Models\PostType;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\Models\Visit;
@@ -848,52 +849,52 @@ class HomeController extends Controller
         return response()->json($result);
     }
 
-    public function testing(){
+    // public function testing(){
 
-        $redirect ="";
-        $categorias = Category::orderBy('id','desc')->get();
+    //     $redirect ="";
+    //     $categorias = Category::orderBy('id','desc')->get();
 
-        foreach($categorias as $cat){
+    //     foreach($categorias as $cat){
 
-            if($cat->parent_id>0){
-                $old_url = "/".$cat->parent->slug."/".$cat->slug;
-                $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->parent->slug."/".$cat->slug;
-            $redirect .="'".$old_url."' => '".$new_url."',<br>";
-            }else{
+    //         if($cat->parent_id>0){
+    //             $old_url = "/".$cat->parent->slug."/".$cat->slug;
+    //             $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->parent->slug."/".$cat->slug;
+    //         $redirect .="'".$old_url."' => '".$new_url."',<br>";
+    //         }else{
 
-                $old_url = "/".$cat->slug;
-                $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->slug;
-                $redirect .="'".$old_url."' => '".$new_url."',<br>";
-            }
-        }
-
-
-        foreach($categorias as $cat){
-           if($cat->parent_id>0){
+    //             $old_url = "/".$cat->slug;
+    //             $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->slug;
+    //             $redirect .="'".$old_url."' => '".$new_url."',<br>";
+    //         }
+    //     }
 
 
-           if(count($cat->posts)>0)
-           {
-               foreach($cat->posts as $post){
-                   //dump(env('APP_URL')."/".$cat->parent->slug."/".$cat->slug."/".$post->slug);
-
-                   $old_url = "/".$cat->parent->slug."/".$cat->slug."/".$post->slug;
-                   $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->parent->slug."/".$cat->slug."/post/?=".$post->slug;
+    //     foreach($categorias as $cat){
+    //        if($cat->parent_id>0){
 
 
-                  $redirect .="'".$old_url."' => '".$new_url."',<br>";
-               }
-           }
+    //        if(count($cat->posts)>0)
+    //        {
+    //            foreach($cat->posts as $post){
+    //                //dump(env('APP_URL')."/".$cat->parent->slug."/".$cat->slug."/".$post->slug);
 
-           }
-        }
+    //                $old_url = "/".$cat->parent->slug."/".$cat->slug."/".$post->slug;
+    //                $new_url = 'https://www.claro.com.pe/hablando-claro/'.$cat->parent->slug."/".$cat->slug."/post/?=".$post->slug;
+
+
+    //               $redirect .="'".$old_url."' => '".$new_url."',<br>";
+    //            }
+    //        }
+
+    //        }
+    //     }
 
 
 
 
-       // dd($redirect);
-        return view('testing.index',['redireccionar'=>$redirect]);
-    }
+    //    // dd($redirect);
+    //     return view('testing.index',['redireccionar'=>$redirect]);
+    // }
 
 
     //API
@@ -961,6 +962,18 @@ class HomeController extends Controller
         $post = Post::where('slug',$slug)->first();
 
         return response()->json($post);
+     }
+
+     public function testing(){
+
+        $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
+
+        $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        [
+            'url'=>$url
+        ]);
+
+        dd($getdata);
      }
 
 }

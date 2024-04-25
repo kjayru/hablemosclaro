@@ -113,7 +113,7 @@ class PostController extends Controller
             //remitir post
                 $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
 
-                $getdata = Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
                     [
                         'url' => $urlfinal,
                     ]);
@@ -157,7 +157,7 @@ class PostController extends Controller
 
                 $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
 
-                $getdata =  Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
                 [
                     'url' => $urlfinalcat,
                 ]);
@@ -171,7 +171,7 @@ class PostController extends Controller
 
                 $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
 
-                $getdata =  Http::asForm()->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
                 [
                     'url' => $urlfinalcat,
                 ]);
