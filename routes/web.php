@@ -32,7 +32,7 @@ Auth::routes([
     'verify' => false,
   ]);
 
-  Route::get('/testing',[HomeController::class,'testing']);
+
 
   Route::group(['prefix' => 'admin'],function(){
 
@@ -94,6 +94,8 @@ Auth::routes([
     Route::put('/authors/{post}', [AuthorController::class,'update'])->name('author.update');
     Route::delete('/authors/{post}', [AuthorController::class,'destroy'])->name('author.destroy');
     Route::get('/media', [AdminController::class,'media']);
+
+    Route::get('/testing',[HomeController::class,'testing']);
 
 });
 
