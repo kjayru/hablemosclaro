@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Suscription;
 use App\Models\PostType;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\Models\Visit;
@@ -966,14 +967,95 @@ class HomeController extends Controller
 
      public function testing(){
 
-        $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
+        // $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
 
-        $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-        [
-            'url'=>$url
-        ]);
+        // $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        // [
+        //     'url'=>$url
+        // ]);
 
-        dd($getdata);
+        // dd($getdata);
+
+        $baseurl= 'https://www.claro.com.pe/hablando-claro/';
+        $result = [];
+        $posts = Post::where('estado','1')->get();
+        // $posts = Post::where('estado',1)->get();
+
+         foreach($posts as $post){
+             if(isset($post->categories[0]->parent)){
+                 $result[] = array(
+
+                     "url"=> $baseurl.Post::getCategory($post->id)['category']->slug."/".Post::getCategory($post->id)['subcategory']->slug."/".$post->slug
+                    );
+             }else{
+                $result[] = array(
+                    "url"=> $baseurl.Post::getCategory($post->id)['category']->slug."/".$post->slug
+                   );
+             }
+         }
+
+
+         Storage::disk('public')->put('utmfilter.json',collect($result));
+         dd($result);
+
+
+
+
+        // foreach($request->category as $cat){
+        //     if(Category::where('id',$cat)->whereNull('parent_id')->first()){
+        //         $categorias[] = $cat;
+        //     }else{
+        //         $subcategorias[]=$cat;
+        //     }
+        // }
+
+        // if($subcategorias!=null){
+        //     foreach($subcategorias as $sub){
+        //     $scat =  Category::where('id',$sub)->first();
+
+
+        //         $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
+
+        //     }
+
+
+        //     //dd($urlfinal);
+        //     foreach($subcategorias as $sub){
+
+        //         $categoria = Category::where('id',$sub)->first();
+
+        //         if (array_key_exists($categoria->parent->id, $categorias)) {
+        //             $pariente[]=$categoria->parent->id;
+        //         }
+
+        //     }
+        // }
+
+        // //anexamos post a categoria huerfana
+        // if($pariente!=null){
+
+        //     $huerfanos = array_diff($categorias,$pariente);
+
+
+
+        //     foreach($huerfanos as $row){
+        //         $hcat = Category::find($row);
+
+        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
+
+
+
+        //     }
+        // }else{
+        //     foreach($categorias as $row){
+        //         $hcat = Category::find($row);
+
+        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
+
+
+
+        //     }
+        // }
      }
 
 }
