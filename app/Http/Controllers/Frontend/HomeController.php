@@ -976,30 +976,6 @@ class HomeController extends Controller
 
         // dd($getdata);
 
-        $baseurl= 'https://www.claro.com.pe/hablando-claro/';
-        $result = [];
-        $posts = Post::where('estado','1')->get();
-        // $posts = Post::where('estado',1)->get();
-
-         foreach($posts as $post){
-             if(isset($post->categories[0]->parent)){
-                 $result[] = array(
-
-                     "url"=> $baseurl.Post::getCategory($post->id)['category']->slug."/".Post::getCategory($post->id)['subcategory']->slug."/".$post->slug
-                    );
-             }else{
-                $result[] = array(
-                    "url"=> $baseurl.Post::getCategory($post->id)['category']->slug."/".$post->slug
-                   );
-             }
-         }
-
-
-         Storage::disk('public')->put('utmfilter.json',collect($result));
-         dd($result);
-
-
-
 
         // foreach($request->category as $cat){
         //     if(Category::where('id',$cat)->whereNull('parent_id')->first()){
@@ -1056,6 +1032,67 @@ class HomeController extends Controller
 
         //     }
         // }
+
+
+
+        // $baseurl= 'https://www.claro.com.pe/hablando-claro/';
+        // $result = [];
+        // $posts = Post::where('estado','1')->get();
+        // // $posts = Post::where('estado',1)->get();
+
+        //  foreach($posts as $post){
+        //      if(isset($post->categories[0]->parent)){
+        //          $result[] = array(
+
+        //              "url"=> $baseurl.Post::getCategory($post->id)['category']->slug."/".Post::getCategory($post->id)['subcategory']->slug."/".$post->slug
+        //             );
+        //      }else{
+        //         $result[] = array(
+        //             "url"=> $baseurl.Post::getCategory($post->id)['category']->slug."/".$post->slug
+        //            );
+        //      }
+        //  }
+
+
+        //  Storage::disk('public')->put('utmfilter.json',collect($result));
+        //  dd($result);
+
+
+        $listado = json_decode(file_get_contents(storage_path() . "/app/public/resultados.json"), true);
+
+
+ // $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
+
+
+        $baseurl= 'https://www.claro.com.pe/hablando-claro/';
+
+
+
+        foreach($listado as $key => $value){
+
+           $uri =  explode("/",$value['url']);
+           //dd($uri);
+
+           if((count($uri)) == 6){
+
+            $urfinal = $baseurl.$uri[4]."/post/?=".$uri[5];
+           }
+
+           if((count($uri)) == 7){
+            $urfinal = $baseurl.$uri[4]."/".$uri[5]."/post/?=".$uri[6];
+           }
+
+
+             $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+            [
+                'url' => $urfinal,
+            ]);
+
+
+            print_r( $getdata );
+        };
+
+
      }
 
 }

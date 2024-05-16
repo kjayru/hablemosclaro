@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('id','desc')->get();
+        $categories = Category::whereNotNull("parent_id")->orderBy('id','desc')->get();
         $authors = Author::orderBy('nombre','asc')->get();
         $tags = Tag::orderBy('nombre','asc')->get();
         $cats=[];
@@ -56,6 +56,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
 
         $subcategorias=null;
 
@@ -92,16 +93,15 @@ class PostController extends Controller
         $post->save();
        // $post->authors()->sync($request->author);
 
-        $post->categories()->sync($request->category);
+       $post->categories()->sync($request->category);
         $post->tags()->sync($request->tags);
 
-            $pariente=null;
+        $pariente=null;
           $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
         foreach($request->category as $cat){
-            if(Category::where('id',$cat)->whereNull('parent_id')->first()){
-                $categorias[] = $cat;
-            }else{
+            if(Category::where('id',$cat)->whereNotNull('parent_id')->first()){
+
                 $subcategorias[]=$cat;
             }
         }
@@ -134,53 +134,53 @@ class PostController extends Controller
 
 
             //dd($urlfinal);
-            foreach($subcategorias as $sub){
+            // foreach($subcategorias as $sub){
 
-                $categoria = Category::where('id',$sub)->first();
+            //     $categoria = Category::where('id',$sub)->first();
 
-                if (array_key_exists($categoria->parent->id, $categorias)) {
-                    $pariente[]=$categoria->parent->id;
-                }
+            //     if (array_key_exists($categoria->parent->id, $categorias)) {
+            //         $pariente[]=$categoria->parent->id;
+            //     }
 
-            }
+            // }
         }
+
 
         //anexamos post a categoria huerfana
-        if($pariente!=null){
+        // if($pariente!=null){
 
-            $huerfanos = array_diff($categorias,$pariente);
+        //     $huerfanos = array_diff($categorias,$pariente);
 
 
 
-            foreach($huerfanos as $row){
-                $hcat = Category::find($row);
+        //     foreach($huerfanos as $row){
+        //         $hcat = Category::find($row);
 
-                $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
+        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
 
-                $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-                [
-                    'url' => $urlfinalcat,
-                ]);
+        //         $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        //         [
+        //             'url' => $urlfinalcat,
+        //         ]);
 
-                Log::info($getdata->successful());
+        //         Log::info($getdata->successful());
 
-            }
-        }else{
-            foreach($categorias as $row){
-                $hcat = Category::find($row);
+        //     }
+        // }else{
+        //     foreach($categorias as $row){
+        //         $hcat = Category::find($row);
 
-                $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
+        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
 
-                $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-                [
-                    'url' => $urlfinalcat,
-                ]);
+        //         $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        //         [
+        //             'url' => $urlfinalcat,
+        //         ]);
 
-                Log::info($getdata->successful());
+        //         Log::info($getdata->successful());
 
-            }
-        }
-
+        //     }
+        // }
 
 
 
@@ -192,7 +192,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $articulo = Post::find($id);
-        $categories = Category::orderBy('id','desc')->get();
+        $categories = Category::whereNotNull("parent_id")->orderBy('id','desc')->get();
         $authors = Author::orderBy('nombre','asc')->get();
         $tags = Tag::orderBy('nombre','asc')->get();
         $cats=[];
@@ -227,6 +227,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
 
         $post = Post::find($id);
         $post->titulo  = $request->titulo;
