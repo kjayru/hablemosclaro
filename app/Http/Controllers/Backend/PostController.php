@@ -10,6 +10,7 @@ use App\Models\Author;
 use Illuminate\Support\Str;
 use App\Models\Tag;
 use App\Models\Quiz;
+use App\Models\CategoryPost;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -93,18 +94,35 @@ class PostController extends Controller
         $post->save();
        // $post->authors()->sync($request->author);
 
-       $post->categories()->sync($request->category);
+
+        //$post->categories()->sync($request->category);
+
+        $subcategoria = Category::where('id',$request->category)->first();
+        $cat_id = $subcategoria->parent_id;
+
+
+        $cpostparent = new CategoryPost();
+        $cpostparent->category_id = $cat_id;
+        $cpostparent->post_id = $post->id;
+        $cpostparent->save();
+
+        $cpostchild = new CategoryPost();
+        $cpostchild->category_id = $request->category;
+        $cpostchild->post_id = $post->id;
+        $cpostchild->save();
+
+
         $post->tags()->sync($request->tags);
 
+
         $pariente=null;
-          $baseurl= 'https://www.claro.com.pe/hablando-claro';
+        $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
-        foreach($request->category as $cat){
-            if(Category::where('id',$cat)->whereNotNull('parent_id')->first()){
 
-                $subcategorias[]=$cat;
+            if(Category::where('id',$request->category)->whereNotNull('parent_id')->first()){
+                $subcategorias[]=$request->category;
             }
-        }
+
 
         if($subcategorias!=null){
             foreach($subcategorias as $sub){
@@ -121,66 +139,9 @@ class PostController extends Controller
 
                     Log::info($getdata->successful());
 
-                // dd($getdata->successful());
-
-                // $response = Http::acceptJson()->withHeaders([
-                //     'Connection' => 'keep-alive',
-                //     'Content-Type' => 'application/json',
-                //     'Accept' => '*/*',
-                // ])->withBody("'url':'".$urlfinal."'",'application/json' )->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost');
-
-                // dd($response);
             }
 
-
-            //dd($urlfinal);
-            // foreach($subcategorias as $sub){
-
-            //     $categoria = Category::where('id',$sub)->first();
-
-            //     if (array_key_exists($categoria->parent->id, $categorias)) {
-            //         $pariente[]=$categoria->parent->id;
-            //     }
-
-            // }
         }
-
-
-        //anexamos post a categoria huerfana
-        // if($pariente!=null){
-
-        //     $huerfanos = array_diff($categorias,$pariente);
-
-
-
-        //     foreach($huerfanos as $row){
-        //         $hcat = Category::find($row);
-
-        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
-
-        //         $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-        //         [
-        //             'url' => $urlfinalcat,
-        //         ]);
-
-        //         Log::info($getdata->successful());
-
-        //     }
-        // }else{
-        //     foreach($categorias as $row){
-        //         $hcat = Category::find($row);
-
-        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
-
-        //         $getdata =  Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-        //         [
-        //             'url' => $urlfinalcat,
-        //         ]);
-
-        //         Log::info($getdata->successful());
-
-        //     }
-        // }
 
 
 
@@ -198,6 +159,8 @@ class PostController extends Controller
         $cats=[];
         $itags=[];
         $iquiz=[];
+
+
 
        foreach($articulo->categories as $cat){
         $cats[] = $cat->id;
@@ -247,7 +210,7 @@ class PostController extends Controller
         }
         $post->destacado = $request->destacado;
         $post->estado = $request->estado;
-        //$post->category_id = $request->categoria_blog_id;
+
         $post->post_type_id = $request->tipo_id;
         $post->meta_titulo = $request->seotitle;
         if($request->imageMeta){
@@ -263,7 +226,23 @@ class PostController extends Controller
 
         //$post->authors()->sync($request->author);
         $post->tags()->sync($request->tags);
-        $post->categories()->sync($request->category);
+       // $post->categories()->sync($request->category);
+
+        CategoryPost::where('post_id',$id)->delete();
+
+       $subcategoria = Category::where('id',$request->category)->first();
+        $cat_id = $subcategoria->parent_id;
+
+
+        $cpostparent = new CategoryPost();
+        $cpostparent->category_id = $cat_id;
+        $cpostparent->post_id = $post->id;
+        $cpostparent->save();
+
+        $cpostchild = new CategoryPost();
+        $cpostchild->category_id = $request->category;
+        $cpostchild->post_id = $post->id;
+        $cpostchild->save();
 
         return redirect(route('post.index'))
         ->with('info', 'Artículo actualizado con exito.');

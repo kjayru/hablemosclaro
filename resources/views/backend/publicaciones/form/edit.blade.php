@@ -160,9 +160,9 @@
 
                     <div class="form-group col-sm-6">
 
-                        <label>Categorias</label>
+                        <label>Categoría</label>
 
-                            @foreach($categories->sortBy('id') as $key => $cat)
+                            {{-- @foreach($categories->sortBy('id') as $key => $cat)
 
 
                                     <div class="form-check">
@@ -173,7 +173,16 @@
                                     </div>
 
 
-                            @endforeach
+                            @endforeach --}}
+
+                            <select name="category" id="category" class="custom-select">
+                                <option value="">Seleccione</option>
+                                @foreach($categories->sortBy('id') as $key => $cat)
+
+                                <option value="{{$cat->id}}"  @if(in_array($cat->id,$cats)) selected @endif>{{$cat->nombre}}</option>
+
+                                @endforeach
+                            </select>
                     </div>
 
 
