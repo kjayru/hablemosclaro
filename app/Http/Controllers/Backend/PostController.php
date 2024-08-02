@@ -126,10 +126,14 @@ class PostController extends Controller
 
         if($subcategorias!=null){
             foreach($subcategorias as $sub){
-            $scat =  Category::where('id',$sub)->first();
+                $scat =  Category::where('id',$sub)->first();
 
             //remitir post
-                $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
+                if(empty($scat->parent)){
+                    $urlfinal = $baseurl."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
+                }else{
+                    $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
+                }
 
                 $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
                     [
@@ -295,4 +299,42 @@ class PostController extends Controller
 
         return redirect()->route('post.index')->with('info','Artículo eliminado con éxito');
     }
+
+    public function publish(Request $request){
+        $subcategorias=null;
+        $baseurl= 'https://www.claro.com.pe/hablando-claro';
+        $articulo = Post::find($request->id);
+        foreach($articulo->categories as $cat){
+            $subcategorias[] = $cat->id;
+        }
+
+        $urls = "";
+
+        if($subcategorias!=null){
+
+            foreach($subcategorias as $sub){
+                $scat =  Category::where('id',$sub)->first();
+
+            //remitir post
+                if(empty($scat->parent)){
+                    $urlfinal = $baseurl."/".$scat->slug."/post/?=".$articulo->slug;
+                }else{
+                    $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".$articulo->slug;
+                }
+                $urls .= $urlfinal." | ";
+
+                $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+                    [
+                        'url' => $urlfinal,
+                    ]);
+
+
+                    Log::info($getdata->successful());
+            }
+
+
+        }
+        return redirect()->route('post.index')->with('info', "se está publcando las rutas --".$urls);
+    }
+
 }
