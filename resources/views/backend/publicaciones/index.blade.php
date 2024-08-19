@@ -91,7 +91,7 @@
                         <td width="7%" style="text-center">
                             <a href="/admin/posts/{{$post->id}}/edit" class="btn-xs btn btn-outline-info "><i class="far fa-edit"></i></a>
                             <a href="#" data-id="{{$post->id}}" data-toggle="modal" data-target="#delobjeto" class="btn btn-xs btn-dangers btn-object-delete"><i class="far fa-trash-alt"></i></a>
-
+                            <a href="#" data-id="{{$post->id}}" class="btn-xs btn btn-outline-success btnSend" title="publicar"><i class="fas fa-paper-plane"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -152,6 +152,51 @@
 
 </div>
 
+<div class="modal fade" id="modalPublish">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <form class="delete-objeto" action="/admin/api/posts/publish" method="POST">
+                @csrf
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmar publicación</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+
+                    <input type="hidden" name="id" id="publish_id">
+                    <p>¿Esta seguro de publicar este item?</p>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-outline-success">Publicar</button>
+                </div>
+            </form>
+
+        </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+
+</div>
+
+
+@endsection
+@section("footer")
+
+<script>
+
+    $(".btnSend").click(function(e){
+        e.preventDefault();
+        let id = $(this).data("id");
+        $("#publish_id").val(id);
+        $("#modalPublish").modal("show");
+    });
+
+</script>
 
 @endsection

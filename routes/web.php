@@ -76,6 +76,7 @@ Auth::routes([
     //Route::post('/resultquiz', [ResultController::class,'store'])->name('result.destroy');
     //Route::put('/resultquiz/{res}', [ResultController::class,'update'])->name('result.destroy');
     Route::get('/posts', [PostController::class,'index'])->name('post.index');
+    Route::post('/api/posts/publish', [PostController::class,'publish'])->name('post.publish');
     Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
     Route::post('/posts', [PostController::class,'store'])->name('post.store');
     Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('post.edit');

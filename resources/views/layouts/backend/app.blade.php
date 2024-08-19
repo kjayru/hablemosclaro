@@ -226,7 +226,7 @@
 
 });
   </script>
-
+@yield("footer")
 
 
 </body>
