@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Visit;
 use Carbon\Carbon;
 use App\Models\Tag;
+use App\Models\Author;
+use App\Models\PostTag;
+
 use App\Models\ResultQuiz;
 
 class HomeController extends Controller
@@ -691,6 +694,11 @@ class HomeController extends Controller
 
     public function posttype($posttype){
 
+
+        $new_url = "https://www.claro.com.pe/hablando-claro/";
+
+        return redirect($new_url);
+
         $type = PostType::where('tipo',$posttype)->first();
         $arts = Post::where('post_type_id',$type->id)->orderBy('id', 'desc')->where('estado',1)->get();
 
@@ -728,6 +736,10 @@ class HomeController extends Controller
     public function resultados($word){
 
 
+        $new_url = "https://www.claro.com.pe/hablando-claro/";
+
+        return redirect($new_url);
+
         $result = [];
         $articulos = Post::where('posts.titulo','LIKE',"%{$word}%")->where('estado',1)->orderBy('date_publish','desc')->get();
 
@@ -753,6 +765,12 @@ class HomeController extends Controller
     }
 
     public function buscar(Request $request){
+
+
+        $new_url = "https://www.claro.com.pe/hablando-claro/";
+
+        return redirect($new_url);
+
         // $posts = DB::table('posts')
         //             ->where('posts.titulo','LIKE',"%{$request->word}%")
         //             ->leftJoin('categories', 'posts.category_id', 'categories.id')
@@ -810,6 +828,10 @@ class HomeController extends Controller
 
 
     public function tag($tag){
+
+        $new_url = "https://www.claro.com.pe/hablando-claro/";
+
+        return redirect($new_url);
 
 
         $new_url = "https://www.claro.com.pe/hablando-claro/tag/?=".$tag;
@@ -954,7 +976,7 @@ class HomeController extends Controller
          }
         $columns = collect($colum);
 
-         return response()->json(['categorias'=>$category,'opinion'=>$columns]);
+        return response()->json(['categorias'=>$category,'opinion'=>$columns]);
 
         // return view('frontend.category',['videos'=>$videos,'columns'=>$columns,'categorias'=>$categorias,'articulos'=>$articulos,'categoria'=>$categoria,'category'=>$category,'subcategoria'=>$subcategoria]);
      }
@@ -965,7 +987,7 @@ class HomeController extends Controller
         return response()->json($post);
      }
 
-     public function testing(){
+    public function testing(){
 
         // $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
 
@@ -1058,41 +1080,204 @@ class HomeController extends Controller
         //  dd($result);
 
 
-        $listado = json_decode(file_get_contents(storage_path() . "/app/public/resultados.json"), true);
+       // $listado = json_decode(file_get_contents(storage_path() . "/app/public/resultados.json"), true);
 
 
- // $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
+        // $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
 
 
-        $baseurl= 'https://www.claro.com.pe/hablando-claro/';
+        // $baseurl= 'https://www.claro.com.pe/hablando-claro/';
 
 
 
-        foreach($listado as $key => $value){
+        // foreach($listado as $key => $value){
 
-           $uri =  explode("/",$value['url']);
-           //dd($uri);
+        //    $uri =  explode("/",$value['url']);
+        //    //dd($uri);
 
-           if((count($uri)) == 6){
+        //    if((count($uri)) == 6){
 
-            $urfinal = $baseurl.$uri[4]."/post/?=".$uri[5];
-           }
+        //     $urfinal = $baseurl.$uri[4]."/post/?=".$uri[5];
+        //    }
 
-           if((count($uri)) == 7){
-            $urfinal = $baseurl.$uri[4]."/".$uri[5]."/post/?=".$uri[6];
-           }
-
-
-             $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-            [
-                'url' => $urfinal,
-            ]);
+        //    if((count($uri)) == 7){
+        //     $urfinal = $baseurl.$uri[4]."/".$uri[5]."/post/?=".$uri[6];
+        //    }
 
 
-            print_r( $getdata );
-        };
+        //      $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        //     [
+        //         'url' => $urfinal,
+        //     ]);
 
 
-     }
+        //     print_r( $getdata );
+        // };
+
+
+        // $categoria = Category::where('id',19)->first();
+        // $tags = Tag::all();
+        // $autores = Author::all();
+        // $tipos = PostType::all();
+
+        // $ptags = PostTag::all();
+
+        // //dd($ptags);
+
+        // $articulos = [];
+
+        // DB::setDefaultConnection("pgsql");
+
+        //foreach($categorias as $cat){
+
+
+                // foreach($categoria->posts as $post){
+
+
+                //     $found = DB::table("posts")->where('id',$post->id)->count();
+
+                //     if($found==0){
+                //         $articulos= [
+                //             "id"=>$post->id,
+                //             "title" => $post->titulo,
+                //             "slug" => $post->slug,
+                //             "banner" => $post->banner,
+                //             "card" => $post->imagenbox,
+                //             "movil" => $post->movil,
+                //             "tablet" => $post->tablet,
+                //             "standout" => $post->destacado,
+                //             "state"=>$post->estado,
+                //             "publish_date" => $post->date_publish,
+                //             "created_at" => $post->updated_at,
+                //             'category_id' => $categoria->id,
+                //             'template_id'=>1,
+                //             'post_type_id'=> $post->post_type_id,
+                //             'author_id' => $post->author_id,
+
+                //         ];
+
+
+
+
+                //         $id =  DB::table("posts")->insertGetId($articulos);
+
+                //         $contenido = [
+                //                 "content_text"=>$post->contenido,
+                //                 "post_id" => $id
+                //         ];
+
+                //         DB::table("contents")->insert($contenido);
+                //     }
+                // }
+       // }
+
+
+        // foreach($categorias as $cat){
+
+        //     $categorias = [
+        //         'name' => $cat->nombre,
+        //         'slug' => $cat->slug,
+        //         'metaDescription'=>$cat->meta_description,
+        //         'metaTitle'=>$cat->meta_titulo,
+        //         'metaImage'=>$cat->meta_image,
+        //         'metaKeyword'=>$cat->meta_keywords,
+        //         'parentId'=>$cat->parent_id,
+        //     ];
+
+        //     DB::table('categories')->insert($categorias);
+        // }
+
+
+        // foreach($tags as $tag){
+
+        //     $arreglo = [
+        //         'name' => $tag->nombre,
+        //         'slug' => $tag->slug,
+
+        //     ];
+
+        //     DB::table('tags')->insert($arreglo);
+        // }
+
+
+        // foreach($autores as $row){
+
+        //     $arreglo = [
+        //         'name' => $row->nombre,
+        //         'title'=> $row->titulo,
+        //         'image' => $row->imagen,
+        //         'position'=>$row->cargo
+
+        //     ];
+
+        //     DB::table('authors')->insert($arreglo);
+        // }
+
+        // foreach($tipos as $row){
+
+        //     $arreglo = [
+        //         'name' => $row->tipo,
+        //     ];
+
+        //     DB::table('post_type')->insert($arreglo);
+        // }
+
+        foreach($ptags as $row){
+
+            $arreglo = [
+                'post_id' => $row->post_id,
+                'tag_id' => $row->tag_id
+            ];
+
+            DB::table('post_tag')->insertOrIgnore($arreglo);
+        }
+
+
+
+    }
+
+    public function getNoticias(Request $request){
+       // dd($request->innovacion);
+
+
+       $items = [];
+       if(isset($request->innovacion)){
+            array_push($items,1);
+       }
+       if(isset($request->entrenimiento)){
+            array_push($items,2);
+       }
+       if(isset($request->negocios)){
+            array_push($items,3);
+       }
+       if(isset($request->seguridad)){
+            array_push($items,4);
+       }
+       if(isset($request->aprendiendo_claro)){
+            array_push($items,5);
+       }
+
+       if(isset($request->compromiso)){
+            array_push($items,6);
+       }
+
+       $articulos  = [];
+       foreach($items as $key => $item){
+
+
+
+        if($key < 2){
+
+            $category = Category::where('parent_id',$item)->first();
+            $articulos = $category->postOrder;
+
+        }else{
+            break;
+        }
+       }
+
+        return response()->json($articulos);
+    }
+
 
 }

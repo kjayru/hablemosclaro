@@ -117,6 +117,7 @@ Route::post('/suscribirse', [HomeController::class, 'suscribirse']);
 Route::post('/search', [HomeController::class, 'buscar']);
 Route::post('/getoptresult', [HomeController::class,'getOptResult']);
 
+Route::post('/get-noticias',[HomeController::class,'getNoticias']);
 
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
     ->name('ckfinder_connector');

@@ -20,4 +20,9 @@ class Category extends Model
     public function pariente(){
         return $this->hasMany(Category::class,'parent_id','id');
     }
+
+    public function postsOrder()
+    {
+        return $this->belongsToMany(Category::class)->withPivot('post_id')->orderBy('created_at','desc');
+    }
 }
