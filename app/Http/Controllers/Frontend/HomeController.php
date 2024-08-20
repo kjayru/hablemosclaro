@@ -998,36 +998,63 @@ class HomeController extends Controller
 
         // dd($getdata);
 
+        $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
-        // foreach($request->category as $cat){
-        //     if(Category::where('id',$cat)->whereNull('parent_id')->first()){
-        //         $categorias[] = $cat;
-        //     }else{
-        //         $subcategorias[]=$cat;
-        //     }
-        // }
+        $consulta = Category::all();
+        $categorias=null;
+        $pariente=null;
+        $huerfanos=null;
+        $urlfinal=null;
+        foreach($consulta as $cat){
 
-        // if($subcategorias!=null){
-        //     foreach($subcategorias as $sub){
-        //     $scat =  Category::where('id',$sub)->first();
+            if(!isset($cat->parent_id)){
+                $categorias[] = $cat;
+            }else{
+                $subcategorias[]=$cat;
+            }
 
-
-        //         $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
-
-        //     }
+        }
 
 
-        //     //dd($urlfinal);
-        //     foreach($subcategorias as $sub){
+        if($subcategorias!=null){
+            foreach($subcategorias as $sub){
 
-        //         $categoria = Category::where('id',$sub)->first();
+            $scat =  Category::where('id',$sub->id)->first();
 
-        //         if (array_key_exists($categoria->parent->id, $categorias)) {
-        //             $pariente[]=$categoria->parent->id;
-        //         }
+                $posts = $scat->posts;
+                foreach($posts as $row){
+                    if($row->estado==1){
+                        $urlfinal[] =  ['url'=>$baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".$row->slug];
+                    }
+                }
 
-        //     }
-        // }
+            }
+
+            //dd($urlfinal);
+            // foreach($subcategorias as $sub){
+
+            //     $categoria = Category::where('id',$sub->id)->first();
+
+            //     if (array_key_exists($categoria->parent->id, $categorias)) {
+            //         $pariente[]=$categoria->parent->id;
+            //     }
+
+            // }
+        }
+
+        foreach($categorias as $cat){
+
+            $cat = Category::where('id',$cat->id)->first();
+
+            $posts = $cat->posts;
+
+                foreach($posts as $row){
+                    if($row->estado==1){
+                        $urlfinal[] = ['url'=>$baseurl."/".$cat->slug."/post/?=".$row->slug];
+                    }
+                }
+
+        }
 
         // //anexamos post a categoria huerfana
         // if($pariente!=null){
@@ -1039,30 +1066,44 @@ class HomeController extends Controller
         //     foreach($huerfanos as $row){
         //         $hcat = Category::find($row);
 
-        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
+        //         dd($hcat->posts);
 
+        //         $posts = $hcat->posts;
+        //         foreach($posts as $row){
+        //             $urlfinal[] = $baseurl."/".$hcat->slug."/post/?=".$row->slug;
 
-
+        //         }
         //     }
+
+
         // }else{
         //     foreach($categorias as $row){
         //         $hcat = Category::find($row);
 
-        //         $urlfinalcat = $baseurl."/".$hcat->slug."/post/?=".Str::slug($request->titulo, '-');
 
 
+        //         $posts = $hcat->posts;
+        //         foreach($posts as $row){
+
+        //         $urlfinal[] = $baseurl."/".$hcat->slug."/post/?=".$row->slug;
+
+        //         }
 
         //     }
         // }
 
 
+       // dd($urlfinal);
 
-        // $baseurl= 'https://www.claro.com.pe/hablando-claro/';
+
         // $result = [];
         // $posts = Post::where('estado','1')->get();
         // // $posts = Post::where('estado',1)->get();
 
         //  foreach($posts as $post){
+
+        //     dd($post->categories[1]);
+
         //      if(isset($post->categories[0]->parent)){
         //          $result[] = array(
 
@@ -1073,14 +1114,14 @@ class HomeController extends Controller
         //             "url"=> $baseurl.Post::getCategory($post->id)['category']->slug."/".$post->slug
         //            );
         //      }
-        //  }
+         //}
 
 
-        //  Storage::disk('public')->put('utmfilter.json',collect($result));
-        //  dd($result);
+         Storage::disk('public')->put('postfilter.json',collect($urlfinal));
+         dd("fin");
 
 
-       // $listado = json_decode(file_get_contents(storage_path() . "/app/public/resultados.json"), true);
+       $listado = json_decode(file_get_contents(storage_path() . "/app/public/resultados.json"), true);
 
 
         // $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
@@ -1222,15 +1263,15 @@ class HomeController extends Controller
         //     DB::table('post_type')->insert($arreglo);
         // }
 
-        foreach($ptags as $row){
+        // foreach($ptags as $row){
 
-            $arreglo = [
-                'post_id' => $row->post_id,
-                'tag_id' => $row->tag_id
-            ];
+        //     $arreglo = [
+        //         'post_id' => $row->post_id,
+        //         'tag_id' => $row->tag_id
+        //     ];
 
-            DB::table('post_tag')->insertOrIgnore($arreglo);
-        }
+        //     DB::table('post_tag')->insertOrIgnore($arreglo);
+        // }
 
 
 
@@ -1251,32 +1292,48 @@ class HomeController extends Controller
             array_push($items,3);
        }
        if(isset($request->seguridad)){
-            array_push($items,4);
+            array_push($items,1);
        }
        if(isset($request->aprendiendo_claro)){
-            array_push($items,5);
+            array_push($items,1);
        }
 
        if(isset($request->compromiso)){
             array_push($items,6);
        }
 
-       $articulos  = [];
-       foreach($items as $key => $item){
+       //dd($items);
+
+       $post  = [];
+       // dd($items);
+       $seleccion = array_rand($items,1);
+
+       $indice = $items[$seleccion];
+
+            $category = Category::where('parent_id',$indice)->inRandomOrder()->first();
 
 
 
-        if($key < 2){
+            $articulos = $category->lastposts;
 
-            $category = Category::where('parent_id',$item)->first();
-            $articulos = $category->postOrder;
+            $base = "https://www.claro.com.pe/hablando-claro/";
+            $baseimg = "https://hablandoclaro.claromarketingtool.pe/storage/";
+            foreach($articulos as $row){
 
-        }else{
-            break;
-        }
-       }
 
-        return response()->json($articulos);
+
+                $post[] = [
+                    "imagen"=>$baseimg.$row->imagenbox,
+                    "titulo"=>$row->titulo,
+                    "slug"=> $base.$row->categories[0]->slug."/".$row->categories[1]->slug."/".$row->slug
+                ];
+            }
+
+
+
+       //dd($post);
+
+        return response()->json($post);
     }
 
 

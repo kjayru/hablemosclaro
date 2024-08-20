@@ -21,8 +21,8 @@ class Category extends Model
         return $this->hasMany(Category::class,'parent_id','id');
     }
 
-    public function postsOrder()
-    {
-        return $this->belongsToMany(Category::class)->withPivot('post_id')->orderBy('created_at','desc');
+
+    public function lastposts(){
+        return $this->belongsToMany(Post::class)->latest()->take(2);
     }
 }
