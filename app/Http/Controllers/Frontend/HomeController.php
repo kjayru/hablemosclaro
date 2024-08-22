@@ -1282,23 +1282,23 @@ class HomeController extends Controller
 
 
        $items = [];
-       if(isset($request->innovacion)){
+       if($request->innovacion=="Si"){
             array_push($items,1);
        }
-       if(isset($request->entrenimiento)){
+       if($request->entrenimiento=="Si"){
             array_push($items,2);
        }
-       if(isset($request->negocios)){
+       if($request->negocios=="Si"){
             array_push($items,3);
        }
-       if(isset($request->seguridad)){
+       if($request->seguridad=="Si"){
             array_push($items,1);
        }
-       if(isset($request->aprendiendo_claro)){
+       if($request->aprendiendo_claro=="Si"){
             array_push($items,1);
        }
 
-       if(isset($request->compromiso)){
+       if($request->compromiso=="Si"){
             array_push($items,6);
        }
 
