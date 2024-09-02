@@ -1216,14 +1216,22 @@ class HomeController extends Controller
 
     //$categoria = Category::where('id',19)->first();
 
-    $posts = Post::all();
-
-    DB::setDefaultConnection("pgsql");
-
-    foreach($posts as $post){
+    $listado = json_decode(file_get_contents(storage_path() . "/app/public/huerfanos.json"), true);
 
 
-       // $found = DB::table("posts")->where('slug',$post->slug)->first();
+
+    foreach($listado as $art){
+
+
+
+        $post = Post::where('slug',$art['slug'])->first();
+
+
+        DB::setDefaultConnection("pgsql");
+
+
+
+       // $nulos = DB::table("posts")->where('slug',$post->slug)->whereNull('meta_description')->count();
 
 
             $metas = [
@@ -1236,17 +1244,10 @@ class HomeController extends Controller
             ];
 
             DB::table("posts")->where('slug',$post->slug)->update($metas);
-              //DB::table("posts")->update($metas);
 
-            // $contenido = [
-            //         "content_text"=>$post->contenido,
-            //         "post_id" => $id
-            // ];
 
-            //  DB::table("contents")->insert($contenido);
-       // }
+
     }
-
 
     dd("completo");
 
