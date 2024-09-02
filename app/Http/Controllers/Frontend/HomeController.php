@@ -998,37 +998,37 @@ class HomeController extends Controller
 
         // dd($getdata);
 
-        $baseurl= 'https://www.claro.com.pe/hablando-claro';
+        // $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
-        $consulta = Category::all();
-        $categorias=null;
-        $pariente=null;
-        $huerfanos=null;
-        $urlfinal=null;
-        foreach($consulta as $cat){
+        // $consulta = Category::all();
+        // $categorias=null;
+        // $pariente=null;
+        // $huerfanos=null;
+        // $urlfinal=null;
+        // foreach($consulta as $cat){
 
-            if(!isset($cat->parent_id)){
-                $categorias[] = $cat;
-            }else{
-                $subcategorias[]=$cat;
-            }
+        //     if(!isset($cat->parent_id)){
+        //         $categorias[] = $cat;
+        //     }else{
+        //         $subcategorias[]=$cat;
+        //     }
 
-        }
+        // }
 
 
-        if($subcategorias!=null){
-            foreach($subcategorias as $sub){
+        // if($subcategorias!=null){
+        //     foreach($subcategorias as $sub){
 
-            $scat =  Category::where('id',$sub->id)->first();
+        //     $scat =  Category::where('id',$sub->id)->first();
 
-                $posts = $scat->posts;
-                foreach($posts as $row){
-                    if($row->estado==1){
-                        $urlfinal[] =  ['url'=>$baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".$row->slug];
-                    }
-                }
+        //         $posts = $scat->posts;
+        //         foreach($posts as $row){
+        //             if($row->estado==1){
+        //                 $urlfinal[] =  ['url'=>$baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".$row->slug];
+        //             }
+        //         }
 
-            }
+        //     }
 
             //dd($urlfinal);
             // foreach($subcategorias as $sub){
@@ -1040,21 +1040,21 @@ class HomeController extends Controller
             //     }
 
             // }
-        }
+        // }
 
-        foreach($categorias as $cat){
+        // foreach($categorias as $cat){
 
-            $cat = Category::where('id',$cat->id)->first();
+        //     $cat = Category::where('id',$cat->id)->first();
 
-            $posts = $cat->posts;
+        //     $posts = $cat->posts;
 
-                foreach($posts as $row){
-                    if($row->estado==1){
-                        $urlfinal[] = ['url'=>$baseurl."/".$cat->slug."/post/?=".$row->slug];
-                    }
-                }
+        //         foreach($posts as $row){
+        //             if($row->estado==1){
+        //                 $urlfinal[] = ['url'=>$baseurl."/".$cat->slug."/post/?=".$row->slug];
+        //             }
+        //         }
 
-        }
+        // }
 
         // //anexamos post a categoria huerfana
         // if($pariente!=null){
@@ -1117,11 +1117,11 @@ class HomeController extends Controller
          //}
 
 
-         Storage::disk('public')->put('postfilter.json',collect($urlfinal));
-         dd("fin");
+    //      Storage::disk('public')->put('postfilter.json',collect($urlfinal));
+    //      dd("fin");
 
 
-       $listado = json_decode(file_get_contents(storage_path() . "/app/public/resultados.json"), true);
+    //    $listado = json_decode(file_get_contents(storage_path() . "/app/public/resultados.json"), true);
 
 
         // $url = 'https://www.claro.com.pe/hablando-claro/innovacion/post/?=ya-conoces-el-nuevo-servicio-que-redefine-la-experiencia-de-ver-television-en-el-peru';
@@ -1169,49 +1169,86 @@ class HomeController extends Controller
 
         // DB::setDefaultConnection("pgsql");
 
-        //foreach($categorias as $cat){
+    //     foreach($categorias as $cat){
 
 
-                // foreach($categoria->posts as $post){
+    //             foreach($categoria->posts as $post){
 
 
-                //     $found = DB::table("posts")->where('id',$post->id)->count();
+    //                 $found = DB::table("posts")->where('id',$post->id)->count();
 
-                //     if($found==0){
-                //         $articulos= [
-                //             "id"=>$post->id,
-                //             "title" => $post->titulo,
-                //             "slug" => $post->slug,
-                //             "banner" => $post->banner,
-                //             "card" => $post->imagenbox,
-                //             "movil" => $post->movil,
-                //             "tablet" => $post->tablet,
-                //             "standout" => $post->destacado,
-                //             "state"=>$post->estado,
-                //             "publish_date" => $post->date_publish,
-                //             "created_at" => $post->updated_at,
-                //             'category_id' => $categoria->id,
-                //             'template_id'=>1,
-                //             'post_type_id'=> $post->post_type_id,
-                //             'author_id' => $post->author_id,
+    //                 if($found==0){
+    //                     $articulos= [
+    //                         "id"=>$post->id,
+    //                         "title" => $post->titulo,
+    //                         "slug" => $post->slug,
+    //                         "banner" => $post->banner,
+    //                         "card" => $post->imagenbox,
+    //                         "movil" => $post->movil,
+    //                         "tablet" => $post->tablet,
+    //                         "standout" => $post->destacado,
+    //                         "state"=>$post->estado,
+    //                         "publish_date" => $post->date_publish,
+    //                         "created_at" => $post->updated_at,
+    //                         'category_id' => $categoria->id,
+    //                         'template_id'=>1,
+    //                         'post_type_id'=> $post->post_type_id,
+    //                         'author_id' => $post->author_id,
 
-                //         ];
-
-
+    //                     ];
 
 
-                //         $id =  DB::table("posts")->insertGetId($articulos);
 
-                //         $contenido = [
-                //                 "content_text"=>$post->contenido,
-                //                 "post_id" => $id
-                //         ];
 
-                //         DB::table("contents")->insert($contenido);
-                //     }
-                // }
+    //                     $id =  DB::table("posts")->insertGetId($articulos);
+
+    //                     $contenido = [
+    //                             "content_text"=>$post->contenido,
+    //                             "post_id" => $id
+    //                     ];
+
+    //                     DB::table("contents")->insert($contenido);
+    //                 }
+    //             }
+    //    }
+
+
+
+    //$categoria = Category::where('id',19)->first();
+
+    $posts = Post::all();
+
+    DB::setDefaultConnection("pgsql");
+
+    foreach($posts as $post){
+
+
+       // $found = DB::table("posts")->where('slug',$post->slug)->first();
+
+
+            $metas = [
+                "meta_description" => $post->meta_description,
+                "meta_title" => $post->meta_titulo,
+                "meta_image" => "/storage/".$post->meta_image,
+                "twitter_site" => $post->twitter_site,
+                "twitter_create" => $post->twitter_create,
+                "meta_keyword" => $post->meta_keywords,
+            ];
+
+            DB::table("posts")->where('slug',$post->slug)->update($metas);
+              //DB::table("posts")->update($metas);
+
+            // $contenido = [
+            //         "content_text"=>$post->contenido,
+            //         "post_id" => $id
+            // ];
+
+            //  DB::table("contents")->insert($contenido);
        // }
+    }
 
+
+    dd("completo");
 
         // foreach($categorias as $cat){
 
@@ -1265,14 +1302,18 @@ class HomeController extends Controller
 
         // foreach($ptags as $row){
 
-        //     $arreglo = [
-        //         'post_id' => $row->post_id,
-        //         'tag_id' => $row->tag_id
-        //     ];
+        //    $contador = DB::table('posts')->where('id',$row->post_id)->count();
+        //    if($contador>0){
+        //         $arreglo = [
+        //             'post_id' => $row->post_id,
+        //             'tag_id' => $row->tag_id
+        //         ];
 
-        //     DB::table('post_tag')->insertOrIgnore($arreglo);
+        //         DB::table('post_tag')->insertOrIgnore($arreglo);
+        //     }
         // }
 
+        dd("fin");
 
 
     }
