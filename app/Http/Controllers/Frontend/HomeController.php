@@ -1156,7 +1156,7 @@ class HomeController extends Controller
         // };
 
 
-        $categoria = Category::where('id',9)->first();
+        $categoria = Category::where('id',4)->first();
         // $tags = Tag::all();
         // $autores = Author::all();
         // $tipos = PostType::all();
@@ -1176,26 +1176,26 @@ class HomeController extends Controller
        // foreach($categorias as $cat){
 
 
-    //    $ptags = Tag::all();
+       $ptags = Tag::all();
 
-    //     foreach($ptags as $tag){
+        foreach($ptags as $tag){
 
-    //         $found = DB::connection("pgsql")->table("tags")->where('id',$tag->id)->count();
+            $found = DB::connection("pgsql")->table("tags")->where('id',$tag->id)->count();
 
-    //         if($found==0){
-    //         $contenido = [
-    //             "id"=>$tag->id,
-    //             "name" => $tag->nombre,
-    //             "slug" => $tag->slug,
-    //             "createdAt" => $tag->created_at
-    //         ];
+            if($found==0){
+            $contenido = [
+                "id"=>$tag->id,
+                "name" => $tag->nombre,
+                "slug" => $tag->slug,
+                "createdAt" => $tag->created_at
+            ];
 
-    //         DB::connection("pgsql")->table("tags")->insert($contenido);
-    //       }
-    //     }
+            DB::connection("pgsql")->table("tags")->insert($contenido);
+          }
+        }
 
 
-    //     dd("completado");
+        dd("completado");
 
 
                 foreach($categoria->posts as $post){
