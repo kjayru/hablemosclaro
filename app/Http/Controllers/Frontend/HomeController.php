@@ -1182,9 +1182,9 @@ class HomeController extends Controller
 
 
 
-                    // $found = DB::connection("pgsql")->table("posts")->where('id',$post->id)->count();
+                    $found = DB::connection("pgsql")->table("posts")->where('id',$post->id)->count();
 
-                    //  if($found==0){
+                     if($found==0){
                             $articulos= [
                             "id" => $post->id,
                             "title" => $post->titulo,
@@ -1229,7 +1229,7 @@ class HomeController extends Controller
                                 DB::connection("pgsql")->table("post_tag")->insert(['post_id'=>$id, 'tag_id'=>$tag_id ]);
                             }
                         }
-                   // }
+                   }
                 }
       // }
 
