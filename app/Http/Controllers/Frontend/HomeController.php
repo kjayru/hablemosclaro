@@ -1156,7 +1156,7 @@ class HomeController extends Controller
         // };
 
 
-        $categoria = Category::where('id',8)->first();
+        $categoria = Category::where('id',9)->first();
         // $tags = Tag::all();
         // $autores = Author::all();
         // $tipos = PostType::all();
