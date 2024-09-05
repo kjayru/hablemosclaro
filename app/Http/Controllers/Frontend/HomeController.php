@@ -1180,7 +1180,9 @@ class HomeController extends Controller
 
         foreach($ptags as $tag){
 
+            $found = DB::connection("pgsql")->table("tags")->where('id',$tag->id)->count();
 
+            if($found==0){
             $contenido = [
                 "id"=>$tag->id,
                 "name" => $tag->nombre,
@@ -1189,7 +1191,7 @@ class HomeController extends Controller
             ];
 
             DB::connection("pgsql")->table("tags")->insert($contenido);
-
+          }
         }
 
 
