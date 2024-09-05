@@ -118,7 +118,6 @@ class PostController extends Controller
         ////registro en postgress
 
         $articulos= [
-            "id" => $post->id,
             "title" => $post->titulo,
             "slug" => $post->slug,
             "banner" => '/storage/'.$post->banner,
