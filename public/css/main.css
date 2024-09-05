@@ -592,3 +592,6 @@ p.lista__parrafo {
     margin-right: 10px;
     margin-left: 13px;
 }
+.cke_notifications_area{
+    display: none !important;
+}

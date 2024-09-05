@@ -13,6 +13,7 @@ use App\Models\Quiz;
 use App\Models\CategoryPost;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -114,15 +115,62 @@ class PostController extends Controller
 
         $post->tags()->sync($request->tags);
 
+        ////registro en postgress
+
+        $articulos= [
+            "id" => $post->id,
+            "title" => $post->titulo,
+            "slug" => $post->slug,
+            "banner" => '/storage/'.$post->banner,
+            "card" => '/storage/'.$post->imagenbox,
+            "movil" => '/storage/'.$post->movil,
+            "tablet" => '/storage/'.$post->tablet,
+            "standout" => $post->destacado,
+            "state"=>$post->estado,
+            "publish_date" => $post->date_publish,
+            'category_id' => $request->category,
+            'template_id'=>1,
+            'post_type_id'=> $post->post_type_id,
+            'author_id' => $post->author_id,
+            'meta_description' => $post->meta_description,
+            'meta_title' => $post->meta_titulo,
+            'meta_image'=>'/storage/'.$post->meta_image,
+            'meta_keyword' =>$post->meta_keywords,
+            'twitter_site' => $post->twitter_site,
+            'twitter_create' => $post->twitter_create,
+            "created_at" => $post->created_at
+        ];
+
+
+
+
+        $idpost =  DB::connection("pgsql")->table("posts")->insertGetId($articulos);
+
+        $contenido = [
+                "content_text"=>$post->contenido,
+                "post_id" => $idpost
+        ];
+
+        DB::connection("pgsql")->table("contents")->insert($contenido);
+
+        if(isset($request->tags)){
+
+            foreach($request->tags as $row){
+
+
+                DB::connection("pgsql")->table("post_tag")->insert(['post_id'=>$idpost, 'tag_id'=>$row ]);
+            }
+        }
+
+
+
 
         $pariente=null;
         $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
-
             if(Category::where('id',$request->category)->whereNotNull('parent_id')->first()){
                 $subcategorias[]=$request->category;
             }
-
 
         if($subcategorias!=null){
             foreach($subcategorias as $sub){
@@ -146,7 +194,6 @@ class PostController extends Controller
             }
 
         }
-
 
 
         return redirect(route('post.index'))
