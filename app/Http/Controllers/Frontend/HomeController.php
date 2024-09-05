@@ -1176,6 +1176,26 @@ class HomeController extends Controller
        // foreach($categorias as $cat){
 
 
+       $ptags = Tag::all();
+
+        foreach($ptags as $tag){
+
+
+            $contenido = [
+                "id"=>$tag->id,
+                "name" => $tag->nombre,
+                "slug" => $tag->slug,
+                "createdAt" => $tag->created_at
+            ];
+
+            DB::connection("pgsql")->table("tags")->insert($contenido);
+
+        }
+
+
+        dd("completado");
+
+
                 foreach($categoria->posts as $post){
 
                    // dd(isset($post->tags->slug));
