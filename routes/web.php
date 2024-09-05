@@ -105,7 +105,7 @@ Route::group(['prefix' => 'api'],function(){
     Route::get('/post/{slug}', [HomeController::class, 'apiPost']);
 });
 
-Route::get('/testing',[HomeController::class,'testing']);
+Route::get('/testing1979',[HomeController::class,'testing']);
 
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
 Route::get('/buscar/{word}', [HomeController::class, 'resultados']);
