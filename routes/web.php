@@ -75,13 +75,13 @@ Auth::routes([
     Route::post('/options/getresult',[OptionController::class,'getResult']);
     //Route::post('/resultquiz', [ResultController::class,'store'])->name('result.destroy');
     //Route::put('/resultquiz/{res}', [ResultController::class,'update'])->name('result.destroy');
-    Route::get('/posts', [PostController::class,'index'])->name('post.index');
-    Route::post('/api/posts/publish', [PostController::class,'publish'])->name('post.publish');
-    Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
-    Route::post('/posts', [PostController::class,'store'])->name('post.store');
-    Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('post.edit');
-    Route::put('/posts/{post}', [PostController::class,'update'])->name('post.update');
-    Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.destroy');
+    // Route::get('/posts', [PostController::class,'index'])->name('post.index');
+    // Route::post('/api/posts/publish', [PostController::class,'publish'])->name('post.publish');
+    // Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
+    // Route::post('/posts', [PostController::class,'store'])->name('post.store');
+    // Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('post.edit');
+    // Route::put('/posts/{post}', [PostController::class,'update'])->name('post.update');
+    // Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.destroy');
     Route::get('/tags', [TagController::class,'index'])->name('tag.index');
     Route::get('/tags/create', [TagController::class,'create'])->name('tag.create');
     Route::post('/tags', [TagController::class,'store'])->name('tag.store');
@@ -105,7 +105,7 @@ Route::group(['prefix' => 'api'],function(){
     Route::get('/post/{slug}', [HomeController::class, 'apiPost']);
 });
 
-Route::get('/testing1979',[HomeController::class,'testing']);
+//Route::get('/testing1979',[HomeController::class,'testing']);
 
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
 Route::get('/buscar/{word}', [HomeController::class, 'resultados']);
