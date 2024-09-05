@@ -96,7 +96,7 @@ Auth::routes([
     Route::delete('/authors/{post}', [AuthorController::class,'destroy'])->name('author.destroy');
     Route::get('/media', [AdminController::class,'media']);
 
-    Route::get('/testing',[HomeController::class,'testing']);
+
 
 });
 
@@ -104,6 +104,8 @@ Route::group(['prefix' => 'api'],function(){
     Route::get('/categories', [HomeController::class, 'apiCategoria']);
     Route::get('/post/{slug}', [HomeController::class, 'apiPost']);
 });
+
+Route::get('/testing',[HomeController::class,'testing']);
 
 Route::get('/articulos/{posttype}', [HomeController::class, 'posttype']);
 Route::get('/buscar/{word}', [HomeController::class, 'resultados']);
@@ -119,6 +121,8 @@ Route::post('/search', [HomeController::class, 'buscar']);
 Route::post('/getoptresult', [HomeController::class,'getOptResult']);
 
 Route::post('/get-noticias',[HomeController::class,'getNoticias']);
+
+
 
 Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
     ->name('ckfinder_connector');

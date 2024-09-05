@@ -1156,100 +1156,132 @@ class HomeController extends Controller
         // };
 
 
-        // $categoria = Category::where('id',19)->first();
+        $categoria = Category::where('id',4)->first();
         // $tags = Tag::all();
         // $autores = Author::all();
         // $tipos = PostType::all();
 
         // $ptags = PostTag::all();
 
-        // //dd($ptags);
+        //dd($ptags);
 
-        // $articulos = [];
+            // $post = Post::find('415');
+            // dd($post->tags[0]->slug);
+        $articulos = [];
 
-        // DB::setDefaultConnection("pgsql");
+        // dd(count($categoria->posts));
+        // dd("fin");
+      //  DB::setDefaultConnection("pgsql");
 
-    //     foreach($categorias as $cat){
+       // foreach($categorias as $cat){
 
 
-    //             foreach($categoria->posts as $post){
+                foreach($categoria->posts as $post){
 
-
-    //                 $found = DB::table("posts")->where('id',$post->id)->count();
-
-    //                 if($found==0){
-    //                     $articulos= [
-    //                         "id"=>$post->id,
-    //                         "title" => $post->titulo,
-    //                         "slug" => $post->slug,
-    //                         "banner" => $post->banner,
-    //                         "card" => $post->imagenbox,
-    //                         "movil" => $post->movil,
-    //                         "tablet" => $post->tablet,
-    //                         "standout" => $post->destacado,
-    //                         "state"=>$post->estado,
-    //                         "publish_date" => $post->date_publish,
-    //                         "created_at" => $post->updated_at,
-    //                         'category_id' => $categoria->id,
-    //                         'template_id'=>1,
-    //                         'post_type_id'=> $post->post_type_id,
-    //                         'author_id' => $post->author_id,
-
-    //                     ];
+                   // dd(isset($post->tags->slug));
 
 
 
+                    // $found = DB::connection("pgsql")->table("posts")->where('id',$post->id)->count();
 
-    //                     $id =  DB::table("posts")->insertGetId($articulos);
-
-    //                     $contenido = [
-    //                             "content_text"=>$post->contenido,
-    //                             "post_id" => $id
-    //                     ];
-
-    //                     DB::table("contents")->insert($contenido);
-    //                 }
-    //             }
-    //    }
-
-
-
-    //$categoria = Category::where('id',19)->first();
-
-    $listado = json_decode(file_get_contents(storage_path() . "/app/public/huerfanos.json"), true);
-
-
-
-    foreach($listado as $art){
-
-
-
-        $post = Post::where('slug',$art['slug'])->first();
-
-
-        DB::setDefaultConnection("pgsql");
+                    //  if($found==0){
+                            $articulos= [
+                            "id" => $post->id,
+                            "title" => $post->titulo,
+                            "slug" => $post->slug,
+                            "banner" => $post->banner,
+                            "card" => $post->imagenbox,
+                            "movil" => $post->movil,
+                            "tablet" => $post->tablet,
+                            "standout" => $post->destacado,
+                            "state"=>$post->estado,
+                            "publish_date" => $post->date_publish,
+                            'category_id' => $categoria->id,
+                            'template_id'=>1,
+                            'post_type_id'=> $post->post_type_id,
+                            'author_id' => $post->author_id,
+                            'meta_description' => $post->meta_description,
+                            'meta_title' => $post->meta_titulo,
+                            'meta_image'=>$post->meta_image,
+                            'meta_keyword' =>$post->meta_keyword,
+                            'twitter_site' => $post->twitter_site,
+                            'twitter_create' => $post->twitter_create,
+                            "created_at" => $post->updated_at
+                        ];
 
 
 
-       // $nulos = DB::table("posts")->where('slug',$post->slug)->whereNull('meta_description')->count();
+
+                        $id =  DB::connection("pgsql")->table("posts")->insertGetId($articulos);
+
+                        $contenido = [
+                                "content_text"=>$post->contenido,
+                                "post_id" => $id
+                        ];
+
+                        DB::connection("pgsql")->table("contents")->insert($contenido);
+
+                        if(isset($post->tags[0]->slug)){
+
+                            foreach($post->tags as $row){
+                                $tag_id =  $row->id;
+
+                                DB::connection("pgsql")->table("post_tag")->insert(['post_id'=>$id, 'tag_id'=>$tag_id ]);
+                            }
+                        }
+                   // }
+                }
+      // }
 
 
-            $metas = [
-                "meta_description" => $post->meta_description,
-                "meta_title" => $post->meta_titulo,
-                "meta_image" => "/storage/".$post->meta_image,
-                "twitter_site" => $post->twitter_site,
-                "twitter_create" => $post->twitter_create,
-                "meta_keyword" => $post->meta_keywords,
-            ];
+      dd($articulos);
 
-            DB::table("posts")->where('slug',$post->slug)->update($metas);
+    // $categoria = Category::where('id',19)->first();
+
+
+    // foreach($listado as $art){
 
 
 
-    }
+    //     $post = Post::where('slug',$art['slug'])->first();
 
-    dd("completo");
+
+    //    // $nulos = DB::table("posts")->where('slug',$post->slug)->whereNull('meta_description')->count();
+
+
+    //         $metas = [
+    //             "meta_description" => @$post->meta_description,
+    //             "meta_title" => @$post->meta_titulo,
+    //             "meta_image" => "/storage/".@$post->meta_image,
+    //             "twitter_site" => @$post->twitter_site,
+    //             "twitter_create" => @$post->twitter_create,
+    //             "meta_keyword" => @$post->meta_keywords,
+    //         ];
+
+
+
+    //         DB::connection("pgsql")->table("posts")->where('slug',$post->slug)->update($metas);
+
+    //         var_dump($metas);
+
+
+
+    //         //$data = DB::table("posts")->where('slug',$post->slug)->first();
+
+    //         //print_r($metas);
+
+
+    // }
+
+
+    // dd("fin");
+
+    // DB::setDefaultConnection("pgsql");
+
+    // DB::table("posts")->where('slug',$post->slug)->update($metas);
+
+
+    // dd($metas);
 
         // foreach($categorias as $cat){
 
@@ -1314,7 +1346,7 @@ class HomeController extends Controller
         //     }
         // }
 
-        dd("fin");
+
 
 
     }
@@ -1353,16 +1385,11 @@ class HomeController extends Controller
        $indice = $items[$seleccion];
 
             $category = Category::where('parent_id',$indice)->inRandomOrder()->first();
-
-
-
             $articulos = $category->lastposts;
 
             $base = "https://www.claro.com.pe/hablando-claro/";
             $baseimg = "https://hablandoclaro.claromarketingtool.pe/storage/";
             foreach($articulos as $row){
-
-
 
                 $post[] = [
                     "imagen"=>$baseimg.$row->imagenbox,
