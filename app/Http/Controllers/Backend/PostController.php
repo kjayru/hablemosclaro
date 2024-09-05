@@ -164,35 +164,35 @@ class PostController extends Controller
 
 
 
-        $pariente=null;
-        $baseurl= 'https://www.claro.com.pe/hablando-claro';
+        // $pariente=null;
+        // $baseurl= 'https://www.claro.com.pe/hablando-claro';
 
-            if(Category::where('id',$request->category)->whereNotNull('parent_id')->first()){
-                $subcategorias[]=$request->category;
-            }
+        //     if(Category::where('id',$request->category)->whereNotNull('parent_id')->first()){
+        //         $subcategorias[]=$request->category;
+        //     }
 
-        if($subcategorias!=null){
-            foreach($subcategorias as $sub){
-                $scat =  Category::where('id',$sub)->first();
+        // if($subcategorias!=null){
+        //     foreach($subcategorias as $sub){
+        //         $scat =  Category::where('id',$sub)->first();
 
-            //remitir post
-                if(empty($scat->parent)){
-                    $urlfinal = $baseurl."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
-                }else{
-                    $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
-                }
+        //     //remitir post
+        //         if(empty($scat->parent)){
+        //             $urlfinal = $baseurl."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
+        //         }else{
+        //             $urlfinal = $baseurl."/".$scat->parent->slug."/".$scat->slug."/post/?=".Str::slug($request->titulo, '-');
+        //         }
 
-                $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
-                    [
-                        'url' => $urlfinal,
-                    ]);
+        //         $getdata = Http::withHeaders(['Content-Type' => 'application/json'])->post('https://api-prod-pe.prod.clarodigital.net/api/PE_MS_FE_POSTS/createPost',
+        //             [
+        //                 'url' => $urlfinal,
+        //             ]);
 
 
-                    Log::info($getdata->successful());
+        //             Log::info($getdata->successful());
 
-            }
+        //     }
 
-        }
+        // }
 
 
         return redirect(route('post.index'))
